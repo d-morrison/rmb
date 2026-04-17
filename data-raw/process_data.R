@@ -18,7 +18,7 @@ datasets <- data.frame(
     "hers_long_base_visit1_only_saved", "hers_nodm_longitudinal", "nhanes3"
   ),
   object = c(
-    "wcgs", "hersdata", "whickham", "leuk", "figure4_1", "figure4_6", "figure4_12", "esoph",
+    "wcgs", "hers", "whickham", "leuk", "figure4_1", "figure4_6", "figure4_12", "esoph",
     "mira_hsv", "unos", "pbc", "fit", "actg019", "mros", "fecfat", "sof", "gababies", "sof2",
     "needle_sharing", "fitglm", "phototherapy", "fitdata", "hers_nodm_visit4_only",
     "hers_long_base_visit1_only_saved", "hers_nodm_longitudinal", "nhanes3"

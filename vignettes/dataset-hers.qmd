@@ -16,11 +16,11 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette provides a compact exploratory analysis and an example model for `hersdata`.
+This vignette provides a compact exploratory analysis and an example model for `hers`.
 
-```{r load-hersdata}
-data(hersdata, package = "rmb")
-dat <- hersdata
+```{r load-hers}
+data(hers, package = "rmb")
+dat <- hers
 dim(dat)
 head(dat)
 summary(dat)

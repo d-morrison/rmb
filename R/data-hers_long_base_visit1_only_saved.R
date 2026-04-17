@@ -1,0 +1,32 @@
+#' Table 11.3 HERS data
+#'
+#' Dataset used in Chapter 11 of *Regression Methods in Biostatistics*
+#' (2nd edition), as distributed on the UCSF companion website.
+#'
+#' @format A data frame with 5526 rows and 22 variables:
+#' \describe{
+#'   \item{pptid}{subject id}
+#'   \item{nvisit}{Visit number (0=baseline)}
+#'   \item{age}{age}
+#'   \item{visit}{visit}
+#'   \item{exer3}{bl exercise &/or walk >3x/wk, 1:y 0:n}
+#'   \item{avgdrpwk}{avg drinks per week}
+#'   \item{csmker}{current smoking status 1:current}
+#'   \item{weight}{weight}
+#'   \item{bmi}{body mass index}
+#'   \item{sbp}{average systolic blood pressure}
+#'   \item{glucose}{glucose}
+#'   \item{htnmeds}{anti-htn meds use}
+#'   \item{drinkany}{(1 if avgdrpwk>0, 0 otherwise)}
+#'   \item{diabetes}{(1=yes, 0=no)}
+#'   \item{highsbp}{Variable description not provided in source metadata.}
+#'   \item{sbp_z}{Variable description not provided in source metadata.}
+#'   \item{group}{treatment assignment 0:a: pbo, 1:b:hrt}
+#'   \item{grade_hi}{highest grade completed}
+#'   \item{white}{(1=white, 0=other)}
+#'   \item{baseline_dm}{Variable description not provided in source metadata.}
+#'   \item{miss_mar}{Variable description not provided in source metadata.}
+#'   \item{miss_nmar}{Variable description not provided in source metadata.}
+#' }
+#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_long_base_visit1_only_saved.dta
+"hers_long_base_visit1_only_saved"

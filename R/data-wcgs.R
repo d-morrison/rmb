@@ -1,0 +1,32 @@
+#' WCGS data
+#'
+#' Dataset used in Chapter 2 of *Regression Methods in Biostatistics*
+#' (2nd edition), as distributed on the UCSF companion website.
+#'
+#' @format A data frame with 3154 rows and 22 variables:
+#' \describe{
+#'   \item{age}{Age}
+#'   \item{arcus}{Arcus Senilis}
+#'   \item{behpat}{Behavioral Pattern}
+#'   \item{bmi}{Body Mass Index (kg/m2)}
+#'   \item{chd69}{CHD Event by 1969}
+#'   \item{chol}{Total Cholesterol}
+#'   \item{dbp}{Diastolic Blood Pressure}
+#'   \item{dibpat}{Behavioral Pattern}
+#'   \item{height}{Height (inches)}
+#'   \item{id}{Variable description not provided in source metadata.}
+#'   \item{lnsbp}{Ln of Systolic Blood Pressure}
+#'   \item{lnwght}{Ln of Weight}
+#'   \item{ncigs}{Cigarettes per day}
+#'   \item{sbp}{Systolic Blood Pressure}
+#'   \item{smoke}{Current smoking}
+#'   \item{t1}{Variable description not provided in source metadata.}
+#'   \item{time169}{Variable description not provided in source metadata.}
+#'   \item{typchd69}{Type of CHD Event}
+#'   \item{uni}{Variable description not provided in source metadata.}
+#'   \item{weight}{Weight (lbs)}
+#'   \item{wghtcat}{Weight Category}
+#'   \item{agec}{RECODE of age (Age)}
+#' }
+#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/wcgs.dta
+"wcgs"
