@@ -1,0 +1,67 @@
+---
+title: "Phototherapy data"
+format:
+  html: default
+vignette: >
+  %\VignetteIndexEntry{Phototherapy data}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(rmb)
+```
+
+This vignette provides a compact exploratory analysis and an example model for `phototherapy`.
+
+```{r load-phototherapy}
+data(phototherapy, package = "rmb")
+dat <- phototherapy
+dim(dat)
+head(dat)
+summary(dat)
+```
+
+## Variable labels
+
+```{r labels}
+var_labels <- vapply(dat, function(x) {
+  lbl <- attr(x, "label")
+  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
+}, character(1))
+stats::setNames(var_labels, names(dat))
+```
+
+## Example model
+
+```{r model}
+num_vars <- names(dat)[vapply(dat, is.numeric, logical(1))]
+if (length(num_vars) >= 2) {
+  response <- num_vars[1]
+  predictor <- num_vars[2]
+  df <- stats::na.omit(dat[, c(response, predictor), drop = FALSE])
+  if (nrow(df) >= 5) {
+    y <- df[[response]]
+    if (all(y %in% c(0, 1))) {
+      fit <- stats::glm(stats::as.formula(paste(response, predictor, sep = " ~ ")), data = df, family = stats::binomial())
+    } else {
+      fit <- stats::lm(stats::as.formula(paste(response, predictor, sep = " ~ ")), data = df)
+    }
+    summary(fit)
+  } else {
+    cat("Not enough complete observations for a model.\n")
+  }
+} else {
+  cat("No two numeric variables available for a simple model example.\n")
+}
+```
+
+## Source
+
+- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/phototherapy.dta
+- Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

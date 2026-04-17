@@ -79,6 +79,10 @@ exclusions <- list(
   ),
   "tests/testthat.R" = list(
     undesirable_function_linter = Inf
+  ),
+  "R/data-documentation.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
   )
 
 )

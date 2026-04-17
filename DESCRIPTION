@@ -1,13 +1,16 @@
-Package: rpt
-Title: What the Package Does (One Line, Title Case)
+Package: rmb
+Title: Datasets for Regression Methods in Biostatistics
 Version: 0.0.0.9011
 Authors@R: c(
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+    person("Derek", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
   )
-Description: What the package does (one paragraph).
+Description: Provides datasets from the companion website for
+    "Regression Methods in Biostatistics" (2nd edition), including
+    variable labels from the source files and vignettes with exploratory
+    analyses and example models.
 License: MIT + file LICENSE
-URL: https://github.com/UCD-SERG/rpt, https://ucd-serg.github.io/rpt/
-BugReports: https://github.com/UCD-SERG/rpt/issues
+URL: https://github.com/d-morrison/rmb
+BugReports: https://github.com/d-morrison/rmb/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
@@ -18,6 +21,7 @@ Imports:
     stats
 Suggests: 
     altdoc,
+    haven,
     knitr,
     rmarkdown,
     spelling,
@@ -29,3 +33,4 @@ Suggests:
 Config/testthat/edition: 3
 VignetteBuilder: knitr, quarto
 Config/Needs/website: quarto
+LazyData: true
