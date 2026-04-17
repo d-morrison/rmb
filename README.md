@@ -12,10 +12,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 coverage](https://codecov.io/gh/d-morrison/rmb/branch/main/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/rmb)
 [![CodeFactor](https://www.codefactor.io/repository/github/ucd-serg/rpt/badge)](https://www.codefactor.io/repository/github/ucd-serg/rpt)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/rpt)](https://cran.r-project.org/package=rpt)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/rpt)](https://cran.r-project.org/package=rpt)
-[![](http://cranlogs.r-pkg.org/badges/last-month/rpt)](https://cran.r-project.org/package=rpt)
-[![](http://cranlogs.r-pkg.org/badges/last-week/rpt)](https://cran.r-project.org/package=rpt)
+status](https://www.r-pkg.org/badges/version/rmb)](https://cran.r-project.org/package=rmb)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/rmb)](https://cran.r-project.org/package=rmb)
+[![](http://cranlogs.r-pkg.org/badges/last-month/rmb)](https://cran.r-project.org/package=rmb)
+[![](http://cranlogs.r-pkg.org/badges/last-week/rmb)](https://cran.r-project.org/package=rmb)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
 
@@ -39,6 +39,11 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(rmb)
+#> 
+#> Attaching package: 'rmb'
+#> The following object is masked from 'package:datasets':
+#> 
+#>     esoph
 ## basic example code
 ```
 
