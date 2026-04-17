@@ -38,12 +38,7 @@ pak::pak("d-morrison/rmb")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(rmb)
-#> 
-#> Attaching package: 'rmb'
-#> The following object is masked from 'package:datasets':
-#> 
-#>     esoph
+suppressPackageStartupMessages(library(rmb))
 ## basic example code
 ```
 
