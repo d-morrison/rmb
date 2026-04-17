@@ -1,7 +1,6 @@
 ---
 title: "FIT data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{FIT data}
   %\VignetteEngine{quarto::html}

@@ -1,7 +1,6 @@
 ---
 title: "Phototherapy data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Phototherapy data}
   %\VignetteEngine{quarto::html}

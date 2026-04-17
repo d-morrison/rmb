@@ -1,7 +1,6 @@
 ---
 title: "Georgia birthweight data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Georgia birthweight data}
   %\VignetteEngine{quarto::html}

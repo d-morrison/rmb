@@ -1,7 +1,6 @@
 ---
 title: "Whickham data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Whickham data}
   %\VignetteEngine{quarto::html}

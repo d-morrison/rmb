@@ -1,7 +1,6 @@
 ---
 title: "Leukemia data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Leukemia data}
   %\VignetteEngine{quarto::html}

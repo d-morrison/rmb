@@ -1,7 +1,6 @@
 ---
 title: "SOF data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{SOF data}
   %\VignetteEngine{quarto::html}

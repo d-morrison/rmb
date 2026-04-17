@@ -1,7 +1,6 @@
 ---
 title: "Figure 4.12 data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Figure 4.12 data}
   %\VignetteEngine{quarto::html}

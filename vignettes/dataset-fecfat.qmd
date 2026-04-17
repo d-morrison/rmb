@@ -1,7 +1,6 @@
 ---
 title: "Fecal fat data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Fecal fat data}
   %\VignetteEngine{quarto::html}

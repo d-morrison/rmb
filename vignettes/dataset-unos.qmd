@@ -1,7 +1,6 @@
 ---
 title: "UNOS data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{UNOS data}
   %\VignetteEngine{quarto::html}

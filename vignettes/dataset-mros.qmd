@@ -1,7 +1,6 @@
 ---
 title: "MrOS data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{MrOS data}
   %\VignetteEngine{quarto::html}

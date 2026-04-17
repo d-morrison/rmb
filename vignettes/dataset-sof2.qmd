@@ -1,7 +1,6 @@
 ---
 title: "SOF BMD data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{SOF BMD data}
   %\VignetteEngine{quarto::html}

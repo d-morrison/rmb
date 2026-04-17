@@ -1,7 +1,6 @@
 ---
 title: "Needle sharing data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Needle sharing data}
   %\VignetteEngine{quarto::html}

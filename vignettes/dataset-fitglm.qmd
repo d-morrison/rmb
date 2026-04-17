@@ -1,7 +1,6 @@
 ---
 title: "Fracture risk data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Fracture risk data}
   %\VignetteEngine{quarto::html}

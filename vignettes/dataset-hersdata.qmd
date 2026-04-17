@@ -1,7 +1,6 @@
 ---
 title: "HERS data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{HERS data}
   %\VignetteEngine{quarto::html}

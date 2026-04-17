@@ -1,7 +1,6 @@
 ---
 title: "ACTG 019 data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{ACTG 019 data}
   %\VignetteEngine{quarto::html}

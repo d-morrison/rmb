@@ -1,7 +1,6 @@
 ---
 title: "FIT BMD data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{FIT BMD data}
   %\VignetteEngine{quarto::html}

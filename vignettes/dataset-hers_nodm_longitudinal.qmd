@@ -1,7 +1,6 @@
 ---
 title: "Table 11.8 HERS data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Table 11.8 HERS data}
   %\VignetteEngine{quarto::html}

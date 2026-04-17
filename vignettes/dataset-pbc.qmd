@@ -1,7 +1,6 @@
 ---
 title: "PBC data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{PBC data}
   %\VignetteEngine{quarto::html}

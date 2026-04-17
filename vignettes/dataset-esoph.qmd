@@ -1,7 +1,6 @@
 ---
 title: "Ille-et-Villaine study data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{Ille-et-Villaine study data}
   %\VignetteEngine{quarto::html}

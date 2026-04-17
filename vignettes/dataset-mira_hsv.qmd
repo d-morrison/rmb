@@ -1,7 +1,6 @@
 ---
 title: "MIRA data"
-format:
-  html: default
+format: html
 vignette: >
   %\VignetteIndexEntry{MIRA data}
   %\VignetteEngine{quarto::html}
