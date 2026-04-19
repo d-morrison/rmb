@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 3 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Population-based prospective cohort from Whickham, England, with 20-year mortality follow-up.
+#'
 #' @format A data frame with 12 rows and 4 variables:
 #' \describe{
 #'   \item{vstatus}{Variable description not provided in source metadata.}

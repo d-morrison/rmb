@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Randomized double-blind placebo-controlled trial of zidovudine in HIV infection.
+#'
 #' @format A data frame with 880 rows and 5 variables:
 #' \describe{
 #'   \item{id}{Subject ID #}

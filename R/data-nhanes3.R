@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 12 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Complex multistage cross-sectional sample from NHANES III.
+#'
 #' @format A data frame with 18162 rows and 9 variables:
 #' \describe{
 #'   \item{sdppsu6}{PSU identifier}

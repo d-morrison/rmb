@@ -41,4 +41,7 @@ wcgs
 Dataset used in Chapter 2 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Prospective epidemiologic cohort of middle-aged men studying Type A behavior and CHD risk.
+}
 \keyword{datasets}

@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 8 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Fracture-risk analysis subset derived from FIT for generalized linear model examples.
+#'
 #' @format A data frame with 6459 rows and 22 variables:
 #' \describe{
 #'   \item{alloc}{ALLOCATION NUMBER}

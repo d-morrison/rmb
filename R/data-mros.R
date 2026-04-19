@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Prospective cohort of older men in the Osteoporotic Fractures in Men (MrOS) study.
+#'
 #' @format A data frame with 5994 rows and 5 variables:
 #' \describe{
 #'   \item{bmd3}{3 quantiles of bmd}

@@ -50,4 +50,7 @@ hers_nodm_visit4_only
 Dataset used in Chapter 11 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Cross-sectional Visit 4 subset of HERS participants without diabetes.
+}
 \keyword{datasets}

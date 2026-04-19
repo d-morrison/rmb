@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 4 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Illustrative teaching dataset used for residual and influence diagnostics in Chapter 4.
+#'
 #' @format A data frame with 100 rows and 1 variables:
 #' \describe{
 #'   \item{x}{Variable description not provided in source metadata.}

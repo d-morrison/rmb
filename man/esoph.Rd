@@ -26,4 +26,7 @@ esoph
 Dataset used in Chapter 5 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Unmatched case-control study of esophageal cancer and alcohol/tobacco exposures in France.
+}
 \keyword{datasets}

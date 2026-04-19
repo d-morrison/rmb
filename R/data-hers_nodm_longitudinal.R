@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 11 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Longitudinal repeated-measures HERS subset restricted to participants without diabetes.
+#'
 #' @format A data frame with 9217 rows and 15 variables:
 #' \describe{
 #'   \item{pptid}{subject id}

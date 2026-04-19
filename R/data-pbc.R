@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Placebo-controlled clinical trial cohort in primary biliary cirrhosis (D-penicillamine).
+#'
 #' @format A data frame with 312 rows and 23 variables:
 #' \describe{
 #'   \item{number}{Case Number}

@@ -44,4 +44,7 @@ unos
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Registry-based cohort of pediatric kidney transplant recipients from the UNOS database.
+}
 \keyword{datasets}

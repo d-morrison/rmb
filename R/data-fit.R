@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Randomized Fracture Intervention Trial of alendronate in postmenopausal women.
+#'
 #' @format A data frame with 5324 rows and 9 variables:
 #' \describe{
 #'   \item{treat}{Treatment assignment}

@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 11 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Cross-sectional Visit 4 subset of HERS participants without diabetes.
+#'
 #' @format A data frame with 1871 rows and 31 variables:
 #' \describe{
 #'   \item{age}{age}

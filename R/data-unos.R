@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Registry-based cohort of pediatric kidney transplant recipients from the UNOS database.
+#'
 #' @format A data frame with 9775 rows and 25 variables:
 #' \describe{
 #'   \item{prev_ki_}{CALC FOR KI AND KP TX:Previous KI or KP tx}

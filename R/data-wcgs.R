@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 2 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Prospective epidemiologic cohort of middle-aged men studying Type A behavior and CHD risk.
+#'
 #' @format A data frame with 3154 rows and 22 variables:
 #' \describe{
 #'   \item{age}{Age}

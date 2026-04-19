@@ -42,4 +42,7 @@ pbc
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Placebo-controlled clinical trial cohort in primary biliary cirrhosis (D-penicillamine).
+}
 \keyword{datasets}

@@ -34,4 +34,7 @@ hers_nodm_longitudinal
 Dataset used in Chapter 11 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Longitudinal repeated-measures HERS subset restricted to participants without diabetes.
+}
 \keyword{datasets}

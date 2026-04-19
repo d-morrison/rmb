@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Longitudinal repeated-measures subset of SOF focused on bone mineral density outcomes.
+#'
 #' @format A data frame with 42950 rows and 15 variables:
 #' \describe{
 #'   \item{id}{ID}

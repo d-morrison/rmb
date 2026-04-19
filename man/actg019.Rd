@@ -24,4 +24,7 @@ actg019
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Randomized double-blind placebo-controlled trial of zidovudine in HIV infection.
+}
 \keyword{datasets}

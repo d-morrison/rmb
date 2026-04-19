@@ -28,4 +28,7 @@ fit
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Randomized Fracture Intervention Trial of alendronate in postmenopausal women.
+}
 \keyword{datasets}

@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 5 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Randomized trial evaluating diaphragm-based HIV prevention with repeated HSV-2 follow-up.
+#'
 #' @format A data frame with 6069 rows and 6 variables:
 #' \describe{
 #'   \item{agecat}{agecat}

@@ -25,4 +25,7 @@ mira_hsv
 Dataset used in Chapter 5 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Randomized trial evaluating diaphragm-based HIV prevention with repeated HSV-2 follow-up.
+}
 \keyword{datasets}

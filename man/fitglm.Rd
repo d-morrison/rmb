@@ -41,4 +41,7 @@ fitglm
 Dataset used in Chapter 8 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Fracture-risk analysis subset derived from FIT for generalized linear model examples.
+}
 \keyword{datasets}

@@ -41,4 +41,7 @@ hers_long_base_visit1_only_saved
 Dataset used in Chapter 11 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Baseline/Visit 1 subset from the longitudinal HERS data structure.
+}
 \keyword{datasets}

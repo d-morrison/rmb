@@ -23,4 +23,7 @@ whickham
 Dataset used in Chapter 3 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 }
+\details{
+Study design: Population-based prospective cohort from Whickham, England, with 20-year mortality follow-up.
+}
 \keyword{datasets}

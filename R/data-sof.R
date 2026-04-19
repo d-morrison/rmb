@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Prospective cohort from the Study of Osteoporotic Fractures in older women.
+#'
 #' @format A data frame with 42950 rows and 12 variables:
 #' \describe{
 #'   \item{id}{ID}

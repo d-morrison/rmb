@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 3 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Randomized placebo-controlled trial in postmenopausal women with CHD evaluating hormone therapy.
+#'
 #' @format A data frame with 2763 rows and 37 variables:
 #' \describe{
 #'   \item{HT}{random assignment to hormone therapy}

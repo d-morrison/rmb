@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 5 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Unmatched case-control study of esophageal cancer and alcohol/tobacco exposures in France.
+#'
 #' @format A data frame with 975 rows and 7 variables:
 #' \describe{
 #'   \item{case}{Case status (1=case, 0=control)}

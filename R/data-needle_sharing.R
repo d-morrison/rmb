@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 8 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Longitudinal panel study of injection drug users measuring repeated needle-sharing behavior.
+#'
 #' @format A data frame with 128 rows and 17 variables:
 #' \describe{
 #'   \item{id}{ID}

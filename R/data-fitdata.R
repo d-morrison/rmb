@@ -3,6 +3,8 @@
 #' Dataset used in Chapter 9 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #'
+#' Study design: Longitudinal FIT subset focused on bone mineral density outcomes.
+#'
 #' @format A data frame with 5813 rows and 10 variables:
 #' \describe{
 #'   \item{tx}{Treatment assignment}
