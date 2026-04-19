@@ -583,8 +583,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#rpt-development-version" id="toc-rpt-development-version" class="nav-link active" data-scroll-target="#rpt-development-version">rpt (development version)</a></li>
-  <li><a href="#rpt-0.0.0.9000" id="toc-rpt-0.0.0.9000" class="nav-link" data-scroll-target="#rpt-0.0.0.9000">rpt 0.0.0.9000</a></li>
+  <li><a href="#rmb-development-version" id="toc-rmb-development-version" class="nav-link active" data-scroll-target="#rmb-development-version">rmb (development version)</a></li>
+  <li><a href="#rmb-0.0.0.9000" id="toc-rmb-0.0.0.9000" class="nav-link" data-scroll-target="#rmb-0.0.0.9000">rmb 0.0.0.9000</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/NEWS.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/NEWS.md" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -595,21 +595,25 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="rpt-development-version" class="level1">
-<h1>rpt (development version)</h1>
+<section id="rmb-development-version" class="level1">
+<h1>rmb (development version)</h1>
 <ul>
-<li><p>Switched from pkgdown to altdoc for documentation generation. Now using Quarto Website for documentation with native math equation support via MathJax.</p></li>
-<li><p>Removed pkgdown-specific configurations and workflows.</p></li>
-<li><p>Retained RevealJS multi-format support for Quarto vignettes and articles.</p></li>
-<li><p>Fixed index page rendering by switching from <code>index.md</code> to <code>index.qmd</code> to properly process Quarto include directive (<a href="https://github.com/d-morrison/rmb/issues/58">#58</a>)</p></li>
-<li><p>Switched from <code>pkgdown</code> to <code>altdoc</code> (<a href="https://github.com/d-morrison/rmb/issues/45">#45</a>)</p></li>
-<li><p>Updated lintr configuration to match serodynamics reference with enhanced linter rules</p></li>
-<li><p>PR preview comments now use <code>recreate: true</code> to ensure they always appear at the bottom of the PR conversation, preventing them from being hidden in collapsed sections (<a href="https://github.com/d-morrison/rmb/issues/31">#31</a>)</p></li>
-<li><p>Added RevealJS presentation format for Quarto vignettes and articles in pkgdown documentation. HTML pages now display an “Other Formats” section with links to slide versions (<a href="https://github.com/d-morrison/rmb/issues/29">#29</a>)</p></li>
+<li>Added dataset roxygen <code>Study design</code> blurbs for all packaged datasets and regenerated dataset Rd files.</li>
+<li>Bumped development version to <code>0.0.0.9012</code>.</li>
+<li>Updated documentation check workflow to configure Git safe.directory using <code>$GITHUB_WORKSPACE</code>.</li>
+<li>Updated spellcheck wordlist with dataset-domain terms used across Rd and vignette sources.</li>
+<li>Switched from pkgdown to altdoc for documentation generation. Now using Quarto Website for documentation with native math equation support via MathJax.</li>
+<li>Removed pkgdown-specific configurations and workflows.</li>
+<li>Retained RevealJS multi-format support for Quarto vignettes and articles.</li>
+<li>Fixed index page rendering by switching from <code>index.md</code> to <code>index.qmd</code> to properly process Quarto include directive (<a href="https://github.com/d-morrison/rmb/issues/58">#58</a>)</li>
+<li>Switched from <code>pkgdown</code> to <code>altdoc</code> (<a href="https://github.com/d-morrison/rmb/issues/45">#45</a>)</li>
+<li>Updated lintr configuration to match serodynamics reference with enhanced linter rules</li>
+<li>PR preview comments now use <code>recreate: true</code> to ensure they always appear at the bottom of the PR conversation, preventing them from being hidden in collapsed sections (<a href="https://github.com/d-morrison/rmb/issues/31">#31</a>)</li>
+<li>Added RevealJS presentation format for Quarto vignettes and articles in pkgdown documentation. HTML pages now display an “Other Formats” section with links to slide versions (<a href="https://github.com/d-morrison/rmb/issues/29">#29</a>)</li>
 </ul>
 </section>
-<section id="rpt-0.0.0.9000" class="level1">
-<h1>rpt 0.0.0.9000</h1>
+<section id="rmb-0.0.0.9000" class="level1">
+<h1>rmb 0.0.0.9000</h1>
 <ul>
 <li>Initial development version</li>
 </ul>
