@@ -18,6 +18,14 @@ library(rmb)
 
 This vignette provides a compact exploratory analysis and an example model for `mira_hsv`.
 
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "mira_hsv"]
+```
+
+
 ```{r load-mira_hsv}
 data(mira_hsv, package = "rmb")
 dat <- mira_hsv

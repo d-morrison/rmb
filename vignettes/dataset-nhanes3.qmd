@@ -18,6 +18,14 @@ library(rmb)
 
 This vignette provides a compact exploratory analysis and an example model for `nhanes3`.
 
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "nhanes3"]
+```
+
+
 ```{r load-nhanes3}
 data(nhanes3, package = "rmb")
 dat <- nhanes3

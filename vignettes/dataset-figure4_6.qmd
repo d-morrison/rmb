@@ -18,6 +18,14 @@ library(rmb)
 
 This vignette provides a compact exploratory analysis and an example model for `figure4_6`.
 
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "figure4_6"]
+```
+
+
 ```{r load-figure4_6}
 data(figure4_6, package = "rmb")
 dat <- figure4_6

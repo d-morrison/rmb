@@ -18,3 +18,11 @@ test_that("datasets preserve variable label attributes", {
     expect_true(any(labels), info = paste("no labels found in", dataset_name))
   }
 })
+
+test_that("dataset index includes study design summaries", {
+  data("rmb_datasets", package = "rmb", envir = environment())
+
+  expect_true("study_design" %in% names(rmb_datasets))
+  expect_false(anyNA(rmb_datasets$study_design))
+  expect_true(all(nzchar(rmb_datasets$study_design)))
+})

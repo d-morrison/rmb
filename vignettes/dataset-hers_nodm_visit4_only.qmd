@@ -18,6 +18,14 @@ library(rmb)
 
 This vignette provides a compact exploratory analysis and an example model for `hers_nodm_visit4_only`.
 
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "hers_nodm_visit4_only"]
+```
+
+
 ```{r load-hers_nodm_visit4_only}
 data(hers_nodm_visit4_only, package = "rmb")
 dat <- hers_nodm_visit4_only

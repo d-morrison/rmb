@@ -18,6 +18,14 @@ library(rmb)
 
 This vignette provides a compact exploratory analysis and an example model for `needle_sharing`.
 
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "needle_sharing"]
+```
+
+
 ```{r load-needle_sharing}
 data(needle_sharing, package = "rmb")
 dat <- needle_sharing

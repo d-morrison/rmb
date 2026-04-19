@@ -18,6 +18,14 @@ library(rmb)
 
 This vignette provides a compact exploratory analysis and an example model for `hers_long_base_visit1_only_saved`.
 
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "hers_long_base_visit1_only_saved"]
+```
+
+
 ```{r load-hers_long_base_visit1_only_saved}
 data(hers_long_base_visit1_only_saved, package = "rmb")
 dat <- hers_long_base_visit1_only_saved

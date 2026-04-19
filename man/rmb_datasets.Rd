@@ -5,16 +5,20 @@
 \alias{rmb_datasets}
 \title{RMB Datasets Index}
 \format{
-A data frame with 26 rows and 4 variables:
+A data frame with 26 rows and 5 variables:
 \describe{
 \item{object}{Dataset object name in this package.}
 \item{title}{Dataset title from the UCSF companion website.}
 \item{chapter}{Chapter where the dataset is first introduced.}
+\item{study_design}{One-sentence study design summary from the RMB2e text and companion web materials.}
 \item{url}{Original Stata download URL.}
 }
 }
 \source{
-https://regression.ucsf.edu/second-edition/data-examples-and-problems
+\itemize{
+\item https://demorrison.ucdavis.edu/files/RMB2e.pdf
+\item https://regression.ucsf.edu/second-edition/data-examples-and-problems
+}
 }
 \usage{
 rmb_datasets
