@@ -32,7 +32,7 @@ A data frame with 6459 rows and 22 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/FITglm.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/FITglm.dta}{UCSF companion data}
 }
 \usage{
 fitglm
@@ -40,8 +40,6 @@ fitglm
 \description{
 Dataset used in Chapter 8 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Fracture-risk analysis subset derived from FIT for generalized linear model examples.
 }
 \keyword{datasets}

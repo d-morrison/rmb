@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Clustered repeated-birth sample from Georgia mothers used for birthweight analyses.
 #'
 #' @format A data frame with 1000 rows and 11 variables:
@@ -19,5 +18,5 @@
 #'   \item{initwght}{Variable description not provided in source metadata.}
 #'   \item{cinitage}{Variable description not provided in source metadata.}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/gababies.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/gababies.dta)
 "gababies"

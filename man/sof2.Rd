@@ -25,7 +25,7 @@ A data frame with 42950 rows and 15 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof2.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof2.dta}{UCSF companion data}
 }
 \usage{
 sof2
@@ -33,8 +33,6 @@ sof2
 \description{
 Dataset used in Chapter 7 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Longitudinal repeated-measures subset of SOF focused on bone mineral density outcomes.
 }
 \keyword{datasets}

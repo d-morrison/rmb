@@ -14,7 +14,7 @@ A data frame with 12 rows and 4 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/whickam.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/whickam.dta}{UCSF companion data}
 }
 \usage{
 whickham
@@ -22,8 +22,6 @@ whickham
 \description{
 Dataset used in Chapter 3 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Population-based prospective cohort from Whickham, England, with 20-year mortality follow-up.
 }
 \keyword{datasets}

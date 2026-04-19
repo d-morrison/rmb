@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Registry-based cohort of pediatric kidney transplant recipients from the UNOS database.
 #'
 #' @format A data frame with 9775 rows and 25 variables:
@@ -33,5 +32,5 @@
 #'   \item{ptld_rep}{Date PTLD First Reported to UNOS}
 #'   \item{fu}{follow-up time (years)}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/unos.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/unos.dta)
 "unos"

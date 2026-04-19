@@ -17,6 +17,6 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Derek Morrison \email{demorrison@ucdavis.edu}
+\strong{Maintainer}: Ezra Morrison \email{demorrison@ucdavis.edu}
 
 }

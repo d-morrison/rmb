@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 9 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Longitudinal FIT subset focused on bone mineral density outcomes.
 #'
 #' @format A data frame with 5813 rows and 10 variables:
@@ -18,5 +17,5 @@
 #'   \item{newvfx}{New vertebral fracture}
 #'   \item{newnspfx}{New non-spine fracture}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fitdata.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fitdata.dta)
 "fitdata"

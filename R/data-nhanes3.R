@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 12 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Complex multistage cross-sectional sample from NHANES III.
 #'
 #' @format A data frame with 18162 rows and 9 variables:
@@ -17,5 +16,5 @@
 #'   \item{age10}{age (per 10 years)}
 #'   \item{diabetes}{Diabetes}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/nhanes3.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/nhanes3.dta)
 "nhanes3"

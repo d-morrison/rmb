@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Prospective cohort of older men in the Osteoporotic Fractures in Men (MrOS) study.
 #'
 #' @format A data frame with 5994 rows and 5 variables:
@@ -13,5 +12,5 @@
 #'   \item{weight}{q2.weight (kg)}
 #'   \item{years}{Variable description not provided in source metadata.}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mros.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mros.dta)
 "mros"

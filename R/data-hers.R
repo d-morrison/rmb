@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 3 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Randomized placebo-controlled trial in postmenopausal women with CHD evaluating hormone therapy.
 #'
 #' @format A data frame with 2763 rows and 37 variables:
@@ -45,5 +44,5 @@
 #'   \item{DBP}{diastolic blood pressure}
 #'   \item{age10}{age (per 10 years)}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hersdata.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hersdata.dta)
 "hers"

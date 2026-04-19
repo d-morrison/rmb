@@ -16,8 +16,8 @@ A data frame with 26 rows and 5 variables:
 }
 \source{
 \itemize{
-\item https://demorrison.ucdavis.edu/files/RMB2e.pdf
-\item https://regression.ucsf.edu/second-edition/data-examples-and-problems
+\item \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e PDF}
+\item \href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{UCSF companion website}
 }
 }
 \usage{

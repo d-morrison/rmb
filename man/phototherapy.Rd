@@ -21,7 +21,7 @@ A data frame with 20731 rows and 11 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/phototherapy.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/phototherapy.dta}{UCSF companion data}
 }
 \usage{
 phototherapy
@@ -29,8 +29,6 @@ phototherapy
 \description{
 Dataset used in Chapter 9 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Observational neonatal jaundice cohort used for confounding-adjusted phototherapy analyses.
 }
 \keyword{datasets}

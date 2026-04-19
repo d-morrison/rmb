@@ -27,7 +27,7 @@ A data frame with 128 rows and 17 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/needle_sharing.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/needle_sharing.dta}{UCSF companion data}
 }
 \usage{
 needle_sharing
@@ -35,8 +35,6 @@ needle_sharing
 \description{
 Dataset used in Chapter 8 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Longitudinal panel study of injection drug users measuring repeated needle-sharing behavior.
 }
 \keyword{datasets}

@@ -35,7 +35,7 @@ A data frame with 9775 rows and 25 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/unos.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/unos.dta}{UCSF companion data}
 }
 \usage{
 unos
@@ -43,8 +43,6 @@ unos
 \description{
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Registry-based cohort of pediatric kidney transplant recipients from the UNOS database.
 }
 \keyword{datasets}

@@ -13,7 +13,7 @@ A data frame with 42 rows and 3 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/leuk.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/leuk.dta}{UCSF companion data}
 }
 \usage{
 leuk
@@ -21,8 +21,6 @@ leuk
 \description{
 Dataset used in Chapter 3 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Randomized acute lymphoblastic leukemia remission trial comparing 6-MP versus placebo.
 }
 \keyword{datasets}

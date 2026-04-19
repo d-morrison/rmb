@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 9 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Observational neonatal jaundice cohort used for confounding-adjusted phototherapy analyses.
 #'
 #' @format A data frame with 20731 rows and 11 variables:
@@ -19,5 +18,5 @@
 #'   \item{qual_TSB}{Qual TSB - PT threshold (mg/dL)}
 #'   \item{year}{Year of Birth}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/phototherapy.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/phototherapy.dta)
 "phototherapy"

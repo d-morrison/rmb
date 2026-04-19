@@ -16,7 +16,7 @@ A data frame with 6069 rows and 6 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mira_hsv.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mira_hsv.dta}{UCSF companion data}
 }
 \usage{
 mira_hsv
@@ -24,8 +24,6 @@ mira_hsv
 \description{
 Dataset used in Chapter 5 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Randomized trial evaluating diaphragm-based HIV prevention with repeated HSV-2 follow-up.
 }
 \keyword{datasets}

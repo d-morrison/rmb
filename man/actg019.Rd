@@ -15,7 +15,7 @@ A data frame with 880 rows and 5 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/actg019.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/actg019.dta}{UCSF companion data}
 }
 \usage{
 actg019
@@ -23,8 +23,6 @@ actg019
 \description{
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Randomized double-blind placebo-controlled trial of zidovudine in HIV infection.
 }
 \keyword{datasets}

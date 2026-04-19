@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 8 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Longitudinal panel study of injection drug users measuring repeated needle-sharing behavior.
 #'
 #' @format A data frame with 128 rows and 17 variables:
@@ -25,5 +24,5 @@
 #'   \item{homeless}{Variable description not provided in source metadata.}
 #'   \item{shsyr}{No. of shared needles}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/needle_sharing.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/needle_sharing.dta)
 "needle_sharing"

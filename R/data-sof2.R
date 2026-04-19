@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Longitudinal repeated-measures subset of SOF focused on bone mineral density outcomes.
 #'
 #' @format A data frame with 42950 rows and 15 variables:
@@ -23,5 +22,5 @@
 #'   \item{visit_spl1}{Variable description not provided in source metadata.}
 #'   \item{visit_spl2}{Variable description not provided in source metadata.}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof2.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof2.dta)
 "sof2"

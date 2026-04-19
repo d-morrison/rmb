@@ -14,7 +14,7 @@ A data frame with 26 rows and 4 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/figure4_12.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/figure4_12.dta}{UCSF companion data}
 }
 \usage{
 figure4_12
@@ -22,8 +22,6 @@ figure4_12
 \description{
 Dataset used in Chapter 4 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Illustrative teaching dataset used for model-checking examples in Chapter 4.
 }
 \keyword{datasets}

@@ -20,7 +20,7 @@ A data frame with 5813 rows and 10 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fitdata.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fitdata.dta}{UCSF companion data}
 }
 \usage{
 fitdata
@@ -28,8 +28,6 @@ fitdata
 \description{
 Dataset used in Chapter 9 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Longitudinal FIT subset focused on bone mineral density outcomes.
 }
 \keyword{datasets}

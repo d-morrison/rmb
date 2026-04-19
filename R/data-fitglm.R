@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 8 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Fracture-risk analysis subset derived from FIT for generalized linear model examples.
 #'
 #' @format A data frame with 6459 rows and 22 variables:
@@ -30,5 +29,5 @@
 #'   \item{ltrt}{LOW FALL RISK, TREATMENT GROUP}
 #'   \item{rtgroup}{FOUR LEVEL RISK/TREATMENT GROUP}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/FITglm.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/FITglm.dta)
 "fitglm"

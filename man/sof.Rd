@@ -22,7 +22,7 @@ A data frame with 42950 rows and 12 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof.dta}{UCSF companion data}
 }
 \usage{
 sof
@@ -30,8 +30,6 @@ sof
 \description{
 Dataset used in Chapter 7 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Prospective cohort from the Study of Osteoporotic Fractures in older women.
 }
 \keyword{datasets}

@@ -2,7 +2,7 @@ Package: rmb
 Title: Datasets for Regression Methods in Biostatistics
 Version: 0.0.0.9012
 Authors@R: c(
-    person("Derek", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
+    person("Ezra", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
   )
 Description: Provides datasets from the companion website for
     "Regression Methods in Biostatistics" (2nd edition), including

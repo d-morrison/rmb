@@ -32,7 +32,7 @@ A data frame with 5526 rows and 22 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_long_base_visit1_only_saved.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_long_base_visit1_only_saved.dta}{UCSF companion data}
 }
 \usage{
 hers_long_base_visit1_only_saved
@@ -40,8 +40,6 @@ hers_long_base_visit1_only_saved
 \description{
 Dataset used in Chapter 11 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Baseline/Visit 1 subset from the longitudinal HERS data structure.
 }
 \keyword{datasets}

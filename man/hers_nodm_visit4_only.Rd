@@ -41,7 +41,7 @@ A data frame with 1871 rows and 31 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_visit4_only.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_visit4_only.dta}{UCSF companion data}
 }
 \usage{
 hers_nodm_visit4_only
@@ -49,8 +49,6 @@ hers_nodm_visit4_only
 \description{
 Dataset used in Chapter 11 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Cross-sectional Visit 4 subset of HERS participants without diabetes.
 }
 \keyword{datasets}

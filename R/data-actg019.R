@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Randomized double-blind placebo-controlled trial of zidovudine in HIV infection.
 #'
 #' @format A data frame with 880 rows and 5 variables:
@@ -13,5 +12,5 @@
 #'   \item{rx}{Treatment}
 #'   \item{cd4}{Baseline CD4+ lymphocyte count}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/actg019.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/actg019.dta)
 "actg019"

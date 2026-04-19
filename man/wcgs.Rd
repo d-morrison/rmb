@@ -32,7 +32,7 @@ A data frame with 3154 rows and 22 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/wcgs.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/wcgs.dta}{UCSF companion data}
 }
 \usage{
 wcgs
@@ -40,8 +40,6 @@ wcgs
 \description{
 Dataset used in Chapter 2 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Prospective epidemiologic cohort of middle-aged men studying Type A behavior and CHD risk.
 }
 \keyword{datasets}

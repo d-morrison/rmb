@@ -11,7 +11,7 @@ A data frame with 8 rows and 1 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/figure4_1.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/figure4_1.dta}{UCSF companion data}
 }
 \usage{
 figure4_1
@@ -19,8 +19,6 @@ figure4_1
 \description{
 Dataset used in Chapter 4 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4.
 }
 \keyword{datasets}

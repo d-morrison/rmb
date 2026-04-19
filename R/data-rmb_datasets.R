@@ -11,6 +11,6 @@
 #'   \item{url}{Original Stata download URL.}
 #' }
 #' @source
-#' - https://demorrison.ucdavis.edu/files/RMB2e.pdf
-#' - https://regression.ucsf.edu/second-edition/data-examples-and-problems
+#' - [RMB2e PDF](https://demorrison.ucdavis.edu/files/RMB2e.pdf)
+#' - [UCSF companion website](https://regression.ucsf.edu/second-edition/data-examples-and-problems)
 "rmb_datasets"

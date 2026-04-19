@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 11 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Baseline/Visit 1 subset from the longitudinal HERS data structure.
 #'
 #' @format A data frame with 5526 rows and 22 variables:
@@ -30,5 +29,5 @@
 #'   \item{miss_mar}{Variable description not provided in source metadata.}
 #'   \item{miss_nmar}{Variable description not provided in source metadata.}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_long_base_visit1_only_saved.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_long_base_visit1_only_saved.dta)
 "hers_long_base_visit1_only_saved"

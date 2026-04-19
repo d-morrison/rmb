@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 11 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Longitudinal repeated-measures HERS subset restricted to participants without diabetes.
 #'
 #' @format A data frame with 9217 rows and 15 variables:
@@ -23,5 +22,5 @@
 #'   \item{white}{(1=white, 0=other)}
 #'   \item{visit}{Variable description not provided in source metadata.}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_longitudinal.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_longitudinal.dta)
 "hers_nodm_longitudinal"

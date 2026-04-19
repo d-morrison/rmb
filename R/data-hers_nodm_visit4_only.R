@@ -2,7 +2,6 @@
 #'
 #' Dataset used in Chapter 11 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
-#'
 #' Study design: Cross-sectional Visit 4 subset of HERS participants without diabetes.
 #'
 #' @format A data frame with 1871 rows and 31 variables:
@@ -39,5 +38,5 @@
 #'   \item{_9_glucose}{glucose}
 #'   \item{_10_glucose}{glucose}
 #' }
-#' @source https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_visit4_only.dta
+#' @source [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_visit4_only.dta)
 "hers_nodm_visit4_only"

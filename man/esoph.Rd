@@ -17,7 +17,7 @@ A data frame with 975 rows and 7 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/esoph.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/esoph.dta}{UCSF companion data}
 }
 \usage{
 esoph
@@ -25,8 +25,6 @@ esoph
 \description{
 Dataset used in Chapter 5 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Unmatched case-control study of esophageal cancer and alcohol/tobacco exposures in France.
 }
 \keyword{datasets}

@@ -19,7 +19,7 @@ A data frame with 5324 rows and 9 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fit.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fit.dta}{UCSF companion data}
 }
 \usage{
 fit
@@ -27,8 +27,6 @@ fit
 \description{
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Randomized Fracture Intervention Trial of alendronate in postmenopausal women.
 }
 \keyword{datasets}

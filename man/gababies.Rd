@@ -21,7 +21,7 @@ A data frame with 1000 rows and 11 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/gababies.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/gababies.dta}{UCSF companion data}
 }
 \usage{
 gababies
@@ -29,8 +29,6 @@ gababies
 \description{
 Dataset used in Chapter 7 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Clustered repeated-birth sample from Georgia mothers used for birthweight analyses.
 }
 \keyword{datasets}

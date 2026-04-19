@@ -33,7 +33,7 @@ A data frame with 312 rows and 23 variables:
 }
 }
 \source{
-https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/pbc.dta
+\href{https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/pbc.dta}{UCSF companion data}
 }
 \usage{
 pbc
@@ -41,8 +41,6 @@ pbc
 \description{
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
-}
-\details{
 Study design: Placebo-controlled clinical trial cohort in primary biliary cirrhosis (D-penicillamine).
 }
 \keyword{datasets}
