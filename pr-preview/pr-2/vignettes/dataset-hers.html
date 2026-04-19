@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>hersdata – rmb</title>
+<title>HERS data – rmb</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,8 +20,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -46,8 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-dbf22739c68fc316d727e9fdf85a1c89.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -73,12 +103,8 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
-<link rel="stylesheet" href="../styles.css">
+}</script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -244,9 +270,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">rmb</span>
@@ -258,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link active" href="../man/rmb-package.html" aria-current="page"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
@@ -266,8 +290,8 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-articles" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Articles</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-articles">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-articles">
+<li>
     <a class="dropdown-item" href="../vignettes/getting-started.html">
  <span class="dropdown-text">Getting started</span></a>
   </li>  
@@ -280,39 +304,33 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Advanced</span></a>
   </li>  
     </ul>
-  </li>
+</li>
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/d-morrison/rmb"> <i class="bi bi-github" role="img" aria-label="rmb GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/actg019.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/hersdata.html">hersdata</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">HERS data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
@@ -326,8 +344,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../vignettes/getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started</span></a>
@@ -347,27 +365,27 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../vignettes/articles/quarto_article.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced Quarto Article</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Reference</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../man/actg019.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">actg019</span></a>
@@ -453,8 +471,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/hersdata.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">hersdata</span></a>
+  <a href="../man/hers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">hers</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -542,7 +560,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../NEWS.html" class="sidebar-item-text sidebar-link">
@@ -574,281 +592,273 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hers-data" id="toc-hers-data" class="nav-link active" data-scroll-target="#hers-data">HERS data</a>
-  <ul class="collapse">
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/man/hersdata.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/man/hersdata.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li><a href="#variable-labels" id="toc-variable-labels" class="nav-link active" data-scroll-target="#variable-labels"><span class="header-section-number">1</span> Variable labels</a></li>
+  <li><a href="#example-model" id="toc-example-model" class="nav-link" data-scroll-target="#example-model"><span class="header-section-number">2</span> Example model</a></li>
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">3</span> Source</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/dataset-hers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/dataset-hers.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/actg019.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/hersdata.html">hersdata</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">HERS data</h1></header><header id="title-block-header">
+
+</header><p>This vignette provides a compact exploratory analysis and an example model for <code>hers</code>.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">hers</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">hers</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2763   37</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   HT age raceth nonwhite smoking drinkany exercise physact globrat poorfair</span></span>
+<span><span class="co">#&gt; 1  0  70      2        1       0        0        0       5       3        0</span></span>
+<span><span class="co">#&gt; 2  0  62      2        1       0        0        0       1       3        0</span></span>
+<span><span class="co">#&gt; 3  1  69      1        0       0        0        0       3       3        0</span></span>
+<span><span class="co">#&gt; 4  0  64      1        0       1        1        0       1       3        0</span></span>
+<span><span class="co">#&gt; 5  0  65      1        0       0        0        0       2       3        0</span></span>
+<span><span class="co">#&gt; 6  1  68      2        1       0        1        0       3       3        0</span></span>
+<span><span class="co">#&gt;   medcond htnmeds statins diabetes dmpills insulin weight   BMI waist   WHR</span></span>
+<span><span class="co">#&gt; 1       0       1       1        0       0       0   73.8 23.69  96.0 0.932</span></span>
+<span><span class="co">#&gt; 2       1       1       0        0       0       0   70.9 28.62  93.0 0.964</span></span>
+<span><span class="co">#&gt; 3       0       1       0        1       0       0  102.0 42.51 110.2 0.782</span></span>
+<span><span class="co">#&gt; 4       1       1       0        0       0       0   64.4 24.39  87.0 0.877</span></span>
+<span><span class="co">#&gt; 5       0       0       0        0       0       0   57.9 21.90  77.0 0.794</span></span>
+<span><span class="co">#&gt; 6       0       0       0        0       0       0   60.9 29.05  96.0 1.000</span></span>
+<span><span class="co">#&gt;   glucose weight1  BMI1 waist1  WHR1 glucose1 tchol   LDL HDL  TG tchol1  LDL1</span></span>
+<span><span class="co">#&gt; 1      84    73.6 23.63   93.0 0.912       94   189 122.4  52  73    201 137.6</span></span>
+<span><span class="co">#&gt; 2     111    73.4 28.89   95.0 0.964       78   307 241.6  44 107    216 150.6</span></span>
+<span><span class="co">#&gt; 3     114    96.1 40.73  103.0 0.774       98   254 166.2  57 154    254 156.0</span></span>
+<span><span class="co">#&gt; 4      94    58.6 22.52   77.0 0.802       93   204 116.2  56 159    207 122.6</span></span>
+<span><span class="co">#&gt; 5     101    58.9 22.28   76.5 0.757       92   214 150.6  42 107    235 172.2</span></span>
+<span><span class="co">#&gt; 6     116    57.7 27.52   86.0 0.910      115   212 137.8  52 111    202 126.6</span></span>
+<span><span class="co">#&gt;   HDL1 TG1 SBP DBP age10</span></span>
+<span><span class="co">#&gt; 1   48  77 138  78   7.0</span></span>
+<span><span class="co">#&gt; 2   48  87 118  70   6.2</span></span>
+<span><span class="co">#&gt; 3   66 160 134  78   6.9</span></span>
+<span><span class="co">#&gt; 4   57 137 152  72   6.4</span></span>
+<span><span class="co">#&gt; 5   35 139 175  95   6.5</span></span>
+<span><span class="co">#&gt; 6   53 112 174  98   6.8</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        HT              age            raceth         nonwhite     </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000   Min.   :44.00   Min.   :1.000   Min.   :0.0000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:62.00   1st Qu.:1.000   1st Qu.:0.0000  </span></span>
+<span><span class="co">#&gt;  Median :0.0000   Median :67.00   Median :1.000   Median :0.0000  </span></span>
+<span><span class="co">#&gt;  Mean   :0.4995   Mean   :66.65   Mean   :1.147   Mean   :0.1129  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:72.00   3rd Qu.:1.000   3rd Qu.:0.0000  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000   Max.   :79.00   Max.   :3.000   Max.   :1.0000  </span></span>
+<span><span class="co">#&gt;                                                                   </span></span>
+<span><span class="co">#&gt;     smoking          drinkany         exercise         physact   </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :1.0  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:2.0  </span></span>
+<span><span class="co">#&gt;  Median :0.0000   Median :0.0000   Median :0.0000   Median :3.0  </span></span>
+<span><span class="co">#&gt;  Mean   :0.1303   Mean   :0.3915   Mean   :0.3865   Mean   :3.2  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.0  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :5.0  </span></span>
+<span><span class="co">#&gt;                   NA's   :2                                      </span></span>
+<span><span class="co">#&gt;     globrat         poorfair         medcond          htnmeds      </span></span>
+<span><span class="co">#&gt;  Min.   :1.000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:3.000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:1.0000  </span></span>
+<span><span class="co">#&gt;  Median :3.000   Median :0.0000   Median :0.0000   Median :1.0000  </span></span>
+<span><span class="co">#&gt;  Mean   :3.063   Mean   :0.2409   Mean   :0.3721   Mean   :0.8216  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:4.000   3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:1.0000  </span></span>
+<span><span class="co">#&gt;  Max.   :5.000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  </span></span>
+<span><span class="co">#&gt;  NA's   :3       NA's   :3                                         </span></span>
+<span><span class="co">#&gt;     statins          diabetes         dmpills           insulin       </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000   Min.   :0.0000   Min.   :0.00000   Min.   :0.00000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.00000   1st Qu.:0.00000  </span></span>
+<span><span class="co">#&gt;  Median :0.0000   Median :0.0000   Median :0.00000   Median :0.00000  </span></span>
+<span><span class="co">#&gt;  Mean   :0.3634   Mean   :0.2646   Mean   :0.09627   Mean   :0.09881  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.00000   3rd Qu.:0.00000  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000   Max.   :1.0000   Max.   :1.00000   Max.   :1.00000  </span></span>
+<span><span class="co">#&gt;                                                                       </span></span>
+<span><span class="co">#&gt;      weight            BMI            waist             WHR       </span></span>
+<span><span class="co">#&gt;  Min.   : 37.50   Min.   :15.21   Min.   : 56.90   Min.   :0.624  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 62.20   1st Qu.:24.64   1st Qu.: 82.00   1st Qu.:0.811  </span></span>
+<span><span class="co">#&gt;  Median : 71.00   Median :27.75   Median : 90.50   Median :0.867  </span></span>
+<span><span class="co">#&gt;  Mean   : 72.73   Mean   :28.58   Mean   : 91.74   Mean   :0.870  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 81.40   3rd Qu.:31.73   3rd Qu.:100.30   3rd Qu.:0.923  </span></span>
+<span><span class="co">#&gt;  Max.   :132.00   Max.   :54.13   Max.   :170.00   Max.   :1.218  </span></span>
+<span><span class="co">#&gt;  NA's   :2        NA's   :5       NA's   :2        NA's   :3      </span></span>
+<span><span class="co">#&gt;     glucose         weight1            BMI1           waist1      </span></span>
+<span><span class="co">#&gt;  Min.   : 29.0   Min.   : 37.70   Min.   :14.73   Min.   : 59.00  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 91.0   1st Qu.: 61.20   1st Qu.:24.34   1st Qu.: 81.30  </span></span>
+<span><span class="co">#&gt;  Median : 99.0   Median : 70.40   Median :27.54   Median : 90.00  </span></span>
+<span><span class="co">#&gt;  Mean   :112.2   Mean   : 72.04   Mean   :28.36   Mean   : 91.12  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:114.0   3rd Qu.: 80.90   3rd Qu.:31.54   3rd Qu.:100.00  </span></span>
+<span><span class="co">#&gt;  Max.   :298.0   Max.   :142.00   Max.   :54.04   Max.   :142.00  </span></span>
+<span><span class="co">#&gt;                  NA's   :150      NA's   :153     NA's   :151     </span></span>
+<span><span class="co">#&gt;       WHR1           glucose1         tchol            LDL       </span></span>
+<span><span class="co">#&gt;  Min.   :0.6060   Min.   : 42.0   Min.   :110.0   Min.   : 36.8  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.8100   1st Qu.: 91.0   1st Qu.:201.0   1st Qu.:119.6  </span></span>
+<span><span class="co">#&gt;  Median :0.8630   Median :100.0   Median :224.0   Median :141.0  </span></span>
+<span><span class="co">#&gt;  Mean   :0.8668   Mean   :114.5   Mean   :228.6   Mean   :145.0  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:0.9200   3rd Qu.:116.0   3rd Qu.:252.0   3rd Qu.:166.0  </span></span>
+<span><span class="co">#&gt;  Max.   :1.1500   Max.   :440.0   Max.   :465.0   Max.   :393.4  </span></span>
+<span><span class="co">#&gt;  NA's   :151      NA's   :150     NA's   :4       NA's   :11     </span></span>
+<span><span class="co">#&gt;       HDL               TG            tchol1           LDL1      </span></span>
+<span><span class="co">#&gt;  Min.   : 14.00   Min.   : 31.0   Min.   : 92.0   Min.   :-20.0  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 41.00   1st Qu.:116.0   1st Qu.:193.0   1st Qu.:106.6  </span></span>
+<span><span class="co">#&gt;  Median : 49.00   Median :157.0   Median :214.0   Median :128.8  </span></span>
+<span><span class="co">#&gt;  Mean   : 50.26   Mean   :166.1   Mean   :219.2   Mean   :132.4  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 57.00   3rd Qu.:208.0   3rd Qu.:242.0   3rd Qu.:154.1  </span></span>
+<span><span class="co">#&gt;  Max.   :130.00   Max.   :476.0   Max.   :535.0   Max.   :450.2  </span></span>
+<span><span class="co">#&gt;  NA's   :11       NA's   :4       NA's   :150     NA's   :155    </span></span>
+<span><span class="co">#&gt;       HDL1             TG1              SBP             DBP        </span></span>
+<span><span class="co">#&gt;  Min.   : 14.00   Min.   :  31.0   Min.   : 83.0   Min.   : 45.00  </span></span>
+<span><span class="co">#&gt;  1st Qu.: 42.00   1st Qu.: 119.0   1st Qu.:122.0   1st Qu.: 67.00  </span></span>
+<span><span class="co">#&gt;  Median : 50.00   Median : 157.0   Median :134.0   Median : 72.00  </span></span>
+<span><span class="co">#&gt;  Mean   : 51.78   Mean   : 175.8   Mean   :135.1   Mean   : 73.15  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 59.00   3rd Qu.: 214.0   3rd Qu.:147.0   3rd Qu.: 80.00  </span></span>
+<span><span class="co">#&gt;  Max.   :124.00   Max.   :1016.0   Max.   :224.0   Max.   :102.00  </span></span>
+<span><span class="co">#&gt;  NA's   :155      NA's   :150                      NA's   :1       </span></span>
+<span><span class="co">#&gt;      age10      </span></span>
+<span><span class="co">#&gt;  Min.   :4.400  </span></span>
+<span><span class="co">#&gt;  1st Qu.:6.200  </span></span>
+<span><span class="co">#&gt;  Median :6.700  </span></span>
+<span><span class="co">#&gt;  Mean   :6.665  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:7.200  </span></span>
+<span><span class="co">#&gt;  Max.   :7.900  </span></span>
+<span><span class="co">#&gt; </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="variable-labels" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="variable-labels">
+<span class="header-section-number">1</span> Variable labels</h2>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">var_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">lbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"label"</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">lbl</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lbl</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">lbl</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="cn">NA_character_</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">lbl</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"; "</span><span class="op">)</span></span>
+<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">var_labels</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                        HT </span></span>
+<span><span class="co">#&gt;    "random assignment to hormone therapy" </span></span>
+<span><span class="co">#&gt;                                       age </span></span>
+<span><span class="co">#&gt;                            "age in years" </span></span>
+<span><span class="co">#&gt;                                    raceth </span></span>
+<span><span class="co">#&gt;                          "race/ethnicity" </span></span>
+<span><span class="co">#&gt;                                  nonwhite </span></span>
+<span><span class="co">#&gt;                 "nonwhite race/ethnicity" </span></span>
+<span><span class="co">#&gt;                                   smoking </span></span>
+<span><span class="co">#&gt;                          "current smoker" </span></span>
+<span><span class="co">#&gt;                                  drinkany </span></span>
+<span><span class="co">#&gt;         "any current alcohol consumption" </span></span>
+<span><span class="co">#&gt;                                  exercise </span></span>
+<span><span class="co">#&gt;      "exercise at least 3 times per week" </span></span>
+<span><span class="co">#&gt;                                   physact </span></span>
+<span><span class="co">#&gt;           "comparative physical activity" </span></span>
+<span><span class="co">#&gt;                                   globrat </span></span>
+<span><span class="co">#&gt;                    "self-reported health" </span></span>
+<span><span class="co">#&gt;                                  poorfair </span></span>
+<span><span class="co">#&gt;          "poor/fair self-reported health" </span></span>
+<span><span class="co">#&gt;                                   medcond </span></span>
+<span><span class="co">#&gt; "other serious conditions by self-report" </span></span>
+<span><span class="co">#&gt;                                   htnmeds </span></span>
+<span><span class="co">#&gt;                   "anti-hypertensive use" </span></span>
+<span><span class="co">#&gt;                                   statins </span></span>
+<span><span class="co">#&gt;                              "statin use" </span></span>
+<span><span class="co">#&gt;                                  diabetes </span></span>
+<span><span class="co">#&gt;                                "diabetes" </span></span>
+<span><span class="co">#&gt;                                   dmpills </span></span>
+<span><span class="co">#&gt;       "oral DM medication by self-report" </span></span>
+<span><span class="co">#&gt;                                   insulin </span></span>
+<span><span class="co">#&gt;              "insulin use by self-report" </span></span>
+<span><span class="co">#&gt;                                    weight </span></span>
+<span><span class="co">#&gt;                             "weight (kg)" </span></span>
+<span><span class="co">#&gt;                                       BMI </span></span>
+<span><span class="co">#&gt;                            "BMI (kg/m^2)" </span></span>
+<span><span class="co">#&gt;                                     waist </span></span>
+<span><span class="co">#&gt;                              "waist (cm)" </span></span>
+<span><span class="co">#&gt;                                       WHR </span></span>
+<span><span class="co">#&gt;                         "waist/hip ratio" </span></span>
+<span><span class="co">#&gt;                                   glucose </span></span>
+<span><span class="co">#&gt;                 "fasting glucose (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                   weight1 </span></span>
+<span><span class="co">#&gt;                      "year 1 weight (kg)" </span></span>
+<span><span class="co">#&gt;                                      BMI1 </span></span>
+<span><span class="co">#&gt;                     "year 1 BMI (kg/m^2)" </span></span>
+<span><span class="co">#&gt;                                    waist1 </span></span>
+<span><span class="co">#&gt;                       "year 1 waist (cm)" </span></span>
+<span><span class="co">#&gt;                                      WHR1 </span></span>
+<span><span class="co">#&gt;                  "year 1 waist/hip ratio" </span></span>
+<span><span class="co">#&gt;                                  glucose1 </span></span>
+<span><span class="co">#&gt;          "year 1 fasting glucose (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                     tchol </span></span>
+<span><span class="co">#&gt;               "total cholesterol (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                       LDL </span></span>
+<span><span class="co">#&gt;                 "LDL cholesterol (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                       HDL </span></span>
+<span><span class="co">#&gt;                 "HDL cholesterol (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                        TG </span></span>
+<span><span class="co">#&gt;                   "triglycerides (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                    tchol1 </span></span>
+<span><span class="co">#&gt;        "year 1 total cholesterol (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                      LDL1 </span></span>
+<span><span class="co">#&gt;          "year 1 LDL cholesterol (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                      HDL1 </span></span>
+<span><span class="co">#&gt;          "year 1 HDL cholesterol (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                       TG1 </span></span>
+<span><span class="co">#&gt;            "year 1 triglycerides (mg/dl)" </span></span>
+<span><span class="co">#&gt;                                       SBP </span></span>
+<span><span class="co">#&gt;                 "systolic blood pressure" </span></span>
+<span><span class="co">#&gt;                                       DBP </span></span>
+<span><span class="co">#&gt;                "diastolic blood pressure" </span></span>
+<span><span class="co">#&gt;                                     age10 </span></span>
+<span><span class="co">#&gt;                      "age (per 10 years)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="example-model" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="example-model">
+<span class="header-section-number">2</span> Example model</h2>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">num_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">is.numeric</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_vars</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">response</span> <span class="op">&lt;-</span> <span class="va">num_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>  <span class="va">predictor</span> <span class="op">&lt;-</span> <span class="va">num_vars</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[[</span><span class="va">response</span><span class="op">]</span><span class="op">]</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">y</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span>, sep <span class="op">=</span> <span class="st">" ~ "</span><span class="op">)</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>      <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span>, sep <span class="op">=</span> <span class="st">" ~ "</span><span class="op">)</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Not enough complete observations for a model.\n"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"No two numeric variables available for a simple model example.\n"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; stats::glm(formula = stats::as.formula(paste(response, predictor, </span></span>
+<span><span class="co">#&gt;     sep = " ~ ")), family = stats::binomial(), data = df)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; (Intercept)  0.368704   0.383294   0.962    0.336</span></span>
+<span><span class="co">#&gt; age         -0.005565   0.005723  -0.972    0.331</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 3830.3  on 2762  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 3829.4  on 2761  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 3833.4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="source" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="source">
+<span class="header-section-number">3</span> Source</h2>
+<ul>
+<li>UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hersdata.dta</li>
+<li>Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). <em>Regression Methods in Biostatistics</em> (2nd edition).</li>
+</ul>
 
 
-
-
-
-<section id="hers-data" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="hers-data">HERS data</h2>
-<section id="description" class="level3">
-<h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>Dataset used in Chapter 3 of <em>Regression Methods in Biostatistics</em> (2nd edition), as distributed on the UCSF companion website.</p>
-</section>
-<section id="usage" class="level3">
-<h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">hersdata
-</code></pre>
-</section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>A data frame with 2763 rows and 37 variables:</p>
-<dl>
-<dt>
-HT
-</dt>
-<dd>
-random assignment to hormone therapy
-</dd>
-<dt>
-age
-</dt>
-<dd>
-age in years
-</dd>
-<dt>
-raceth
-</dt>
-<dd>
-race/ethnicity
-</dd>
-<dt>
-nonwhite
-</dt>
-<dd>
-nonwhite race/ethnicity
-</dd>
-<dt>
-smoking
-</dt>
-<dd>
-current smoker
-</dd>
-<dt>
-drinkany
-</dt>
-<dd>
-any current alcohol consumption
-</dd>
-<dt>
-exercise
-</dt>
-<dd>
-exercise at least 3 times per week
-</dd>
-<dt>
-physact
-</dt>
-<dd>
-comparative physical activity
-</dd>
-<dt>
-globrat
-</dt>
-<dd>
-self-reported health
-</dd>
-<dt>
-poorfair
-</dt>
-<dd>
-poor/fair self-reported health
-</dd>
-<dt>
-medcond
-</dt>
-<dd>
-other serious conditions by self-report
-</dd>
-<dt>
-htnmeds
-</dt>
-<dd>
-anti-hypertensive use
-</dd>
-<dt>
-statins
-</dt>
-<dd>
-statin use
-</dd>
-<dt>
-diabetes
-</dt>
-<dd>
-diabetes
-</dd>
-<dt>
-dmpills
-</dt>
-<dd>
-oral DM medication by self-report
-</dd>
-<dt>
-insulin
-</dt>
-<dd>
-insulin use by self-report
-</dd>
-<dt>
-weight
-</dt>
-<dd>
-weight (kg)
-</dd>
-<dt>
-BMI
-</dt>
-<dd>
-BMI (kg/m^2)
-</dd>
-<dt>
-waist
-</dt>
-<dd>
-waist (cm)
-</dd>
-<dt>
-WHR
-</dt>
-<dd>
-waist/hip ratio
-</dd>
-<dt>
-glucose
-</dt>
-<dd>
-fasting glucose (mg/dl)
-</dd>
-<dt>
-weight1
-</dt>
-<dd>
-year 1 weight (kg)
-</dd>
-<dt>
-BMI1
-</dt>
-<dd>
-year 1 BMI (kg/m^2)
-</dd>
-<dt>
-waist1
-</dt>
-<dd>
-year 1 waist (cm)
-</dd>
-<dt>
-WHR1
-</dt>
-<dd>
-year 1 waist/hip ratio
-</dd>
-<dt>
-glucose1
-</dt>
-<dd>
-year 1 fasting glucose (mg/dl)
-</dd>
-<dt>
-tchol
-</dt>
-<dd>
-total cholesterol (mg/dl)
-</dd>
-<dt>
-LDL
-</dt>
-<dd>
-LDL cholesterol (mg/dl)
-</dd>
-<dt>
-HDL
-</dt>
-<dd>
-HDL cholesterol (mg/dl)
-</dd>
-<dt>
-TG
-</dt>
-<dd>
-triglycerides (mg/dl)
-</dd>
-<dt>
-tchol1
-</dt>
-<dd>
-year 1 total cholesterol (mg/dl)
-</dd>
-<dt>
-LDL1
-</dt>
-<dd>
-year 1 LDL cholesterol (mg/dl)
-</dd>
-<dt>
-HDL1
-</dt>
-<dd>
-year 1 HDL cholesterol (mg/dl)
-</dd>
-<dt>
-TG1
-</dt>
-<dd>
-year 1 triglycerides (mg/dl)
-</dd>
-<dt>
-SBP
-</dt>
-<dd>
-systolic blood pressure
-</dd>
-<dt>
-DBP
-</dt>
-<dd>
-diastolic blood pressure
-</dd>
-<dt>
-age10
-</dt>
-<dd>
-age (per 10 years)
-</dd>
-</dl>
-</section>
-<section id="source" class="level3">
-<h3 class="anchored" data-anchor-id="source">Source</h3>
-<p>https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hersdata.dta</p>
-
-
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1265,5 +1275,4 @@ age (per 10 years)
 
 
 
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/man/hersdata.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/man/hersdata.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/dataset-hers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/dataset-hers.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
