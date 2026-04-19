@@ -11,7 +11,7 @@
 #'   \item{status}{Alive/Dead}
 #'   \item{rx}{treatment}
 #'   \item{sex}{sex}
-#'   \item{asictes}{Presence of Asictes}
+#'   \item{asictes}{Presence of Ascites}
 #'   \item{hepatom}{Hepatomegaly}
 #'   \item{spiders}{Presence of Spiders}
 #'   \item{edema}{Presence of Edema}
@@ -21,7 +21,7 @@
 #'   \item{copper}{Urine Copper in ug/day}
 #'   \item{alkphos}{Alkaline Phosphatase in U/liter}
 #'   \item{sgot}{SGOT in U/ml}
-#'   \item{trigli}{Triglicerides in mg/dl}
+#'   \item{trigli}{Triglycerides in mg/dl}
 #'   \item{platel}{Platelets per cubic ml / 1000}
 #'   \item{prothrom}{Prothrombin time in seconds}
 #'   \item{histol}{Histologic stage of disease}
