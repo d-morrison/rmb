@@ -23,7 +23,7 @@ infer_label_from_name <- function(var_name) {
   desc <- gsub("\\bsbp\\b", "systolic blood pressure", desc)
   desc <- gsub("\\bdbp\\b", "diastolic blood pressure", desc)
   desc <- gsub("\\bbmi\\b", "body mass index", desc)
-  desc <- gsub("\\bwhr\\b", "waist to hip ratio", desc)
+  desc <- gsub("\\bwhr\\b", "waist-to-hip ratio", desc)
   desc <- gsub("\\bldl\\b", "LDL cholesterol", desc)
   desc <- gsub("\\bhdl\\b", "HDL cholesterol", desc)
   desc <- gsub("\\btg\\b", "triglycerides", desc)
