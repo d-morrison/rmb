@@ -3,6 +3,7 @@
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Repeated-measures study comparing pancreatic enzyme regimens using fecal fat outcomes.
+#' Primary article: [RMB2e chapter example based on historical fecal-fat treatment data](https://demorrison.ucdavis.edu/files/RMB2e.pdf).
 #'
 #' @format A data frame with 24 rows and 3 variables:
 #' \describe{

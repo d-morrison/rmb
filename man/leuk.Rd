@@ -8,7 +8,7 @@
 A data frame with 42 rows and 3 variables:
 \describe{
 \item{time}{weeks in remission}
-\item{cens}{relapse indicator}
+\item{cens}{Event/censoring indicator (1 = event, 0 = censored).}
 \item{group}{treatment group}
 }
 }
@@ -22,5 +22,6 @@ leuk
 Dataset used in Chapter 3 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Randomized acute lymphoblastic leukemia remission trial comparing 6-MP versus placebo.
+Primary article: \href{https://pubmed.ncbi.nlm.nih.gov/13977808/}{Freireich and colleagues (1963), \emph{Blood}}.
 }
 \keyword{datasets}

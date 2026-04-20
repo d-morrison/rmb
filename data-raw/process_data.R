@@ -51,6 +51,62 @@ datasets <- data.frame(
     "Longitudinal repeated-measures HERS subset restricted to participants without diabetes.",
     "Complex multistage cross-sectional sample from NHANES III."
   ),
+  primary_article = c(
+    "Rosenman et al. (1964) JAMA",
+    "Hulley et al. (1998) JAMA",
+    "Vanderpump et al. (1996) Thyroid",
+    "Freireich et al. (1963) Blood",
+    "RMB2e Chapter 4 teaching example",
+    "RMB2e Chapter 4 teaching example",
+    "RMB2e Chapter 4 teaching example",
+    "Tuyns et al. (1977) International Journal of Cancer",
+    "de Bruyn et al. (2011) Sexually Transmitted Infections",
+    "UNOS/OPTN pediatric kidney transplant registry analyses",
+    "Dickson et al. (1989) Hepatology",
+    "Black et al. (1996) The Lancet",
+    "Volberding et al. (1990) New England Journal of Medicine",
+    "Orwoll et al. (2005) Contemporary Clinical Trials",
+    "RMB2e Chapter 7 fecal-fat example",
+    "Cummings et al. (1995) American Journal of Medicine",
+    "RMB2e Georgia repeated-birth example",
+    "Cummings et al. (1995) American Journal of Medicine",
+    "RMB2e risky-drug-use example",
+    "Black et al. (1996) The Lancet",
+    "RMB2e phototherapy-cost example",
+    "Black et al. (1996) The Lancet",
+    "Hulley et al. (1998) JAMA",
+    "Hulley et al. (1998) JAMA",
+    "Hulley et al. (1998) JAMA",
+    "Plan and operation of NHANES III (NCHS, 1994)"
+  ),
+  primary_article_url = c(
+    "https://doi.org/10.1001/jama.1964.03060280029006",
+    "https://doi.org/10.1001/jama.280.7.605",
+    "https://pubmed.ncbi.nlm.nih.gov/8733876/",
+    "https://pubmed.ncbi.nlm.nih.gov/13977808/",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://doi.org/10.1002/ijc.2910200210",
+    "https://doi.org/10.1136/sti.2010.048157",
+    "https://optn.transplant.hrsa.gov/data/",
+    "https://doi.org/10.1002/hep.1840100102",
+    "https://doi.org/10.1016/S0140-6736(96)07088-2",
+    "https://doi.org/10.1056/NEJM199004053221401",
+    "https://doi.org/10.1016/j.cct.2005.05.006",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://doi.org/10.1016/S0002-9343(99)80096-9",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://doi.org/10.1016/S0002-9343(99)80096-9",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://doi.org/10.1016/S0140-6736(96)07088-2",
+    "https://demorrison.ucdavis.edu/files/RMB2e.pdf",
+    "https://doi.org/10.1016/S0140-6736(96)07088-2",
+    "https://doi.org/10.1001/jama.280.7.605",
+    "https://doi.org/10.1001/jama.280.7.605",
+    "https://doi.org/10.1001/jama.280.7.605",
+    "https://www.cdc.gov/nchs/data/series/sr_01/sr01_032.pdf"
+  ),
   stringsAsFactors = FALSE
 )
 
@@ -59,13 +115,35 @@ datasets$url <- sprintf(
   datasets$file
 )
 
+infer_label <- function(var_name) {
+  tokens <- strsplit(var_name, "_", fixed = TRUE)[[1]]
+  tokens <- tokens[tokens != ""]
+  tokens <- if (length(tokens) == 0) var_name else tokens
+  words <- gsub("([a-z])([A-Z])", "\\1 \\2", tokens)
+  words <- tolower(words)
+  words <- sub("^mi$", "multiple imputation", words)
+  words <- sub("^dm$", "diabetes mellitus", words)
+  words <- sub("^sbp$", "systolic blood pressure", words)
+  words <- sub("^dbp$", "diastolic blood pressure", words)
+  words <- sub("^bmi$", "body mass index", words)
+  words <- sub("^whr$", "waist to hip ratio", words)
+  words <- sub("^ldl$", "LDL cholesterol", words)
+  words <- sub("^hdl$", "HDL cholesterol", words)
+  words <- sub("^tg$", "triglycerides", words)
+  words <- sub("^id$", "identifier", words)
+  words <- gsub("([0-9]+)$", " \\1", words)
+  desc <- paste(words, collapse = " ")
+  desc <- gsub("\\s+", " ", trimws(desc))
+  paste0(toupper(substr(desc, 1, 1)), substr(desc, 2, nchar(desc)), ".")
+}
+
 dir.create("data", showWarnings = FALSE)
 
 for (i in seq_len(nrow(datasets))) {
   dat <- haven::read_dta(datasets$url[i])
   for (j in seq_along(dat)) {
     if (is.null(attr(dat[[j]], "label")) || identical(attr(dat[[j]], "label"), "")) {
-      attr(dat[[j]], "label") <- "Variable description not provided in source metadata."
+      attr(dat[[j]], "label") <- infer_label(names(dat)[j])
     }
   }
   obj <- datasets$object[i]
@@ -73,5 +151,8 @@ for (i in seq_len(nrow(datasets))) {
   save(list = obj, file = file.path("data", paste0(obj, ".rda")), compress = "xz")
 }
 
-rmb_datasets <- datasets[, c("object", "title", "chapter", "study_design", "url")]
+rmb_datasets <- datasets[, c(
+  "object", "title", "chapter", "study_design",
+  "primary_article", "primary_article_url", "url"
+)]
 save(rmb_datasets, file = file.path("data", "rmb_datasets.rda"), compress = "xz")

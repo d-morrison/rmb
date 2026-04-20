@@ -19,10 +19,14 @@ test_that("datasets preserve variable label attributes", {
   }
 })
 
-test_that("dataset index includes study design summaries", {
+test_that("dataset index includes study design summaries and article links", {
   data("rmb_datasets", package = "rmb", envir = environment())
 
   expect_true("study_design" %in% names(rmb_datasets))
   expect_false(anyNA(rmb_datasets$study_design))
   expect_true(all(nzchar(rmb_datasets$study_design)))
+  expect_true("primary_article" %in% names(rmb_datasets))
+  expect_true("primary_article_url" %in% names(rmb_datasets))
+  expect_true(all(nzchar(rmb_datasets$primary_article)))
+  expect_true(all(nzchar(rmb_datasets$primary_article_url)))
 })

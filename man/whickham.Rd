@@ -7,10 +7,10 @@
 \format{
 A data frame with 12 rows and 4 variables:
 \describe{
-\item{vstatus}{Variable description not provided in source metadata.}
-\item{smoker}{Variable description not provided in source metadata.}
-\item{agegrp}{1; 2; 3}
-\item{nn}{Variable description not provided in source metadata.}
+\item{vstatus}{Vital status at follow-up.}
+\item{smoker}{Indicator for current smoking.}
+\item{agegrp}{Age-group category.}
+\item{nn}{Participant sequence number in the cohort sample.}
 }
 }
 \source{
@@ -23,5 +23,6 @@ whickham
 Dataset used in Chapter 3 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Population-based prospective cohort from Whickham, England, with 20-year mortality follow-up.
+Primary article: \href{https://pubmed.ncbi.nlm.nih.gov/8733876/}{Vanderpump and colleagues (1996), \emph{Thyroid}}.
 }
 \keyword{datasets}

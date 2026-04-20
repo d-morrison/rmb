@@ -3,6 +3,7 @@
 #' Dataset used in Chapter 9 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Observational neonatal jaundice cohort used for confounding-adjusted phototherapy analyses.
+#' Primary article: [RMB2e phototherapy-cost example dataset](https://demorrison.ucdavis.edu/files/RMB2e.pdf).
 #'
 #' @format A data frame with 20731 rows and 11 variables:
 #' \describe{
@@ -12,7 +13,7 @@
 #'   \item{gest_age}{Gestational age (wks)}
 #'   \item{hospital}{Kaiser hospital of birth}
 #'   \item{id}{Observation number (de-identified ID)}
-#'   \item{male}{Male sex}
+#'   \item{male}{Indicator for male sex.}
 #'   \item{over_thresh}{Over transfusion threshold}
 #'   \item{phototherapy}{Phototherapy}
 #'   \item{qual_TSB}{Qual TSB - PT threshold (mg/dL)}

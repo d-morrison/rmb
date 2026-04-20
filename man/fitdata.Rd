@@ -29,5 +29,6 @@ fitdata
 Dataset used in Chapter 9 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Longitudinal FIT subset focused on bone mineral density outcomes.
+Primary article: \href{https://doi.org/10.1016/S0140-6736(96)07088-2}{Black and colleagues (1996), \emph{The Lancet}}.
 }
 \keyword{datasets}

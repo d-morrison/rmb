@@ -19,13 +19,13 @@ A data frame with 2763 rows and 37 variables:
 \item{poorfair}{poor/fair self-reported health}
 \item{medcond}{other serious conditions by self-report}
 \item{htnmeds}{anti-hypertensive use}
-\item{statins}{statin use}
-\item{diabetes}{diabetes}
+\item{statins}{Indicator for statin medication use.}
+\item{diabetes}{Indicator for diabetes diagnosis.}
 \item{dmpills}{oral DM medication by self-report}
 \item{insulin}{insulin use by self-report}
-\item{weight}{weight (kg)}
+\item{weight}{Body weight (kg).}
 \item{BMI}{BMI (kg/m^2)}
-\item{waist}{waist (cm)}
+\item{waist}{Waist circumference (cm).}
 \item{WHR}{waist/hip ratio}
 \item{glucose}{fasting glucose (mg/dl)}
 \item{weight1}{year 1 weight (kg)}
@@ -56,5 +56,6 @@ hers
 Dataset used in Chapter 3 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Randomized placebo-controlled trial in postmenopausal women with CHD evaluating hormone therapy.
+Primary article: \href{https://doi.org/10.1001/jama.280.7.605}{Hulley and colleagues (1998), \emph{JAMA}}.
 }
 \keyword{datasets}

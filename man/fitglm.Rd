@@ -8,14 +8,14 @@
 A data frame with 6459 rows and 22 variables:
 \describe{
 \item{alloc}{ALLOCATION NUMBER}
-\item{ra_age}{AGE}
-\item{frx}{ANY FRX}
+\item{ra_age}{Age at randomization (years).}
+\item{frx}{Indicator for incident fracture outcome.}
 \item{nosp}{ANY FRX NOT SPINE}
 \item{numnosp}{NUMBER OF NON-SPINE FRX}
 \item{trt01}{FIT TREATMENT 1=ALN 0=PLB}
-\item{p3_weigh}{Weight}
+\item{p3_weigh}{Body weight at phase 3 visit.}
 \item{htotbmd}{Total Hip BMD}
-\item{nbmd}{Neck BMD}
+\item{nbmd}{Bone mineral density at the analyzed skeletal site.}
 \item{trialyrs}{YEARS TO DOD OR LAST CONTACT (NEW_LAST)}
 \item{frxdays}{DAYS TO FIRST FRX}
 \item{nospdays}{DAYS TO FIRST NON-SPINE FRACTURE}
@@ -41,5 +41,6 @@ fitglm
 Dataset used in Chapter 8 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Fracture-risk analysis subset derived from FIT for generalized linear model examples.
+Primary article: \href{https://doi.org/10.1016/S0140-6736(96)07088-2}{Black and colleagues (1996), \emph{The Lancet}}.
 }
 \keyword{datasets}

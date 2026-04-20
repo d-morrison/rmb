@@ -7,37 +7,37 @@
 \format{
 A data frame with 1871 rows and 31 variables:
 \describe{
-\item{age}{age}
+\item{age}{Age or age category at baseline (as coded in source data).}
 \item{group}{treatment assignment 0:a: pbo, 1:b:hrt}
 \item{grade_hi}{highest grade completed}
-\item{visit}{visit}
+\item{visit}{Visit number (time point) in longitudinal follow-up.}
 \item{exer3}{bl exercise &/or walk >3x/wk, 1:y 0:n}
 \item{avgdrpwk}{avg drinks per week}
 \item{csmker}{current smoking status 1:current}
-\item{weight}{weight}
+\item{weight}{Body weight (kg).}
 \item{bmi}{body mass index}
 \item{sbp}{average systolic blood pressure}
-\item{glucose}{glucose}
-\item{pptid}{subject id}
+\item{glucose}{Fasting plasma glucose (mg/dL).}
+\item{pptid}{Participant identifier.}
 \item{htnmeds}{anti-htn meds use}
 \item{white}{(1=white, 0=other)}
 \item{drinkany}{(1 if avgdrpwk>0, 0 otherwise)}
 \item{diabetes}{(1=yes, 0=no)}
 \item{nvisit}{Visit number (0=baseline)}
-\item{miss_gluc}{Variable description not provided in source metadata.}
+\item{miss_gluc}{Indicator for missing glucose measurement.}
 \item{bmi_cat}{5 quantiles of bmi}
-\item{gluc_miscat}{Variable description not provided in source metadata.}
-\item{_mi_miss}{Variable description not provided in source metadata.}
-\item{_1_glucose}{glucose}
-\item{_2_glucose}{glucose}
-\item{_3_glucose}{glucose}
-\item{_4_glucose}{glucose}
-\item{_5_glucose}{glucose}
-\item{_6_glucose}{glucose}
-\item{_7_glucose}{glucose}
-\item{_8_glucose}{glucose}
-\item{_9_glucose}{glucose}
-\item{_10_glucose}{glucose}
+\item{gluc_miscat}{Glucose category including missingness classification.}
+\item{_mi_miss}{Multiple-imputation missingness indicator variable.}
+\item{_1_glucose}{Glucose value from draw/imputation set 1.}
+\item{_2_glucose}{Glucose value from draw/imputation set 2.}
+\item{_3_glucose}{Glucose value from draw/imputation set 3.}
+\item{_4_glucose}{Glucose value from draw/imputation set 4.}
+\item{_5_glucose}{Glucose value from draw/imputation set 5.}
+\item{_6_glucose}{Glucose value from draw/imputation set 6.}
+\item{_7_glucose}{Glucose value from draw/imputation set 7.}
+\item{_8_glucose}{Glucose value from draw/imputation set 8.}
+\item{_9_glucose}{Glucose value from draw/imputation set 9.}
+\item{_10_glucose}{Glucose value from draw/imputation set 10.}
 }
 }
 \source{
@@ -50,5 +50,6 @@ hers_nodm_visit4_only
 Dataset used in Chapter 11 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Cross-sectional Visit 4 subset of HERS participants without diabetes.
+Primary article: \href{https://doi.org/10.1001/jama.280.7.605}{Hulley and colleagues (1998), \emph{JAMA}}.
 }
 \keyword{datasets}

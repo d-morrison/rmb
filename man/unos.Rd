@@ -10,7 +10,7 @@ A data frame with 9775 rows and 25 variables:
 \item{prev_ki_}{CALC FOR KI AND KP TX:Previous KI or KP tx}
 \item{tx_date}{TRR TRANSPLANT DATE}
 \item{ethnicit}{TCR ETHNICITY}
-\item{race}{TCR RACE}
+\item{race}{Self-reported race category.}
 \item{hlamat}{HLA Match Level}
 \item{age_don}{DONOR AGE (YRS)}
 \item{age}{RECIPIENT AGE}
@@ -26,7 +26,7 @@ A data frame with 9775 rows and 25 variables:
 \item{death}{post-transplant mortality}
 \item{year}{year of transplant}
 \item{prevtx}{CALC FOR KI AND KP TX:Previous KI or KP tx}
-\item{sex}{Male = 1}
+\item{sex}{Biological sex indicator.}
 \item{txtype}{Type of tx: Living =1; Cadaveric =0}
 \item{causdet}{cause of death}
 \item{dwfg}{Died with functioning graft Yes=1; No=0}
@@ -44,5 +44,6 @@ unos
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Registry-based cohort of pediatric kidney transplant recipients from the UNOS database.
+Primary article: \href{https://optn.transplant.hrsa.gov/data/}{UNOS/OPTN pediatric kidney transplant registry analyses}.
 }
 \keyword{datasets}

@@ -3,13 +3,14 @@
 #' Dataset used in Chapter 6 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Placebo-controlled clinical trial cohort in primary biliary cirrhosis (D-penicillamine).
+#' Primary article: [Dickson and colleagues (1989), *Hepatology*](https://doi.org/10.1002/hep.1840100102).
 #'
 #' @format A data frame with 312 rows and 23 variables:
 #' \describe{
-#'   \item{number}{Case Number}
-#'   \item{status}{Alive/Dead}
-#'   \item{rx}{treatment}
-#'   \item{sex}{sex}
+#'   \item{number}{Patient record number/identifier.}
+#'   \item{status}{Event status indicator (coded outcome/censoring status).}
+#'   \item{rx}{Randomized treatment group.}
+#'   \item{sex}{Biological sex indicator.}
 #'   \item{asictes}{Presence of Ascites}
 #'   \item{hepatom}{Hepatomegaly}
 #'   \item{spiders}{Presence of Spiders}
@@ -24,7 +25,7 @@
 #'   \item{platel}{Platelets per cubic ml / 1000}
 #'   \item{prothrom}{Prothrombin time in seconds}
 #'   \item{histol}{Histologic stage of disease}
-#'   \item{age}{Age (years)}
+#'   \item{age}{Age or age category at baseline (as coded in source data).}
 #'   \item{years}{Time to Death (in Years)}
 #'   \item{logbili}{Bilirubin (log)}
 #'   \item{logalbu}{Albumin (log)}

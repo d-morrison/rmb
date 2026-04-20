@@ -7,7 +7,7 @@
 \format{
 A data frame with 8 rows and 1 variables:
 \describe{
-\item{x2}{Variable description not provided in source metadata.}
+\item{x2}{Squared predictor term (x^2).}
 }
 }
 \source{
@@ -20,5 +20,6 @@ figure4_1
 Dataset used in Chapter 4 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4.
+Primary article: \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e teaching example dataset}.
 }
 \keyword{datasets}

@@ -22,5 +22,6 @@ fecfat
 Dataset used in Chapter 7 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Repeated-measures study comparing pancreatic enzyme regimens using fecal fat outcomes.
+Primary article: \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e chapter example based on historical fecal-fat treatment data}.
 }
 \keyword{datasets}

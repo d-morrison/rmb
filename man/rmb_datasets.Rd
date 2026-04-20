@@ -5,12 +5,14 @@
 \alias{rmb_datasets}
 \title{RMB Datasets Index}
 \format{
-A data frame with 26 rows and 5 variables:
+A data frame with 26 rows and 7 variables:
 \describe{
 \item{object}{Dataset object name in this package.}
 \item{title}{Dataset title from the UCSF companion website.}
 \item{chapter}{Chapter where the dataset is first introduced.}
 \item{study_design}{One-sentence study design summary from the RMB2e text and companion web materials.}
+\item{primary_article}{Primary journal citation (or RMB2e source citation for teaching datasets).}
+\item{primary_article_url}{Link to the primary article or source reference.}
 \item{url}{Original Stata download URL.}
 }
 }
@@ -24,6 +26,6 @@ A data frame with 26 rows and 5 variables:
 rmb_datasets
 }
 \description{
-A catalog of datasets from \emph{Regression Methods in Biostatistics} (2nd edition).
+A catalog of datasets from \emph{Regression Methods in Biostatistics} (2nd edition), including journal article links used for source context.
 }
 \keyword{datasets}

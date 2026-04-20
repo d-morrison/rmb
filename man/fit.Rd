@@ -28,5 +28,6 @@ fit
 Dataset used in Chapter 6 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Randomized Fracture Intervention Trial of alendronate in postmenopausal women.
+Primary article: \href{https://doi.org/10.1016/S0140-6736(96)07088-2}{Black and colleagues (1996), \emph{The Lancet}}.
 }
 \keyword{datasets}
