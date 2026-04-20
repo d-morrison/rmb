@@ -27,6 +27,7 @@ infer_label_from_name <- function(var_name) {
   desc <- gsub("\\bldl\\b", "LDL cholesterol", desc)
   desc <- gsub("\\bhdl\\b", "HDL cholesterol", desc)
   desc <- gsub("\\btg\\b", "triglycerides", desc)
+  desc <- gsub("\\bgluc\\b", "glucose", desc)
   desc <- gsub("\\bid\\b", "identifier", desc)
   paste0(toupper(substr(desc, 1, 1)), substr(desc, 2, nchar(desc)), ".")
 }
