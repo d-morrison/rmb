@@ -115,6 +115,9 @@ datasets$url <- sprintf(
   datasets$file
 )
 
+# Helper used during data-raw processing to infer readable fallback labels when
+# source metadata has missing/blank variable labels. It expands common
+# abbreviations and normalizes underscores/camel case into sentence-style text.
 infer_label <- function(var_name) {
   tokens <- strsplit(var_name, "_", fixed = TRUE)[[1]]
   tokens <- tokens[tokens != ""]
@@ -134,6 +137,15 @@ infer_label <- function(var_name) {
   words <- gsub("([0-9]+)$", " \\1", words)
   desc <- paste(words, collapse = " ")
   desc <- gsub("\\s+", " ", trimws(desc))
+  desc <- gsub("\\bdm\\b", "diabetes mellitus", desc)
+  desc <- gsub("\\bsbp\\b", "systolic blood pressure", desc)
+  desc <- gsub("\\bdbp\\b", "diastolic blood pressure", desc)
+  desc <- gsub("\\bbmi\\b", "body mass index", desc)
+  desc <- gsub("\\bwhr\\b", "waist to hip ratio", desc)
+  desc <- gsub("\\bldl\\b", "LDL cholesterol", desc)
+  desc <- gsub("\\bhdl\\b", "HDL cholesterol", desc)
+  desc <- gsub("\\btg\\b", "triglycerides", desc)
+  desc <- gsub("\\bid\\b", "identifier", desc)
   paste0(toupper(substr(desc, 1, 1)), substr(desc, 2, nchar(desc)), ".")
 }
 
