@@ -5,7 +5,7 @@
 \alias{figure4_1}
 \title{Figure 4.1 data}
 \format{
-A data frame with 8 rows and 1 variables:
+A data frame with 8 rows and 1 variable:
 \describe{
 \item{x2}{Squared predictor term (x^2).}
 }

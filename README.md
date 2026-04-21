@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `{rmb}` (<u>R</u> <u>p</u>ackage <u>t</u>emplate)
+# `{rmb}` datasets for *Regression Methods in Biostatistics*
 
 <!-- badges: start -->
 
@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-check](https://github.com/d-morrison/rmb/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/rmb/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/d-morrison/rmb/branch/main/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/rmb)
-[![CodeFactor](https://www.codefactor.io/repository/github/ucd-serg/rpt/badge)](https://www.codefactor.io/repository/github/ucd-serg/rpt)
+[![CodeFactor](https://www.codefactor.io/repository/github/d-morrison/rmb/badge)](https://www.codefactor.io/repository/github/d-morrison/rmb)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/rmb)](https://cran.r-project.org/package=rmb)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/rmb)](https://cran.r-project.org/package=rmb)

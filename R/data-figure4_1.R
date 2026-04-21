@@ -5,7 +5,7 @@
 #' Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4.
 #' Primary article: [RMB2e teaching example dataset](https://regression.ucsf.edu/second-edition/data-examples-and-problems).
 #'
-#' @format A data frame with 8 rows and 1 variables:
+#' @format A data frame with 8 rows and 1 variable:
 #' \describe{
 #'   \item{x2}{Squared predictor term (x^2).}
 #' }

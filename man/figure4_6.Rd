@@ -5,7 +5,7 @@
 \alias{figure4_6}
 \title{Figure 4.6 data}
 \format{
-A data frame with 100 rows and 1 variables:
+A data frame with 100 rows and 1 variable:
 \describe{
 \item{x}{Predictor variable x used in the illustrative model.}
 }
