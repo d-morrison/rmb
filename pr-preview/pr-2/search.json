@@ -1284,7 +1284,7 @@
     "href": "man/rmb_datasets.html",
     "title": "rmb",
     "section": "",
-    "text": "A catalog of datasets from Regression Methods in Biostatistics (2nd edition), including journal article links used for source context.\n\n\n\nrmb_datasets\n\n\n\n\nA data frame with 26 rows and 7 variables:\n\n\nobject\n\n\nDataset object name in this package.\n\n\ntitle\n\n\nDataset title from the UCSF companion website.\n\n\nchapter\n\n\nChapter where the dataset is first introduced.\n\n\nstudy_design\n\n\nOne-sentence study design summary from the RMB2e text and companion web materials.\n\n\nprimary_article\n\n\nPrimary journal citation (or RMB2e source citation for teaching datasets).\n\n\nprimary_article_url\n\n\nLink to the primary article or source reference.\n\n\nurl\n\n\nOriginal Stata download URL.\n\n\n\n\n\n\n\nRMB2e PDF\n\n\nUCSF companion website",
+    "text": "A catalog of datasets from Regression Methods in Biostatistics (2nd edition), including journal article links used for source context.\n\n\n\nrmb_datasets\n\n\n\n\nA data frame with 26 rows and 7 variables:\n\n\nobject\n\n\nDataset object name in this package.\n\n\ntitle\n\n\nDataset title from the UCSF companion website.\n\n\nchapter\n\n\nChapter where the dataset is first introduced.\n\n\nstudy_design\n\n\nOne-sentence study design summary from the RMB2e text and companion web materials.\n\n\nprimary_article\n\n\nPrimary journal citation (or RMB2e source citation for teaching datasets).\n\n\nprimary_article_url\n\n\nLink to the primary article or source reference.\n\n\nurl\n\n\nOriginal Stata download URL.\n\n\n\n\n\n\n\nRMB2e official book page\n\n\nUCSF companion website",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -1296,7 +1296,7 @@
     "href": "man/rmb_datasets.html#rmb-datasets-index",
     "title": "rmb",
     "section": "",
-    "text": "A catalog of datasets from Regression Methods in Biostatistics (2nd edition), including journal article links used for source context.\n\n\n\nrmb_datasets\n\n\n\n\nA data frame with 26 rows and 7 variables:\n\n\nobject\n\n\nDataset object name in this package.\n\n\ntitle\n\n\nDataset title from the UCSF companion website.\n\n\nchapter\n\n\nChapter where the dataset is first introduced.\n\n\nstudy_design\n\n\nOne-sentence study design summary from the RMB2e text and companion web materials.\n\n\nprimary_article\n\n\nPrimary journal citation (or RMB2e source citation for teaching datasets).\n\n\nprimary_article_url\n\n\nLink to the primary article or source reference.\n\n\nurl\n\n\nOriginal Stata download URL.\n\n\n\n\n\n\n\nRMB2e PDF\n\n\nUCSF companion website",
+    "text": "A catalog of datasets from Regression Methods in Biostatistics (2nd edition), including journal article links used for source context.\n\n\n\nrmb_datasets\n\n\n\n\nA data frame with 26 rows and 7 variables:\n\n\nobject\n\n\nDataset object name in this package.\n\n\ntitle\n\n\nDataset title from the UCSF companion website.\n\n\nchapter\n\n\nChapter where the dataset is first introduced.\n\n\nstudy_design\n\n\nOne-sentence study design summary from the RMB2e text and companion web materials.\n\n\nprimary_article\n\n\nPrimary journal citation (or RMB2e source citation for teaching datasets).\n\n\nprimary_article_url\n\n\nLink to the primary article or source reference.\n\n\nurl\n\n\nOriginal Stata download URL.\n\n\n\n\n\n\n\nRMB2e official book page\n\n\nUCSF companion website",
     "crumbs": [
       "Documentation",
       "Reference",
