@@ -858,7 +858,7 @@
     "href": "man/figure4_6.html",
     "title": "rmb",
     "section": "",
-    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for residual and influence diagnostics in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_6\n\n\n\n\nA data frame with 100 rows and 1 variables:\n\n\nx\n\n\nPredictor variable x used in the illustrative model.\n\n\n\n\n\nUCSF companion data",
+    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for residual and influence diagnostics in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_6\n\n\n\n\nA data frame with 100 rows and 1 variable:\n\n\nx\n\n\nPredictor variable x used in the illustrative model.\n\n\n\n\n\nUCSF companion data",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -870,7 +870,7 @@
     "href": "man/figure4_6.html#figure-4.6-data",
     "title": "rmb",
     "section": "",
-    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for residual and influence diagnostics in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_6\n\n\n\n\nA data frame with 100 rows and 1 variables:\n\n\nx\n\n\nPredictor variable x used in the illustrative model.\n\n\n\n\n\nUCSF companion data",
+    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for residual and influence diagnostics in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_6\n\n\n\n\nA data frame with 100 rows and 1 variable:\n\n\nx\n\n\nPredictor variable x used in the illustrative model.\n\n\n\n\n\nUCSF companion data",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -882,7 +882,7 @@
     "href": "man/figure4_1.html",
     "title": "rmb",
     "section": "",
-    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_1\n\n\n\n\nA data frame with 8 rows and 1 variables:\n\n\nx2\n\n\nSquared predictor term (x^2).\n\n\n\n\n\nUCSF companion data",
+    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_1\n\n\n\n\nA data frame with 8 rows and 1 variable:\n\n\nx2\n\n\nSquared predictor term (x^2).\n\n\n\n\n\nUCSF companion data",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -894,7 +894,7 @@
     "href": "man/figure4_1.html#figure-4.1-data",
     "title": "rmb",
     "section": "",
-    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_1\n\n\n\n\nA data frame with 8 rows and 1 variables:\n\n\nx2\n\n\nSquared predictor term (x^2).\n\n\n\n\n\nUCSF companion data",
+    "text": "Dataset used in Chapter 4 of Regression Methods in Biostatistics (2nd edition), as distributed on the UCSF companion website. Study design: Illustrative teaching dataset used for model-form and linearity examples in Chapter 4. Primary article: RMB2e teaching example dataset.\n\n\n\nfigure4_1\n\n\n\n\nA data frame with 8 rows and 1 variable:\n\n\nx2\n\n\nSquared predictor term (x^2).\n\n\n\n\n\nUCSF companion data",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -952,7 +952,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "{rmb} (R package template)",
+    "title": "{rmb} datasets for Regression Methods in Biostatistics",
     "section": "",
     "text": "The goal of {rmb} is to …\n\n\nYou can install the development version of {rmb} from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"d-morrison/rmb\")\n\n\n\nThis is a basic example which shows you how to solve a common problem:\nsuppressPackageStartupMessages(library(rmb))\n## basic example code\n\n\n\n\n\nThis package uses altdoc with Quarto to build its documentation site. To build and preview the documentation locally:\n# Load the package\npkgload::load_all()\n\n# Render the documentation\naltdoc::render_docs()\n\n# Preview the site\naltdoc::preview_docs()\nThe documentation is automatically built and deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch.\n\n\n\n\nIf you’re looking for alternative R package templates, you may also want to consider:\n\nr.pkg.template - A comprehensive R package template from Insights Engineering\n\n\n\n\nPlease note that the {rmb} project is released with a Contributor Code of Conduct. By contributing to this project, you agree to abide by its terms.",
     "crumbs": [
@@ -963,7 +963,7 @@
   {
     "objectID": "index.html#installation",
     "href": "index.html#installation",
-    "title": "{rmb} (R package template)",
+    "title": "{rmb} datasets for Regression Methods in Biostatistics",
     "section": "",
     "text": "You can install the development version of {rmb} from GitHub with:\n# install.packages(\"pak\")\npak::pak(\"d-morrison/rmb\")",
     "crumbs": [
@@ -974,7 +974,7 @@
   {
     "objectID": "index.html#example",
     "href": "index.html#example",
-    "title": "{rmb} (R package template)",
+    "title": "{rmb} datasets for Regression Methods in Biostatistics",
     "section": "",
     "text": "This is a basic example which shows you how to solve a common problem:\nsuppressPackageStartupMessages(library(rmb))\n## basic example code",
     "crumbs": [
@@ -985,7 +985,7 @@
   {
     "objectID": "index.html#development",
     "href": "index.html#development",
-    "title": "{rmb} (R package template)",
+    "title": "{rmb} datasets for Regression Methods in Biostatistics",
     "section": "",
     "text": "This package uses altdoc with Quarto to build its documentation site. To build and preview the documentation locally:\n# Load the package\npkgload::load_all()\n\n# Render the documentation\naltdoc::render_docs()\n\n# Preview the site\naltdoc::preview_docs()\nThe documentation is automatically built and deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch.",
     "crumbs": [
@@ -996,7 +996,7 @@
   {
     "objectID": "index.html#other-r-package-template-options",
     "href": "index.html#other-r-package-template-options",
-    "title": "{rmb} (R package template)",
+    "title": "{rmb} datasets for Regression Methods in Biostatistics",
     "section": "",
     "text": "If you’re looking for alternative R package templates, you may also want to consider:\n\nr.pkg.template - A comprehensive R package template from Insights Engineering",
     "crumbs": [
@@ -1007,7 +1007,7 @@
   {
     "objectID": "index.html#code-of-conduct",
     "href": "index.html#code-of-conduct",
-    "title": "{rmb} (R package template)",
+    "title": "{rmb} datasets for Regression Methods in Biostatistics",
     "section": "",
     "text": "Please note that the {rmb} project is released with a Contributor Code of Conduct. By contributing to this project, you agree to abide by its terms.",
     "crumbs": [
@@ -2073,7 +2073,7 @@
     "href": "vignettes/quarto_vignette-revealjs.html#references",
     "title": "Quarto Vignette Example",
     "section": "References",
-    "text": "References\nFor more information, see:\n\nQuarto Documentation\nUsing Quarto with R\nR Core Team (2024)\nd-morrison (2024)\n\n\n\n\n\nd-morrison. 2024. Rmb: Datasets for Regression Methods in Biostatistics. https://github.com/d-morrison/rmb.\n\n\nR Core Team. 2024. R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. https://www.R-project.org/."
+    "text": "References\nFor more information, see:\n\nQuarto Documentation\nUsing Quarto with R\nR Core Team (2024)\nEzra Morrison (2024)\n\n\n\n\n\nEzra Morrison. 2024. Rmb: Datasets for Regression Methods in Biostatistics. https://github.com/d-morrison/rmb.\n\n\nR Core Team. 2024. R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. https://www.R-project.org/."
   },
   {
     "objectID": "vignettes/quarto_vignette.html",
@@ -2176,7 +2176,7 @@
     "href": "vignettes/quarto_vignette.html#references",
     "title": "Quarto Vignette Example",
     "section": "\n8 References",
-    "text": "8 References\nFor more information, see:\n\nQuarto Documentation\nUsing Quarto with R\nR Core Team (2024)\nd-morrison (2024)",
+    "text": "8 References\nFor more information, see:\n\nQuarto Documentation\nUsing Quarto with R\nR Core Team (2024)\nEzra Morrison (2024)",
     "crumbs": [
       "Documentation",
       "Articles",
