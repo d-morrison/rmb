@@ -3,7 +3,7 @@
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Clustered repeated-birth sample from Georgia mothers used for birthweight analyses.
-#' Primary article: [RMB2e repeated-birth Georgia cohort example](https://demorrison.ucdavis.edu/files/RMB2e.pdf).
+#' Primary article: [RMB2e repeated-birth Georgia cohort example](https://regression.ucsf.edu/second-edition/data-examples-and-problems).
 #'
 #' @format A data frame with 1000 rows and 11 variables:
 #' \describe{

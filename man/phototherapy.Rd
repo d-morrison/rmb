@@ -30,6 +30,6 @@ phototherapy
 Dataset used in Chapter 9 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Observational neonatal jaundice cohort used for confounding-adjusted phototherapy analyses.
-Primary article: \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e phototherapy-cost example dataset}.
+Primary article: \href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{RMB2e phototherapy-cost example dataset}.
 }
 \keyword{datasets}

@@ -3,7 +3,7 @@
 #' Dataset used in Chapter 9 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Observational neonatal jaundice cohort used for confounding-adjusted phototherapy analyses.
-#' Primary article: [RMB2e phototherapy-cost example dataset](https://demorrison.ucdavis.edu/files/RMB2e.pdf).
+#' Primary article: [RMB2e phototherapy-cost example dataset](https://regression.ucsf.edu/second-edition/data-examples-and-problems).
 #'
 #' @format A data frame with 20731 rows and 11 variables:
 #' \describe{

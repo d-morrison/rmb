@@ -13,6 +13,6 @@
 #'   \item{url}{Original Stata download URL.}
 #' }
 #' @source
-#' - [RMB2e PDF](https://demorrison.ucdavis.edu/files/RMB2e.pdf)
+#' - [RMB2e official book page](https://www.routledge.com/Regression-Methods-in-Biostatistics-Linear-Logistic-Survival-and-Repeated-Measures-Models/Vittinghoff-Glidden-Shiboski-McCulloch/p/book/9781466504401)
 #' - [UCSF companion website](https://regression.ucsf.edu/second-edition/data-examples-and-problems)
 "rmb_datasets"

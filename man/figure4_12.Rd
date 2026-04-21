@@ -23,6 +23,6 @@ figure4_12
 Dataset used in Chapter 4 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Illustrative teaching dataset used for model-checking examples in Chapter 4.
-Primary article: \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e teaching example dataset}.
+Primary article: \href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{RMB2e teaching example dataset}.
 }
 \keyword{datasets}

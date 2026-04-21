@@ -36,6 +36,6 @@ needle_sharing
 Dataset used in Chapter 8 of \emph{Regression Methods in Biostatistics}
 (2nd edition), as distributed on the UCSF companion website.
 Study design: Longitudinal panel study of injection drug users measuring repeated needle-sharing behavior.
-Primary article: \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e risky-drug-use example dataset}.
+Primary article: \href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{RMB2e risky-drug-use example dataset}.
 }
 \keyword{datasets}

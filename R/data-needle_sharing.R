@@ -3,7 +3,7 @@
 #' Dataset used in Chapter 8 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Longitudinal panel study of injection drug users measuring repeated needle-sharing behavior.
-#' Primary article: [RMB2e risky-drug-use example dataset](https://demorrison.ucdavis.edu/files/RMB2e.pdf).
+#' Primary article: [RMB2e risky-drug-use example dataset](https://regression.ucsf.edu/second-edition/data-examples-and-problems).
 #'
 #' @format A data frame with 128 rows and 17 variables:
 #' \describe{

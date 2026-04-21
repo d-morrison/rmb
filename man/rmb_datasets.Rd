@@ -18,7 +18,7 @@ A data frame with 26 rows and 7 variables:
 }
 \source{
 \itemize{
-\item \href{https://demorrison.ucdavis.edu/files/RMB2e.pdf}{RMB2e PDF}
+\item \href{https://www.routledge.com/Regression-Methods-in-Biostatistics-Linear-Logistic-Survival-and-Repeated-Measures-Models/Vittinghoff-Glidden-Shiboski-McCulloch/p/book/9781466504401}{RMB2e official book page}
 \item \href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{UCSF companion website}
 }
 }
