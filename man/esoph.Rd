@@ -3,7 +3,7 @@
 \docType{data}
 \name{esoph}
 \alias{esoph}
-\title{Ille-et-Villaine study data}
+\title{Ille-et-Vilaine study data}
 \format{
 A data frame with 975 rows and 7 variables:
 \describe{

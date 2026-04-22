@@ -4,7 +4,7 @@ datasets <- data.frame(
   chapter = c(2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 9, 9, 11, 11, 11, 12),
   title = c(
     "WCGS data", "HERS data", "Whickham data", "Leukemia data", "Figure 4.1 data",
-    "Figure 4.6 data", "Figure 4.12 data", "Ille-et-Villaine study data", "MIRA data",
+    "Figure 4.6 data", "Figure 4.12 data", "Ille-et-Vilaine study data", "MIRA data",
     "UNOS data", "PBC data", "FIT data", "ACTG 019 data", "MrOS data", "Fecal fat data",
     "SOF data", "Georgia birthweight data", "SOF BMD data", "Needle sharing data",
     "Fracture risk data", "Phototherapy data", "FIT BMD data",

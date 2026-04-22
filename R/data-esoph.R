@@ -1,4 +1,4 @@
-#' Ille-et-Villaine study data
+#' Ille-et-Vilaine study data
 #'
 #' Dataset used in Chapter 5 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.

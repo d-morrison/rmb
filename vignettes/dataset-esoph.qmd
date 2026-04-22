@@ -1,8 +1,8 @@
 ---
-title: "Ille-et-Villaine study data"
+title: "Ille-et-Vilaine study data"
 format: html
 vignette: >
-  %\VignetteIndexEntry{Ille-et-Villaine study data}
+  %\VignetteIndexEntry{Ille-et-Vilaine study data}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 execute:
