@@ -1,4 +1,23 @@
-# Copilot Instructions for R Package Template
+# GitHub Copilot Instructions
+
+> [!IMPORTANT]
+> **MANDATORY TESTING BEFORE EVERY COMMIT:**
+>
+> Before committing changes to `.R`, `.Rmd`, `.qmd`, workflow, or configuration files:
+>
+> 1. Run `lintr::lint_package()`
+> 2. Run `devtools::document()`
+> 3. Run `devtools::test()`
+> 4. Run `devtools::check()`
+> 5. Run `altdoc::render_docs(verbose = TRUE)`
+> 6. If your changes affect documentation, run `altdoc::preview_docs()` and inspect rendering in a browser
+> 7. Only then commit your changes
+>
+> **CRITICAL RULES:**
+> - **CI is NOT the test** - validate locally before pushing
+> - **Do not rely on CI** to discover avoidable validation failures
+> - **Fix issues in code you changed**; do not scope-creep into unrelated pre-existing issues
+> - **This is a hard requirement**
 
 ## Repository Overview
 
@@ -81,6 +100,14 @@ devtools::test_file("tests/testthat/test-example_function.R")
 covr::package_coverage()
 ```
 
+## General Development Principles
+
+**CRITICAL**: Do not make assumptions about what code will do - always test it yourself.
+
+- **Test your changes**: Run actual commands and confirm outputs
+- **Never claim success without evidence**: Only report a check as passing after confirming it
+- **Verify links and rendered documentation** when you change documentation, vignettes, or config
+
 ## Local Validation Requirements
 
 **CRITICAL**: Before committing any code changes or requesting review, ALWAYS run the following validation commands locally:
@@ -124,11 +151,6 @@ altdoc::preview_docs()    # Launch preview server
 # - All images display
 # - Navigation works
 # - Search works
-
-# Only commit and push if all checks pass AND visual inspection confirms correct rendering
-```
-# Check docs/vignettes/*.md for correct output
-# Verify links and images work correctly
 
 # Only commit and push if all checks pass AND visual inspection confirms correct rendering
 ```
@@ -236,3 +258,20 @@ The template includes GitHub Actions workflows for:
 - Linting
 - Version checking
 - NEWS.md changelog checking
+
+## CI/CD Workflow Debugging
+
+When investigating CI/CD failures (build, test, lint, or workflow issues):
+
+1. **Use GitHub tools to inspect logs directly**:
+   - Use `list_workflow_runs` to identify failing runs
+   - Use `get_job_logs` with `failed_only=true` and `return_content=true` to inspect failed jobs
+   - Base fixes on actual log output, not assumptions
+2. **Reproduce failures locally** whenever feasible before proposing changes
+3. **Fix only issues introduced by your changes** unless explicitly asked to do broader maintenance
+
+## Determining Responsibility for Workflow Failures
+
+**You ARE responsible** if failure is in files or lines you changed, or directly caused by your changes.
+
+**You are NOT responsible** for unrelated pre-existing failures in untouched files/lines or external infrastructure issues.
