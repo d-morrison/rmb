@@ -18,7 +18,7 @@
 > **CRITICAL RULES:**
 > - **CI is NOT the test** - validate locally before pushing
 > - **Do not rely on CI** to discover avoidable validation failures
-> - **Fix issues in code you changed**; do not scope-creep into unrelated pre-existing issues
+> - **Fix issues in code you changed**; do not scope-creep into unrelated pre-existing issues (treat issues as related when they are in touched files/lines or directly caused by your changes)
 > - **This is a hard requirement**
 
 ## Repository Overview
