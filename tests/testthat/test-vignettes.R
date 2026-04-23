@@ -37,14 +37,21 @@ test_that("dataset vignettes include RMB2e analysis section", {
   )
 })
 
-test_that("dataset vignettes source shared helper", {
+test_that("dataset vignettes define analysis logic directly", {
   vignette_text <- get_dataset_vignette_text()
 
   expect_true(
     all(grepl("run_rmb_dataset_analyses(dat,", vignette_text, fixed = TRUE))
   )
   expect_true(
-    all(grepl("analysis_helpers.r", vignette_text, fixed = TRUE))
+    all(grepl(
+      "run_rmb_dataset_analyses <- function",
+      vignette_text,
+      fixed = TRUE
+    ))
+  )
+  expect_false(
+    any(grepl("analysis_helpers.r", vignette_text, fixed = TRUE))
   )
 })
 

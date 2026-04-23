@@ -1,7 +1,7 @@
 # rmb (development version)
 
 - Expanded all dataset vignettes from a single generic model to a shared multi-family RMB2e analysis workflow (linear, logistic, Poisson, and Cox where applicable), organized by dataset.
-- Added a vignette helper script and tests to verify expanded analysis sections are present across all dataset vignettes.
+- Implemented expanded analysis code directly inside each dataset vignette and added tests to verify the inline analysis sections.
 - Bumped development version to `0.0.0.9014`.
 - Added all dataset vignettes to the documentation website navigation and removed placeholder Quarto vignette/article files.
 - Bumped development version to `0.0.0.9013`.

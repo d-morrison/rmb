@@ -47,11 +47,219 @@ stats::setNames(var_labels, names(dat))
 ## RMB2e analysis families
 
 ```{r analyses, results='asis'}
-helper_path <- "analysis_helpers.r"
-if (!file.exists(helper_path)) {
-  helper_path <- file.path("vignettes", "analysis_helpers.r")
+run_rmb_dataset_analyses <- function(dat, dataset_name) {
+  integer_tolerance <- 1e-8
+  min_stable_fit_n <- 20
+  min_unique_continuous <- 10
+
+  is_binary <- function(x) {
+    x <- stats::na.omit(x)
+    if (length(x) == 0) {
+      return(FALSE)
+    }
+    if (is.logical(x)) {
+      return(TRUE)
+    }
+    ux <- unique(x)
+    if (length(ux) > 2) {
+      return(FALSE)
+    }
+    if (is.factor(x)) {
+      return(TRUE)
+    }
+    is.numeric(x) && all(ux %in% c(0, 1))
+  }
+
+  is_count <- function(x) {
+    if (!is.numeric(x)) {
+      return(FALSE)
+    }
+    x <- stats::na.omit(x)
+    if (length(x) == 0) {
+      return(FALSE)
+    }
+    all(x >= 0 & abs(x - round(x)) < integer_tolerance) &&
+      length(unique(x)) > 2
+  }
+
+  usable_predictors <- function(df, exclude = character()) {
+    candidates <- names(df)[vapply(df, function(x) {
+      is.numeric(x) || is.factor(x) || is.logical(x)
+    }, logical(1))]
+    setdiff(candidates, exclude)
+  }
+
+  run_model <- function(
+    label,
+    response,
+    family = c("gaussian", "binomial", "poisson")
+  ) {
+    family <- match.arg(family)
+    predictors <- usable_predictors(dat, exclude = response)
+    if (length(predictors) == 0) {
+      cat(
+        "\n### ", label,
+        "\n\nNo compatible predictors available.\n",
+        sep = ""
+      )
+      return(invisible(NULL))
+    }
+
+    predictor <- predictors[1]
+    df <- dat[, c(response, predictor), drop = FALSE]
+    names(df) <- c(".y", ".x")
+    df <- stats::na.omit(df)
+
+    if (nrow(df) < min_stable_fit_n) {
+      cat(
+        "\n### ", label,
+        "\n\nNot enough complete observations for a stable fit.\n",
+        sep = ""
+      )
+      return(invisible(NULL))
+    }
+
+    if (is.logical(df$.x) || is.character(df$.x)) {
+      df$.x <- as.factor(df$.x)
+    }
+
+    fit <- switch(
+      family,
+      gaussian = stats::lm(.y ~ .x, data = df),
+      binomial = stats::glm(
+        .y ~ .x,
+        data = df,
+        family = stats::binomial()
+      ),
+      poisson = stats::glm(.y ~ .x, data = df, family = stats::poisson())
+    )
+
+    cat("\n### ", label, "\n\n", sep = "")
+    print(summary(fit))
+  }
+
+  cat(
+    "This section runs expanded analyses for `",
+    dataset_name,
+    "` across core RMB2e model families when the data support each model.\n\n",
+    sep = ""
+  )
+
+  continuous_responses <- names(dat)[vapply(dat, function(x) {
+    is.numeric(x) &&
+      length(unique(stats::na.omit(x))) > min_unique_continuous
+  }, logical(1))]
+
+  if (length(continuous_responses) > 0) {
+    run_model(
+      "Linear regression",
+      continuous_responses[1],
+      family = "gaussian"
+    )
+  } else {
+    cat(
+      "\n### Linear regression\n\n",
+      "No suitable continuous response was found.\n",
+      sep = ""
+    )
+  }
+
+  binary_responses <- names(dat)[vapply(dat, is_binary, logical(1))]
+  if (length(binary_responses) > 0) {
+    run_model("Logistic regression", binary_responses[1], family = "binomial")
+  } else {
+    cat("\n### Logistic regression\n\nNo suitable binary response was found.\n")
+  }
+
+  count_responses <- names(dat)[vapply(dat, is_count, logical(1))]
+  if (length(count_responses) > 0) {
+    run_model("Poisson regression", count_responses[1], family = "poisson")
+  } else {
+    cat("\n### Poisson regression\n\nNo suitable count response was found.\n")
+  }
+
+  # `requireNamespace()` loads the namespace; we call functions via `survival::`.
+  if (requireNamespace("survival", quietly = TRUE)) {
+    time_candidates <- grep("time|days|day|follow|futime|surv", names(dat),
+      ignore.case = TRUE, value = TRUE
+    )
+    event_candidates <- grep("status|event|death|died|fail|censor", names(dat),
+      ignore.case = TRUE, value = TRUE
+    )
+
+    if (length(time_candidates) > 0 && length(event_candidates) > 0) {
+      time_var <- time_candidates[1]
+      event_var <- event_candidates[1]
+
+      event_raw <- dat[[event_var]]
+      if (is.factor(event_raw)) {
+        event_raw <- as.integer(event_raw) - 1L
+      }
+      if (is.logical(event_raw)) {
+        event_raw <- as.integer(event_raw)
+      }
+
+      ok <- is.numeric(dat[[time_var]]) && is.numeric(event_raw)
+      if (ok) {
+        df <- data.frame(
+          .time = dat[[time_var]],
+          .event = event_raw,
+          stringsAsFactors = FALSE
+        )
+        predictors <- usable_predictors(dat, exclude = c(time_var, event_var))
+
+        if (length(predictors) > 0) {
+          predictor <- predictors[1]
+          df$.x <- dat[[predictor]]
+          df <- stats::na.omit(df)
+
+          if (nrow(df) >= min_stable_fit_n && all(df$.event %in% c(0, 1))) {
+            if (is.logical(df$.x) || is.character(df$.x)) {
+              df$.x <- as.factor(df$.x)
+            }
+            fit <- survival::coxph(
+              survival::Surv(.time, .event) ~ .x,
+              data = df
+            )
+            cat("\n### Cox proportional hazards model\n\n")
+            print(summary(fit))
+          } else {
+            cat("\n### Cox proportional hazards model\n\n",
+              "No suitable complete cases with binary event coding ",
+              "were found.\n",
+              sep = ""
+            )
+          }
+        } else {
+          cat(
+            "\n### Cox proportional hazards model\n\n",
+            "No compatible predictors available.\n",
+            sep = ""
+          )
+        }
+      } else {
+        cat(
+          "\n### Cox proportional hazards model\n\n",
+          "Candidate time/event variables were not numeric.\n",
+          sep = ""
+        )
+      }
+    } else {
+      cat(
+        "\n### Cox proportional hazards model\n\n",
+        "No obvious time/event variable pair was found.\n",
+        sep = ""
+      )
+    }
+  } else {
+    cat(
+      "\n### Cox proportional hazards model\n\n",
+      "`survival` is not available in this environment.\n",
+      sep = ""
+    )
+  }
 }
-source(helper_path)
+
 run_rmb_dataset_analyses(dat, "sof2")
 ```
 
