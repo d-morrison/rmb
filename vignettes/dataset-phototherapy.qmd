@@ -346,7 +346,7 @@ if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
     estimate <- unname(coef_table[target_row, "Estimate"])
     p_value <- unname(coef_table[target_row, p_col[1]])
 
-    direction <- if (is.na(estimate) || estimate == 0) {
+    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
       "little"
     } else if (estimate > 0) {
       "a positive"
@@ -372,10 +372,24 @@ if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
 
 ### Scientific conclusions
 
-In this dataset, the adjusted model (`r model_family`) provides an estimate for the
-association between `r exposure_var` and `r outcome_var`, accounting for
-`r confounder_var`. The findings should be interpreted in the context of the study
-design, potential residual confounding, and measurement limitations.
+```{r conclusions, results='asis'}
+if (can_fit_model && !is.na(exposure_var) && !is.na(outcome_var)) {
+  cat(
+    "In this dataset, the adjusted model (", model_family,
+    ") provides an estimate for the association between ",
+    exposure_var, " and ", outcome_var,
+    ", accounting for ", confounder_var,
+    ". Interpret these findings in the context of study design, residual confounding, and measurement limitations.
+",
+    sep = ""
+  )
+} else {
+  cat(
+    "Scientific conclusions are limited because the dataset does not contain enough complete variables for the selected workflow.
+"
+  )
+}
+```
 
 
 
