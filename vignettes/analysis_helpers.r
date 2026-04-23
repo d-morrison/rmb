@@ -1,14 +1,10 @@
-#' Run RMB2e-aligned analysis families for vignette datasets
-#'
-#' Internal helper used by dataset vignettes to fit representative models
-#' across major RMB2e model families when compatible variables are available.
-#'
-#' @param dat A data frame.
-#' @param dataset_name Dataset name used in printed vignette text.
-#'
-#' @keywords internal
-#' @noRd
+# Helper for dataset vignettes: fit representative RMB2e model families
+# when compatible variables are available in the current dataset.
 run_rmb_dataset_analyses <- function(dat, dataset_name) {
+  integer_tolerance <- 1e-8
+  min_stable_fit_n <- 20
+  min_unique_continuous <- 10
+
   is_binary <- function(x) {
     x <- stats::na.omit(x)
     if (length(x) == 0) {
@@ -35,7 +31,8 @@ run_rmb_dataset_analyses <- function(dat, dataset_name) {
     if (length(x) == 0) {
       return(FALSE)
     }
-    all(x >= 0 & abs(x - round(x)) < 1e-8) && length(unique(x)) > 2
+    all(x >= 0 & abs(x - round(x)) < integer_tolerance) &&
+      length(unique(x)) > 2
   }
 
   usable_predictors <- function(df, exclude = character()) {
@@ -66,7 +63,7 @@ run_rmb_dataset_analyses <- function(dat, dataset_name) {
     names(df) <- c(".y", ".x")
     df <- stats::na.omit(df)
 
-    if (nrow(df) < 20) {
+    if (nrow(df) < min_stable_fit_n) {
       cat(
         "\n### ", label,
         "\n\nNot enough complete observations for a stable fit.\n",
@@ -102,7 +99,8 @@ run_rmb_dataset_analyses <- function(dat, dataset_name) {
   )
 
   continuous_responses <- names(dat)[vapply(dat, function(x) {
-    is.numeric(x) && length(unique(stats::na.omit(x))) > 10
+    is.numeric(x) &&
+      length(unique(stats::na.omit(x))) > min_unique_continuous
   }, logical(1))]
 
   if (length(continuous_responses) > 0) {
@@ -133,6 +131,7 @@ run_rmb_dataset_analyses <- function(dat, dataset_name) {
     cat("\n### Poisson regression\n\nNo suitable count response was found.\n")
   }
 
+  # `requireNamespace()` loads the namespace; we call functions via `survival::`.
   if (requireNamespace("survival", quietly = TRUE)) {
     time_candidates <- grep("time|days|day|follow|futime|surv", names(dat),
       ignore.case = TRUE, value = TRUE
@@ -167,7 +166,7 @@ run_rmb_dataset_analyses <- function(dat, dataset_name) {
           df$.x <- dat[[predictor]]
           df <- stats::na.omit(df)
 
-          if (nrow(df) >= 20 && all(df$.event %in% c(0, 1))) {
+          if (nrow(df) >= min_stable_fit_n && all(df$.event %in% c(0, 1))) {
             if (is.logical(df$.x) || is.character(df$.x)) {
               df$.x <- as.factor(df$.x)
             }
