@@ -75,9 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6d2bdb9d98de3cf1efe24d2487833f9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-82debc2e07e3233b54dbd3f26873be41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-6d2bdb9d98de3cf1efe24d2487833f9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-dbf22739c68fc316d727e9fdf85a1c89.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -1459,7 +1459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="va">estimate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">[</span><span class="va">target_row</span>, <span class="st">"Estimate"</span><span class="op">]</span><span class="op">)</span></span>
 <span>    <span class="va">p_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">[</span><span class="va">target_row</span>, <span class="va">p_col</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
-<span>    <span class="va">direction</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">||</span> <span class="va">estimate</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">direction</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-10</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="st">"little"</span></span>
 <span>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">estimate</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="st">"a positive"</span></span>
@@ -1487,7 +1487,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="scientific-conclusions" class="level3" data-number="3.8"><h3 data-number="3.8" class="anchored" data-anchor-id="scientific-conclusions">
 <span class="header-section-number">3.8</span> Scientific conclusions</h3>
-<p>In this dataset, the adjusted model (binomial) provides an estimate for the association between number and status, accounting for rx. The findings should be interpreted in the context of the study design, potential residual confounding, and measurement limitations.</p>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">can_fit_model</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>    <span class="st">"In this dataset, the adjusted model ("</span>, <span class="va">model_family</span>,</span>
+<span>    <span class="st">") provides an estimate for the association between "</span>,</span>
+<span>    <span class="va">exposure_var</span>, <span class="st">" and "</span>, <span class="va">outcome_var</span>,</span>
+<span>    <span class="st">", accounting for "</span>, <span class="va">confounder_var</span>,</span>
+<span>    <span class="st">". Interpret these findings in the context of study design, residual confounding, and measurement limitations.</span></span>
+<span><span class="st">"</span>,</span>
+<span>    sep <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Scientific conclusions are limited because the dataset does not contain enough complete variables for the selected workflow.</span></span>
+<span><span class="st">"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><p>In this dataset, the adjusted model (binomial) provides an estimate for the association between number and status, accounting for rx. Interpret these findings in the context of study design, residual confounding, and measurement limitations.</p>
 </section></section><section id="source" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="source">
 <span class="header-section-number">4</span> Source</h2>
 <ul>
