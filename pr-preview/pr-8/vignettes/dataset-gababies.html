@@ -820,14 +820,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#study-design" id="toc-study-design" class="nav-link active" data-scroll-target="#study-design"><span class="header-section-number">1</span> Study design</a></li>
   <li><a href="#variable-labels" id="toc-variable-labels" class="nav-link" data-scroll-target="#variable-labels"><span class="header-section-number">2</span> Variable labels</a></li>
-  <li><a href="#example-model" id="toc-example-model" class="nav-link" data-scroll-target="#example-model"><span class="header-section-number">3</span> Example model</a></li>
+  <li>
+<a href="#rmb2e-analysis-families" id="toc-rmb2e-analysis-families" class="nav-link" data-scroll-target="#rmb2e-analysis-families"><span class="header-section-number">3</span> RMB2e analysis families</a>
+  <ul class="collapse">
+<li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">3.1</span> Linear regression</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">3.2</span> Logistic regression</a></li>
+  <li><a href="#poisson-regression" id="toc-poisson-regression" class="nav-link" data-scroll-target="#poisson-regression"><span class="header-section-number">3.3</span> Poisson regression</a></li>
+  <li><a href="#cox-proportional-hazards-model" id="toc-cox-proportional-hazards-model" class="nav-link" data-scroll-target="#cox-proportional-hazards-model"><span class="header-section-number">3.4</span> Cox proportional hazards model</a></li>
+  </ul>
+</li>
   <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">4</span> Source</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/dataset-gababies.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/dataset-gababies.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vignettes/dataset-actg019.html">Articles</a></li><li class="breadcrumb-item"><a href="../vignettes/dataset-gababies.html">Georgia birthweight data</a></li></ol></nav><h1 class="title display-7">Georgia birthweight data</h1></header><header id="title-block-header">
 
-</header><p>This vignette provides a compact exploratory analysis and an example model for <code>gababies</code>.</p>
+</header><p>This vignette implements an expanded, dataset-organized RMB2e analysis workflow for <code>gababies</code>.</p>
 <section id="study-design" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="study-design">
 <span class="header-section-number">1</span> Study design</h2>
 <div class="cell">
@@ -912,50 +920,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; "Variable description not provided in source metadata."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="example-model" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="example-model">
-<span class="header-section-number">3</span> Example model</h2>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">num_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">is.numeric</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_vars</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">response</span> <span class="op">&lt;-</span> <span class="va">num_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>  <span class="va">predictor</span> <span class="op">&lt;-</span> <span class="va">num_vars</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span>  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">[[</span><span class="va">response</span><span class="op">]</span><span class="op">]</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">y</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span>, sep <span class="op">=</span> <span class="st">" ~ "</span><span class="op">)</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>      <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span>, sep <span class="op">=</span> <span class="st">" ~ "</span><span class="op">)</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Not enough complete observations for a model.\n"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"No two numeric variables available for a simple model example.\n"</span><span class="op">)</span></span>
+</section><section id="rmb2e-analysis-families" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="rmb2e-analysis-families">
+<span class="header-section-number">3</span> RMB2e analysis families</h2>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">helper_path</span> <span class="op">&lt;-</span> <span class="st">"analysis_helpers.r"</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">helper_path</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">helper_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"vignettes"</span>, <span class="st">"analysis_helpers.r"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; stats::lm(formula = stats::as.formula(paste(response, predictor, </span></span>
-<span><span class="co">#&gt;     sep = " ~ ")), data = df)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residuals:</span></span>
-<span><span class="co">#&gt;    Min     1Q Median     3Q    Max </span></span>
-<span><span class="co">#&gt;  -8333  -4852  -1554   5144  12483 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">#&gt; (Intercept)  8.372e+03  4.436e+02   18.87   &lt;2e-16 ***</span></span>
-<span><span class="co">#&gt; birthord    -1.144e-13  1.338e+02    0.00        1    </span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Residual standard error: 5982 on 998 degrees of freedom</span></span>
-<span><span class="co">#&gt; Multiple R-squared:  1.127e-31,  Adjusted R-squared:  -0.001002 </span></span>
-<span><span class="co">#&gt; F-statistic: 1.125e-28 on 1 and 998 DF,  p-value: 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section><section id="source" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="source">
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="va">helper_path</span><span class="op">)</span></span>
+<span><span class="fu">run_rmb_dataset_analyses</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"gababies"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><p>This section runs expanded analyses for <code>gababies</code> across core RMB2e model families when the data support each model.</p>
+<section id="linear-regression" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="linear-regression">
+<span class="header-section-number">3.1</span> Linear regression</h3>
+<p>Call: stats::lm(formula = .y ~ .x, data = df)</p>
+<p>Residuals: Min 1Q Median 3Q Max -8333 -4852 -1554 5144 12483</p>
+<p>Coefficients: Estimate Std. Error t value Pr(&gt;|t|)<br>
+(Intercept) 8.372e+03 4.436e+02 18.87 &lt;2e-16 *** .x 1.020e-14 1.338e+02 0.00 1<br>
+— Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
+<p>Residual standard error: 5982 on 998 degrees of freedom Multiple R-squared: 1.525e-31, Adjusted R-squared: -0.001002 F-statistic: 1.522e-28 on 1 and 998 DF, p-value: 1</p>
+</section><section id="logistic-regression" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="logistic-regression">
+<span class="header-section-number">3.2</span> Logistic regression</h3>
+<p>Call: stats::glm(formula = .y ~ .x, family = stats::binomial(), data = df)</p>
+<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|)<br>
+(Intercept) -2.987e-01 1.117e-01 -2.674 0.0075 ** .x -2.783e-05 1.116e-05 -2.494 0.0126 * — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
+<p>(Dispersion parameter for binomial family taken to be 1)</p>
+<pre><code>Null deviance: 1319.0  on 999  degrees of freedom</code></pre>
+<p>Residual deviance: 1312.7 on 998 degrees of freedom AIC: 1316.7</p>
+<p>Number of Fisher Scoring iterations: 4</p>
+</section><section id="poisson-regression" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="poisson-regression">
+<span class="header-section-number">3.3</span> Poisson regression</h3>
+<p>Call: stats::glm(formula = .y ~ .x, family = stats::poisson(), data = df)</p>
+<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|)<br>
+(Intercept) 9.033e+00 8.105e-04 11144 &lt;2e-16 *** .x 8.230e-17 2.444e-04 0 1<br>
+— Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
+<p>(Dispersion parameter for poisson family taken to be 1)</p>
+<pre><code>Null deviance: 4590046  on 999  degrees of freedom</code></pre>
+<p>Residual deviance: 4590046 on 998 degrees of freedom AIC: 4600445</p>
+<p>Number of Fisher Scoring iterations: 5</p>
+</section><section id="cox-proportional-hazards-model" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="cox-proportional-hazards-model">
+<span class="header-section-number">3.4</span> Cox proportional hazards model</h3>
+<p>No obvious time/event variable pair was found.</p>
+</section></section><section id="source" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="source">
 <span class="header-section-number">4</span> Source</h2>
 <ul>
 <li>UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/gababies.dta</li>
