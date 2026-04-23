@@ -1,5 +1,7 @@
 # rmb (development version)
 
+- Added all dataset vignettes to the documentation website navigation and removed placeholder Quarto vignette/article files.
+- Bumped development version to `0.0.0.9013`.
 - Added dataset roxygen `Study design` blurbs for all packaged datasets and regenerated dataset Rd files.
 - Bumped development version to `0.0.0.9012`.
 - Updated documentation check workflow to configure Git safe.directory using `$GITHUB_WORKSPACE`.
