@@ -75,9 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-dbf22739c68fc316d727e9fdf85a1c89.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-6d2bdb9d98de3cf1efe24d2487833f9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-82debc2e07e3233b54dbd3f26873be41.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6d2bdb9d98de3cf1efe24d2487833f9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,7 +103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="../styles.css">
+}</script><script src="../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -821,12 +822,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#study-design" id="toc-study-design" class="nav-link active" data-scroll-target="#study-design"><span class="header-section-number">1</span> Study design</a></li>
   <li><a href="#variable-labels" id="toc-variable-labels" class="nav-link" data-scroll-target="#variable-labels"><span class="header-section-number">2</span> Variable labels</a></li>
   <li>
-<a href="#rmb2e-analysis-families" id="toc-rmb2e-analysis-families" class="nav-link" data-scroll-target="#rmb2e-analysis-families"><span class="header-section-number">3</span> RMB2e analysis families</a>
+<a href="#rmb2e-analysis-workflow" id="toc-rmb2e-analysis-workflow" class="nav-link" data-scroll-target="#rmb2e-analysis-workflow"><span class="header-section-number">3</span> RMB2e analysis workflow</a>
   <ul class="collapse">
-<li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">3.1</span> Linear regression</a></li>
-  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">3.2</span> Logistic regression</a></li>
-  <li><a href="#poisson-regression" id="toc-poisson-regression" class="nav-link" data-scroll-target="#poisson-regression"><span class="header-section-number">3.3</span> Poisson regression</a></li>
-  <li><a href="#cox-proportional-hazards-model" id="toc-cox-proportional-hazards-model" class="nav-link" data-scroll-target="#cox-proportional-hazards-model"><span class="header-section-number">3.4</span> Cox proportional hazards model</a></li>
+<li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">3.1</span> Research question</a></li>
+  <li><a href="#causal-assumptions-conceptual-dag" id="toc-causal-assumptions-conceptual-dag" class="nav-link" data-scroll-target="#causal-assumptions-conceptual-dag"><span class="header-section-number">3.2</span> Causal assumptions (conceptual DAG)</a></li>
+  <li><a href="#step-0-exploratory-data-analysis" id="toc-step-0-exploratory-data-analysis" class="nav-link" data-scroll-target="#step-0-exploratory-data-analysis"><span class="header-section-number">3.3</span> Step 0: Exploratory data analysis</a></li>
+  <li><a href="#step-1-model-specification" id="toc-step-1-model-specification" class="nav-link" data-scroll-target="#step-1-model-specification"><span class="header-section-number">3.4</span> Step 1: Model specification</a></li>
+  <li><a href="#step-2-parameter-estimation" id="toc-step-2-parameter-estimation" class="nav-link" data-scroll-target="#step-2-parameter-estimation"><span class="header-section-number">3.5</span> Step 2: Parameter estimation</a></li>
+  <li><a href="#step-3-model-adequacy-checks" id="toc-step-3-model-adequacy-checks" class="nav-link" data-scroll-target="#step-3-model-adequacy-checks"><span class="header-section-number">3.6</span> Step 3: Model adequacy checks</a></li>
+  <li><a href="#step-4-inference" id="toc-step-4-inference" class="nav-link" data-scroll-target="#step-4-inference"><span class="header-section-number">3.7</span> Step 4: Inference</a></li>
+  <li><a href="#scientific-conclusions" id="toc-scientific-conclusions" class="nav-link" data-scroll-target="#scientific-conclusions"><span class="header-section-number">3.8</span> Scientific conclusions</a></li>
   </ul>
 </li>
   <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">4</span> Source</a></li>
@@ -890,251 +895,688 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; "Baseline CD4+ lymphocyte count"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="rmb2e-analysis-families" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="rmb2e-analysis-families">
-<span class="header-section-number">3</span> RMB2e analysis families</h2>
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">run_rmb_dataset_analyses</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dat</span>, <span class="va">dataset_name</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">integer_tolerance</span> <span class="op">&lt;-</span> <span class="fl">1e-8</span></span>
-<span>  <span class="va">min_stable_fit_n</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
-<span>  <span class="va">min_unique_continuous</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span></span>
-<span>  <span class="va">is_binary</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="va">ux</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ux</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">is.factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">ux</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+</section><section id="rmb2e-analysis-workflow" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="rmb2e-analysis-workflow">
+<span class="header-section-number">3</span> RMB2e analysis workflow</h2>
+<section id="research-question" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="research-question">
+<span class="header-section-number">3.1</span> Research question</h3>
+<p>For <code>actg019</code> we ask: what is the association between a primary exposure and an outcome, after accounting for a plausible confounder?</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">is_binary</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">is_count</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">integer_tolerance</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">usable_predictors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">exclude</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">candidates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">is.factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span>    <span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">candidates</span>, <span class="va">exclude</span><span class="op">)</span></span>
+<span>  <span class="va">ux</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ux</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">run_model</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span></span>
-<span>    <span class="va">label</span>,</span>
-<span>    <span class="va">response</span>,</span>
-<span>    <span class="va">family</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gaussian"</span>, <span class="st">"binomial"</span>, <span class="st">"poisson"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/match.arg.html">match.arg</a></span><span class="op">(</span><span class="va">family</span><span class="op">)</span></span>
-<span>    <span class="va">predictors</span> <span class="op">&lt;-</span> <span class="fu">usable_predictors</span><span class="op">(</span><span class="va">dat</span>, exclude <span class="op">=</span> <span class="va">response</span><span class="op">)</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">predictors</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>        <span class="st">"\n### "</span>, <span class="va">label</span>,</span>
-<span>        <span class="st">"\n\nNo compatible predictors available.\n"</span>,</span>
-<span>        sep <span class="op">=</span> <span class="st">""</span></span>
-<span>      <span class="op">)</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span></span>
-<span>    <span class="va">predictor</span> <span class="op">&lt;-</span> <span class="va">predictors</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>    <span class="va">df</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">response</span>, <span class="va">predictor</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".y"</span>, <span class="st">".x"</span><span class="op">)</span></span>
-<span>    <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">min_stable_fit_n</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>        <span class="st">"\n### "</span>, <span class="va">label</span>,</span>
-<span>        <span class="st">"\n\nNot enough complete observations for a stable fit.\n"</span>,</span>
-<span>        sep <span class="op">=</span> <span class="st">""</span></span>
-<span>      <span class="op">)</span></span>
-<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="va">df</span><span class="op">$</span><span class="va">.x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.x</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span></span>
-<span>    <span class="va">fit</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span></span>
-<span>      <span class="va">family</span>,</span>
-<span>      gaussian <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">.y</span> <span class="op">~</span> <span class="va">.x</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>,</span>
-<span>      binomial <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span></span>
-<span>        <span class="va">.y</span> <span class="op">~</span> <span class="va">.x</span>,</span>
-<span>        data <span class="op">=</span> <span class="va">df</span>,</span>
-<span>        family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      poisson <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">.y</span> <span class="op">~</span> <span class="va">.x</span>, data <span class="op">=</span> <span class="va">df</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">poisson</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n### "</span>, <span class="va">label</span>, <span class="st">"\n\n"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">is.factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>    <span class="st">"This section runs expanded analyses for `"</span>,</span>
-<span>    <span class="va">dataset_name</span>,</span>
-<span>    <span class="st">"` across core RMB2e model families when the data support each model.\n\n"</span>,</span>
-<span>    sep <span class="op">=</span> <span class="st">""</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span>  <span class="va">continuous_responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="va">min_unique_continuous</span></span>
-<span>  <span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">continuous_responses</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">run_model</span><span class="op">(</span></span>
-<span>      <span class="st">"Linear regression"</span>,</span>
-<span>      <span class="va">continuous_responses</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>      family <span class="op">=</span> <span class="st">"gaussian"</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>      <span class="st">"\n### Linear regression\n\n"</span>,</span>
-<span>      <span class="st">"No suitable continuous response was found.\n"</span>,</span>
-<span>      sep <span class="op">=</span> <span class="st">""</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">binary_responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">is_binary</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">binary_responses</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">run_model</span><span class="op">(</span><span class="st">"Logistic regression"</span>, <span class="va">binary_responses</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n### Logistic regression\n\nNo suitable binary response was found.\n"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">count_responses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">is_count</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">count_responses</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">run_model</span><span class="op">(</span><span class="st">"Poisson regression"</span>, <span class="va">count_responses</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, family <span class="op">=</span> <span class="st">"poisson"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n### Poisson regression\n\nNo suitable count response was found.\n"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="co"># `requireNamespace()` loads the namespace; we call functions via `survival::`.</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"survival"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">time_candidates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"time|days|day|follow|futime|surv"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>,</span>
-<span>      ignore.case <span class="op">=</span> <span class="cn">TRUE</span>, value <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>    <span class="op">)</span></span>
-<span>    <span class="va">event_candidates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"status|event|death|died|fail|censor"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>,</span>
-<span>      ignore.case <span class="op">=</span> <span class="cn">TRUE</span>, value <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>    <span class="op">)</span></span>
-<span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">time_candidates</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">event_candidates</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="va">time_var</span> <span class="op">&lt;-</span> <span class="va">time_candidates</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>      <span class="va">event_var</span> <span class="op">&lt;-</span> <span class="va">event_candidates</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span></span>
-<span>      <span class="va">event_raw</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[[</span><span class="va">event_var</span><span class="op">]</span><span class="op">]</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">is.factor</a></span><span class="op">(</span><span class="va">event_raw</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="va">event_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">event_raw</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1L</span></span>
-<span>      <span class="op">}</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">event_raw</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="va">event_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">event_raw</span><span class="op">)</span></span>
-<span>      <span class="op">}</span></span>
-<span></span>
-<span>      <span class="va">ok</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[[</span><span class="va">time_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">event_raw</span><span class="op">)</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">ok</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>          .time <span class="op">=</span> <span class="va">dat</span><span class="op">[[</span><span class="va">time_var</span><span class="op">]</span><span class="op">]</span>,</span>
-<span>          .event <span class="op">=</span> <span class="va">event_raw</span>,</span>
-<span>          stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>        <span class="op">)</span></span>
-<span>        <span class="va">predictors</span> <span class="op">&lt;-</span> <span class="fu">usable_predictors</span><span class="op">(</span><span class="va">dat</span>, exclude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">time_var</span>, <span class="va">event_var</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span>        <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">predictors</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>          <span class="va">predictor</span> <span class="op">&lt;-</span> <span class="va">predictors</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>          <span class="va">df</span><span class="op">$</span><span class="va">.x</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[[</span><span class="va">predictor</span><span class="op">]</span><span class="op">]</span></span>
-<span>          <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span></span>
-<span>          <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="va">min_stable_fit_n</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.event</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>            <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>              <span class="va">df</span><span class="op">$</span><span class="va">.x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">.x</span><span class="op">)</span></span>
-<span>            <span class="op">}</span></span>
-<span>            <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span></span>
-<span>              <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">.time</span>, <span class="va">.event</span><span class="op">)</span> <span class="op">~</span> <span class="va">.x</span>,</span>
-<span>              data <span class="op">=</span> <span class="va">df</span></span>
-<span>            <span class="op">)</span></span>
-<span>            <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n### Cox proportional hazards model\n\n"</span><span class="op">)</span></span>
-<span>            <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
-<span>          <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>            <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n### Cox proportional hazards model\n\n"</span>,</span>
-<span>              <span class="st">"No suitable complete cases with binary event coding "</span>,</span>
-<span>              <span class="st">"were found.\n"</span>,</span>
-<span>              sep <span class="op">=</span> <span class="st">""</span></span>
-<span>            <span class="op">)</span></span>
-<span>          <span class="op">}</span></span>
-<span>        <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>          <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>            <span class="st">"\n### Cox proportional hazards model\n\n"</span>,</span>
-<span>            <span class="st">"No compatible predictors available.\n"</span>,</span>
-<span>            sep <span class="op">=</span> <span class="st">""</span></span>
-<span>          <span class="op">)</span></span>
-<span>        <span class="op">}</span></span>
-<span>      <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>          <span class="st">"\n### Cox proportional hazards model\n\n"</span>,</span>
-<span>          <span class="st">"Candidate time/event variables were not numeric.\n"</span>,</span>
-<span>          sep <span class="op">=</span> <span class="st">""</span></span>
-<span>        <span class="op">)</span></span>
-<span>      <span class="op">}</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>        <span class="st">"\n### Cox proportional hazards model\n\n"</span>,</span>
-<span>        <span class="st">"No obvious time/event variable pair was found.\n"</span>,</span>
-<span>        sep <span class="op">=</span> <span class="st">""</span></span>
-<span>      <span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>      <span class="st">"\n### Cox proportional hazards model\n\n"</span>,</span>
-<span>      <span class="st">"`survival` is not available in this environment.\n"</span>,</span>
-<span>      sep <span class="op">=</span> <span class="st">""</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">ux</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">run_rmb_dataset_analyses</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"actg019"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><p>This section runs expanded analyses for <code>actg019</code> across core RMB2e model families when the data support each model.</p>
-<section id="linear-regression" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="linear-regression">
-<span class="header-section-number">3.1</span> Linear regression</h3>
-<p>Call: stats::lm(formula = .y ~ .x, data = df)</p>
-<p>Residuals: Min 1Q Median 3Q Max -843.48 -302.95 31.96 323.52 686.19</p>
-<p>Coefficients: Estimate Std. Error t value Pr(&gt;|t|)<br>
-(Intercept) 877.37079 27.73978 31.629 &lt;2e-16 <strong><em> .x -0.55556 0.06164 -9.013 &lt;2e-16 </em></strong> — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
-<p>Residual standard error: 365.2 on 878 degrees of freedom Multiple R-squared: 0.08468, Adjusted R-squared: 0.08364 F-statistic: 81.23 on 1 and 878 DF, p-value: &lt; 2.2e-16</p>
-</section><section id="logistic-regression" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="logistic-regression">
-<span class="header-section-number">3.2</span> Logistic regression</h3>
-<p>Call: stats::glm(formula = .y ~ .x, family = stats::binomial(), data = df)</p>
-<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|)<br>
-(Intercept) -1.9807632 0.2412617 -8.210 &lt; 2e-16 *<strong> .x -0.0012650 0.0003928 -3.221 0.00128 </strong> — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
-<p>(Dispersion parameter for binomial family taken to be 1)</p>
-<pre><code>Null deviance: 411.47  on 879  degrees of freedom</code></pre>
-<p>Residual deviance: 400.36 on 878 degrees of freedom AIC: 404.36</p>
-<p>Number of Fisher Scoring iterations: 6</p>
-</section><section id="poisson-regression" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="poisson-regression">
-<span class="header-section-number">3.3</span> Poisson regression</h3>
-<p>Call: stats::glm(formula = .y ~ .x, family = stats::poisson(), data = df)</p>
-<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|)<br>
-(Intercept) 6.810e+00 2.775e-03 2454.5 &lt;2e-16 <strong><em> .x -8.486e-04 6.609e-06 -128.4 &lt;2e-16 </em></strong> — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
-<p>(Dispersion parameter for poisson family taken to be 1)</p>
-<pre><code>Null deviance: 224610  on 879  degrees of freedom</code></pre>
-<p>Residual deviance: 208064 on 878 degrees of freedom AIC: 215123</p>
-<p>Number of Fisher Scoring iterations: 5</p>
-</section><section id="cox-proportional-hazards-model" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="cox-proportional-hazards-model">
-<span class="header-section-number">3.4</span> Cox proportional hazards model</h3>
-<p>No obvious time/event variable pair was found.</p>
+<span><span class="va">is_count</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-8</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">candidate_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">is.factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">continuous_vars</span> <span class="op">&lt;-</span> <span class="va">candidate_vars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">candidate_vars</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">10</span></span>
+<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">binary_vars</span> <span class="op">&lt;-</span> <span class="va">candidate_vars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">candidate_vars</span><span class="op">]</span>, <span class="va">is_binary</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">count_vars</span> <span class="op">&lt;-</span> <span class="va">candidate_vars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">candidate_vars</span><span class="op">]</span>, <span class="va">is_count</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">outcome_var</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">binary_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">binary_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">continuous_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">continuous_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">count_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">count_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">candidate_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">candidate_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="cn">NA_character_</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">remaining_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">candidate_vars</span>, <span class="va">outcome_var</span><span class="op">)</span></span>
+<span><span class="va">exposure_var</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">remaining_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="va">remaining_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="kw">else</span> <span class="cn">NA_character_</span></span>
+<span><span class="va">confounder_var</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">remaining_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="va">remaining_vars</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="kw">else</span> <span class="cn">NA_character_</span></span>
+<span></span>
+<span><span class="va">model_family</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="va">outcome_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">binary_vars</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="st">"binomial"</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="va">outcome_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">count_vars</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="st">"poisson"</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="st">"gaussian"</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">can_fit_model</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  outcome <span class="op">=</span> <span class="va">outcome_var</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="va">exposure_var</span>,</span>
+<span>  confounder <span class="op">=</span> <span class="va">confounder_var</span>,</span>
+<span>  family <span class="op">=</span> <span class="va">model_family</span>,</span>
+<span>  can_fit_model <span class="op">=</span> <span class="va">can_fit_model</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;       outcome      exposure    confounder        family can_fit_model </span></span>
+<span><span class="co">#&gt;        "cens"          "id"        "days"    "binomial"        "TRUE"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We use cens as the outcome and id as the primary exposure, with days as a candidate confounder.</p>
+</section><section id="causal-assumptions-conceptual-dag" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="causal-assumptions-conceptual-dag">
+<span class="header-section-number">3.2</span> Causal assumptions (conceptual DAG)</h3>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>    <span class="st">"```{mermaid}</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"flowchart LR</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"  C["</span>, <span class="va">confounder_var</span>, <span class="st">"] --&gt; E["</span>, <span class="va">exposure_var</span>, <span class="st">"]</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"  C --&gt; Y["</span>, <span class="va">outcome_var</span>, <span class="st">"]</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"  E --&gt; Y</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"```</span></span>
+<span><span class="st">"</span>,</span>
+<span>    sep <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>    <span class="st">"```{mermaid}</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"flowchart LR</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"  E["</span>, <span class="va">exposure_var</span>, <span class="st">"] --&gt; Y["</span>, <span class="va">outcome_var</span>, <span class="st">"]</span></span>
+<span><span class="st">"</span>,</span>
+<span>    <span class="st">"```</span></span>
+<span><span class="st">"</span>,</span>
+<span>    sep <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Not enough variables to draw a DAG for this dataset.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell" data-layout-align="default">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  C[days] --&gt; E[id]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  C --&gt; Y[cens]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  E --&gt; Y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<p></p><figure class="figure"></figure><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  C[days] --&gt; E[id]
+  C --&gt; Y[cens]
+  E --&gt; Y
+</pre>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section><section id="step-0-exploratory-data-analysis" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="step-0-exploratory-data-analysis">
+<span class="header-section-number">3.3</span> Step 0: Exploratory data analysis</h3>
+<p>We start by checking the analysis sample and the marginal distributions of the selected variables.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">analysis_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">outcome_var</span>, <span class="va">exposure_var</span>, <span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">analysis_vars</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">analysis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>n_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>, n_complete <span class="op">=</span> <span class="fl">0</span>, p_complete <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"No numeric, logical, or factor variables available for analysis.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">analysis_df</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span>, <span class="va">analysis_vars</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<span>  <span class="va">analysis_df</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    n_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>,</span>
+<span>    n_complete <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span>,</span>
+<span>    p_complete <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt;       cens              id              days      </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000   Min.   :   1.0   Min.   :  1.0  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.: 325.8   1st Qu.:234.8  </span></span>
+<span><span class="co">#&gt;  Median :0.0000   Median : 649.0   Median :373.0  </span></span>
+<span><span class="co">#&gt;  Mean   :0.0625   Mean   : 653.3   Mean   :403.3  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:0.0000   3rd Qu.: 972.2   3rd Qu.:573.0  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000   Max.   :1333.0   Max.   :746.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/frame.html">plot.new</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"No EDA plot: insufficient variables or complete cases"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    xlab <span class="op">=</span> <span class="va">exposure_var</span>,</span>
+<span>    ylab <span class="op">=</span> <span class="va">outcome_var</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">"Outcome vs exposure"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>    xlab <span class="op">=</span> <span class="va">exposure_var</span>,</span>
+<span>    ylab <span class="op">=</span> <span class="va">outcome_var</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">"Outcome by exposure"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/frame.html">plot.new</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"No simple EDA plot available for selected variables"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="step-1-model-specification" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="step-1-model-specification">
+<span class="header-section-number">3.4</span> Step 1: Model specification</h3>
+<p>Following the GLM model-fitting process, we specify an unadjusted model and a model adjusted for the candidate confounder.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">can_fit_model</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span>, <span class="st">"haven_labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span>, <span class="st">"haven_labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span>, <span class="st">"haven_labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">model_family</span> <span class="op">==</span> <span class="st">"binomial"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">outcome_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcome_values</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span></span>
+<span>        <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="va">outcome_values</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">formula_unadjusted</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcome_var</span>, <span class="st">"~"</span>, <span class="va">exposure_var</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">formula_adjusted</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcome_var</span>, <span class="st">"~"</span>, <span class="va">exposure_var</span>, <span class="st">"+"</span>, <span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">formula_unadjusted</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    family <span class="op">=</span> <span class="va">model_family</span>,</span>
+<span>    unadjusted <span class="op">=</span> <span class="va">formula_unadjusted</span>,</span>
+<span>    adjusted <span class="op">=</span> <span class="va">formula_adjusted</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">formula_unadjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span>  <span class="va">formula_adjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model specification skipped: insufficient variables or complete cases.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; $family</span></span>
+<span><span class="co">#&gt; [1] "binomial"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $unadjusted</span></span>
+<span><span class="co">#&gt; cens ~ id</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $adjusted</span></span>
+<span><span class="co">#&gt; cens ~ id + days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="step-2-parameter-estimation" class="level3" data-number="3.5"><h3 data-number="3.5" class="anchored" data-anchor-id="step-2-parameter-estimation">
+<span class="header-section-number">3.5</span> Step 2: Parameter estimation</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_unadjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="va">fit_adjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">formula_unadjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">fit_function</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">model_family</span> <span class="op">==</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="kw">else</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span></span>
+<span>  <span class="va">fit_args</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">model_family</span> <span class="op">==</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">analysis_df</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">analysis_df</span>, family <span class="op">=</span> <span class="va">model_family</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">fit_unadjusted</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html">tryCatch</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">fit_function</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula_unadjusted</span><span class="op">)</span>, <span class="va">fit_args</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    error <span class="op">=</span> <span class="va">identity</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="va">fit_adjusted</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html">tryCatch</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">fit_function</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula_adjusted</span><span class="op">)</span>, <span class="va">fit_args</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    error <span class="op">=</span> <span class="va">identity</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_unadjusted</span>, <span class="st">"error"</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model fitting did not converge for this variable set.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Parameter estimation skipped: fewer than 20 complete observations.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; (function (formula, family = gaussian, data, weights, subset, </span></span>
+<span><span class="co">#&gt;     na.action, start = NULL, etastart, mustart, offset, control = list(...), </span></span>
+<span><span class="co">#&gt;     model = TRUE, method = "glm.fit", x = FALSE, y = TRUE, singular.ok = TRUE, </span></span>
+<span><span class="co">#&gt;     contrasts = NULL, ...) </span></span>
+<span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;     cal &lt;- match.call()</span></span>
+<span><span class="co">#&gt;     if (is.character(family)) </span></span>
+<span><span class="co">#&gt;         family &lt;- get(family, mode = "function", envir = parent.frame())</span></span>
+<span><span class="co">#&gt;     if (is.function(family)) </span></span>
+<span><span class="co">#&gt;         family &lt;- family()</span></span>
+<span><span class="co">#&gt;     if (is.null(family$family)) {</span></span>
+<span><span class="co">#&gt;         print(family)</span></span>
+<span><span class="co">#&gt;         stop("'family' not recognized")</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     if (missing(data)) </span></span>
+<span><span class="co">#&gt;         data &lt;- environment(formula)</span></span>
+<span><span class="co">#&gt;     mf &lt;- match.call(expand.dots = FALSE)</span></span>
+<span><span class="co">#&gt;     m &lt;- match(c("formula", "data", "subset", "weights", "na.action", </span></span>
+<span><span class="co">#&gt;         "etastart", "mustart", "offset"), names(mf), 0L)</span></span>
+<span><span class="co">#&gt;     mf &lt;- mf[c(1L, m)]</span></span>
+<span><span class="co">#&gt;     mf$drop.unused.levels &lt;- TRUE</span></span>
+<span><span class="co">#&gt;     mf[[1L]] &lt;- quote(stats::model.frame)</span></span>
+<span><span class="co">#&gt;     mf &lt;- eval(mf, parent.frame())</span></span>
+<span><span class="co">#&gt;     if (identical(method, "model.frame")) </span></span>
+<span><span class="co">#&gt;         return(mf)</span></span>
+<span><span class="co">#&gt;     if (!is.character(method) &amp;&amp; !is.function(method)) </span></span>
+<span><span class="co">#&gt;         stop("invalid 'method' argument")</span></span>
+<span><span class="co">#&gt;     if (identical(method, "glm.fit")) </span></span>
+<span><span class="co">#&gt;         control &lt;- do.call("glm.control", control)</span></span>
+<span><span class="co">#&gt;     mt &lt;- attr(mf, "terms")</span></span>
+<span><span class="co">#&gt;     Y &lt;- model.response(mf, "any")</span></span>
+<span><span class="co">#&gt;     if (length(dim(Y)) == 1L) {</span></span>
+<span><span class="co">#&gt;         nm &lt;- rownames(Y)</span></span>
+<span><span class="co">#&gt;         dim(Y) &lt;- NULL</span></span>
+<span><span class="co">#&gt;         if (!is.null(nm)) </span></span>
+<span><span class="co">#&gt;             names(Y) &lt;- nm</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     X &lt;- if (!is.empty.model(mt)) </span></span>
+<span><span class="co">#&gt;         model.matrix(mt, mf, contrasts)</span></span>
+<span><span class="co">#&gt;     else matrix(, NROW(Y), 0L)</span></span>
+<span><span class="co">#&gt;     weights &lt;- as.vector(model.weights(mf))</span></span>
+<span><span class="co">#&gt;     if (!is.null(weights) &amp;&amp; !is.numeric(weights)) </span></span>
+<span><span class="co">#&gt;         stop("'weights' must be a numeric vector")</span></span>
+<span><span class="co">#&gt;     if (!is.null(weights) &amp;&amp; any(weights &lt; 0)) </span></span>
+<span><span class="co">#&gt;         stop("negative weights not allowed")</span></span>
+<span><span class="co">#&gt;     offset &lt;- as.vector(model.offset(mf))</span></span>
+<span><span class="co">#&gt;     if (!is.null(offset)) {</span></span>
+<span><span class="co">#&gt;         if (length(offset) != NROW(Y)) </span></span>
+<span><span class="co">#&gt;             stop(gettextf("number of offsets is %d should equal %d (number of observations)", </span></span>
+<span><span class="co">#&gt;                 length(offset), NROW(Y)), domain = NA)</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     mustart &lt;- model.extract(mf, "mustart")</span></span>
+<span><span class="co">#&gt;     etastart &lt;- model.extract(mf, "etastart")</span></span>
+<span><span class="co">#&gt;     fit &lt;- eval(call(if (is.function(method)) "method" else method, </span></span>
+<span><span class="co">#&gt;         x = X, y = Y, weights = weights, start = start, etastart = etastart, </span></span>
+<span><span class="co">#&gt;         mustart = mustart, offset = offset, family = family, </span></span>
+<span><span class="co">#&gt;         control = control, intercept = attr(mt, "intercept") &gt; </span></span>
+<span><span class="co">#&gt;             0L, singular.ok = singular.ok))</span></span>
+<span><span class="co">#&gt;     if (length(offset) &amp;&amp; attr(mt, "intercept") &gt; 0L) {</span></span>
+<span><span class="co">#&gt;         fit2 &lt;- eval(call(if (is.function(method)) "method" else method, </span></span>
+<span><span class="co">#&gt;             x = X[, "(Intercept)", drop = FALSE], y = Y, mustart = fit$fitted.values, </span></span>
+<span><span class="co">#&gt;             weights = weights, offset = offset, family = family, </span></span>
+<span><span class="co">#&gt;             control = control, intercept = TRUE))</span></span>
+<span><span class="co">#&gt;         if (!fit2$converged) </span></span>
+<span><span class="co">#&gt;             warning("fitting to calculate the null deviance did not converge -- increase 'maxit'?")</span></span>
+<span><span class="co">#&gt;         fit$null.deviance &lt;- fit2$deviance</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;     if (model) </span></span>
+<span><span class="co">#&gt;         fit$model &lt;- mf</span></span>
+<span><span class="co">#&gt;     fit$na.action &lt;- attr(mf, "na.action")</span></span>
+<span><span class="co">#&gt;     if (x) </span></span>
+<span><span class="co">#&gt;         fit$x &lt;- X</span></span>
+<span><span class="co">#&gt;     if (!y) </span></span>
+<span><span class="co">#&gt;         fit$y &lt;- NULL</span></span>
+<span><span class="co">#&gt;     structure(c(fit, list(call = cal, formula = formula, terms = mt, </span></span>
+<span><span class="co">#&gt;         data = data, offset = offset, control = control, method = method, </span></span>
+<span><span class="co">#&gt;         contrasts = attr(X, "contrasts"), xlevels = .getXlevels(mt, </span></span>
+<span><span class="co">#&gt;             mf))), class = c(fit$class, c("glm", "lm")))</span></span>
+<span><span class="co">#&gt; })(formula = cens ~ id + days, family = "binomial", data = structure(list(</span></span>
+<span><span class="co">#&gt;     cens = c(1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 1L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     1L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 1L, 1L, </span></span>
+<span><span class="co">#&gt;     1L, 0L, 1L, 1L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L, 0L, 1L, 1L, </span></span>
+<span><span class="co">#&gt;     0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 1L, 1L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
+<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L), id = c(1, </span></span>
+<span><span class="co">#&gt;     2, 4, 5, 6, 7, 10, 13, 14, 16, 18, 21, 22, 25, 26, 27, 28, </span></span>
+<span><span class="co">#&gt;     31, 32, 33, 34, 35, 37, 38, 40, 41, 43, 44, 45, 46, 48, 49, </span></span>
+<span><span class="co">#&gt;     50, 51, 53, 54, 58, 62, 63, 64, 65, 66, 67, 68, 69, 72, 73, </span></span>
+<span><span class="co">#&gt;     74, 75, 77, 78, 79, 81, 83, 84, 85, 86, 87, 88, 89, 90, 92, </span></span>
+<span><span class="co">#&gt;     93, 94, 96, 97, 99, 100, 102, 103, 106, 107, 108, 109, 110, </span></span>
+<span><span class="co">#&gt;     111, 112, 115, 118, 119, 120, 121, 122, 123, 125, 126, 127, </span></span>
+<span><span class="co">#&gt;     128, 130, 132, 133, 134, 135, 138, 139, 141, 143, 144, 147, </span></span>
+<span><span class="co">#&gt;     148, 149, 150, 152, 154, 155, 156, 157, 159, 162, 163, 165, </span></span>
+<span><span class="co">#&gt;     168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 180, 181, </span></span>
+<span><span class="co">#&gt;     182, 184, 188, 191, 193, 194, 195, 196, 198, 201, 203, 204, </span></span>
+<span><span class="co">#&gt;     205, 206, 207, 209, 210, 211, 212, 213, 215, 217, 218, 219, </span></span>
+<span><span class="co">#&gt;     220, 221, 222, 223, 225, 226, 227, 228, 231, 233, 234, 235, </span></span>
+<span><span class="co">#&gt;     237, 238, 240, 241, 243, 244, 245, 247, 248, 249, 251, 252, </span></span>
+<span><span class="co">#&gt;     253, 254, 255, 258, 259, 260, 261, 264, 265, 266, 268, 269, </span></span>
+<span><span class="co">#&gt;     271, 272, 273, 275, 276, 277, 278, 280, 281, 282, 283, 285, </span></span>
+<span><span class="co">#&gt;     286, 289, 290, 292, 294, 295, 297, 298, 300, 302, 304, 305, </span></span>
+<span><span class="co">#&gt;     306, 307, 310, 312, 314, 315, 316, 319, 321, 322, 323, 324, </span></span>
+<span><span class="co">#&gt;     325, 326, 328, 329, 331, 332, 333, 334, 335, 337, 338, 339, </span></span>
+<span><span class="co">#&gt;     341, 342, 343, 344, 345, 346, 348, 349, 352, 354, 355, 357, </span></span>
+<span><span class="co">#&gt;     359, 360, 362, 364, 365, 366, 367, 369, 373, 374, 375, 376, </span></span>
+<span><span class="co">#&gt;     377, 378, 379, 380, 381, 382, 383, 384, 386, 388, 389, 391, </span></span>
+<span><span class="co">#&gt;     392, 393, 394, 395, 397, 398, 399, 400, 403, 404, 405, 407, </span></span>
+<span><span class="co">#&gt;     408, 409, 412, 413, 414, 416, 419, 420, 422, 423, 424, 425, </span></span>
+<span><span class="co">#&gt;     426, 427, 428, 429, 432, 433, 434, 436, 439, 440, 441, 444, </span></span>
+<span><span class="co">#&gt;     445, 448, 449, 450, 452, 454, 455, 456, 457, 458, 461, 462, </span></span>
+<span><span class="co">#&gt;     463, 465, 467, 469, 470, 471, 473, 474, 475, 477, 478, 479, </span></span>
+<span><span class="co">#&gt;     480, 481, 482, 484, 485, 486, 488, 489, 490, 491, 492, 493, </span></span>
+<span><span class="co">#&gt;     497, 498, 500, 502, 504, 505, 508, 510, 512, 514, 515, 516, </span></span>
+<span><span class="co">#&gt;     518, 519, 520, 521, 524, 525, 526, 527, 528, 529, 530, 532, </span></span>
+<span><span class="co">#&gt;     533, 534, 537, 538, 539, 540, 541, 543, 544, 545, 546, 550, </span></span>
+<span><span class="co">#&gt;     551, 552, 553, 554, 556, 557, 558, 561, 562, 565, 566, 567, </span></span>
+<span><span class="co">#&gt;     568, 569, 570, 571, 572, 573, 575, 578, 579, 580, 581, 582, </span></span>
+<span><span class="co">#&gt;     584, 587, 588, 589, 590, 593, 594, 595, 597, 599, 600, 603, </span></span>
+<span><span class="co">#&gt;     604, 605, 606, 608, 609, 610, 611, 613, 614, 620, 621, 623, </span></span>
+<span><span class="co">#&gt;     624, 625, 626, 627, 628, 630, 632, 633, 634, 635, 638, 639, </span></span>
+<span><span class="co">#&gt;     640, 641, 643, 645, 648, 650, 651, 653, 654, 656, 657, 659, </span></span>
+<span><span class="co">#&gt;     661, 662, 663, 665, 666, 667, 669, 671, 672, 675, 676, 677, </span></span>
+<span><span class="co">#&gt;     678, 682, 683, 684, 685, 686, 687, 689, 690, 693, 695, 696, </span></span>
+<span><span class="co">#&gt;     697, 698, 699, 700, 701, 702, 704, 705, 706, 707, 709, 710, </span></span>
+<span><span class="co">#&gt;     711, 713, 714, 715, 717, 719, 722, 723, 724, 726, 727, 728, </span></span>
+<span><span class="co">#&gt;     729, 731, 732, 733, 734, 736, 738, 739, 741, 742, 743, 744, </span></span>
+<span><span class="co">#&gt;     746, 747, 748, 751, 752, 753, 754, 755, 756, 758, 762, 763, </span></span>
+<span><span class="co">#&gt;     764, 765, 766, 768, 769, 771, 773, 775, 777, 778, 780, 781, </span></span>
+<span><span class="co">#&gt;     782, 785, 786, 787, 789, 790, 792, 793, 795, 796, 798, 799, </span></span>
+<span><span class="co">#&gt;     800, 802, 805, 806, 807, 808, 809, 810, 813, 814, 815, 816, </span></span>
+<span><span class="co">#&gt;     818, 819, 820, 821, 822, 823, 825, 826, 828, 830, 831, 833, </span></span>
+<span><span class="co">#&gt;     835, 837, 838, 839, 840, 843, 844, 845, 847, 849, 850, 851, </span></span>
+<span><span class="co">#&gt;     852, 855, 856, 858, 859, 860, 861, 862, 863, 864, 867, 868, </span></span>
+<span><span class="co">#&gt;     871, 874, 875, 876, 878, 880, 881, 882, 884, 886, 887, 890, </span></span>
+<span><span class="co">#&gt;     891, 892, 893, 894, 897, 898, 899, 900, 902, 903, 904, 905, </span></span>
+<span><span class="co">#&gt;     906, 907, 910, 911, 913, 915, 917, 918, 919, 920, 921, 923, </span></span>
+<span><span class="co">#&gt;     926, 928, 930, 931, 932, 933, 937, 938, 939, 940, 942, 943, </span></span>
+<span><span class="co">#&gt;     944, 945, 946, 947, 949, 950, 953, 954, 955, 956, 958, 960, </span></span>
+<span><span class="co">#&gt;     961, 962, 966, 967, 968, 969, 970, 971, 972, 973, 974, 975, </span></span>
+<span><span class="co">#&gt;     978, 979, 983, 986, 988, 989, 991, 992, 993, 995, 996, 997, </span></span>
+<span><span class="co">#&gt;     998, 1000, 1002, 1003, 1004, 1005, 1008, 1009, 1010, 1012, </span></span>
+<span><span class="co">#&gt;     1013, 1016, 1017, 1018, 1020, 1021, 1023, 1025, 1028, 1030, </span></span>
+<span><span class="co">#&gt;     1031, 1032, 1033, 1034, 1037, 1039, 1040, 1042, 1044, 1045, </span></span>
+<span><span class="co">#&gt;     1049, 1050, 1051, 1052, 1054, 1055, 1058, 1059, 1060, 1062, </span></span>
+<span><span class="co">#&gt;     1065, 1066, 1067, 1068, 1069, 1074, 1075, 1076, 1077, 1080, </span></span>
+<span><span class="co">#&gt;     1081, 1083, 1085, 1088, 1089, 1090, 1092, 1093, 1096, 1097, </span></span>
+<span><span class="co">#&gt;     1098, 1099, 1101, 1106, 1107, 1108, 1110, 1111, 1113, 1114, </span></span>
+<span><span class="co">#&gt;     1117, 1118, 1119, 1122, 1123, 1124, 1126, 1128, 1129, 1130, </span></span>
+<span><span class="co">#&gt;     1132, 1136, 1137, 1139, 1141, 1142, 1143, 1144, 1145, 1148, </span></span>
+<span><span class="co">#&gt;     1150, 1151, 1153, 1154, 1155, 1156, 1157, 1159, 1160, 1161, </span></span>
+<span><span class="co">#&gt;     1163, 1164, 1165, 1167, 1169, 1172, 1173, 1174, 1175, 1176, </span></span>
+<span><span class="co">#&gt;     1179, 1181, 1182, 1185, 1186, 1187, 1189, 1190, 1192, 1193, </span></span>
+<span><span class="co">#&gt;     1196, 1197, 1200, 1202, 1205, 1206, 1207, 1210, 1211, 1215, </span></span>
+<span><span class="co">#&gt;     1217, 1218, 1219, 1221, 1222, 1224, 1226, 1228, 1229, 1230, </span></span>
+<span><span class="co">#&gt;     1232, 1233, 1234, 1235, 1237, 1240, 1241, 1242, 1243, 1246, </span></span>
+<span><span class="co">#&gt;     1249, 1250, 1251, 1252, 1253, 1254, 1255, 1257, 1258, 1259, </span></span>
+<span><span class="co">#&gt;     1260, 1264, 1266, 1267, 1268, 1269, 1270, 1274, 1275, 1276, </span></span>
+<span><span class="co">#&gt;     1278, 1281, 1284, 1285, 1289, 1290, 1291, 1292, 1294, 1296, </span></span>
+<span><span class="co">#&gt;     1297, 1298, 1301, 1303, 1305, 1306, 1307, 1309, 1310, 1311, </span></span>
+<span><span class="co">#&gt;     1312, 1314, 1316, 1319, 1320, 1321, 1322, 1324, 1325, 1326, </span></span>
+<span><span class="co">#&gt;     1327, 1328, 1329, 1332, 1333), days = c(502, 496, 565, 308, </span></span>
+<span><span class="co">#&gt;     383, 392, 43, 253, 264, 148, 672, 646, 405, 645, 616, 617, </span></span>
+<span><span class="co">#&gt;     475, 512, 680, 462, 672, 139, 561, 560, 588, 566, 595, 582, </span></span>
+<span><span class="co">#&gt;     520, 239, 504, 359, 530, 433, 510, 505, 307, 230, 257, 170, </span></span>
+<span><span class="co">#&gt;     1, 1, 168, 143, 151, 645, 653, 653, 663, 644, 385, 630, 628, </span></span>
+<span><span class="co">#&gt;     262, 473, 587, 550, 547, 337, 386, 370, 365, 314, 265, 262, </span></span>
+<span><span class="co">#&gt;     146, 644, 651, 640, 651, 566, 621, 634, 616, 95, 617, 560, </span></span>
+<span><span class="co">#&gt;     602, 532, 611, 616, 609, 527, 566, 532, 112, 420, 588, 415, </span></span>
+<span><span class="co">#&gt;     586, 589, 287, 574, 554, 392, 340, 337, 319, 308, 284, 270, </span></span>
+<span><span class="co">#&gt;     175, 234, 582, 588, 521, 308, 385, 48, 231, 91, 296, 559, </span></span>
+<span><span class="co">#&gt;     514, 538, 550, 546, 505, 560, 389, 532, 478, 497, 478, 504, </span></span>
+<span><span class="co">#&gt;     154, 562, 116, 560, 638, 607, 616, 201, 616, 610, 611, 574, </span></span>
+<span><span class="co">#&gt;     536, 532, 567, 333, 1, 553, 546, 526, 540, 533, 100, 532, </span></span>
+<span><span class="co">#&gt;     532, 333, 363, 356, 196, 286, 251, 59, 173, 108, 140, 329, </span></span>
+<span><span class="co">#&gt;     668, 647, 432, 622, 9, 644, 641, 308, 61, 619, 624, 624, </span></span>
+<span><span class="co">#&gt;     620, 590, 618, 467, 591, 27, 273, 563, 533, 540, 409, 539, </span></span>
+<span><span class="co">#&gt;     540, 87, 538, 528, 511, 102, 535, 532, 511, 312, 314, 253, </span></span>
+<span><span class="co">#&gt;     256, 17, 105, 256, 246, 169, 199, 182, 147, 143, 141, 152, </span></span>
+<span><span class="co">#&gt;     119, 702, 648, 644, 644, 506, 626, 617, 601, 379, 627, 617, </span></span>
+<span><span class="co">#&gt;     217, 459, 575, 610, 611, 591, 589, 563, 554, 553, 551, 98, </span></span>
+<span><span class="co">#&gt;     515, 435, 545, 531, 529, 322, 257, 228, 196, 141, 558, 587, </span></span>
+<span><span class="co">#&gt;     531, 561, 540, 563, 539, 557, 111, 592, 533, 545, 538, 533, </span></span>
+<span><span class="co">#&gt;     534, 594, 582, 551, 503, 531, 284, 561, 554, 555, 556, 560, </span></span>
+<span><span class="co">#&gt;     480, 543, 531, 531, 536, 539, 537, 552, 14, 531, 510, 510, </span></span>
+<span><span class="co">#&gt;     358, 336, 343, 231, 138, 285, 252, 164, 162, 335, 335, 335, </span></span>
+<span><span class="co">#&gt;     281, 301, 260, 280, 196, 338, 288, 196, 230, 197, 184, 717, </span></span>
+<span><span class="co">#&gt;     732, 746, 716, 717, 428, 711, 690, 743, 716, 716, 737, 736, </span></span>
+<span><span class="co">#&gt;     715, 700, 703, 672, 699, 212, 401, 674, 472, 455, 82, 621, </span></span>
+<span><span class="co">#&gt;     636, 166, 573, 375, 555, 322, 83, 526, 532, 517, 331, 336, </span></span>
+<span><span class="co">#&gt;     335, 196, 142, 177, 112, 471, 573, 119, 602, 545, 133, 338, </span></span>
+<span><span class="co">#&gt;     161, 426, 420, 685, 63, 686, 609, 704, 362, 714, 11, 682, </span></span>
+<span><span class="co">#&gt;     336, 700, 695, 710, 724, 727, 701, 678, 679, 496, 654, 692, </span></span>
+<span><span class="co">#&gt;     698, 669, 687, 553, 642, 443, 359, 677, 330, 483, 618, 232, </span></span>
+<span><span class="co">#&gt;     594, 264, 595, 567, 56, 583, 1, 248, 553, 476, 545, 552, </span></span>
+<span><span class="co">#&gt;     501, 309, 100, 475, 454, 197, 412, 181, 345, 288, 267, 162, </span></span>
+<span><span class="co">#&gt;     348, 340, 339, 336, 338, 274, 166, 186, 179, 60, 90, 439, </span></span>
+<span><span class="co">#&gt;     651, 590, 592, 505, 531, 309, 562, 527, 448, 534, 527, 366, </span></span>
+<span><span class="co">#&gt;     200, 197, 143, 113, 112, 532, 511, 528, 513, 530, 496, 511, </span></span>
+<span><span class="co">#&gt;     518, 13, 337, 335, 302, 310, 315, 276, 272, 298, 287, 201, </span></span>
+<span><span class="co">#&gt;     225, 194, 743, 728, 738, 721, 744, 726, 731, 649, 733, 84, </span></span>
+<span><span class="co">#&gt;     498, 582, 727, 712, 706, 725, 701, 700, 700, 693, 380, 691, </span></span>
+<span><span class="co">#&gt;     700, 698, 665, 665, 652, 672, 674, 656, 653, 672, 655, 644, </span></span>
+<span><span class="co">#&gt;     639, 630, 577, 618, 623, 603, 436, 590, 589, 544, 581, 575, </span></span>
+<span><span class="co">#&gt;     549, 557, 544, 544, 495, 543, 530, 364, 363, 362, 311, 364, </span></span>
+<span><span class="co">#&gt;     363, 339, 343, 301, 273, 303, 280, 251, 235, 240, 222, 170, </span></span>
+<span><span class="co">#&gt;     168, 148, 109, 99, 645, 722, 716, 728, 727, 721, 721, 728, </span></span>
+<span><span class="co">#&gt;     711, 98, 700, 694, 534, 654, 567, 73, 699, 679, 71, 537, </span></span>
+<span><span class="co">#&gt;     700, 673, 509, 556, 504, 674, 547, 672, 657, 642, 616, 614, </span></span>
+<span><span class="co">#&gt;     16, 622, 588, 588, 84, 588, 422, 393, 586, 588, 422, 561, </span></span>
+<span><span class="co">#&gt;     170, 558, 538, 540, 532, 532, 340, 201, 364, 371, 336, 182, </span></span>
+<span><span class="co">#&gt;     336, 308, 280, 272, 210, 259, 226, 196, 195, 173, 147, 28, </span></span>
+<span><span class="co">#&gt;     700, 709, 572, 699, 645, 627, 701, 594, 645, 644, 672, 644, </span></span>
+<span><span class="co">#&gt;     590, 616, 616, 560, 588, 446, 561, 562, 538, 539, 313, 342, </span></span>
+<span><span class="co">#&gt;     251, 253, 141, 225, 86, 112, 330, 148, 665, 601, 398, 504, </span></span>
+<span><span class="co">#&gt;     549, 372, 310, 330, 309, 310, 280, 282, 223, 133, 140, 115, </span></span>
+<span><span class="co">#&gt;     137, 9, 589, 545, 504, 504, 194, 679, 678, 545, 547, 560, </span></span>
+<span><span class="co">#&gt;     365, 644, 642, 238, 634, 632, 643, 631, 426, 446, 567, 277, </span></span>
+<span><span class="co">#&gt;     596, 64, 573, 55, 371, 290, 354, 363, 442, 339, 338, 1, 139, </span></span>
+<span><span class="co">#&gt;     280, 273, 251, 215, 139, 43, 280, 329, 336, 310, 28, 223, </span></span>
+<span><span class="co">#&gt;     223, 197, 190, 148, 168, 169, 141, 97, 1, 533, 532, 535, </span></span>
+<span><span class="co">#&gt;     363, 364, 363, 364, 346, 335, 57, 168, 139, 140, 114, 342, </span></span>
+<span><span class="co">#&gt;     252, 246, 185, 347, 374, 330, 307, 335, 246, 336, 288, 314, </span></span>
+<span><span class="co">#&gt;     231, 249, 224, 196, 202, 175, 172, 143, 140, 236, 302, 280, </span></span>
+<span><span class="co">#&gt;     251, 368, 365, 333, 327, 309, 297, 246, 225, 168, 161, 143, </span></span>
+<span><span class="co">#&gt;     337, 364, 225, 197, 149, 140, 117, 546, 331, 525, 374, 476, </span></span>
+<span><span class="co">#&gt;     529, 387, 364, 372, 359, 363, 336, 329, 279, 279, 283, 225, </span></span>
+<span><span class="co">#&gt;     190, 194, 147, 112, 367, 336, 343, 305, 313, 308, 304, 252, </span></span>
+<span><span class="co">#&gt;     259, 255, 224, 168, 162, 168, 116, 108, 112, 126, 308, 330, </span></span>
+<span><span class="co">#&gt;     343, 309, 304, 304, 270, 31, 280, 283, 281, 197, 227, 252, </span></span>
+<span><span class="co">#&gt;     168, 193, 169, 168, 136, 28, 167, 140, 142, 129, 139, 147, </span></span>
+<span><span class="co">#&gt;     138, 137, 126, 105, 346, 532, 481, 306, 330, 129, 274, 271, </span></span>
+<span><span class="co">#&gt;     221, 152, 133, 280, 280, 255, 169, 139, 119, 211, 211, 358, </span></span>
+<span><span class="co">#&gt;     231, 336, 332, 309, 226, 198, 141, 116, 110, 114, 379, 357, </span></span>
+<span><span class="co">#&gt;     338, 309, 78, 308, 280, 203, 280, 252, 224, 140)), row.names = c(NA, </span></span>
+<span><span class="co">#&gt; 880L), class = c("tbl_df", "tbl", "data.frame")))</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;               Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1.3841507  0.3906379  -3.543 0.000395 ***</span></span>
+<span><span class="co">#&gt; id          -0.0014034  0.0003926  -3.574 0.000351 ***</span></span>
+<span><span class="co">#&gt; days        -0.0013113  0.0007124  -1.841 0.065650 .  </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 411.47  on 879  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 396.98  on 877  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 402.98</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="step-3-model-adequacy-checks" class="level3" data-number="3.6"><h3 data-number="3.6" class="anchored" data-anchor-id="step-3-model-adequacy-checks">
+<span class="header-section-number">3.6</span> Step 3: Model adequacy checks</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">model_comparison</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_unadjusted</span>, <span class="st">"error"</span><span class="op">)</span> <span class="op">||</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">formula_unadjusted</span>, <span class="va">formula_adjusted</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"adjusted"</span>, AIC <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>      model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"unadjusted"</span>, <span class="st">"adjusted"</span><span class="op">)</span>,</span>
+<span>      AIC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span>, <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">model_comparison</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span>, <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span>,</span>
+<span>    xlab <span class="op">=</span> <span class="st">"Fitted values"</span>,</span>
+<span>    ylab <span class="op">=</span> <span class="st">"Residuals"</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">"Residuals vs fitted"</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model adequacy checks skipped because no fitted adjusted model is available.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/adequacy-checks-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="step-4-inference" class="level3" data-number="3.7"><h3 data-number="3.7" class="anchored" data-anchor-id="step-4-inference">
+<span class="header-section-number">3.7</span> Step 4: Inference</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">coef_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span></span>
+<span>  <span class="va">coef_table</span></span>
+<span></span>
+<span>  <span class="va">exposure_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"^"</span>, <span class="va">exposure_var</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">)</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">p_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pr(&gt;|t|)"</span>, <span class="st">"Pr(&gt;|z|)"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">exposure_rows</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">p_col</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">target_row</span> <span class="op">&lt;-</span> <span class="va">exposure_rows</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>    <span class="va">estimate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">[</span><span class="va">target_row</span>, <span class="st">"Estimate"</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">p_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">[</span><span class="va">target_row</span>, <span class="va">p_col</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">direction</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">||</span> <span class="va">estimate</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="st">"little"</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">estimate</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="st">"a positive"</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>      <span class="st">"a negative"</span></span>
+<span>    <span class="op">}</span></span>
+<span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Estimated exposure effect:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>      <span class="st">"(p ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">signif</a></span><span class="op">(</span><span class="va">p_value</span>, <span class="fl">3</span><span class="op">)</span>, <span class="st">")</span></span>
+<span><span class="st">"</span></span>
+<span>    <span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>      <span class="st">"This suggests"</span>, <span class="va">direction</span>, <span class="st">"association between"</span>, <span class="va">exposure_var</span>,</span>
+<span>      <span class="st">"and"</span>, <span class="va">outcome_var</span>, <span class="st">"in the adjusted model.</span></span>
+<span><span class="st">"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Inference summary unavailable for the selected exposure term.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Inference skipped because no fitted adjusted model is available.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Estimated exposure effect: -0.001 (p = 0.000351 )</span></span>
+<span><span class="co">#&gt; This suggests a negative association between id and cens in the adjusted model.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="scientific-conclusions" class="level3" data-number="3.8"><h3 data-number="3.8" class="anchored" data-anchor-id="scientific-conclusions">
+<span class="header-section-number">3.8</span> Scientific conclusions</h3>
+<p>In this dataset, the adjusted model (binomial) provides an estimate for the association between id and cens, accounting for days. The findings should be interpreted in the context of the study design, potential residual confounding, and measurement limitations.</p>
 </section></section><section id="source" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="source">
 <span class="header-section-number">4</span> Source</h2>
 <ul>
