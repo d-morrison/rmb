@@ -19,12 +19,12 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(rpt)
+library(rmb)
 ```
 
 ## Introduction
 
-This vignette provides an introduction to the `{rpt}` package.
+This vignette provides an introduction to the `{rmb}` package.
 
 ## Basic Usage
 

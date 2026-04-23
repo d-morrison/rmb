@@ -79,6 +79,114 @@ exclusions <- list(
   ),
   "tests/testthat.R" = list(
     undesirable_function_linter = Inf
+  ),
+  "R/data-actg019.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-esoph.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-fecfat.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-figure4_1.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-figure4_12.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-figure4_6.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-fit.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-fitdata.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-fitglm.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-gababies.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-hers.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-hers_long_base_visit1_only_saved.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-hers_nodm_longitudinal.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-hers_nodm_visit4_only.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-leuk.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-mira_hsv.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-mros.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-needle_sharing.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-nhanes3.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-pbc.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-phototherapy.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-rmb_datasets.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-sof.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-sof2.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-unos.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-wcgs.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
+  ),
+  "R/data-whickham.R" = list(
+    line_length_linter = Inf,
+    trailing_blank_lines_linter = Inf
   )
 
 )
