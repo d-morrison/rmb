@@ -990,13 +990,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Call: stats::lm(formula = .y ~ .x, data = df)</p>
 <p>Residuals: Min 1Q Median 3Q Max -1381.0 -690.8 0.0 690.8 1381.0</p>
 <p>Coefficients: Estimate Std. Error t value Pr(&gt;|t|)<br>
-(Intercept) 1.382e+03 1.518e+01 91.06 &lt;2e-16 *** .x -1.072e-14 2.146e+01 0.00 1<br>
+(Intercept) 1.382e+03 1.518e+01 91.06 &lt;2e-16 *** .x -4.524e-15 2.146e+01 0.00 1<br>
 — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
-<p>Residual standard error: 797.8 on 5524 degrees of freedom Multiple R-squared: 3.401e-32, Adjusted R-squared: -0.000181 F-statistic: 1.879e-28 on 1 and 5524 DF, p-value: 1</p>
+<p>Residual standard error: 797.8 on 5524 degrees of freedom Multiple R-squared: 3.584e-32, Adjusted R-squared: -0.000181 F-statistic: 1.98e-28 on 1 and 5524 DF, p-value: 1</p>
 </section><section id="logistic-regression" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="logistic-regression">
 <span class="header-section-number">3.2</span> Logistic regression</h3>
 <p>Call: stats::glm(formula = .y ~ .x, family = stats::binomial(), data = df)</p>
-<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|) (Intercept) 6.428e-18 5.382e-02 0 1 .x -5.710e-21 3.373e-05 0 1</p>
+<p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|) (Intercept) 6.697e-17 5.382e-02 0 1 .x -5.168e-20 3.373e-05 0 1</p>
 <p>(Dispersion parameter for binomial family taken to be 1)</p>
 <pre><code>Null deviance: 7660.7  on 5525  degrees of freedom</code></pre>
 <p>Residual deviance: 7660.7 on 5524 degrees of freedom AIC: 7664.7</p>
@@ -1005,7 +1005,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3.3</span> Poisson regression</h3>
 <p>Call: stats::glm(formula = .y ~ .x, family = stats::poisson(), data = df)</p>
 <p>Coefficients: Estimate Std. Error z value Pr(&gt;|z|)<br>
-(Intercept) 7.231e+00 5.117e-04 14131 &lt;2e-16 *** .x 4.071e-17 7.237e-04 0 1<br>
+(Intercept) 7.231e+00 5.117e-04 14131 &lt;2e-16 *** .x 2.278e-16 7.237e-04 0 1<br>
 — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1</p>
 <p>(Dispersion parameter for poisson family taken to be 1)</p>
 <pre><code>Null deviance: 2947343  on 5525  degrees of freedom</code></pre>
