@@ -47,12 +47,12 @@ stats::setNames(var_labels, names(dat))
 ## RMB2e analysis families
 
 ```{r analyses, results='asis'}
-helper_path <- "analysis_helpers.R"
+helper_path <- "analysis_helpers.r"
 if (!file.exists(helper_path)) {
-  helper_path <- file.path("vignettes", "analysis_helpers.R")
+  helper_path <- file.path("vignettes", "analysis_helpers.r")
 }
 source(helper_path)
-run_rmb2e_analyses(dat, "needle_sharing")
+run_rmb_dataset_analyses(dat, "needle_sharing")
 ```
 
 ## Source

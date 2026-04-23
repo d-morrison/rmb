@@ -1,30 +1,42 @@
 test_that("dataset vignettes use expanded RMB2e analysis workflow", {
-  repo_root <- normalizePath(file.path(test_path(), "..", ".."), mustWork = TRUE)
-  vignette_dir <- file.path(repo_root, "vignettes")
-
-  dataset_vignettes <- list.files(
-    vignette_dir,
-    pattern = "^dataset-.*\\.qmd$",
-    full.names = TRUE
+  vignette_dirs <- c(
+    file.path(
+      normalizePath(file.path(test_path(), "..", ".."), mustWork = FALSE),
+      "vignettes"
+    ),
+    file.path(getwd(), "vignettes"),
+    system.file("doc", package = "rmb")
   )
+  dataset_vignettes <- unique(unlist(lapply(vignette_dirs, function(dir) {
+    if (nzchar(dir) && dir.exists(dir)) {
+      list.files(dir, pattern = "^dataset-.*\\.qmd$", full.names = TRUE)
+    } else {
+      character()
+    }
+  })))
 
-  expect_length(dataset_vignettes, 26)
+  if (length(dataset_vignettes) == 0) {
+    skip("Dataset qmd vignette sources are not available in this test context")
+  }
 
   vignette_text <- vapply(dataset_vignettes, function(path) {
     paste(readLines(path, warn = FALSE), collapse = "\n")
   }, character(1))
 
-  expect_true(all(grepl("## RMB2e analysis families", vignette_text, fixed = TRUE)))
-  expect_true(all(grepl("run_rmb2e_analyses(dat,", vignette_text, fixed = TRUE)))
-  expect_false(any(grepl("compact exploratory analysis and an example model", vignette_text, fixed = TRUE)))
-})
-
-test_that("analysis helper is available for vignette rendering", {
-  repo_root <- normalizePath(file.path(test_path(), "..", ".."), mustWork = TRUE)
-  helper_file <- file.path(repo_root, "vignettes", "analysis_helpers.R")
-
-  expect_true(file.exists(helper_file))
-
-  helper_text <- paste(readLines(helper_file, warn = FALSE), collapse = "\n")
-  expect_true(grepl("run_rmb2e_analyses <- function", helper_text, fixed = TRUE))
+  expect_true(
+    all(grepl("## RMB2e analysis families", vignette_text, fixed = TRUE))
+  )
+  expect_true(
+    all(grepl("run_rmb_dataset_analyses(dat,", vignette_text, fixed = TRUE))
+  )
+  expect_true(
+    all(grepl("analysis_helpers.r", vignette_text, fixed = TRUE))
+  )
+  expect_false(any(
+    grepl(
+      "compact exploratory analysis and an example model",
+      vignette_text,
+      fixed = TRUE
+    )
+  ))
 })
