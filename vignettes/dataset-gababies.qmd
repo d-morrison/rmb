@@ -16,7 +16,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette provides a compact exploratory analysis and an example model for `gababies`.
+This vignette implements an expanded, dataset-organized RMB2e analysis workflow for `gababies`.
 
 ## Study design
 
@@ -44,28 +44,15 @@ var_labels <- vapply(dat, function(x) {
 stats::setNames(var_labels, names(dat))
 ```
 
-## Example model
+## RMB2e analysis families
 
-```{r model}
-num_vars <- names(dat)[vapply(dat, is.numeric, logical(1))]
-if (length(num_vars) >= 2) {
-  response <- num_vars[1]
-  predictor <- num_vars[2]
-  df <- stats::na.omit(dat[, c(response, predictor), drop = FALSE])
-  if (nrow(df) >= 5) {
-    y <- df[[response]]
-    if (all(y %in% c(0, 1))) {
-      fit <- stats::glm(stats::as.formula(paste(response, predictor, sep = " ~ ")), data = df, family = stats::binomial())
-    } else {
-      fit <- stats::lm(stats::as.formula(paste(response, predictor, sep = " ~ ")), data = df)
-    }
-    summary(fit)
-  } else {
-    cat("Not enough complete observations for a model.\n")
-  }
-} else {
-  cat("No two numeric variables available for a simple model example.\n")
+```{r analyses, results='asis'}
+helper_path <- "analysis_helpers.R"
+if (!file.exists(helper_path)) {
+  helper_path <- file.path("vignettes", "analysis_helpers.R")
 }
+source(helper_path)
+run_rmb2e_analyses(dat, "gababies")
 ```
 
 ## Source
