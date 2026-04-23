@@ -28,12 +28,58 @@ website:
         file: man/rmb-package.qmd
       - text: Articles
         menu:
-          - text: "Getting started"
-            file: vignettes/getting-started.qmd
-          - text: "Intro vignette"
-            file: vignettes/quarto_vignette.qmd
-          - text: "Advanced"
-            file: vignettes/articles/quarto_article.qmd
+          - text: "ACTG 019 data"
+            file: vignettes/dataset-actg019.qmd
+          - text: "Esoph data"
+            file: vignettes/dataset-esoph.qmd
+          - text: "Fecfat data"
+            file: vignettes/dataset-fecfat.qmd
+          - text: "Figure 4.1 data"
+            file: vignettes/dataset-figure4_1.qmd
+          - text: "Figure 4.12 data"
+            file: vignettes/dataset-figure4_12.qmd
+          - text: "Figure 4.6 data"
+            file: vignettes/dataset-figure4_6.qmd
+          - text: "Fit data"
+            file: vignettes/dataset-fit.qmd
+          - text: "Fitdata data"
+            file: vignettes/dataset-fitdata.qmd
+          - text: "Fitglm data"
+            file: vignettes/dataset-fitglm.qmd
+          - text: "Gababies data"
+            file: vignettes/dataset-gababies.qmd
+          - text: "HERS data"
+            file: vignettes/dataset-hers.qmd
+          - text: "HERS long base visit1 only saved data"
+            file: vignettes/dataset-hers_long_base_visit1_only_saved.qmd
+          - text: "HERS no DM longitudinal data"
+            file: vignettes/dataset-hers_nodm_longitudinal.qmd
+          - text: "HERS no DM visit 4 only data"
+            file: vignettes/dataset-hers_nodm_visit4_only.qmd
+          - text: "Leuk data"
+            file: vignettes/dataset-leuk.qmd
+          - text: "Mira HSV data"
+            file: vignettes/dataset-mira_hsv.qmd
+          - text: "MrOS data"
+            file: vignettes/dataset-mros.qmd
+          - text: "Needle sharing data"
+            file: vignettes/dataset-needle_sharing.qmd
+          - text: "NHANES III data"
+            file: vignettes/dataset-nhanes3.qmd
+          - text: "PBC data"
+            file: vignettes/dataset-pbc.qmd
+          - text: "Phototherapy data"
+            file: vignettes/dataset-phototherapy.qmd
+          - text: "SOF data"
+            file: vignettes/dataset-sof.qmd
+          - text: "SOF2 data"
+            file: vignettes/dataset-sof2.qmd
+          - text: "UNOS data"
+            file: vignettes/dataset-unos.qmd
+          - text: "WCGS data"
+            file: vignettes/dataset-wcgs.qmd
+          - text: "Whickham data"
+            file: vignettes/dataset-whickham.qmd
   sidebar:
     collapse-level: 1
     contents:
@@ -43,11 +89,32 @@ website:
       - section: Articles
         style: floating
         contents:
-          - vignettes/getting-started.qmd
-          - vignettes/quarto_vignette.qmd
-          - section: Advanced
-            contents:
-              - vignettes/articles/quarto_article.qmd
+          - vignettes/dataset-actg019.qmd
+          - vignettes/dataset-esoph.qmd
+          - vignettes/dataset-fecfat.qmd
+          - vignettes/dataset-figure4_1.qmd
+          - vignettes/dataset-figure4_12.qmd
+          - vignettes/dataset-figure4_6.qmd
+          - vignettes/dataset-fit.qmd
+          - vignettes/dataset-fitdata.qmd
+          - vignettes/dataset-fitglm.qmd
+          - vignettes/dataset-gababies.qmd
+          - vignettes/dataset-hers.qmd
+          - vignettes/dataset-hers_long_base_visit1_only_saved.qmd
+          - vignettes/dataset-hers_nodm_longitudinal.qmd
+          - vignettes/dataset-hers_nodm_visit4_only.qmd
+          - vignettes/dataset-leuk.qmd
+          - vignettes/dataset-mira_hsv.qmd
+          - vignettes/dataset-mros.qmd
+          - vignettes/dataset-needle_sharing.qmd
+          - vignettes/dataset-nhanes3.qmd
+          - vignettes/dataset-pbc.qmd
+          - vignettes/dataset-phototherapy.qmd
+          - vignettes/dataset-sof.qmd
+          - vignettes/dataset-sof2.qmd
+          - vignettes/dataset-unos.qmd
+          - vignettes/dataset-wcgs.qmd
+          - vignettes/dataset-whickham.qmd
       - section: $ALTDOC_MAN_BLOCK
         style: floating
       - text: News
