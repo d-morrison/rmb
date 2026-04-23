@@ -3,6 +3,8 @@
 > [!IMPORTANT]
 > **MANDATORY TESTING BEFORE EVERY COMMIT:**
 >
+> *(GitHub callout formatting in this section is GitHub-specific.)*
+>
 > Before committing changes to `.R`, `.Rmd`, `.qmd`, workflow, or configuration files:
 >
 > 1. Run `lintr::lint_package()`
