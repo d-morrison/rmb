@@ -16,7 +16,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette provides a compact exploratory analysis and an example model for `hers_long_base_visit1_only_saved`.
+This vignette implements an expanded, dataset-organized RMB2e analysis workflow for `hers_long_base_visit1_only_saved`.
 
 ## Study design
 
@@ -44,29 +44,354 @@ var_labels <- vapply(dat, function(x) {
 stats::setNames(var_labels, names(dat))
 ```
 
-## Example model
+## RMB2e analysis workflow
 
-```{r model}
-num_vars <- names(dat)[vapply(dat, is.numeric, logical(1))]
-if (length(num_vars) >= 2) {
-  response <- num_vars[1]
-  predictor <- num_vars[2]
-  df <- stats::na.omit(dat[, c(response, predictor), drop = FALSE])
-  if (nrow(df) >= 5) {
-    y <- df[[response]]
-    if (all(y %in% c(0, 1))) {
-      fit <- stats::glm(stats::as.formula(paste(response, predictor, sep = " ~ ")), data = df, family = stats::binomial())
-    } else {
-      fit <- stats::lm(stats::as.formula(paste(response, predictor, sep = " ~ ")), data = df)
-    }
-    summary(fit)
-  } else {
-    cat("Not enough complete observations for a model.\n")
+### Research question
+
+For `hers_long_base_visit1_only_saved` we ask: what is the association between a primary exposure and an outcome,
+after accounting for a plausible confounder?
+
+```{r identify-variables}
+is_binary <- function(x) {
+  x <- stats::na.omit(x)
+  if (length(x) == 0) {
+    return(FALSE)
   }
+  if (is.logical(x)) {
+    return(TRUE)
+  }
+  ux <- unique(x)
+  if (length(ux) > 2) {
+    return(FALSE)
+  }
+  if (is.factor(x)) {
+    return(TRUE)
+  }
+  is.numeric(x) && all(ux %in% c(0, 1))
+}
+
+is_count <- function(x) {
+  if (!is.numeric(x)) {
+    return(FALSE)
+  }
+  x <- stats::na.omit(x)
+  if (length(x) == 0) {
+    return(FALSE)
+  }
+  all(x >= 0 & abs(x - round(x)) < 1e-8) && length(unique(x)) > 2
+}
+
+candidate_vars <- names(dat)[vapply(dat, function(x) {
+  is.numeric(x) || is.factor(x) || is.logical(x)
+}, logical(1))]
+
+continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
+  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
+}, logical(1))]
+binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
+count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
+
+outcome_var <- if (length(binary_vars) > 0) {
+  binary_vars[1]
+} else if (length(continuous_vars) > 0) {
+  continuous_vars[1]
+} else if (length(count_vars) > 0) {
+  count_vars[1]
+} else if (length(candidate_vars) > 0) {
+  candidate_vars[1]
 } else {
-  cat("No two numeric variables available for a simple model example.\n")
+  NA_character_
+}
+
+remaining_vars <- setdiff(candidate_vars, outcome_var)
+exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
+confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
+
+model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
+  "binomial"
+} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
+  "poisson"
+} else {
+  "gaussian"
+}
+
+can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
+
+c(
+  outcome = outcome_var,
+  exposure = exposure_var,
+  confounder = confounder_var,
+  family = model_family,
+  can_fit_model = can_fit_model
+)
+```
+
+We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
+with `r confounder_var` as a candidate confounder.
+
+### Causal assumptions (conceptual DAG)
+
+```{r dag, results='asis'}
+if (!is.na(exposure_var) && !is.na(confounder_var)) {
+  cat(
+    "```{mermaid}
+",
+    "flowchart LR
+",
+    "  C[", confounder_var, "] --> E[", exposure_var, "]
+",
+    "  C --> Y[", outcome_var, "]
+",
+    "  E --> Y
+",
+    "```
+",
+    sep = ""
+  )
+} else if (!is.na(exposure_var)) {
+  cat(
+    "```{mermaid}
+",
+    "flowchart LR
+",
+    "  E[", exposure_var, "] --> Y[", outcome_var, "]
+",
+    "```
+",
+    sep = ""
+  )
+} else {
+  cat("Not enough variables to draw a DAG for this dataset.\n")
 }
 ```
+
+### Step 0: Exploratory data analysis
+
+We start by checking the analysis sample and the marginal distributions of the selected
+variables.
+
+```{r exploratory-summaries}
+analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
+if (length(analysis_vars) == 0) {
+  analysis_df <- data.frame()
+  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
+  cat("No numeric, logical, or factor variables available for analysis.\n")
+} else {
+  analysis_df <- dat[, analysis_vars, drop = FALSE]
+  analysis_df <- stats::na.omit(analysis_df)
+  c(
+    n_total = nrow(dat),
+    n_complete = nrow(analysis_df),
+    p_complete = nrow(analysis_df) / nrow(dat)
+  )
+  summary(analysis_df)
+}
+```
+
+```{r exploratory-plot, fig.height=4, fig.width=6}
+if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
+  plot.new()
+  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
+} else if (is.numeric(analysis_df[[outcome_var]]) &&
+    is.numeric(analysis_df[[exposure_var]])) {
+  plot(
+    analysis_df[[exposure_var]],
+    analysis_df[[outcome_var]],
+    xlab = exposure_var,
+    ylab = outcome_var,
+    main = "Outcome vs exposure"
+  )
+} else if (is.numeric(analysis_df[[outcome_var]])) {
+  boxplot(
+    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
+    xlab = exposure_var,
+    ylab = outcome_var,
+    main = "Outcome by exposure"
+  )
+} else {
+  plot.new()
+  text(0.5, 0.5, "No simple EDA plot available for selected variables")
+}
+```
+
+### Step 1: Model specification
+
+Following the GLM model-fitting process, we specify an unadjusted model and a model
+adjusted for the candidate confounder.
+
+```{r model-specification}
+if (can_fit_model && nrow(analysis_df) > 0) {
+  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
+    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
+  }
+  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
+    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
+  }
+  if (!is.na(confounder_var) &&
+      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
+    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
+  }
+
+  if (is.logical(analysis_df[[outcome_var]])) {
+    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
+  }
+  if (is.logical(analysis_df[[exposure_var]])) {
+    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
+  }
+  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
+    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
+  }
+
+  if (model_family == "binomial") {
+    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
+    if (length(outcome_values) == 2) {
+      analysis_df[[outcome_var]] <- as.integer(
+        analysis_df[[outcome_var]] == outcome_values[2]
+      )
+    }
+  }
+
+  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
+  formula_adjusted <- if (!is.na(confounder_var)) {
+    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
+  } else {
+    formula_unadjusted
+  }
+
+  list(
+    family = model_family,
+    unadjusted = formula_unadjusted,
+    adjusted = formula_adjusted
+  )
+} else {
+  formula_unadjusted <- NULL
+  formula_adjusted <- NULL
+  cat("Model specification skipped: insufficient variables or complete cases.\n")
+}
+```
+
+### Step 2: Parameter estimation
+
+```{r parameter-estimation}
+fit_unadjusted <- NULL
+fit_adjusted <- NULL
+
+if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
+  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
+  fit_args <- if (model_family == "gaussian") {
+    list(data = analysis_df)
+  } else {
+    list(data = analysis_df, family = model_family)
+  }
+
+  fit_unadjusted <- tryCatch(
+    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
+    error = identity
+  )
+  fit_adjusted <- tryCatch(
+    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
+    error = identity
+  )
+
+  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
+    cat("Model fitting did not converge for this variable set.\n")
+  } else {
+    summary(fit_unadjusted)
+    summary(fit_adjusted)
+  }
+} else {
+  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
+}
+```
+
+### Step 3: Model adequacy checks
+
+```{r adequacy-checks}
+if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
+  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
+      identical(formula_unadjusted, formula_adjusted)) {
+    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
+  } else {
+    data.frame(
+      model = c("unadjusted", "adjusted"),
+      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
+    )
+  }
+
+  model_comparison
+
+  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
+    xlab = "Fitted values",
+    ylab = "Residuals",
+    main = "Residuals vs fitted"
+  )
+  abline(h = 0, lty = 2)
+} else {
+  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
+}
+```
+
+### Step 4: Inference
+
+```{r inference}
+if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
+  coef_table <- summary(fit_adjusted)$coefficients
+  coef_table
+
+  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
+  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
+
+  if (length(exposure_rows) > 0 && length(p_col) > 0) {
+    target_row <- exposure_rows[1]
+    estimate <- unname(coef_table[target_row, "Estimate"])
+    p_value <- unname(coef_table[target_row, p_col[1]])
+
+    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
+      "little"
+    } else if (estimate > 0) {
+      "a positive"
+    } else {
+      "a negative"
+    }
+
+    cat(
+      "Estimated exposure effect:", round(estimate, 3),
+      "(p =", signif(p_value, 3), ")\n"
+    )
+    cat(
+      "This suggests", direction, "association between", exposure_var,
+      "and", outcome_var, "in the adjusted model.\n"
+    )
+  } else {
+    cat("Inference summary unavailable for the selected exposure term.\n")
+  }
+} else {
+  cat("Inference skipped because no fitted adjusted model is available.\n")
+}
+```
+
+### Scientific conclusions
+
+```{r conclusions, results='asis'}
+if (can_fit_model && !is.na(exposure_var) && !is.na(outcome_var)) {
+  cat(
+    "In this dataset, the adjusted model (", model_family,
+    ") provides an estimate for the association between ",
+    exposure_var, " and ", outcome_var,
+    ", accounting for ", confounder_var,
+    ". Interpret these findings in the context of study design, residual confounding, and measurement limitations.
+",
+    sep = ""
+  )
+} else {
+  cat(
+    "Scientific conclusions are limited because the dataset does not contain enough complete variables for the selected workflow.
+"
+  )
+}
+```
+
+
 
 ## Source
 
