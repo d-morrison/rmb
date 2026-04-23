@@ -161,8 +161,7 @@ if (!is.na(exposure_var) && !is.na(confounder_var)) {
     sep = ""
   )
 } else {
-  cat("Not enough variables to draw a DAG for this dataset.
-")
+  cat("Not enough variables to draw a DAG for this dataset.\n")
 }
 ```
 
@@ -176,8 +175,7 @@ analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_v
 if (length(analysis_vars) == 0) {
   analysis_df <- data.frame()
   c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.
-")
+  cat("No numeric, logical, or factor variables available for analysis.\n")
 } else {
   analysis_df <- dat[, analysis_vars, drop = FALSE]
   analysis_df <- stats::na.omit(analysis_df)
@@ -268,8 +266,7 @@ if (can_fit_model && nrow(analysis_df) > 0) {
 } else {
   formula_unadjusted <- NULL
   formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.
-")
+  cat("Model specification skipped: insufficient variables or complete cases.\n")
 }
 ```
 
@@ -297,15 +294,13 @@ if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
   )
 
   if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.
-")
+    cat("Model fitting did not converge for this variable set.\n")
   } else {
     summary(fit_unadjusted)
     summary(fit_adjusted)
   }
 } else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.
-")
+  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
 }
 ```
 
@@ -332,8 +327,7 @@ if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
   )
   abline(h = 0, lty = 2)
 } else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.
-")
+  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
 }
 ```
 
@@ -362,21 +356,17 @@ if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
 
     cat(
       "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")
-"
+      "(p =", signif(p_value, 3), ")\n"
     )
     cat(
       "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.
-"
+      "and", outcome_var, "in the adjusted model.\n"
     )
   } else {
-    cat("Inference summary unavailable for the selected exposure term.
-")
+    cat("Inference summary unavailable for the selected exposure term.\n")
   }
 } else {
-  cat("Inference skipped because no fitted adjusted model is available.
-")
+  cat("Inference skipped because no fitted adjusted model is available.\n")
 }
 ```
 
