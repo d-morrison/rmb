@@ -1,5 +1,8 @@
 # rmb (development version)
 
+- Expanded all dataset vignettes from a single generic model to an RMB2e workflow with interleaved prose and stepwise modeling sections (research question, EDA, specification, estimation, adequacy checks, inference, conclusions), organized by dataset.
+- Added conceptual DAGs and updated tests to verify the new workflow structure across dataset vignettes.
+- Bumped development version to `0.0.0.9014`.
 - Added all dataset vignettes to the documentation website navigation and removed placeholder Quarto vignette/article files.
 - Bumped development version to `0.0.0.9013`.
 - Added dataset roxygen `Study design` blurbs for all packaged datasets and regenerated dataset Rd files.
