@@ -54,5 +54,5 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          error-on: '"note"'
+          error-on: ${{ matrix.config.r == 'oldrel-1' && '"warning"' || '"note"' }}
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'

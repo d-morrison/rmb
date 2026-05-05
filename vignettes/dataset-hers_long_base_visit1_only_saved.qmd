@@ -296,8 +296,11 @@ if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
   if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
     cat("Model fitting did not converge for this variable set.\n")
   } else {
-    summary(fit_unadjusted)
-    summary(fit_adjusted)
+    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
+    coef_adjusted <- stats::coef(summary(fit_adjusted))
+
+    coef_unadjusted[seq_len(min(6, nrow(coef_unadjusted))), , drop = FALSE]
+    coef_adjusted[seq_len(min(6, nrow(coef_adjusted))), , drop = FALSE]
   }
 } else {
   cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
@@ -336,7 +339,6 @@ if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
 ```{r inference}
 if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
   coef_table <- summary(fit_adjusted)$coefficients
-  coef_table
 
   exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
   p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
