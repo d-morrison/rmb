@@ -1230,149 +1230,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_unadjusted</span>, <span class="st">"error"</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model fitting did not converge for this variable set.\n"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span></span>
+<span>    <span class="va">coef_unadjusted</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">coef_adjusted</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">coef_unadjusted</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coef_unadjusted</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">coef_adjusted</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coef_adjusted</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Parameter estimation skipped: fewer than 20 complete observations.\n"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:</span></span>
-<span><span class="co">#&gt; (function (formula, family = gaussian, data, weights, subset, </span></span>
-<span><span class="co">#&gt;     na.action, start = NULL, etastart, mustart, offset, control = list(...), </span></span>
-<span><span class="co">#&gt;     model = TRUE, method = "glm.fit", x = FALSE, y = TRUE, singular.ok = TRUE, </span></span>
-<span><span class="co">#&gt;     contrasts = NULL, ...) </span></span>
-<span><span class="co">#&gt; {</span></span>
-<span><span class="co">#&gt;     cal &lt;- match.call()</span></span>
-<span><span class="co">#&gt;     if (is.character(family)) </span></span>
-<span><span class="co">#&gt;         family &lt;- get(family, mode = "function", envir = parent.frame())</span></span>
-<span><span class="co">#&gt;     if (is.function(family)) </span></span>
-<span><span class="co">#&gt;         family &lt;- family()</span></span>
-<span><span class="co">#&gt;     if (is.null(family$family)) {</span></span>
-<span><span class="co">#&gt;         print(family)</span></span>
-<span><span class="co">#&gt;         stop("'family' not recognized")</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     if (missing(data)) </span></span>
-<span><span class="co">#&gt;         data &lt;- environment(formula)</span></span>
-<span><span class="co">#&gt;     mf &lt;- match.call(expand.dots = FALSE)</span></span>
-<span><span class="co">#&gt;     m &lt;- match(c("formula", "data", "subset", "weights", "na.action", </span></span>
-<span><span class="co">#&gt;         "etastart", "mustart", "offset"), names(mf), 0L)</span></span>
-<span><span class="co">#&gt;     mf &lt;- mf[c(1L, m)]</span></span>
-<span><span class="co">#&gt;     mf$drop.unused.levels &lt;- TRUE</span></span>
-<span><span class="co">#&gt;     mf[[1L]] &lt;- quote(stats::model.frame)</span></span>
-<span><span class="co">#&gt;     mf &lt;- eval(mf, parent.frame())</span></span>
-<span><span class="co">#&gt;     if (identical(method, "model.frame")) </span></span>
-<span><span class="co">#&gt;         return(mf)</span></span>
-<span><span class="co">#&gt;     if (!is.character(method) &amp;&amp; !is.function(method)) </span></span>
-<span><span class="co">#&gt;         stop("invalid 'method' argument")</span></span>
-<span><span class="co">#&gt;     if (identical(method, "glm.fit")) </span></span>
-<span><span class="co">#&gt;         control &lt;- do.call("glm.control", control)</span></span>
-<span><span class="co">#&gt;     mt &lt;- attr(mf, "terms")</span></span>
-<span><span class="co">#&gt;     Y &lt;- model.response(mf, "any")</span></span>
-<span><span class="co">#&gt;     if (length(dim(Y)) == 1L) {</span></span>
-<span><span class="co">#&gt;         nm &lt;- rownames(Y)</span></span>
-<span><span class="co">#&gt;         dim(Y) &lt;- NULL</span></span>
-<span><span class="co">#&gt;         if (!is.null(nm)) </span></span>
-<span><span class="co">#&gt;             names(Y) &lt;- nm</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     X &lt;- if (!is.empty.model(mt)) </span></span>
-<span><span class="co">#&gt;         model.matrix(mt, mf, contrasts)</span></span>
-<span><span class="co">#&gt;     else matrix(, NROW(Y), 0L)</span></span>
-<span><span class="co">#&gt;     weights &lt;- as.vector(model.weights(mf))</span></span>
-<span><span class="co">#&gt;     if (!is.null(weights) &amp;&amp; !is.numeric(weights)) </span></span>
-<span><span class="co">#&gt;         stop("'weights' must be a numeric vector")</span></span>
-<span><span class="co">#&gt;     if (!is.null(weights) &amp;&amp; any(weights &lt; 0)) </span></span>
-<span><span class="co">#&gt;         stop("negative weights not allowed")</span></span>
-<span><span class="co">#&gt;     offset &lt;- as.vector(model.offset(mf))</span></span>
-<span><span class="co">#&gt;     if (!is.null(offset)) {</span></span>
-<span><span class="co">#&gt;         if (length(offset) != NROW(Y)) </span></span>
-<span><span class="co">#&gt;             stop(gettextf("number of offsets is %d should equal %d (number of observations)", </span></span>
-<span><span class="co">#&gt;                 length(offset), NROW(Y)), domain = NA)</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     mustart &lt;- model.extract(mf, "mustart")</span></span>
-<span><span class="co">#&gt;     etastart &lt;- model.extract(mf, "etastart")</span></span>
-<span><span class="co">#&gt;     fit &lt;- eval(call(if (is.function(method)) "method" else method, </span></span>
-<span><span class="co">#&gt;         x = X, y = Y, weights = weights, start = start, etastart = etastart, </span></span>
-<span><span class="co">#&gt;         mustart = mustart, offset = offset, family = family, </span></span>
-<span><span class="co">#&gt;         control = control, intercept = attr(mt, "intercept") &gt; </span></span>
-<span><span class="co">#&gt;             0L, singular.ok = singular.ok))</span></span>
-<span><span class="co">#&gt;     if (length(offset) &amp;&amp; attr(mt, "intercept") &gt; 0L) {</span></span>
-<span><span class="co">#&gt;         fit2 &lt;- eval(call(if (is.function(method)) "method" else method, </span></span>
-<span><span class="co">#&gt;             x = X[, "(Intercept)", drop = FALSE], y = Y, mustart = fit$fitted.values, </span></span>
-<span><span class="co">#&gt;             weights = weights, offset = offset, family = family, </span></span>
-<span><span class="co">#&gt;             control = control, intercept = TRUE))</span></span>
-<span><span class="co">#&gt;         if (!fit2$converged) </span></span>
-<span><span class="co">#&gt;             warning("fitting to calculate the null deviance did not converge -- increase 'maxit'?")</span></span>
-<span><span class="co">#&gt;         fit$null.deviance &lt;- fit2$deviance</span></span>
-<span><span class="co">#&gt;     }</span></span>
-<span><span class="co">#&gt;     if (model) </span></span>
-<span><span class="co">#&gt;         fit$model &lt;- mf</span></span>
-<span><span class="co">#&gt;     fit$na.action &lt;- attr(mf, "na.action")</span></span>
-<span><span class="co">#&gt;     if (x) </span></span>
-<span><span class="co">#&gt;         fit$x &lt;- X</span></span>
-<span><span class="co">#&gt;     if (!y) </span></span>
-<span><span class="co">#&gt;         fit$y &lt;- NULL</span></span>
-<span><span class="co">#&gt;     structure(c(fit, list(call = cal, formula = formula, terms = mt, </span></span>
-<span><span class="co">#&gt;         data = data, offset = offset, control = control, method = method, </span></span>
-<span><span class="co">#&gt;         contrasts = attr(X, "contrasts"), xlevels = .getXlevels(mt, </span></span>
-<span><span class="co">#&gt;             mf))), class = c(fit$class, c("glm", "lm")))</span></span>
-<span><span class="co">#&gt; })(formula = sexabuse ~ id + age, family = "binomial", data = structure(list(</span></span>
-<span><span class="co">#&gt;     sexabuse = c(0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, 0L, 0L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 1L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 0L, 1L, </span></span>
-<span><span class="co">#&gt;     1L, 0L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, </span></span>
-<span><span class="co">#&gt;     0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L), id = c(2104, 2009, 2032, </span></span>
-<span><span class="co">#&gt;     2063, 2059, 2077, 2042, 2017, 2119, 2085, 2089, 2120, 2084, </span></span>
-<span><span class="co">#&gt;     2112, 2016, 2060, 2111, 2078, 2054, 2129, 2092, 2083, 2007, </span></span>
-<span><span class="co">#&gt;     2101, 2039, 2040, 2086, 2030, 2122, 2044, 2066, 2053, 2038, </span></span>
-<span><span class="co">#&gt;     2070, 2003, 2050, 2052, 2100, 2110, 2048, 2095, 2081, 2021, </span></span>
-<span><span class="co">#&gt;     2051, 2029, 2023, 2123, 2117, 2072, 2074, 2109, 2057, 2102, </span></span>
-<span><span class="co">#&gt;     2035, 2064, 2091, 2024, 2098, 2061, 2058, 2103, 2107, 2026, </span></span>
-<span><span class="co">#&gt;     2041, 2056, 2049, 2080, 2108, 2010, 2013, 2008, 2105, 2096, </span></span>
-<span><span class="co">#&gt;     2055, 2065, 2124, 2011, 2027, 2073, 2004, 2020, 2022, 2045, </span></span>
-<span><span class="co">#&gt;     2067, 2015, 2031, 2014, 2106, 2034, 2028, 2082, 2006, 2075, </span></span>
-<span><span class="co">#&gt;     2090, 2068, 2121, 2036, 2033, 2094, 2087, 2126, 2128, 2118, </span></span>
-<span><span class="co">#&gt;     2125, 2099, 2079, 2088, 2114, 2062, 2097, 2037, 2113, 2071, </span></span>
-<span><span class="co">#&gt;     2116, 2093, 2127, 2019, 2025, 2047, 2012, 2043, 2069, 2115, </span></span>
-<span><span class="co">#&gt;     2076), age = c(47, 39, 52, 47, 32, 54, 32, 26, 54, 19, 33, </span></span>
-<span><span class="co">#&gt;     22, 45, 39, 40, 21, 29, 31, 44, 46, 39, 22, 47, 36, 40, 49, </span></span>
-<span><span class="co">#&gt;     33, 43, 38, 49, 36, 42, 35, 30, 54, 41, 36, 30, 37, 43, 45, </span></span>
-<span><span class="co">#&gt;     49, 35, 41, 27, 51, 51, 24, 46, 39, 43, 41, 35, 43, 52, 28, </span></span>
-<span><span class="co">#&gt;     31, 48, 52, 53, 38, 33, 49, 54, 25, 44, 53, 37, 34, 41, 53, </span></span>
-<span><span class="co">#&gt;     33, 46, 42, 32, 41, 49, 47, 49, 40, 36, 49, 26, 52, 39, 54, </span></span>
-<span><span class="co">#&gt;     52, 38, 44, 36, 49, 38, 41, 47, 29, 54, 47, 53, 44, 41, 29, </span></span>
-<span><span class="co">#&gt;     41, 47, 37, 47, 29, 39, 35, 45, 53, 23, 38, 44, 41, 41, 51, </span></span>
-<span><span class="co">#&gt;     25, 51, 36, 45, 54, 37, 48, 45)), row.names = c(1L, 2L, 3L, </span></span>
-<span><span class="co">#&gt; 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L, 14L, 15L, 16L, 17L, </span></span>
-<span><span class="co">#&gt; 18L, 19L, 20L, 21L, 22L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 30L, </span></span>
-<span><span class="co">#&gt; 31L, 32L, 33L, 34L, 35L, 36L, 37L, 38L, 39L, 41L, 42L, 43L, 44L, </span></span>
-<span><span class="co">#&gt; 45L, 46L, 47L, 48L, 49L, 50L, 52L, 53L, 54L, 55L, 56L, 57L, 58L, </span></span>
-<span><span class="co">#&gt; 59L, 60L, 61L, 62L, 63L, 64L, 65L, 66L, 67L, 68L, 69L, 70L, 71L, </span></span>
-<span><span class="co">#&gt; 72L, 73L, 74L, 75L, 76L, 77L, 78L, 79L, 80L, 82L, 83L, 84L, 85L, </span></span>
-<span><span class="co">#&gt; 86L, 87L, 88L, 89L, 90L, 91L, 92L, 93L, 94L, 95L, 96L, 97L, 98L, </span></span>
-<span><span class="co">#&gt; 99L, 100L, 101L, 102L, 103L, 104L, 105L, 106L, 107L, 108L, 109L, </span></span>
-<span><span class="co">#&gt; 110L, 111L, 112L, 114L, 115L, 116L, 117L, 118L, 119L, 120L, 121L, </span></span>
-<span><span class="co">#&gt; 122L, 123L, 124L, 125L, 126L, 127L, 128L), na.action = structure(c(`40` = 40L, </span></span>
-<span><span class="co">#&gt; `51` = 51L, `81` = 81L, `113` = 113L), class = "omit"), class = c("tbl_df", </span></span>
-<span><span class="co">#&gt; "tbl", "data.frame")))</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)</span></span>
-<span><span class="co">#&gt; (Intercept) -9.832995  15.446466  -0.637    0.524</span></span>
-<span><span class="co">#&gt; id           0.004626   0.007396   0.625    0.532</span></span>
-<span><span class="co">#&gt; age         -0.039915   0.029441  -1.356    0.175</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Null deviance: 99.115  on 123  degrees of freedom</span></span>
-<span><span class="co">#&gt; Residual deviance: 96.717  on 121  degrees of freedom</span></span>
-<span><span class="co">#&gt; AIC: 102.72</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Number of Fisher Scoring iterations: 4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt;                  Estimate   Std. Error    z value  Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; (Intercept) -13.056613185 15.055560620 -0.8672286 0.3858168</span></span>
+<span><span class="co">#&gt; id            0.005419798  0.007264363  0.7460802 0.4556190</span></span>
+<span><span class="co">#&gt;                 Estimate   Std. Error    z value  Pr(&gt;|z|)</span></span>
+<span><span class="co">#&gt; (Intercept) -9.832995460 15.446466431 -0.6365854 0.5243949</span></span>
+<span><span class="co">#&gt; id           0.004625947  0.007396088  0.6254586 0.5316701</span></span>
+<span><span class="co">#&gt; age         -0.039915366  0.029441304 -1.3557608 0.1751753</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section><section id="step-3-model-adequacy-checks" class="level3" data-number="3.6"><h3 data-number="3.6" class="anchored" data-anchor-id="step-3-model-adequacy-checks">
@@ -1412,7 +1285,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">coef_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span></span>
-<span>  <span class="va">coef_table</span></span>
 <span></span>
 <span>  <span class="va">exposure_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"^"</span>, <span class="va">exposure_var</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">)</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="va">p_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pr(&gt;|t|)"</span>, <span class="st">"Pr(&gt;|z|)"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">)</span><span class="op">)</span></span>
