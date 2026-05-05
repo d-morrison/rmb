@@ -299,8 +299,8 @@ if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
     coef_unadjusted <- stats::coef(summary(fit_unadjusted))
     coef_adjusted <- stats::coef(summary(fit_adjusted))
 
-    coef_unadjusted[seq_len(min(6, nrow(coef_unadjusted))), , drop = FALSE]
-    coef_adjusted[seq_len(min(6, nrow(coef_adjusted))), , drop = FALSE]
+    print(coef_unadjusted[seq_len(min(6, nrow(coef_unadjusted))), , drop = FALSE])
+    print(coef_adjusted[seq_len(min(6, nrow(coef_adjusted))), , drop = FALSE])
   }
 } else {
   cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
