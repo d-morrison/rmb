@@ -16,362 +16,115 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette demonstrates an RMB2e-style modeling workflow for `figure4_1`, with explicit demonstration of exploratory analysis, model specification, parameter estimation, adequacy checks, and scientific interpretation.
+This article uses the `figure4_1` dataset to illustrate polynomial regression and the importance of allowing nonlinear predictor-outcome relationships, as introduced in RMB2e Chapter 4.
 
-## Study design
+## Introduction
+
+Simple linear regression assumes that the outcome changes at a constant rate per unit increase in the predictor. When the true relationship is curved, fitting a linear model yields biased estimates and poor predictions. Polynomial regression addresses this by including higher-order terms (e.g., $x^2$) in the linear predictor. The `figure4_1` dataset contains only the squared predictor term `x2`, making it a compact teaching dataset for demonstrating the quadratic model form (RMB2e Ch. 4).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "figure4_1"]
 ```
 
+Can a polynomial regression model better fit a nonlinear data pattern compared to a simple linear model?
 
-```{r load-figure4_1}
+### Causal assumptions
+
+```{mermaid}
+flowchart LR
+  X[Predictor x] --> Y[Outcome y]
+  X2[x squared] --> Y
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(figure4_1, package = "rmb")
 dat <- figure4_1
 dim(dat)
-head(dat)
 summary(dat)
 ```
 
-## Variable labels
+### Statistical analysis
 
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+Because the dataset contains only the squared predictor `x2` (n = 8), we reconstruct `x = sqrt(x2)` and simulate a noisy outcome to illustrate fitting both a linear and a quadratic model. A simulated outcome with a mild negative quadratic component demonstrates how polynomial regression compares to simple linear regression on residual diagnostics (RMB2e Ch. 4).
+
+```{r model-specification}
+set.seed(42)
+x <- sqrt(dat$x2)
+y <- 2 + 1.5 * x - 0.1 * x^2 + stats::rnorm(8, 0, 0.5)
+demo_df <- data.frame(x = x, x2 = dat$x2, y = y)
+
+formula_linear <- y ~ x
+formula_quad <- y ~ x + x2
+
+list(linear = formula_linear, quadratic = formula_quad)
 ```
 
-## RMB2e analysis workflow
+## Results
 
-### Research question
-
-For `figure4_1` we ask: what is the association between a primary exposure and an outcome,
-after accounting for a plausible confounder?
-
-```{r identify-variables}
-# Variable-type helper functions are provided by the rmb package:
-# `is_binary()` and `is_count()`.
-
-candidate_vars <- names(dat)[vapply(dat, function(x) {
-  is.numeric(x) || is.factor(x) || is.logical(x)
-}, logical(1))]
-
-continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
-  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
-}, logical(1))]
-binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
-count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
-
-outcome_var <- if (length(binary_vars) > 0) {
-  binary_vars[1]
-} else if (length(continuous_vars) > 0) {
-  continuous_vars[1]
-} else if (length(count_vars) > 0) {
-  count_vars[1]
-} else if (length(candidate_vars) > 0) {
-  candidate_vars[1]
-} else {
-  NA_character_
-}
-
-remaining_vars <- setdiff(candidate_vars, outcome_var)
-exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
-confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
-
-model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
-  "binomial"
-} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
-  "poisson"
-} else {
-  "gaussian"
-}
-
-can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
-
-c(
-  outcome = outcome_var,
-  exposure = exposure_var,
-  confounder = confounder_var,
-  family = model_family,
-  can_fit_model = can_fit_model
-)
-```
-
-We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
-with `r confounder_var` as a candidate confounder.
-
-The goal of this worked example is to show how the chosen model family can answer the research question by quantifying the direction and strength of the exposure-outcome association after confounder adjustment.
-
-### Causal assumptions (conceptual DAG)
-
-```{r dag, results='asis'}
-if (!is.na(exposure_var) && !is.na(confounder_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  C[", confounder_var, "] --> E[", exposure_var, "]
-",
-    "  C --> Y[", outcome_var, "]
-",
-    "  E --> Y
-",
-    "```
-",
-    sep = ""
-  )
-} else if (!is.na(exposure_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  E[", exposure_var, "] --> Y[", outcome_var, "]
-",
-    "```
-",
-    sep = ""
-  )
-} else {
-  cat("Not enough variables to draw a DAG for this dataset.\n")
-}
-```
-
-### Step 0: Exploratory data analysis
-
-We start by checking the analysis sample and the marginal distributions of the selected
-variables. This step demonstrates how we verify data support for modeling assumptions
-before fitting regression models.
+### Descriptive statistics
 
 ```{r exploratory-summaries}
-analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
-if (length(analysis_vars) == 0) {
-  analysis_df <- data.frame()
-  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.\n")
-} else {
-  analysis_df <- dat[, analysis_vars, drop = FALSE]
-  analysis_df <- stats::na.omit(analysis_df)
-  c(
-    n_total = nrow(dat),
-    n_complete = nrow(analysis_df),
-    p_complete = nrow(analysis_df) / nrow(dat)
-  )
-  summary(analysis_df)
-}
+summary(demo_df)
+with(demo_df, cor(y, x))
+with(demo_df, cor(y, x2))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
-  plot.new()
-  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
-} else if (is.numeric(analysis_df[[outcome_var]]) &&
-    is.numeric(analysis_df[[exposure_var]])) {
-  plot(
-    analysis_df[[exposure_var]],
-    analysis_df[[outcome_var]],
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome vs exposure"
-  )
-} else if (is.numeric(analysis_df[[outcome_var]])) {
-  boxplot(
-    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome by exposure"
-  )
-} else {
-  plot.new()
-  text(0.5, 0.5, "No simple EDA plot available for selected variables")
-}
+plot(demo_df$x, demo_df$y,
+     pch = 16, cex = 1.2, col = "#1b9e77",
+     xlab = "x (sqrt of x2)",
+     ylab = "y (simulated outcome)",
+     main = "Figure 4.1: Illustrative polynomial regression data")
+x_seq <- seq(min(demo_df$x), max(demo_df$x), length.out = 100)
 ```
 
-### Step 1: Model specification
-
-Following the GLM model-fitting process, we specify an unadjusted model and a model
-adjusted for the candidate confounder.
-
-```{r model-specification}
-if (can_fit_model && nrow(analysis_df) > 0) {
-  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
-    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
-  }
-  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
-    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) &&
-      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
-    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
-  }
-
-  if (is.logical(analysis_df[[outcome_var]])) {
-    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
-  }
-  if (is.logical(analysis_df[[exposure_var]])) {
-    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
-    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
-  }
-
-  if (model_family == "binomial") {
-    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
-    if (length(outcome_values) == 2) {
-      analysis_df[[outcome_var]] <- as.integer(
-        analysis_df[[outcome_var]] == outcome_values[2]
-      )
-    }
-  }
-
-  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
-  formula_adjusted <- if (!is.na(confounder_var)) {
-    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
-  } else {
-    formula_unadjusted
-  }
-
-  list(
-    family = model_family,
-    unadjusted = formula_unadjusted,
-    adjusted = formula_adjusted
-  )
-} else {
-  formula_unadjusted <- NULL
-  formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.\n")
-}
-```
-
-### Step 2: Parameter estimation
-
-Here we estimate unadjusted and adjusted models to show how confounder adjustment can change effect estimates and uncertainty.
+### Model estimates
 
 ```{r parameter-estimation}
-fit_unadjusted <- NULL
-fit_adjusted <- NULL
-n_coef_display <- 6
+fit_lin <- stats::lm(formula_linear, data = demo_df)
+fit_quad <- stats::lm(formula_quad, data = demo_df)
 
-if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
-  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
-  fit_args <- if (model_family == "gaussian") {
-    list(data = analysis_df)
-  } else {
-    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
-  }
-
-  fit_unadjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
-    error = identity
-  )
-  fit_adjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
-    error = identity
-  )
-
-  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.\n")
-  } else {
-    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
-    coef_adjusted <- stats::coef(summary(fit_adjusted))
-
-    print(coef_unadjusted[seq_len(min(n_coef_display, nrow(coef_unadjusted))), , drop = FALSE])
-    print(coef_adjusted[seq_len(min(n_coef_display, nrow(coef_adjusted))), , drop = FALSE])
-  }
-} else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
-}
+summary(fit_lin)
+summary(fit_quad)
 ```
 
-### Step 3: Model adequacy checks
+### Model diagnostics
 
-We examine simple fit diagnostics to assess whether the selected model is adequate for inference in this dataset.
-
-```{r adequacy-checks}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
-      identical(formula_unadjusted, formula_adjusted)) {
-    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
-  } else {
-    data.frame(
-      model = c("unadjusted", "adjusted"),
-      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
-    )
-  }
-
-  model_comparison
-
-  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
-    xlab = "Fitted values",
-    ylab = "Residuals",
-    main = "Residuals vs fitted"
-  )
-  abline(h = 0, lty = 2)
-} else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
-}
+```{r adequacy-checks, fig.height=4, fig.width=6}
+par(mfrow = c(1, 2))
+plot(fit_lin, which = 1, main = "Linear model residuals")
+plot(fit_quad, which = 1, main = "Quadratic model residuals")
+par(mfrow = c(1, 1))
 ```
 
-### Step 4: Inference
-
-We interpret the adjusted exposure estimate directly in relation to the research question, focusing on direction, magnitude, and statistical uncertainty.
+### Inference
 
 ```{r inference}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  coef_table <- summary(fit_adjusted)$coefficients
+ci_lin <- stats::confint(fit_lin)
+ci_quad <- stats::confint(fit_quad)
 
-  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
-  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
-
-  if (length(exposure_rows) > 0 && length(p_col) > 0) {
-    target_row <- exposure_rows[1]
-    estimate <- unname(coef_table[target_row, "Estimate"])
-    p_value <- unname(coef_table[target_row, p_col[1]])
-
-    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
-      "little"
-    } else if (estimate > 0) {
-      "a positive"
-    } else {
-      "a negative"
-    }
-
-    cat(
-      "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")\n"
-    )
-    cat(
-      "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.\n"
-    )
-  } else {
-    cat("Inference summary unavailable for the selected exposure term.\n")
-  }
-} else {
-  cat("Inference skipped because no fitted adjusted model is available.\n")
-}
+data.frame(
+  model = c("linear x", "quad x", "quad x2"),
+  estimate = c(
+    stats::coef(fit_lin)["x"],
+    stats::coef(fit_quad)["x"],
+    stats::coef(fit_quad)["x2"]
+  ),
+  conf_low = c(ci_lin["x", 1], ci_quad["x", 1], ci_quad["x2", 1]),
+  conf_high = c(ci_lin["x", 2], ci_quad["x", 2], ci_quad["x2", 2])
+)
 ```
 
-### Scientific conclusions
+## Discussion
 
-```{r conclusions, results='asis'}
-cat(format_scientific_conclusions(
-  can_fit_model = can_fit_model,
-  fit_adjusted = fit_adjusted,
-  model_family = model_family,
-  exposure_var = exposure_var,
-  outcome_var = outcome_var,
-  confounder_var = confounder_var
-))
-```
-
-
+Including the squared term `x2` changes the estimated slope for `x` compared to the linear-only model, illustrating how omitting a curved component can distort the linear coefficient (RMB2e Ch. 4). The residual plots for the quadratic model show less systematic pattern than those for the linear model, suggesting better fit. This toy example motivates the model-checking workflow of Chapter 4: plotting residuals against fitted values is a key diagnostic for detecting nonlinearity that a simple linear term cannot capture.
 
 ## Source
 
-- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/figure4_1.dta
+- UCSF Regression Methods companion data: figure 4.1 illustrative dataset (RMB2e Chapter 4).
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).
