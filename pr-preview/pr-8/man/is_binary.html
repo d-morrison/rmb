@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pbc – rmb</title>
+<title>is_binary – rmb</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -392,7 +392,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/actg019.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/pbc.html">pbc</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/actg019.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/is_binary.html">is_binary</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -678,7 +678,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/is_binary.html" class="sidebar-item-text sidebar-link">
+  <a href="../man/is_binary.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">is_binary</span></a>
   </div>
 </li>
@@ -720,7 +720,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../man/pbc.html" class="sidebar-item-text sidebar-link active">
+  <a href="../man/pbc.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">pbc</span></a>
   </div>
 </li>
@@ -814,181 +814,50 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pbc-data" id="toc-pbc-data" class="nav-link active" data-scroll-target="#pbc-data">PBC data</a>
+  <li><a href="#identify-binary-variables-for-rmb-analyses" id="toc-identify-binary-variables-for-rmb-analyses" class="nav-link active" data-scroll-target="#identify-binary-variables-for-rmb-analyses">Identify binary variables for RMB analyses</a>
   <ul class="collapse">
   <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#format" id="toc-format" class="nav-link" data-scroll-target="#format">Format</a></li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source">Source</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
+  <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/man/pbc.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/man/pbc.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/man/is_binary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/man/is_binary.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/actg019.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/pbc.html">pbc</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../man/actg019.html">Reference</a></li><li class="breadcrumb-item"><a href="../man/is_binary.html">is_binary</a></li></ol></nav></header>
 
 
 
 
 
-<section id="pbc-data" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="pbc-data">PBC data</h2>
+<section id="identify-binary-variables-for-rmb-analyses" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="identify-binary-variables-for-rmb-analyses">Identify binary variables for RMB analyses</h2>
 <section id="description" class="level3">
 <h3 class="anchored" data-anchor-id="description">Description</h3>
-<p>Dataset used in Chapter 6 of <em>Regression Methods in Biostatistics</em> (2nd edition), as distributed on the UCSF companion website. Study design: Placebo-controlled clinical trial cohort in primary biliary cirrhosis (D-penicillamine). Primary article: <a href="https://doi.org/10.1002/hep.1840100102">Dickson and colleagues (1989), <em>Hepatology</em></a>.</p>
+<p>Returns <code>TRUE</code> when values are compatible with a binary outcome/predictor (logical, 2-level factor, or numeric values coded as 0/1).</p>
 </section>
 <section id="usage" class="level3">
 <h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<pre><code class="language-R">pbc
+<pre><code class="language-R">is_binary(x)
 </code></pre>
 </section>
-<section id="format" class="level3">
-<h3 class="anchored" data-anchor-id="format">Format</h3>
-<p>A data frame with 312 rows and 23 variables:</p>
-<dl>
-<dt>
-number
-</dt>
-<dd>
-Patient record number/identifier.
-</dd>
-<dt>
-status
-</dt>
-<dd>
-Event status indicator (coded outcome/censoring status).
-</dd>
-<dt>
-rx
-</dt>
-<dd>
-Randomized treatment group.
-</dd>
-<dt>
-sex
-</dt>
-<dd>
-Biological sex indicator.
-</dd>
-<dt>
-asictes
-</dt>
-<dd>
-Presence of Ascites
-</dd>
-<dt>
-hepatom
-</dt>
-<dd>
-Hepatomegaly
-</dd>
-<dt>
-spiders
-</dt>
-<dd>
-Presence of Spiders
-</dd>
-<dt>
-edema
-</dt>
-<dd>
-Presence of Edema
-</dd>
-<dt>
-bilirubin
-</dt>
-<dd>
-Serum Bilirubin in mg/dl
-</dd>
-<dt>
-cholest
-</dt>
-<dd>
-Serum Cholesterol in mg/dl
-</dd>
-<dt>
-albumin
-</dt>
-<dd>
-Albumin in gm/dl
-</dd>
-<dt>
-copper
-</dt>
-<dd>
-Urine Copper in ug/day
-</dd>
-<dt>
-alkphos
-</dt>
-<dd>
-Alkaline Phosphatase in U/liter
-</dd>
-<dt>
-sgot
-</dt>
-<dd>
-SGOT in U/ml
-</dd>
-<dt>
-trigli
-</dt>
-<dd>
-Triglycerides in mg/dl
-</dd>
-<dt>
-platel
-</dt>
-<dd>
-Platelets per cubic ml / 1000
-</dd>
-<dt>
-prothrom
-</dt>
-<dd>
-Prothrombin time in seconds
-</dd>
-<dt>
-histol
-</dt>
-<dd>
-Histologic stage of disease
-</dd>
-<dt>
-age
-</dt>
-<dd>
-Age or age category at baseline (as coded in source data).
-</dd>
-<dt>
-years
-</dt>
-<dd>
-Time to Death (in Years)
-</dd>
-<dt>
-logbili
-</dt>
-<dd>
-Bilirubin (log)
-</dd>
-<dt>
-logalbu
-</dt>
-<dd>
-Albumin (log)
-</dd>
-<dt>
-logprot
-</dt>
-<dd>
-Prothom time (log)
-</dd>
-</dl>
+<section id="arguments" class="level3">
+<h3 class="anchored" data-anchor-id="arguments">Arguments</h3>
+<table role="presentation">
+<tbody><tr>
+<td style="white-space: collapse; font-family: monospace; vertical-align: top">
+<code id="x">x</code>
+</td>
+<td>
+A vector to classify.
+</td>
+</tr>
+</tbody></table>
 </section>
-<section id="source" class="level3">
-<h3 class="anchored" data-anchor-id="source">Source</h3>
-<p><a href="https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/pbc.dta">UCSF companion data</a></p>
+<section id="value" class="level3">
+<h3 class="anchored" data-anchor-id="value">Value</h3>
+<p>A single logical value.</p>
 
 
 </section>
@@ -1413,4 +1282,4 @@ Prothom time (log)
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/man/pbc.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/man/pbc.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/man/is_binary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/man/is_binary.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
