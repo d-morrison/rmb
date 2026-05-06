@@ -12,7 +12,12 @@ get_dataset_vignette_text <- function() {
   )
   dataset_vignettes <- unique(unlist(lapply(vignette_dirs, function(dir) {
     if (nzchar(dir) && dir.exists(dir)) {
-      list.files(dir, pattern = "^dataset-.*\\.qmd$", full.names = TRUE)
+      list.files(
+        dir,
+        pattern = "dataset-.*\\.qmd$",
+        full.names = TRUE,
+        recursive = TRUE
+      )
     } else {
       character()
     }

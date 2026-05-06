@@ -11,7 +11,7 @@ project:
 # Note: freeze functionality can be set at a project level or for individual .qmd files
 # execute:
 #   freeze: false
-bibliography: vignettes/references.bib
+bibliography: vignettes/articles/references.bib
 website:
   title: "$ALTDOC_PACKAGE_NAME"
   repo-url: https://github.com/d-morrison/rmb
@@ -29,57 +29,57 @@ website:
       - text: Articles
         menu:
           - text: "ACTG 019 data"
-            file: vignettes/dataset-actg019.qmd
+            file: vignettes/articles/dataset-actg019.qmd
           - text: "Esoph data"
-            file: vignettes/dataset-esoph.qmd
+            file: vignettes/articles/dataset-esoph.qmd
           - text: "Fecfat data"
-            file: vignettes/dataset-fecfat.qmd
+            file: vignettes/articles/dataset-fecfat.qmd
           - text: "Figure 4.1 data"
-            file: vignettes/dataset-figure4_1.qmd
+            file: vignettes/articles/dataset-figure4_1.qmd
           - text: "Figure 4.12 data"
-            file: vignettes/dataset-figure4_12.qmd
+            file: vignettes/articles/dataset-figure4_12.qmd
           - text: "Figure 4.6 data"
-            file: vignettes/dataset-figure4_6.qmd
+            file: vignettes/articles/dataset-figure4_6.qmd
           - text: "Fit data"
-            file: vignettes/dataset-fit.qmd
+            file: vignettes/articles/dataset-fit.qmd
           - text: "Fitdata data"
-            file: vignettes/dataset-fitdata.qmd
+            file: vignettes/articles/dataset-fitdata.qmd
           - text: "Fitglm data"
-            file: vignettes/dataset-fitglm.qmd
+            file: vignettes/articles/dataset-fitglm.qmd
           - text: "Gababies data"
-            file: vignettes/dataset-gababies.qmd
+            file: vignettes/articles/dataset-gababies.qmd
           - text: "HERS data"
-            file: vignettes/dataset-hers.qmd
+            file: vignettes/articles/dataset-hers.qmd
           - text: "HERS long base visit1 only saved data"
-            file: vignettes/dataset-hers_long_base_visit1_only_saved.qmd
+            file: vignettes/articles/dataset-hers_long_base_visit1_only_saved.qmd
           - text: "HERS no DM longitudinal data"
-            file: vignettes/dataset-hers_nodm_longitudinal.qmd
+            file: vignettes/articles/dataset-hers_nodm_longitudinal.qmd
           - text: "HERS no DM visit 4 only data"
-            file: vignettes/dataset-hers_nodm_visit4_only.qmd
+            file: vignettes/articles/dataset-hers_nodm_visit4_only.qmd
           - text: "Leuk data"
-            file: vignettes/dataset-leuk.qmd
+            file: vignettes/articles/dataset-leuk.qmd
           - text: "Mira HSV data"
-            file: vignettes/dataset-mira_hsv.qmd
+            file: vignettes/articles/dataset-mira_hsv.qmd
           - text: "MrOS data"
-            file: vignettes/dataset-mros.qmd
+            file: vignettes/articles/dataset-mros.qmd
           - text: "Needle sharing data"
-            file: vignettes/dataset-needle_sharing.qmd
+            file: vignettes/articles/dataset-needle_sharing.qmd
           - text: "NHANES III data"
-            file: vignettes/dataset-nhanes3.qmd
+            file: vignettes/articles/dataset-nhanes3.qmd
           - text: "PBC data"
-            file: vignettes/dataset-pbc.qmd
+            file: vignettes/articles/dataset-pbc.qmd
           - text: "Phototherapy data"
-            file: vignettes/dataset-phototherapy.qmd
+            file: vignettes/articles/dataset-phototherapy.qmd
           - text: "SOF data"
-            file: vignettes/dataset-sof.qmd
+            file: vignettes/articles/dataset-sof.qmd
           - text: "SOF2 data"
-            file: vignettes/dataset-sof2.qmd
+            file: vignettes/articles/dataset-sof2.qmd
           - text: "UNOS data"
-            file: vignettes/dataset-unos.qmd
+            file: vignettes/articles/dataset-unos.qmd
           - text: "WCGS data"
-            file: vignettes/dataset-wcgs.qmd
+            file: vignettes/articles/dataset-wcgs.qmd
           - text: "Whickham data"
-            file: vignettes/dataset-whickham.qmd
+            file: vignettes/articles/dataset-whickham.qmd
   sidebar:
     collapse-level: 1
     contents:
@@ -89,32 +89,32 @@ website:
       - section: Articles
         style: floating
         contents:
-          - vignettes/dataset-actg019.qmd
-          - vignettes/dataset-esoph.qmd
-          - vignettes/dataset-fecfat.qmd
-          - vignettes/dataset-figure4_1.qmd
-          - vignettes/dataset-figure4_12.qmd
-          - vignettes/dataset-figure4_6.qmd
-          - vignettes/dataset-fit.qmd
-          - vignettes/dataset-fitdata.qmd
-          - vignettes/dataset-fitglm.qmd
-          - vignettes/dataset-gababies.qmd
-          - vignettes/dataset-hers.qmd
-          - vignettes/dataset-hers_long_base_visit1_only_saved.qmd
-          - vignettes/dataset-hers_nodm_longitudinal.qmd
-          - vignettes/dataset-hers_nodm_visit4_only.qmd
-          - vignettes/dataset-leuk.qmd
-          - vignettes/dataset-mira_hsv.qmd
-          - vignettes/dataset-mros.qmd
-          - vignettes/dataset-needle_sharing.qmd
-          - vignettes/dataset-nhanes3.qmd
-          - vignettes/dataset-pbc.qmd
-          - vignettes/dataset-phototherapy.qmd
-          - vignettes/dataset-sof.qmd
-          - vignettes/dataset-sof2.qmd
-          - vignettes/dataset-unos.qmd
-          - vignettes/dataset-wcgs.qmd
-          - vignettes/dataset-whickham.qmd
+          - vignettes/articles/dataset-actg019.qmd
+          - vignettes/articles/dataset-esoph.qmd
+          - vignettes/articles/dataset-fecfat.qmd
+          - vignettes/articles/dataset-figure4_1.qmd
+          - vignettes/articles/dataset-figure4_12.qmd
+          - vignettes/articles/dataset-figure4_6.qmd
+          - vignettes/articles/dataset-fit.qmd
+          - vignettes/articles/dataset-fitdata.qmd
+          - vignettes/articles/dataset-fitglm.qmd
+          - vignettes/articles/dataset-gababies.qmd
+          - vignettes/articles/dataset-hers.qmd
+          - vignettes/articles/dataset-hers_long_base_visit1_only_saved.qmd
+          - vignettes/articles/dataset-hers_nodm_longitudinal.qmd
+          - vignettes/articles/dataset-hers_nodm_visit4_only.qmd
+          - vignettes/articles/dataset-leuk.qmd
+          - vignettes/articles/dataset-mira_hsv.qmd
+          - vignettes/articles/dataset-mros.qmd
+          - vignettes/articles/dataset-needle_sharing.qmd
+          - vignettes/articles/dataset-nhanes3.qmd
+          - vignettes/articles/dataset-pbc.qmd
+          - vignettes/articles/dataset-phototherapy.qmd
+          - vignettes/articles/dataset-sof.qmd
+          - vignettes/articles/dataset-sof2.qmd
+          - vignettes/articles/dataset-unos.qmd
+          - vignettes/articles/dataset-wcgs.qmd
+          - vignettes/articles/dataset-whickham.qmd
       - section: $ALTDOC_MAN_BLOCK
         style: floating
       - text: News

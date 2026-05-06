@@ -1,8 +1,8 @@
 ---
-title: "Table 11.1/11.2 HERS data"
+title: "PBC data"
 format: html
 vignette: >
-  %\VignetteIndexEntry{Table 11.1/11.2 HERS data}
+  %\VignetteIndexEntry{PBC data}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 execute:
@@ -16,19 +16,19 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette implements an expanded, dataset-organized RMB2e analysis workflow for `hers_nodm_visit4_only`.
+This vignette implements an expanded, dataset-organized RMB2e analysis workflow for `pbc`.
 
 ## Study design
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
-rmb_datasets$study_design[rmb_datasets$object == "hers_nodm_visit4_only"]
+rmb_datasets$study_design[rmb_datasets$object == "pbc"]
 ```
 
 
-```{r load-hers_nodm_visit4_only}
-data(hers_nodm_visit4_only, package = "rmb")
-dat <- hers_nodm_visit4_only
+```{r load-pbc}
+data(pbc, package = "rmb")
+dat <- pbc
 dim(dat)
 head(dat)
 summary(dat)
@@ -48,7 +48,7 @@ stats::setNames(var_labels, names(dat))
 
 ### Research question
 
-For `hers_nodm_visit4_only` we ask: what is the association between a primary exposure and an outcome,
+For `pbc` we ask: what is the association between a primary exposure and an outcome,
 after accounting for a plausible confounder?
 
 ```{r identify-variables}
@@ -282,7 +282,7 @@ if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
   fit_args <- if (model_family == "gaussian") {
     list(data = analysis_df)
   } else {
-    list(data = analysis_df, family = model_family)
+    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
   }
 
   fit_unadjusted <- tryCatch(
@@ -398,5 +398,5 @@ if (can_fit_model && !is.na(exposure_var) && !is.na(outcome_var)) {
 
 ## Source
 
-- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_visit4_only.dta
+- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/pbc.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

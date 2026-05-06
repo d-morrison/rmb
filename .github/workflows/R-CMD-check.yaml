@@ -22,7 +22,7 @@ jobs:
           - {os: windows-latest, r: 'release', error-on: '"note"'}
           - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release', error-on: '"note"'}
           - {os: ubuntu-latest,   r: 'release', error-on: '"note"'}
-          - {os: ubuntu-latest,   r: 'oldrel-1', error-on: '"warning"'}
+          - {os: ubuntu-latest,   r: 'oldrel-1', error-on: '"note"'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -54,6 +54,5 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          # Oldrel-1 currently emits an installed-size NOTE due large vignette docs.
           error-on: ${{ matrix.config['error-on'] }}
           build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
