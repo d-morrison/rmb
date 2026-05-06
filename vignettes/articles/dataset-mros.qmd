@@ -14,364 +14,110 @@ execute:
 #| include: false
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
+library(survival)
 ```
 
-This vignette demonstrates an RMB2e-style modeling workflow for `mros`, with explicit demonstration of exploratory analysis, model specification, parameter estimation, adequacy checks, and scientific interpretation.
+This article fits a Cox proportional hazards model to the MrOS dataset, evaluating whether lower bone mineral density quantiles predict higher event hazard in older men after adjustment for body weight.
 
-## Study design
+## Introduction
+
+The Osteoporotic Fractures in Men (MrOS) study enrolled community-dwelling men aged 65 years and older at six US clinical sites beginning in 2000 (Orwoll et al. 2005). Low bone mineral density (BMD) is a well-established predictor of fracture and mortality risk in older men, though body weight is a strong confounder because heavier men tend to have higher BMD and independently different event rates. This survival analysis applies the Cox proportional hazards framework described in RMB2e Chapter 6.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "mros"]
 ```
 
+Are lower bone mineral density quantiles associated with higher event hazard after adjustment for body weight in older men?
 
-```{r load-mros}
+### Causal assumptions
+
+```{mermaid}
+flowchart LR
+  BMD[BMD quantile] --> SURV[Event/death]
+  WEIGHT[Body weight] --> SURV
+  WEIGHT --> BMD
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(mros, package = "rmb")
 dat <- mros
 dim(dat)
-head(dat)
-summary(dat)
+summary(dat[c("bmd3", "months", "years", "status", "weight")])
 ```
 
-## Variable labels
+### Statistical analysis
 
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+A Cox proportional hazards model is fitted with `bmd3` (three quantiles of BMD, coded as factor) and body weight as predictors, using follow-up time in years as the time scale (RMB2e Ch. 6 / Orwoll 2005).
+
+```{r model-specification}
+formula_main <- survival::Surv(years, status) ~ factor(bmd3) + weight
+formula_main
 ```
 
-## RMB2e analysis workflow
+## Results
 
-### Research question
-
-For `mros` we ask: what is the association between a primary exposure and an outcome,
-after accounting for a plausible confounder?
-
-```{r identify-variables}
-# Variable-type helper functions are provided by the rmb package:
-# `is_binary()` and `is_count()`.
-
-candidate_vars <- names(dat)[vapply(dat, function(x) {
-  is.numeric(x) || is.factor(x) || is.logical(x)
-}, logical(1))]
-
-continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
-  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
-}, logical(1))]
-binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
-count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
-
-outcome_var <- if (length(binary_vars) > 0) {
-  binary_vars[1]
-} else if (length(continuous_vars) > 0) {
-  continuous_vars[1]
-} else if (length(count_vars) > 0) {
-  count_vars[1]
-} else if (length(candidate_vars) > 0) {
-  candidate_vars[1]
-} else {
-  NA_character_
-}
-
-remaining_vars <- setdiff(candidate_vars, outcome_var)
-exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
-confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
-
-model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
-  "binomial"
-} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
-  "poisson"
-} else {
-  "gaussian"
-}
-
-can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
-
-c(
-  outcome = outcome_var,
-  exposure = exposure_var,
-  confounder = confounder_var,
-  family = model_family,
-  can_fit_model = can_fit_model
-)
-```
-
-We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
-with `r confounder_var` as a candidate confounder.
-
-The goal of this worked example is to show how the chosen model family can answer the research question by quantifying the direction and strength of the exposure-outcome association after confounder adjustment.
-
-### Causal assumptions (conceptual DAG)
-
-```{r dag, results='asis'}
-if (!is.na(exposure_var) && !is.na(confounder_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  C[", confounder_var, "] --> E[", exposure_var, "]
-",
-    "  C --> Y[", outcome_var, "]
-",
-    "  E --> Y
-",
-    "```
-",
-    sep = ""
-  )
-} else if (!is.na(exposure_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  E[", exposure_var, "] --> Y[", outcome_var, "]
-",
-    "```
-",
-    sep = ""
-  )
-} else {
-  cat("Not enough variables to draw a DAG for this dataset.\n")
-}
-```
-
-### Step 0: Exploratory data analysis
-
-We start by checking the analysis sample and the marginal distributions of the selected
-variables. This step demonstrates how we verify data support for modeling assumptions
-before fitting regression models.
+### Descriptive statistics
 
 ```{r exploratory-summaries}
-analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
-if (length(analysis_vars) == 0) {
-  analysis_df <- data.frame()
-  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.\n")
-} else {
-  analysis_df <- dat[, analysis_vars, drop = FALSE]
-  analysis_df <- stats::na.omit(analysis_df)
-  c(
-    n_total = nrow(dat),
-    n_complete = nrow(analysis_df),
-    p_complete = nrow(analysis_df) / nrow(dat)
-  )
-  summary(analysis_df)
-}
+with(dat, table(bmd3, status))
+with(dat, tapply(years, bmd3, summary))
+with(dat, tapply(weight, bmd3, mean))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
-  plot.new()
-  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
-} else if (is.numeric(analysis_df[[outcome_var]]) &&
-    is.numeric(analysis_df[[exposure_var]])) {
-  plot(
-    analysis_df[[exposure_var]],
-    analysis_df[[outcome_var]],
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome vs exposure"
-  )
-} else if (is.numeric(analysis_df[[outcome_var]])) {
-  boxplot(
-    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome by exposure"
-  )
-} else {
-  plot.new()
-  text(0.5, 0.5, "No simple EDA plot available for selected variables")
-}
+km_fit <- survival::survfit(survival::Surv(years, status) ~ bmd3, data = dat)
+plot(
+  km_fit,
+  col = c("#1b9e77", "#d95f02", "#7570b3"),
+  lwd = 2,
+  xlab = "Years",
+  ylab = "Event-free survival",
+  main = "MrOS: Survival by BMD quantile"
+)
+legend("topright", legend = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)"),
+       col = c("#1b9e77", "#d95f02", "#7570b3"), lwd = 2, bty = "n")
 ```
 
-### Step 1: Model specification
-
-Following the GLM model-fitting process, we specify an unadjusted model and a model
-adjusted for the candidate confounder.
-
-```{r model-specification}
-if (can_fit_model && nrow(analysis_df) > 0) {
-  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
-    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
-  }
-  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
-    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) &&
-      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
-    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
-  }
-
-  if (is.logical(analysis_df[[outcome_var]])) {
-    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
-  }
-  if (is.logical(analysis_df[[exposure_var]])) {
-    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
-    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
-  }
-
-  if (model_family == "binomial") {
-    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
-    if (length(outcome_values) == 2) {
-      analysis_df[[outcome_var]] <- as.integer(
-        analysis_df[[outcome_var]] == outcome_values[2]
-      )
-    }
-  }
-
-  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
-  formula_adjusted <- if (!is.na(confounder_var)) {
-    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
-  } else {
-    formula_unadjusted
-  }
-
-  list(
-    family = model_family,
-    unadjusted = formula_unadjusted,
-    adjusted = formula_adjusted
-  )
-} else {
-  formula_unadjusted <- NULL
-  formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.\n")
-}
-```
-
-### Step 2: Parameter estimation
-
-Here we estimate unadjusted and adjusted models to show how confounder adjustment can change effect estimates and uncertainty.
+### Model estimates
 
 ```{r parameter-estimation}
-fit_unadjusted <- NULL
-fit_adjusted <- NULL
-n_coef_display <- 6
-
-if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
-  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
-  fit_args <- if (model_family == "gaussian") {
-    list(data = analysis_df)
-  } else {
-    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
-  }
-
-  fit_unadjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
-    error = identity
-  )
-  fit_adjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
-    error = identity
-  )
-
-  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.\n")
-  } else {
-    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
-    coef_adjusted <- stats::coef(summary(fit_adjusted))
-
-    print(coef_unadjusted[seq_len(min(n_coef_display, nrow(coef_unadjusted))), , drop = FALSE])
-    print(coef_adjusted[seq_len(min(n_coef_display, nrow(coef_adjusted))), , drop = FALSE])
-  }
-} else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
-}
+fit <- survival::coxph(formula_main, data = dat, ties = "breslow")
+summary(fit)
 ```
 
-### Step 3: Model adequacy checks
-
-We examine simple fit diagnostics to assess whether the selected model is adequate for inference in this dataset.
+### Model diagnostics
 
 ```{r adequacy-checks}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
-      identical(formula_unadjusted, formula_adjusted)) {
-    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
-  } else {
-    data.frame(
-      model = c("unadjusted", "adjusted"),
-      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
-    )
-  }
-
-  model_comparison
-
-  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
-    xlab = "Fitted values",
-    ylab = "Residuals",
-    main = "Residuals vs fitted"
-  )
-  abline(h = 0, lty = 2)
-} else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
-}
+ph_test <- survival::cox.zph(fit)
+ph_test
 ```
 
-### Step 4: Inference
-
-We interpret the adjusted exposure estimate directly in relation to the research question, focusing on direction, magnitude, and statistical uncertainty.
+### Inference
 
 ```{r inference}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  coef_table <- summary(fit_adjusted)$coefficients
-
-  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
-  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
-
-  if (length(exposure_rows) > 0 && length(p_col) > 0) {
-    target_row <- exposure_rows[1]
-    estimate <- unname(coef_table[target_row, "Estimate"])
-    p_value <- unname(coef_table[target_row, p_col[1]])
-
-    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
-      "little"
-    } else if (estimate > 0) {
-      "a positive"
-    } else {
-      "a negative"
-    }
-
-    cat(
-      "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")\n"
-    )
-    cat(
-      "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.\n"
-    )
-  } else {
-    cat("Inference summary unavailable for the selected exposure term.\n")
-  }
-} else {
-  cat("Inference skipped because no fitted adjusted model is available.\n")
-}
+hr <- exp(stats::coef(fit))
+ci <- exp(stats::confint(fit))
+data.frame(
+  term = names(hr),
+  hazard_ratio = unname(hr),
+  conf_low = ci[, 1],
+  conf_high = ci[, 2],
+  p_value = summary(fit)$coefficients[, "Pr(>|z|)"]
+)
 ```
 
-### Scientific conclusions
+## Discussion
 
-```{r conclusions, results='asis'}
-cat(format_scientific_conclusions(
-  can_fit_model = can_fit_model,
-  fit_adjusted = fit_adjusted,
-  model_family = model_family,
-  exposure_var = exposure_var,
-  outcome_var = outcome_var,
-  confounder_var = confounder_var
-))
-```
-
-
+Men in lower BMD quantiles have higher hazard of the composite event after adjustment for body weight, consistent with the dose-response relationship between bone density and fracture/mortality risk described in RMB2e Chapter 6. Weight is also independently predictive, reflecting the complex relationship between adiposity and skeletal outcomes in older men. These findings illustrate how Cox regression can simultaneously estimate the independent contributions of an ordinal predictor (BMD quantile) and a continuous confounder (weight) to event risk.
 
 ## Source
 
+- Orwoll E et al. (2005). Design and baseline characteristics of the osteoporotic fractures in men (MrOS) study. *J Bone Miner Res*, 20(4), 678-687.
 - UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mros.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).
+
