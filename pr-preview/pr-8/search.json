@@ -1516,7 +1516,7 @@
     "href": "man/rmb-package.html",
     "title": "rmb",
     "section": "",
-    "text": "Provides datasets from the companion website for \"Regression Methods in Biostatistics\" (2nd edition), including variable labels from the source files and vignettes with exploratory analyses and example models.\n\n\n\nMaintainer: Ezra Morrison demorrison@ucdavis.edu\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/rmb\n\n\nReport bugs at https://github.com/d-morrison/rmb/issues",
+    "text": "Provides datasets from the companion website for \"Regression Methods in Biostatistics\" (2nd edition), including variable labels from the source files and vignettes with exploratory analyses and example models.\n\n\n\nMaintainer: Ezra Morrison demorrison@ucdavis.edu\nAuthors:\n\n\nEzra Morrison demorrison@ucdavis.edu\n\n\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/rmb\n\n\nReport bugs at https://github.com/d-morrison/rmb/issues",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -1528,7 +1528,7 @@
     "href": "man/rmb-package.html#rmb-datasets-for-regression-methods-in-biostatistics",
     "title": "rmb",
     "section": "",
-    "text": "Provides datasets from the companion website for \"Regression Methods in Biostatistics\" (2nd edition), including variable labels from the source files and vignettes with exploratory analyses and example models.\n\n\n\nMaintainer: Ezra Morrison demorrison@ucdavis.edu\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/rmb\n\n\nReport bugs at https://github.com/d-morrison/rmb/issues",
+    "text": "Provides datasets from the companion website for \"Regression Methods in Biostatistics\" (2nd edition), including variable labels from the source files and vignettes with exploratory analyses and example models.\n\n\n\nMaintainer: Ezra Morrison demorrison@ucdavis.edu\nAuthors:\n\n\nEzra Morrison demorrison@ucdavis.edu\n\n\n\n\n\nUseful links:\n\n\nhttps://github.com/d-morrison/rmb\n\n\nReport bugs at https://github.com/d-morrison/rmb/issues",
     "crumbs": [
       "Documentation",
       "Reference",
