@@ -79,7 +79,7 @@ with(nd, cor(BMI, LDL, use = "complete.obs"))
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 plot(nd$BMI, nd$LDL,
      pch = 16, cex = 0.5, col = rgb(0, 0, 0, 0.2),
-     xlab = "BMI (kg/m^2)", ylab = "LDL (mg/dL)",
+     xlab = expression("BMI (kg/m"^2*")"), ylab = "LDL (mg/dL)",
      main = "HERS: LDL vs BMI (women without diabetes)")
 abline(stats::lm(LDL ~ BMI, data = nd), col = "#d95f02", lwd = 2)
 ```
