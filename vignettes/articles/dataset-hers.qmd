@@ -16,7 +16,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette implements an expanded, dataset-organized RMB2e analysis workflow for `hers`.
+This article reproduces HERS analyses from RMB2e Chapters 3 and 4.
 
 ## Study design
 
@@ -25,352 +25,131 @@ data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "hers"]
 ```
 
-
 ```{r load-hers}
 data(hers, package = "rmb")
 dat <- hers
 dim(dat)
-head(dat)
-summary(dat)
-```
-
-## Variable labels
-
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+summary(dat[c("HT", "BMI", "LDL", "LDL1", "exercise", "glucose", "age", "nonwhite", "smoking", "drinkany", "statins")])
 ```
 
 ## RMB2e analysis workflow
 
 ### Research question
 
-For `hers` we ask: what is the association between a primary exposure and an outcome,
-after accounting for a plausible confounder?
+1. Is higher BMI associated with higher LDL after adjustment for demographic/lifestyle covariates?
+2. Does the treatment effect of hormone therapy on LDL differ by baseline statin use?
 
-```{r identify-variables}
-# Variable-type helper functions are provided by the rmb package:
-# `is_binary()` and `is_count()`.
-
-candidate_vars <- names(dat)[vapply(dat, function(x) {
-  is.numeric(x) || is.factor(x) || is.logical(x)
-}, logical(1))]
-
-continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
-  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
-}, logical(1))]
-binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
-count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
-
-outcome_var <- if (length(binary_vars) > 0) {
-  binary_vars[1]
-} else if (length(continuous_vars) > 0) {
-  continuous_vars[1]
-} else if (length(count_vars) > 0) {
-  count_vars[1]
-} else if (length(candidate_vars) > 0) {
-  candidate_vars[1]
-} else {
-  NA_character_
-}
-
-remaining_vars <- setdiff(candidate_vars, outcome_var)
-exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
-confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
-
-model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
-  "binomial"
-} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
-  "poisson"
-} else {
-  "gaussian"
-}
-
-can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
-
-c(
-  outcome = outcome_var,
-  exposure = exposure_var,
-  confounder = confounder_var,
-  family = model_family,
-  can_fit_model = can_fit_model
-)
-```
-
-We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
-with `r confounder_var` as a candidate confounder.
+RMB2e references: glucose-by-exercise comparison in HERS (p. 49), adjusted BMI-LDL model (p. 113), HT-by-statin interaction model and subgroup interpretation (pp. 120–121), interaction interpretation issues (p. 126).
 
 ### Causal assumptions (conceptual DAG)
 
-```{r dag, results='asis'}
-if (!is.na(exposure_var) && !is.na(confounder_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  C[", confounder_var, "] --> E[", exposure_var, "]
-",
-    "  C --> Y[", outcome_var, "]
-",
-    "  E --> Y
-",
-    "```
-",
-    sep = ""
-  )
-} else if (!is.na(exposure_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  E[", exposure_var, "] --> Y[", outcome_var, "]
-",
-    "```
-",
-    sep = ""
-  )
-} else {
-  cat("Not enough variables to draw a DAG for this dataset.\n")
-}
+```{mermaid}
+flowchart LR
+  BMI[BMI] --> LDL[LDL cholesterol]
+  AGE[Age] --> BMI
+  AGE --> LDL
+  NW[Nonwhite ethnicity] --> BMI
+  NW --> LDL
+  SMK[Smoking] --> BMI
+  SMK --> LDL
+  DRINK[Alcohol use] --> BMI
+  DRINK --> LDL
+  HT[Randomized HT] --> LDL1[Year-1 LDL]
+  STATIN[Baseline statin use] --> LDL1
+  HT --> INT[HT × statin interaction]
+  STATIN --> INT
+  INT --> LDL1
 ```
 
 ### Step 0: Exploratory data analysis
 
-We start by checking the analysis sample and the marginal distributions of the selected
-variables.
+RMB2e emphasizes checking simple group differences and distributions before multipredictor modeling (pp. 49, 113).
 
 ```{r exploratory-summaries}
-analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
-if (length(analysis_vars) == 0) {
-  analysis_df <- data.frame()
-  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.\n")
-} else {
-  analysis_df <- dat[, analysis_vars, drop = FALSE]
-  analysis_df <- stats::na.omit(analysis_df)
-  c(
-    n_total = nrow(dat),
-    n_complete = nrow(analysis_df),
-    p_complete = nrow(analysis_df) / nrow(dat)
-  )
-  summary(analysis_df)
-}
+nd <- subset(dat, diabetes == 0)
+
+with(nd, tapply(glucose, exercise, summary))
+stats::t.test(glucose ~ exercise, data = nd)
+
+summary(nd$BMI)
+summary(nd$LDL)
+with(nd, cor(BMI, LDL, use = "complete.obs"))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
-  plot.new()
-  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
-} else if (is.numeric(analysis_df[[outcome_var]]) &&
-    is.numeric(analysis_df[[exposure_var]])) {
-  plot(
-    analysis_df[[exposure_var]],
-    analysis_df[[outcome_var]],
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome vs exposure"
-  )
-} else if (is.numeric(analysis_df[[outcome_var]])) {
-  boxplot(
-    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome by exposure"
-  )
-} else {
-  plot.new()
-  text(0.5, 0.5, "No simple EDA plot available for selected variables")
-}
+plot(nd$BMI, nd$LDL,
+     pch = 16, cex = 0.5, col = rgb(0, 0, 0, 0.2),
+     xlab = "BMI (kg/m^2)", ylab = "LDL (mg/dL)",
+     main = "HERS: LDL vs BMI (women without diabetes)")
+abline(stats::lm(LDL ~ BMI, data = nd), col = "#d95f02", lwd = 2)
 ```
 
 ### Step 1: Model specification
 
-Following the GLM model-fitting process, we specify an unadjusted model and a model
-adjusted for the candidate confounder.
+Model A (RMB2e p. 113): adjusted linear model for LDL with BMI as primary predictor.
+
+Model B (RMB2e pp. 120–121): interaction model for year-1 LDL with HT, statin use, and HT×statin.
 
 ```{r model-specification}
-if (can_fit_model && nrow(analysis_df) > 0) {
-  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
-    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
-  }
-  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
-    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) &&
-      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
-    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
-  }
+formula_bmi_ldl <- LDL ~ BMI + age + nonwhite + smoking + drinkany
+formula_ht_statin <- LDL1 ~ HT * statins
 
-  if (is.logical(analysis_df[[outcome_var]])) {
-    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
-  }
-  if (is.logical(analysis_df[[exposure_var]])) {
-    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
-    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
-  }
-
-  if (model_family == "binomial") {
-    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
-    if (length(outcome_values) == 2) {
-      analysis_df[[outcome_var]] <- as.integer(
-        analysis_df[[outcome_var]] == outcome_values[2]
-      )
-    }
-  }
-
-  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
-  formula_adjusted <- if (!is.na(confounder_var)) {
-    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
-  } else {
-    formula_unadjusted
-  }
-
-  list(
-    family = model_family,
-    unadjusted = formula_unadjusted,
-    adjusted = formula_adjusted
-  )
-} else {
-  formula_unadjusted <- NULL
-  formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.\n")
-}
+list(
+  bmi_ldl_model = formula_bmi_ldl,
+  ht_statin_model = formula_ht_statin
+)
 ```
 
 ### Step 2: Parameter estimation
 
 ```{r parameter-estimation}
-fit_unadjusted <- NULL
-fit_adjusted <- NULL
-n_coef_display <- 6
+fit_bmi_ldl <- stats::lm(formula_bmi_ldl, data = nd)
+fit_ht_statin <- stats::lm(formula_ht_statin, data = dat)
 
-if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
-  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
-  fit_args <- if (model_family == "gaussian") {
-    list(data = analysis_df)
-  } else {
-    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
-  }
-
-  fit_unadjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
-    error = identity
-  )
-  fit_adjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
-    error = identity
-  )
-
-  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.\n")
-  } else {
-    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
-    coef_adjusted <- stats::coef(summary(fit_adjusted))
-
-    print(coef_unadjusted[seq_len(min(n_coef_display, nrow(coef_unadjusted))), , drop = FALSE])
-    print(coef_adjusted[seq_len(min(n_coef_display, nrow(coef_adjusted))), , drop = FALSE])
-  }
-} else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
-}
+summary(fit_bmi_ldl)
+summary(fit_ht_statin)
 ```
 
 ### Step 3: Model adequacy checks
 
-```{r adequacy-checks}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
-      identical(formula_unadjusted, formula_adjusted)) {
-    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
-  } else {
-    data.frame(
-      model = c("unadjusted", "adjusted"),
-      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
-    )
-  }
+```{r adequacy-checks, fig.height=4, fig.width=6}
+par(mfrow = c(1, 2))
+plot(fit_bmi_ldl, which = 1)
+plot(fit_bmi_ldl, which = 2)
+par(mfrow = c(1, 1))
+```
 
-  model_comparison
-
-  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
-    xlab = "Fitted values",
-    ylab = "Residuals",
-    main = "Residuals vs fitted"
-  )
-  abline(h = 0, lty = 2)
-} else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
-}
+```{r adequacy-checks-interaction}
+# Estimated HT effect among baseline statin users: beta_HT + beta_HT:statins
+stats::coef(fit_ht_statin)["HT"] + stats::coef(fit_ht_statin)["HT:statins"]
 ```
 
 ### Step 4: Inference
 
 ```{r inference}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  coef_table <- summary(fit_adjusted)$coefficients
+ci_bmi <- stats::confint(fit_bmi_ldl)
+ci_int <- stats::confint(fit_ht_statin)
 
-  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
-  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
+inf_bmi <- data.frame(
+  term = names(stats::coef(fit_bmi_ldl)),
+  estimate = stats::coef(fit_bmi_ldl),
+  conf_low = ci_bmi[, 1],
+  conf_high = ci_bmi[, 2],
+  p_value = summary(fit_bmi_ldl)$coefficients[, "Pr(>|t|)"]
+)
 
-  if (length(exposure_rows) > 0 && length(p_col) > 0) {
-    target_row <- exposure_rows[1]
-    estimate <- unname(coef_table[target_row, "Estimate"])
-    p_value <- unname(coef_table[target_row, p_col[1]])
+inf_int <- data.frame(
+  term = names(stats::coef(fit_ht_statin)),
+  estimate = stats::coef(fit_ht_statin),
+  conf_low = ci_int[, 1],
+  conf_high = ci_int[, 2],
+  p_value = summary(fit_ht_statin)$coefficients[, "Pr(>|t|)"]
+)
 
-    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
-      "little"
-    } else if (estimate > 0) {
-      "a positive"
-    } else {
-      "a negative"
-    }
-
-    cat(
-      "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")\n"
-    )
-    cat(
-      "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.\n"
-    )
-  } else {
-    cat("Inference summary unavailable for the selected exposure term.\n")
-  }
-} else {
-  cat("Inference skipped because no fitted adjusted model is available.\n")
-}
+inf_bmi
+inf_int
 ```
 
 ### Scientific conclusions
 
-```{r conclusions, results='asis'}
-if (can_fit_model && !is.na(exposure_var) && !is.na(outcome_var)) {
-  cat(
-    "In this dataset, the adjusted model (", model_family,
-    ") provides an estimate for the association between ",
-    exposure_var, " and ", outcome_var,
-    ", accounting for ", confounder_var,
-    ". Interpret these findings in the context of study design, residual confounding, and measurement limitations.
-",
-    sep = ""
-  )
-} else {
-  cat(
-    "Scientific conclusions are limited because the dataset does not contain enough complete variables for the selected workflow.
-"
-  )
-}
-```
-
-
-
-## Source
-
-- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hersdata.dta
-- Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).
+In this RMB2e HERS reproduction, higher BMI is associated with higher LDL after adjustment for age, race/ethnicity, smoking, and alcohol (p. 113). The effect of hormone therapy on LDL differs by baseline statin use (pp. 120–121), illustrating effect modification on the linear-model scale as discussed in Chapter 4 (p. 126).
