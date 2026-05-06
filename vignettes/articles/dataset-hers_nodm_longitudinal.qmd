@@ -16,35 +16,109 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette demonstrates an RMB2e-style modeling workflow for `hers_nodm_longitudinal`, with explicit demonstration of exploratory analysis, model specification, parameter estimation, adequacy checks, and scientific interpretation.
+This article models longitudinal systolic blood pressure trajectories in HERS participants without diabetes, examining whether HRT assignment and exercise interact to affect blood pressure over follow-up visits (RMB2e Chapter 11).
 
-## Study design
+## Introduction
+
+Hormone therapy and lifestyle behaviors such as exercise may jointly influence cardiovascular risk factors in postmenopausal women. The HERS longitudinal dataset provides repeated measurements of systolic blood pressure over multiple visits, enabling examination of within-subject trajectories and potential treatment–lifestyle interactions. RMB2e Chapter 11 uses this structure to illustrate repeated-measures regression and missing-data approaches.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "hers_nodm_longitudinal"]
 ```
 
+We ask: does regular exercise moderate the association between HRT assignment and longitudinal systolic blood pressure in postmenopausal women without diabetes?
 
-```{r load-hers_nodm_longitudinal}
+### Causal assumptions
+
+```{mermaid}
+flowchart LR
+  HRT[HRT assignment] --> SBP[Systolic BP]
+  EXERCISE[Exercise] --> SBP
+  HRT --> INT[HRT × exercise]
+  EXERCISE --> INT
+  INT --> SBP
+  BMI[BMI] --> SBP
+  AGE[Age] --> SBP
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(hers_nodm_longitudinal, package = "rmb")
 dat <- hers_nodm_longitudinal
 dim(dat)
-head(dat)
-summary(dat)
+summary(dat[c("sbp", "group", "exercise", "bmi", "age", "visit")])
 ```
 
-## Variable labels
+### Statistical analysis
 
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+We fit a linear regression model for systolic blood pressure with an HRT-by-exercise interaction term, adjusting for BMI, age, smoking, and visit number. The model ignores within-person correlation but illustrates the interaction parameterization discussed in RMB2e Chapter 11.
+
+```{r model-specification}
+formula_sbp <- sbp ~ group * exercise + bmi + age + csmker + visit
+formula_sbp
 ```
 
-## RMB2e analysis workflow
+## Results
+
+### Descriptive statistics
+
+```{r exploratory-summaries}
+with(dat, tapply(sbp, list(group, exercise), mean, na.rm = TRUE))
+with(dat, tapply(sbp, visit, mean, na.rm = TRUE))
+```
+
+```{r exploratory-plot, fig.height=4, fig.width=6}
+boxplot(sbp ~ interaction(group, exercise), data = dat,
+        names = c("Pbo/No ex", "HRT/No ex", "Pbo/Ex", "HRT/Ex"),
+        xlab = "Treatment × Exercise",
+        ylab = "Systolic BP (mmHg)",
+        main = "HERS: SBP by HRT and exercise",
+        col = c("grey85", "#d95f02", "grey60", "#e6ab02"),
+        las = 2)
+```
+
+### Model estimates
+
+```{r parameter-estimation}
+fit_sbp <- stats::lm(formula_sbp, data = dat)
+summary(fit_sbp)
+```
+
+### Model diagnostics
+
+```{r adequacy-checks, fig.height=4, fig.width=6}
+par(mfrow = c(1, 2))
+plot(fit_sbp, which = 1)
+plot(fit_sbp, which = 2)
+par(mfrow = c(1, 1))
+```
+
+### Inference
+
+```{r inference}
+ci <- stats::confint(fit_sbp)
+coef_tab <- data.frame(
+  term = names(stats::coef(fit_sbp)),
+  estimate = stats::coef(fit_sbp),
+  conf_low = ci[, 1],
+  conf_high = ci[, 2],
+  p_value = summary(fit_sbp)$coefficients[, "Pr(>|t|)"]
+)
+coef_tab
+```
+
+## Discussion
+
+The interaction between HRT assignment and exercise on systolic blood pressure examines whether lifestyle behaviors modify the cardiovascular effects of hormone therapy. As discussed in RMB2e Chapter 11, the longitudinal structure of HERS requires accounting for within-person correlation; the regression model presented here is an approximation useful for illustrating interaction parameterization, while a proper generalized estimating equations (GEE) or mixed-effects model would be needed for valid inference accounting for repeated measures.
+
+## Source
+
+- [UCSF companion data](https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_longitudinal.dta)
+- Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).
 
 ### Research question
 
