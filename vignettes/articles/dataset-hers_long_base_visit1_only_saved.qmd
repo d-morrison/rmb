@@ -52,34 +52,8 @@ For `hers_long_base_visit1_only_saved` we ask: what is the association between a
 after accounting for a plausible confounder?
 
 ```{r identify-variables}
-is_binary <- function(x) {
-  x <- stats::na.omit(x)
-  if (length(x) == 0) {
-    return(FALSE)
-  }
-  if (is.logical(x)) {
-    return(TRUE)
-  }
-  ux <- unique(x)
-  if (length(ux) > 2) {
-    return(FALSE)
-  }
-  if (is.factor(x)) {
-    return(TRUE)
-  }
-  is.numeric(x) && all(ux %in% c(0, 1))
-}
-
-is_count <- function(x) {
-  if (!is.numeric(x)) {
-    return(FALSE)
-  }
-  x <- stats::na.omit(x)
-  if (length(x) == 0) {
-    return(FALSE)
-  }
-  all(x >= 0 & abs(x - round(x)) < 1e-8) && length(unique(x)) > 2
-}
+# Variable-type helper functions are provided by the rmb package:
+# `is_binary()` and `is_count()`.
 
 candidate_vars <- names(dat)[vapply(dat, function(x) {
   is.numeric(x) || is.factor(x) || is.logical(x)

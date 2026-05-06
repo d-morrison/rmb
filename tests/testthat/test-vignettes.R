@@ -82,6 +82,9 @@ test_that("dataset vignettes do not use single-function workflow blocks", {
   expect_false(any(
     grepl("analysis_helpers.r", vignette_text, fixed = TRUE)
   ))
+  expect_false(any(
+    grepl("<- function\\(", vignette_text)
+  ))
 })
 
 test_that("dataset vignettes no longer use placeholder model wording", {
