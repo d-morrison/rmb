@@ -1,0 +1,155 @@
+---
+title: "HERS data"
+format: html
+vignette: >
+  %\VignetteIndexEntry{HERS data}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(rmb)
+```
+
+This article reproduces HERS analyses from RMB2e Chapters 3 and 4.
+
+## Study design
+
+```{r study-design}
+data(rmb_datasets, package = "rmb")
+rmb_datasets$study_design[rmb_datasets$object == "hers"]
+```
+
+```{r load-hers}
+data(hers, package = "rmb")
+dat <- hers
+dim(dat)
+summary(dat[c("HT", "BMI", "LDL", "LDL1", "exercise", "glucose", "age", "nonwhite", "smoking", "drinkany", "statins")])
+```
+
+## RMB2e analysis workflow
+
+### Research question
+
+1. Is higher BMI associated with higher LDL after adjustment for demographic/lifestyle covariates?
+2. Does the treatment effect of hormone therapy on LDL differ by baseline statin use?
+
+RMB2e references: glucose-by-exercise comparison in HERS (p. 49), adjusted BMI-LDL model (p. 113), HT-by-statin interaction model and subgroup interpretation (pp. 120–121), interaction interpretation issues (p. 126).
+
+### Causal assumptions (conceptual DAG)
+
+```{mermaid}
+flowchart LR
+  BMI[BMI] --> LDL[LDL cholesterol]
+  AGE[Age] --> BMI
+  AGE --> LDL
+  NW[Nonwhite ethnicity] --> BMI
+  NW --> LDL
+  SMK[Smoking] --> BMI
+  SMK --> LDL
+  DRINK[Alcohol use] --> BMI
+  DRINK --> LDL
+  HT[Randomized HT] --> LDL1[Year-1 LDL]
+  STATIN[Baseline statin use] --> LDL1
+  HT --> INT[HT × statin interaction]
+  STATIN --> INT
+  INT --> LDL1
+```
+
+### Step 0: Exploratory data analysis
+
+RMB2e emphasizes checking simple group differences and distributions before multipredictor modeling (pp. 49, 113).
+
+```{r exploratory-summaries}
+nd <- subset(dat, diabetes == 0)
+
+with(nd, tapply(glucose, exercise, summary))
+stats::t.test(glucose ~ exercise, data = nd)
+
+summary(nd$BMI)
+summary(nd$LDL)
+with(nd, cor(BMI, LDL, use = "complete.obs"))
+```
+
+```{r exploratory-plot, fig.height=4, fig.width=6}
+plot(nd$BMI, nd$LDL,
+     pch = 16, cex = 0.5, col = rgb(0, 0, 0, 0.2),
+     xlab = expression("BMI (kg/m"^2*")"), ylab = "LDL (mg/dL)",
+     main = "HERS: LDL vs BMI (women without diabetes)")
+abline(stats::lm(LDL ~ BMI, data = nd), col = "#d95f02", lwd = 2)
+```
+
+### Step 1: Model specification
+
+Model A (RMB2e p. 113): adjusted linear model for LDL with BMI as primary predictor.
+
+Model B (RMB2e pp. 120–121): interaction model for year-1 LDL with HT, statin use, and HT×statin.
+
+```{r model-specification}
+formula_bmi_ldl <- LDL ~ BMI + age + nonwhite + smoking + drinkany
+formula_ht_statin <- LDL1 ~ HT * statins
+
+list(
+  bmi_ldl_model = formula_bmi_ldl,
+  ht_statin_model = formula_ht_statin
+)
+```
+
+### Step 2: Parameter estimation
+
+```{r parameter-estimation}
+fit_bmi_ldl <- stats::lm(formula_bmi_ldl, data = nd)
+fit_ht_statin <- stats::lm(formula_ht_statin, data = dat)
+
+summary(fit_bmi_ldl)
+summary(fit_ht_statin)
+```
+
+### Step 3: Model adequacy checks
+
+```{r adequacy-checks, fig.height=4, fig.width=6}
+par(mfrow = c(1, 2))
+plot(fit_bmi_ldl, which = 1)
+plot(fit_bmi_ldl, which = 2)
+par(mfrow = c(1, 1))
+```
+
+```{r adequacy-checks-interaction}
+# Estimated HT effect among baseline statin users: beta_HT + beta_HT:statins
+stats::coef(fit_ht_statin)["HT"] + stats::coef(fit_ht_statin)["HT:statins"]
+```
+
+### Step 4: Inference
+
+```{r inference}
+ci_bmi <- stats::confint(fit_bmi_ldl)
+ci_int <- stats::confint(fit_ht_statin)
+
+inf_bmi <- data.frame(
+  term = names(stats::coef(fit_bmi_ldl)),
+  estimate = stats::coef(fit_bmi_ldl),
+  conf_low = ci_bmi[, 1],
+  conf_high = ci_bmi[, 2],
+  p_value = summary(fit_bmi_ldl)$coefficients[, "Pr(>|t|)"]
+)
+
+inf_int <- data.frame(
+  term = names(stats::coef(fit_ht_statin)),
+  estimate = stats::coef(fit_ht_statin),
+  conf_low = ci_int[, 1],
+  conf_high = ci_int[, 2],
+  p_value = summary(fit_ht_statin)$coefficients[, "Pr(>|t|)"]
+)
+
+inf_bmi
+inf_int
+```
+
+### Scientific conclusions
+
+In this RMB2e HERS reproduction, higher BMI is associated with higher LDL after adjustment for age, race/ethnicity, smoking, and alcohol (p. 113). The effect of hormone therapy on LDL differs by baseline statin use (pp. 120–121), illustrating effect modification on the linear-model scale as discussed in Chapter 4 (p. 126).
