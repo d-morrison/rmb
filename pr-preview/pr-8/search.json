@@ -1018,7 +1018,7 @@
     "href": "man/is_binary.html",
     "title": "rmb",
     "section": "",
-    "text": "Returns TRUE when values are compatible with a binary outcome/predictor (logical, 2-level factor, or numeric values coded as 0/1).\n\n\n\nis_binary(x)\n\n\n\n\n\n\n\nx\n\n\nA vector to classify.\n\n\n\n\n\n\nA single logical value.",
+    "text": "Returns TRUE when values are compatible with a binary outcome/predictor (logical, 2-level factor, or numeric values coded as 0/1).\n\nis_binary(x)\n\n\n\n\nx\n\n\nA vector to classify.\n\n\nA single logical value.\n\n\nCodelibrary(\"rmb\")\n\nis_binary(c(TRUE, FALSE, TRUE))\n\n[1] TRUE\n\nCodeis_binary(factor(c(\"no\", \"yes\", \"yes\")))\n\n[1] TRUE\n\nCodeis_binary(c(0, 1, 1, 0, NA))\n\n[1] TRUE\n\nCodeis_binary(c(0, 1, 2))\n\n[1] FALSE",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -1030,7 +1030,7 @@
     "href": "man/is_binary.html#identify-binary-variables-for-rmb-analyses",
     "title": "rmb",
     "section": "",
-    "text": "Returns TRUE when values are compatible with a binary outcome/predictor (logical, 2-level factor, or numeric values coded as 0/1).\n\n\n\nis_binary(x)\n\n\n\n\n\n\n\nx\n\n\nA vector to classify.\n\n\n\n\n\n\nA single logical value.",
+    "text": "Returns TRUE when values are compatible with a binary outcome/predictor (logical, 2-level factor, or numeric values coded as 0/1).\n\nis_binary(x)\n\n\n\n\nx\n\n\nA vector to classify.\n\n\nA single logical value.\n\n\nCodelibrary(\"rmb\")\n\nis_binary(c(TRUE, FALSE, TRUE))\n\n[1] TRUE\n\nCodeis_binary(factor(c(\"no\", \"yes\", \"yes\")))\n\n[1] TRUE\n\nCodeis_binary(c(0, 1, 1, 0, NA))\n\n[1] TRUE\n\nCodeis_binary(c(0, 1, 2))\n\n[1] FALSE",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -1468,7 +1468,7 @@
     "href": "man/is_count.html",
     "title": "rmb",
     "section": "",
-    "text": "Returns TRUE when values are non-negative integers with more than two distinct observed values.\n\n\n\nis_count(x)\n\n\n\n\n\n\n\nx\n\n\nA vector to classify.\n\n\n\n\n\n\nA single logical value.",
+    "text": "Returns TRUE when values are non-negative integers with more than two distinct observed values.\n\nis_count(x)\n\n\n\n\nx\n\n\nA vector to classify.\n\n\nA single logical value.\n\n\nCodelibrary(\"rmb\")\n\nis_count(c(0, 1, 2, 5, NA))\n\n[1] TRUE\n\nCodeis_count(c(0, 1))\n\n[1] FALSE\n\nCodeis_count(c(0.5, 1.5, 2.5))\n\n[1] FALSE\n\nCodeis_count(c(-1, 0, 1))\n\n[1] FALSE",
     "crumbs": [
       "Documentation",
       "Reference",
@@ -1480,7 +1480,7 @@
     "href": "man/is_count.html#identify-count-variables-for-rmb-analyses",
     "title": "rmb",
     "section": "",
-    "text": "Returns TRUE when values are non-negative integers with more than two distinct observed values.\n\n\n\nis_count(x)\n\n\n\n\n\n\n\nx\n\n\nA vector to classify.\n\n\n\n\n\n\nA single logical value.",
+    "text": "Returns TRUE when values are non-negative integers with more than two distinct observed values.\n\nis_count(x)\n\n\n\n\nx\n\n\nA vector to classify.\n\n\nA single logical value.\n\n\nCodelibrary(\"rmb\")\n\nis_count(c(0, 1, 2, 5, NA))\n\n[1] TRUE\n\nCodeis_count(c(0, 1))\n\n[1] FALSE\n\nCodeis_count(c(0.5, 1.5, 2.5))\n\n[1] FALSE\n\nCodeis_count(c(-1, 0, 1))\n\n[1] FALSE",
     "crumbs": [
       "Documentation",
       "Reference",
