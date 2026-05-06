@@ -832,27 +832,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#study-design" id="toc-study-design" class="nav-link active" data-scroll-target="#study-design"><span class="header-section-number">1</span> Study design</a></li>
-  <li><a href="#variable-labels" id="toc-variable-labels" class="nav-link" data-scroll-target="#variable-labels"><span class="header-section-number">2</span> Variable labels</a></li>
   <li>
-<a href="#rmb2e-analysis-workflow" id="toc-rmb2e-analysis-workflow" class="nav-link" data-scroll-target="#rmb2e-analysis-workflow"><span class="header-section-number">3</span> RMB2e analysis workflow</a>
+<a href="#rmb2e-analysis-workflow" id="toc-rmb2e-analysis-workflow" class="nav-link" data-scroll-target="#rmb2e-analysis-workflow"><span class="header-section-number">2</span> RMB2e analysis workflow</a>
   <ul class="collapse">
-<li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">3.1</span> Research question</a></li>
-  <li><a href="#causal-assumptions-conceptual-dag" id="toc-causal-assumptions-conceptual-dag" class="nav-link" data-scroll-target="#causal-assumptions-conceptual-dag"><span class="header-section-number">3.2</span> Causal assumptions (conceptual DAG)</a></li>
-  <li><a href="#step-0-exploratory-data-analysis" id="toc-step-0-exploratory-data-analysis" class="nav-link" data-scroll-target="#step-0-exploratory-data-analysis"><span class="header-section-number">3.3</span> Step 0: Exploratory data analysis</a></li>
-  <li><a href="#step-1-model-specification" id="toc-step-1-model-specification" class="nav-link" data-scroll-target="#step-1-model-specification"><span class="header-section-number">3.4</span> Step 1: Model specification</a></li>
-  <li><a href="#step-2-parameter-estimation" id="toc-step-2-parameter-estimation" class="nav-link" data-scroll-target="#step-2-parameter-estimation"><span class="header-section-number">3.5</span> Step 2: Parameter estimation</a></li>
-  <li><a href="#step-3-model-adequacy-checks" id="toc-step-3-model-adequacy-checks" class="nav-link" data-scroll-target="#step-3-model-adequacy-checks"><span class="header-section-number">3.6</span> Step 3: Model adequacy checks</a></li>
-  <li><a href="#step-4-inference" id="toc-step-4-inference" class="nav-link" data-scroll-target="#step-4-inference"><span class="header-section-number">3.7</span> Step 4: Inference</a></li>
-  <li><a href="#scientific-conclusions" id="toc-scientific-conclusions" class="nav-link" data-scroll-target="#scientific-conclusions"><span class="header-section-number">3.8</span> Scientific conclusions</a></li>
+<li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">2.1</span> Research question</a></li>
+  <li><a href="#causal-assumptions-conceptual-dag" id="toc-causal-assumptions-conceptual-dag" class="nav-link" data-scroll-target="#causal-assumptions-conceptual-dag"><span class="header-section-number">2.2</span> Causal assumptions (conceptual DAG)</a></li>
+  <li><a href="#step-0-exploratory-data-analysis" id="toc-step-0-exploratory-data-analysis" class="nav-link" data-scroll-target="#step-0-exploratory-data-analysis"><span class="header-section-number">2.3</span> Step 0: Exploratory data analysis</a></li>
+  <li><a href="#step-1-model-specification" id="toc-step-1-model-specification" class="nav-link" data-scroll-target="#step-1-model-specification"><span class="header-section-number">2.4</span> Step 1: Model specification</a></li>
+  <li><a href="#step-2-parameter-estimation" id="toc-step-2-parameter-estimation" class="nav-link" data-scroll-target="#step-2-parameter-estimation"><span class="header-section-number">2.5</span> Step 2: Parameter estimation</a></li>
+  <li><a href="#step-3-model-adequacy-checks" id="toc-step-3-model-adequacy-checks" class="nav-link" data-scroll-target="#step-3-model-adequacy-checks"><span class="header-section-number">2.6</span> Step 3: Model adequacy checks</a></li>
+  <li><a href="#step-4-inference" id="toc-step-4-inference" class="nav-link" data-scroll-target="#step-4-inference"><span class="header-section-number">2.7</span> Step 4: Inference</a></li>
+  <li><a href="#scientific-conclusions" id="toc-scientific-conclusions" class="nav-link" data-scroll-target="#scientific-conclusions"><span class="header-section-number">2.8</span> Scientific conclusions</a></li>
   </ul>
 </li>
-  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">4</span> Source</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/articles/dataset-wcgs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/articles/dataset-wcgs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-actg019.html">Articles</a></li><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-wcgs.html">WCGS data</a></li></ol></nav><h1 class="title display-7">WCGS data</h1></header><header id="title-block-header">
 
-</header><p>This vignette implements an expanded, dataset-organized RMB2e analysis workflow for <code>wcgs</code>.</p>
+</header><p>This article reproduces key WCGS analyses from RMB2e Chapters 2, 3, and 5.</p>
 <section id="study-design" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="study-design">
 <span class="header-section-number">1</span> Study design</h2>
 <div class="cell">
@@ -866,508 +864,251 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">wcgs</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3154   22</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   age arcus behpat      bmi chd69 chol dbp dibpat height    id    lnsbp</span></span>
-<span><span class="co">#&gt; 1  50     1      1 31.32101     0  249  90      1     67  2343 4.882802</span></span>
-<span><span class="co">#&gt; 2  51     0      1 25.32858     0  194  74      1     73  3656 4.787492</span></span>
-<span><span class="co">#&gt; 3  59     1      1 28.69388     0  258  94      1     70  3526 5.062595</span></span>
-<span><span class="co">#&gt; 4  51     1      1 22.14871     0  173  80      1     69 22057 4.836282</span></span>
-<span><span class="co">#&gt; 5  44     0      1 22.31303     0  214  80      1     71 12927 4.836282</span></span>
-<span><span class="co">#&gt; 6  47     0      1 27.11768     0  206  76      1     64 16029 4.753590</span></span>
-<span><span class="co">#&gt;     lnwght ncigs sbp smoke         t1 time169 typchd69       uni weight wghtcat</span></span>
-<span><span class="co">#&gt; 1 5.298317    25 132     1 -1.6333529    1367        0 0.4860738    200       3</span></span>
-<span><span class="co">#&gt; 2 5.257495    25 120     1 -4.0633659    2991        0 0.1859543    192       3</span></span>
-<span><span class="co">#&gt; 3 5.298317     0 158     0  0.6397287    2960        0 0.7277991    200       3</span></span>
-<span><span class="co">#&gt; 4 5.010635     0 126     0  1.1217681    3069        0 0.6244636    150       2</span></span>
-<span><span class="co">#&gt; 5 5.075174     0 126     0  2.4250107    3081        0 0.3789776    160       2</span></span>
-<span><span class="co">#&gt; 6 5.062595    80 116     1 -0.7875199    2114        0 0.7355005    158       2</span></span>
-<span><span class="co">#&gt;   agec</span></span>
-<span><span class="co">#&gt; 1    3</span></span>
-<span><span class="co">#&gt; 2    4</span></span>
-<span><span class="co">#&gt; 3    5</span></span>
-<span><span class="co">#&gt; 4    4</span></span>
-<span><span class="co">#&gt; 5    2</span></span>
-<span><span class="co">#&gt; 6    3</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span><span class="co">#&gt;       age            arcus            behpat           bmi       </span></span>
-<span><span class="co">#&gt;  Min.   :39.00   Min.   :0.0000   Min.   :1.000   Min.   :11.19  </span></span>
-<span><span class="co">#&gt;  1st Qu.:42.00   1st Qu.:0.0000   1st Qu.:2.000   1st Qu.:22.96  </span></span>
-<span><span class="co">#&gt;  Median :45.00   Median :0.0000   Median :2.000   Median :24.39  </span></span>
-<span><span class="co">#&gt;  Mean   :46.28   Mean   :0.2985   Mean   :2.523   Mean   :24.52  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:50.00   3rd Qu.:1.0000   3rd Qu.:3.000   3rd Qu.:25.84  </span></span>
-<span><span class="co">#&gt;  Max.   :59.00   Max.   :1.0000   Max.   :4.000   Max.   :38.95  </span></span>
-<span><span class="co">#&gt;                  NAs    :2                                       </span></span>
-<span><span class="co">#&gt;      chd69              chol            dbp             dibpat      </span></span>
-<span><span class="co">#&gt;  Min.   :0.00000   Min.   :103.0   Min.   : 58.00   Min.   :0.0000  </span></span>
-<span><span class="co">#&gt;  1st Qu.:0.00000   1st Qu.:197.2   1st Qu.: 76.00   1st Qu.:0.0000  </span></span>
-<span><span class="co">#&gt;  Median :0.00000   Median :223.0   Median : 80.00   Median :1.0000  </span></span>
-<span><span class="co">#&gt;  Mean   :0.08148   Mean   :226.4   Mean   : 82.02   Mean   :0.5038  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:0.00000   3rd Qu.:253.0   3rd Qu.: 86.00   3rd Qu.:1.0000  </span></span>
-<span><span class="co">#&gt;  Max.   :1.00000   Max.   :645.0   Max.   :150.00   Max.   :1.0000  </span></span>
-<span><span class="co">#&gt;                    NAs    :12                                       </span></span>
-<span><span class="co">#&gt;      height            id            lnsbp           lnwght          ncigs     </span></span>
-<span><span class="co">#&gt;  Min.   :60.00   Min.   : 2001   Min.   :4.585   Min.   :4.357   Min.   : 0.0  </span></span>
-<span><span class="co">#&gt;  1st Qu.:68.00   1st Qu.: 3741   1st Qu.:4.787   1st Qu.:5.043   1st Qu.: 0.0  </span></span>
-<span><span class="co">#&gt;  Median :70.00   Median :11406   Median :4.836   Median :5.136   Median : 0.0  </span></span>
-<span><span class="co">#&gt;  Mean   :69.78   Mean   :10478   Mean   :4.850   Mean   :5.128   Mean   :11.6  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:72.00   3rd Qu.:13115   3rd Qu.:4.913   3rd Qu.:5.204   3rd Qu.:20.0  </span></span>
-<span><span class="co">#&gt;  Max.   :78.00   Max.   :22101   Max.   :5.438   Max.   :5.768   Max.   :99.0  </span></span>
-<span><span class="co">#&gt;                                                                                </span></span>
-<span><span class="co">#&gt;       sbp            smoke              t1               time169    </span></span>
-<span><span class="co">#&gt;  Min.   : 98.0   Min.   :0.0000   Min.   :-47.43147   Min.   :  18  </span></span>
-<span><span class="co">#&gt;  1st Qu.:120.0   1st Qu.:0.0000   1st Qu.: -1.00337   1st Qu.:2842  </span></span>
-<span><span class="co">#&gt;  Median :126.0   Median :0.0000   Median :  0.00748   Median :2942  </span></span>
-<span><span class="co">#&gt;  Mean   :128.6   Mean   :0.4762   Mean   : -0.03336   Mean   :2684  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:136.0   3rd Qu.:1.0000   3rd Qu.:  0.97575   3rd Qu.:3037  </span></span>
-<span><span class="co">#&gt;  Max.   :230.0   Max.   :1.0000   Max.   : 47.01623   Max.   :3430  </span></span>
-<span><span class="co">#&gt;                                   NAs    :39                        </span></span>
-<span><span class="co">#&gt;     typchd69           uni                weight       wghtcat     </span></span>
-<span><span class="co">#&gt;  Min.   :0.0000   Min.   :0.0007097   Min.   : 78   Min.   :1.000  </span></span>
-<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:0.2573755   1st Qu.:155   1st Qu.:2.000  </span></span>
-<span><span class="co">#&gt;  Median :0.0000   Median :0.5157779   Median :170   Median :2.000  </span></span>
-<span><span class="co">#&gt;  Mean   :0.1363   Mean   :0.5052159   Mean   :170   Mean   :2.433  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:0.0000   3rd Qu.:0.7559902   3rd Qu.:182   3rd Qu.:3.000  </span></span>
-<span><span class="co">#&gt;  Max.   :3.0000   Max.   :0.9994496   Max.   :320   Max.   :4.000  </span></span>
-<span><span class="co">#&gt;                                                                    </span></span>
-<span><span class="co">#&gt;       agec      </span></span>
-<span><span class="co">#&gt;  Min.   :1.000  </span></span>
-<span><span class="co">#&gt;  1st Qu.:2.000  </span></span>
-<span><span class="co">#&gt;  Median :2.000  </span></span>
-<span><span class="co">#&gt;  Mean   :2.631  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:3.000  </span></span>
-<span><span class="co">#&gt;  Max.   :5.000  </span></span>
-<span><span class="co">#&gt; </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sbp"</span>, <span class="st">"weight"</span>, <span class="st">"chd69"</span>, <span class="st">"age"</span>, <span class="st">"chol"</span>, <span class="st">"bmi"</span>, <span class="st">"smoke"</span>, <span class="st">"behpat"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       sbp            weight        chd69              age       </span></span>
+<span><span class="co">#&gt;  Min.   : 98.0   Min.   : 78   Min.   :0.00000   Min.   :39.00  </span></span>
+<span><span class="co">#&gt;  1st Qu.:120.0   1st Qu.:155   1st Qu.:0.00000   1st Qu.:42.00  </span></span>
+<span><span class="co">#&gt;  Median :126.0   Median :170   Median :0.00000   Median :45.00  </span></span>
+<span><span class="co">#&gt;  Mean   :128.6   Mean   :170   Mean   :0.08148   Mean   :46.28  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:136.0   3rd Qu.:182   3rd Qu.:0.00000   3rd Qu.:50.00  </span></span>
+<span><span class="co">#&gt;  Max.   :230.0   Max.   :320   Max.   :1.00000   Max.   :59.00  </span></span>
+<span><span class="co">#&gt;                                                                 </span></span>
+<span><span class="co">#&gt;       chol            bmi            smoke            behpat     </span></span>
+<span><span class="co">#&gt;  Min.   :103.0   Min.   :11.19   Min.   :0.0000   Min.   :1.000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:197.2   1st Qu.:22.96   1st Qu.:0.0000   1st Qu.:2.000  </span></span>
+<span><span class="co">#&gt;  Median :223.0   Median :24.39   Median :0.0000   Median :2.000  </span></span>
+<span><span class="co">#&gt;  Mean   :226.4   Mean   :24.52   Mean   :0.4762   Mean   :2.523  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:253.0   3rd Qu.:25.84   3rd Qu.:1.0000   3rd Qu.:3.000  </span></span>
+<span><span class="co">#&gt;  Max.   :645.0   Max.   :38.95   Max.   :1.0000   Max.   :4.000  </span></span>
+<span><span class="co">#&gt;  NAs    :12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="variable-labels" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="variable-labels">
-<span class="header-section-number">2</span> Variable labels</h2>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">var_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">lbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"label"</span><span class="op">)</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">lbl</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lbl</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">lbl</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="cn">NA_character_</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">lbl</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"; "</span><span class="op">)</span></span>
-<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span><span class="va">var_labels</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                                     age </span></span>
-<span><span class="co">#&gt;                                                   "Age" </span></span>
-<span><span class="co">#&gt;                                                   arcus </span></span>
-<span><span class="co">#&gt;                                         "Arcus Senilis" </span></span>
-<span><span class="co">#&gt;                                                  behpat </span></span>
-<span><span class="co">#&gt;                                    "Behavioral Pattern" </span></span>
-<span><span class="co">#&gt;                                                     bmi </span></span>
-<span><span class="co">#&gt;                               "Body Mass Index (kg/m2)" </span></span>
-<span><span class="co">#&gt;                                                   chd69 </span></span>
-<span><span class="co">#&gt;                                     "CHD Event by 1969" </span></span>
-<span><span class="co">#&gt;                                                    chol </span></span>
-<span><span class="co">#&gt;                                     "Total Cholesterol" </span></span>
-<span><span class="co">#&gt;                                                     dbp </span></span>
-<span><span class="co">#&gt;                              "Diastolic Blood Pressure" </span></span>
-<span><span class="co">#&gt;                                                  dibpat </span></span>
-<span><span class="co">#&gt;                                    "Behavioral Pattern" </span></span>
-<span><span class="co">#&gt;                                                  height </span></span>
-<span><span class="co">#&gt;                                       "Height (inches)" </span></span>
-<span><span class="co">#&gt;                                                      id </span></span>
-<span><span class="co">#&gt; "Variable description not provided in source metadata." </span></span>
-<span><span class="co">#&gt;                                                   lnsbp </span></span>
-<span><span class="co">#&gt;                         "Ln of Systolic Blood Pressure" </span></span>
-<span><span class="co">#&gt;                                                  lnwght </span></span>
-<span><span class="co">#&gt;                                          "Ln of Weight" </span></span>
-<span><span class="co">#&gt;                                                   ncigs </span></span>
-<span><span class="co">#&gt;                                    "Cigarettes per day" </span></span>
-<span><span class="co">#&gt;                                                     sbp </span></span>
-<span><span class="co">#&gt;                               "Systolic Blood Pressure" </span></span>
-<span><span class="co">#&gt;                                                   smoke </span></span>
-<span><span class="co">#&gt;                                       "Current smoking" </span></span>
-<span><span class="co">#&gt;                                                      t1 </span></span>
-<span><span class="co">#&gt; "Variable description not provided in source metadata." </span></span>
-<span><span class="co">#&gt;                                                 time169 </span></span>
-<span><span class="co">#&gt; "Variable description not provided in source metadata." </span></span>
-<span><span class="co">#&gt;                                                typchd69 </span></span>
-<span><span class="co">#&gt;                                     "Type of CHD Event" </span></span>
-<span><span class="co">#&gt;                                                     uni </span></span>
-<span><span class="co">#&gt; "Variable description not provided in source metadata." </span></span>
-<span><span class="co">#&gt;                                                  weight </span></span>
-<span><span class="co">#&gt;                                          "Weight (lbs)" </span></span>
-<span><span class="co">#&gt;                                                 wghtcat </span></span>
-<span><span class="co">#&gt;                                       "Weight Category" </span></span>
-<span><span class="co">#&gt;                                                    agec </span></span>
-<span><span class="co">#&gt;                                   "RECODE of age (Age)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section><section id="rmb2e-analysis-workflow" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="rmb2e-analysis-workflow">
-<span class="header-section-number">3</span> RMB2e analysis workflow</h2>
-<section id="research-question" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">3.1</span> Research question</h3>
-<p>For <code>wcgs</code> we ask: what is the association between a primary exposure and an outcome, after accounting for a plausible confounder?</p>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Variable-type helper functions are provided by the rmb package:</span></span>
-<span><span class="co"># `is_binary()` and `is_count()`.</span></span>
-<span></span>
-<span><span class="va">candidate_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">is.factor</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span></span>
-<span><span class="va">continuous_vars</span> <span class="op">&lt;-</span> <span class="va">candidate_vars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">candidate_vars</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">10</span></span>
-<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">binary_vars</span> <span class="op">&lt;-</span> <span class="va">candidate_vars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">candidate_vars</span><span class="op">]</span>, <span class="va">is_binary</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">count_vars</span> <span class="op">&lt;-</span> <span class="va">candidate_vars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">candidate_vars</span><span class="op">]</span>, <span class="va">is_count</span>, <span class="fu"><a href="https://rdrr.io/r/base/logical.html">logical</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span></span>
-<span><span class="va">outcome_var</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">binary_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">binary_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">continuous_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">continuous_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">count_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">count_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">candidate_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">candidate_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="cn">NA_character_</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">remaining_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">candidate_vars</span>, <span class="va">outcome_var</span><span class="op">)</span></span>
-<span><span class="va">exposure_var</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">remaining_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="va">remaining_vars</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="kw">else</span> <span class="cn">NA_character_</span></span>
-<span><span class="va">confounder_var</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">remaining_vars</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="va">remaining_vars</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="kw">else</span> <span class="cn">NA_character_</span></span>
-<span></span>
-<span><span class="va">model_family</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="va">outcome_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">binary_vars</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="st">"binomial"</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="va">outcome_var</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">count_vars</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="st">"poisson"</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="st">"gaussian"</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">can_fit_model</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  outcome <span class="op">=</span> <span class="va">outcome_var</span>,</span>
-<span>  exposure <span class="op">=</span> <span class="va">exposure_var</span>,</span>
-<span>  confounder <span class="op">=</span> <span class="va">confounder_var</span>,</span>
-<span>  family <span class="op">=</span> <span class="va">model_family</span>,</span>
-<span>  can_fit_model <span class="op">=</span> <span class="va">can_fit_model</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt;       outcome      exposure    confounder        family can_fit_model </span></span>
-<span><span class="co">#&gt;       "arcus"         "age"      "behpat"    "binomial"        "TRUE"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>We use arcus as the outcome and age as the primary exposure, with behpat as a candidate confounder.</p>
-</section><section id="causal-assumptions-conceptual-dag" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="causal-assumptions-conceptual-dag">
-<span class="header-section-number">3.2</span> Causal assumptions (conceptual DAG)</h3>
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>    <span class="st">"```{mermaid}</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"flowchart LR</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"  C["</span>, <span class="va">confounder_var</span>, <span class="st">"] --&gt; E["</span>, <span class="va">exposure_var</span>, <span class="st">"]</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"  C --&gt; Y["</span>, <span class="va">outcome_var</span>, <span class="st">"]</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"  E --&gt; Y</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"```</span></span>
-<span><span class="st">"</span>,</span>
-<span>    sep <span class="op">=</span> <span class="st">""</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>    <span class="st">"```{mermaid}</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"flowchart LR</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"  E["</span>, <span class="va">exposure_var</span>, <span class="st">"] --&gt; Y["</span>, <span class="va">outcome_var</span>, <span class="st">"]</span></span>
-<span><span class="st">"</span>,</span>
-<span>    <span class="st">"```</span></span>
-<span><span class="st">"</span>,</span>
-<span>    sep <span class="op">=</span> <span class="st">""</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Not enough variables to draw a DAG for this dataset.\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  C[behpat] --&gt; E[age]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  C --&gt; Y[arcus]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  E --&gt; Y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section><section id="rmb2e-analysis-workflow" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="rmb2e-analysis-workflow">
+<span class="header-section-number">2</span> RMB2e analysis workflow</h2>
+<section id="research-question" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="research-question">
+<span class="header-section-number">2.1</span> Research question</h3>
+<p>How are established risk factors (age, cholesterol, systolic blood pressure, BMI, smoking, and behavior pattern) associated with CHD risk in WCGS?</p>
+<p>RMB2e references: SBP distribution and two-variable EDA (pp.&nbsp;30–32, 39, 41), CHD table summaries (pp.&nbsp;64, 69), logistic CHD modeling with risk factors and behavior pattern (pp.&nbsp;171, 175–177).</p>
+</section><section id="causal-assumptions-conceptual-dag" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="causal-assumptions-conceptual-dag">
+<span class="header-section-number">2.2</span> Causal assumptions (conceptual DAG)</h3>
+<div class="cell" data-layout-align="default">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  AGE[Age] --&gt; CHD[CHD by follow-up]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  CHOL[Cholesterol] --&gt; CHD</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  SBP[Systolic BP] --&gt; CHD</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  BMI[BMI] --&gt; CHD</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  SMOKE[Smoking] --&gt; CHD</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  BEH[Behavior pattern] --&gt; SMOKE</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  BEH --&gt; CHD</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; SBP</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; CHOL</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
 <p></p><figure class="figure"></figure><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  C[behpat] --&gt; E[age]
-  C --&gt; Y[arcus]
-  E --&gt; Y
+  AGE[Age] --&gt; CHD[CHD by follow-up]
+  CHOL[Cholesterol] --&gt; CHD
+  SBP[Systolic BP] --&gt; CHD
+  BMI[BMI] --&gt; CHD
+  SMOKE[Smoking] --&gt; CHD
+  BEH[Behavior pattern] --&gt; SMOKE
+  BEH --&gt; CHD
+  AGE --&gt; SBP
+  AGE --&gt; CHOL
 </pre>
 </div>
 <p></p>
 </div>
 </div>
 </div>
-</section><section id="step-0-exploratory-data-analysis" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="step-0-exploratory-data-analysis">
-<span class="header-section-number">3.3</span> Step 0: Exploratory data analysis</h3>
-<p>We start by checking the analysis sample and the marginal distributions of the selected variables.</p>
+</section><section id="step-0-exploratory-data-analysis" class="level3" data-number="2.3"><h3 data-number="2.3" class="anchored" data-anchor-id="step-0-exploratory-data-analysis">
+<span class="header-section-number">2.3</span> Step 0: Exploratory data analysis</h3>
+<p>RMB2e emphasizes one- and two-variable summaries before modeling (pp.&nbsp;30–41).</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">analysis_vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">outcome_var</span>, <span class="va">exposure_var</span>, <span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">analysis_vars</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">analysis_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>n_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>, n_complete <span class="op">=</span> <span class="fl">0</span>, p_complete <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"No numeric, logical, or factor variables available for analysis.\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="va">analysis_df</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span>, <span class="va">analysis_vars</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
-<span>  <span class="va">analysis_df</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    n_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>,</span>
-<span>    n_complete <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span>,</span>
-<span>    p_complete <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co">#&gt;      arcus             age            behpat     </span></span>
-<span><span class="co">#&gt;  Min.   :0.0000   Min.   :39.00   Min.   :1.000  </span></span>
-<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:42.00   1st Qu.:2.000  </span></span>
-<span><span class="co">#&gt;  Median :0.0000   Median :45.00   Median :2.000  </span></span>
-<span><span class="co">#&gt;  Mean   :0.2985   Mean   :46.28   Mean   :2.523  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:50.00   3rd Qu.:3.000  </span></span>
-<span><span class="co">#&gt;  Max.   :1.0000   Max.   :59.00   Max.   :4.000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sbp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt;    98.0   120.0   126.0   128.6   136.0   230.0</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt;      78     155     170     170     182     320</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">sbp</span>, <span class="va">weight</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.2532496</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">behpat</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; behpat</span></span>
+<span><span class="co">#&gt;    1    2    3    4 </span></span>
+<span><span class="co">#&gt;  264 1325 1216  349</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">chd69</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; chd69</span></span>
+<span><span class="co">#&gt;          0          1 </span></span>
+<span><span class="co">#&gt; 0.91851617 0.08148383</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/frame.html">plot.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"No EDA plot: insufficient variables or complete cases"</span><span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span>,</span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span>,</span>
-<span>    xlab <span class="op">=</span> <span class="va">exposure_var</span>,</span>
-<span>    ylab <span class="op">=</span> <span class="va">outcome_var</span>,</span>
-<span>    main <span class="op">=</span> <span class="st">"Outcome vs exposure"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>    xlab <span class="op">=</span> <span class="va">exposure_var</span>,</span>
-<span>    ylab <span class="op">=</span> <span class="va">outcome_var</span>,</span>
-<span>    main <span class="op">=</span> <span class="st">"Outcome by exposure"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/frame.html">plot.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"No simple EDA plot available for selected variables"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, breaks <span class="op">=</span> <span class="fl">15</span>, col <span class="op">=</span> <span class="st">"grey85"</span>, border <span class="op">=</span> <span class="st">"white"</span>, main <span class="op">=</span> <span class="st">"WCGS systolic blood pressure"</span>, xlab <span class="op">=</span> <span class="st">"SBP"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/exploratory-plots-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span>, <span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Weight"</span>, ylab <span class="op">=</span> <span class="st">"SBP"</span>, main <span class="op">=</span> <span class="st">"SBP vs weight"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lowess.html">lowess</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span>, <span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, f <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"#d95f02"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/exploratory-plots-2.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="step-1-model-specification" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="step-1-model-specification">
-<span class="header-section-number">3.4</span> Step 1: Model specification</h3>
-<p>Following the GLM model-fitting process, we specify an unadjusted model and a model adjusted for the candidate confounder.</p>
+</section><section id="step-1-model-specification" class="level3" data-number="2.4"><h3 data-number="2.4" class="anchored" data-anchor-id="step-1-model-specification">
+<span class="header-section-number">2.4</span> Step 1: Model specification</h3>
+<p>Following RMB2e Chapter 5, we fit logistic regression for CHD with transformed continuous predictors and categorical behavior pattern (pp.&nbsp;171, 175).</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">can_fit_model</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span>, <span class="st">"haven_labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span>, <span class="st">"haven_labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span>, <span class="st">"haven_labelled"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">chol</span> <span class="op">&lt;</span> <span class="fl">645</span><span class="op">)</span></span>
+<span><span class="va">ana</span><span class="op">$</span><span class="va">age_10</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">age</span> <span class="op">/</span> <span class="fl">10</span></span>
+<span><span class="va">ana</span><span class="op">$</span><span class="va">chol_50</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">chol</span> <span class="op">/</span> <span class="fl">50</span></span>
+<span><span class="va">ana</span><span class="op">$</span><span class="va">sbp_50</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">sbp</span> <span class="op">/</span> <span class="fl">50</span></span>
+<span><span class="va">ana</span><span class="op">$</span><span class="va">bmi_10</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">bmi</span> <span class="op">/</span> <span class="fl">10</span></span>
+<span><span class="va">ana</span><span class="op">$</span><span class="va">smoke</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">ana</span><span class="op">$</span><span class="va">smoke</span><span class="op">)</span></span>
+<span><span class="va">ana</span><span class="op">$</span><span class="va">behpat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">ana</span><span class="op">$</span><span class="va">behpat</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">exposure_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">confounder_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
+<span><span class="va">formula_base</span> <span class="op">&lt;-</span> <span class="va">chd69</span> <span class="op">~</span> <span class="va">age_10</span> <span class="op">+</span> <span class="va">chol_50</span> <span class="op">+</span> <span class="va">sbp_50</span> <span class="op">+</span> <span class="va">bmi_10</span> <span class="op">+</span> <span class="va">smoke</span></span>
+<span><span class="va">formula_behpat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">formula_base</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="va">behpat</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">model_family</span> <span class="op">==</span> <span class="st">"binomial"</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">outcome_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcome_values</span><span class="op">)</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span></span>
-<span>        <span class="va">analysis_df</span><span class="op">[[</span><span class="va">outcome_var</span><span class="op">]</span><span class="op">]</span> <span class="op">==</span> <span class="va">outcome_values</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span>      <span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">formula_unadjusted</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcome_var</span>, <span class="st">"~"</span>, <span class="va">exposure_var</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">formula_adjusted</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcome_var</span>, <span class="st">"~"</span>, <span class="va">exposure_var</span>, <span class="st">"+"</span>, <span class="va">confounder_var</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="va">formula_unadjusted</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    family <span class="op">=</span> <span class="va">model_family</span>,</span>
-<span>    unadjusted <span class="op">=</span> <span class="va">formula_unadjusted</span>,</span>
-<span>    adjusted <span class="op">=</span> <span class="va">formula_adjusted</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="va">formula_unadjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
-<span>  <span class="va">formula_adjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model specification skipped: insufficient variables or complete cases.\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co">#&gt; $family</span></span>
-<span><span class="co">#&gt; [1] "binomial"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>base <span class="op">=</span> <span class="va">formula_base</span>, with_behpat <span class="op">=</span> <span class="va">formula_behpat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $base</span></span>
+<span><span class="co">#&gt; chd69 ~ age_10 + chol_50 + sbp_50 + bmi_10 + smoke</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $unadjusted</span></span>
-<span><span class="co">#&gt; arcus ~ age</span></span>
+<span><span class="co">#&gt; $with_behpat</span></span>
+<span><span class="co">#&gt; chd69 ~ age_10 + chol_50 + sbp_50 + bmi_10 + smoke + behpat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="step-2-parameter-estimation" class="level3" data-number="2.5"><h3 data-number="2.5" class="anchored" data-anchor-id="step-2-parameter-estimation">
+<span class="header-section-number">2.5</span> Step 2: Parameter estimation</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_base</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">formula_base</span>, data <span class="op">=</span> <span class="va">ana</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fit_behpat</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">formula_behpat</span>, data <span class="op">=</span> <span class="va">ana</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_base</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $adjusted</span></span>
-<span><span class="co">#&gt; arcus ~ age + behpat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; stats::glm(formula = formula_base, family = stats::binomial(), </span></span>
+<span><span class="co">#&gt;     data = ana)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -12.31099    0.97726 -12.598  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; age_10        0.64448    0.11907   5.412 6.22e-08 ***</span></span>
+<span><span class="co">#&gt; chol_50       0.53706    0.07586   7.079 1.45e-12 ***</span></span>
+<span><span class="co">#&gt; sbp_50        0.96469    0.20454   4.716 2.40e-06 ***</span></span>
+<span><span class="co">#&gt; bmi_10        0.57436    0.26355   2.179   0.0293 *  </span></span>
+<span><span class="co">#&gt; smoke1        0.63448    0.14018   4.526 6.01e-06 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 1774.2  on 3140  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 1614.4  on 3135  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 1626.4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 6</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; stats::glm(formula = formula_behpat, family = stats::binomial(), </span></span>
+<span><span class="co">#&gt;     data = ana)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -11.64889    1.01421 -11.486  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; age_10        0.60636    0.11990   5.057 4.25e-07 ***</span></span>
+<span><span class="co">#&gt; chol_50       0.53304    0.07637   6.980 2.96e-12 ***</span></span>
+<span><span class="co">#&gt; sbp_50        0.90158    0.20647   4.367 1.26e-05 ***</span></span>
+<span><span class="co">#&gt; bmi_10        0.55355    0.26563   2.084  0.03717 *  </span></span>
+<span><span class="co">#&gt; smoke1        0.60468    0.14110   4.285 1.82e-05 ***</span></span>
+<span><span class="co">#&gt; behpat2       0.06603    0.22123   0.298  0.76535    </span></span>
+<span><span class="co">#&gt; behpat3      -0.66522    0.24226  -2.746  0.00603 ** </span></span>
+<span><span class="co">#&gt; behpat4      -0.55849    0.31921  -1.750  0.08019 .  </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 1774.2  on 3140  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 1589.6  on 3132  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 1607.6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="step-2-parameter-estimation" class="level3" data-number="3.5"><h3 data-number="3.5" class="anchored" data-anchor-id="step-2-parameter-estimation">
-<span class="header-section-number">3.5</span> Step 2: Parameter estimation</h3>
+</section><section id="step-3-model-adequacy-checks" class="level3" data-number="2.6"><h3 data-number="2.6" class="anchored" data-anchor-id="step-3-model-adequacy-checks">
+<span class="header-section-number">2.6</span> Step 3: Model adequacy checks</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_unadjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
-<span><span class="va">fit_adjusted</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
-<span><span class="va">n_coef_display</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Nested-model comparison for contribution of behavior pattern (RMB2e pp. 175-177)</span></span>
+<span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit_base</span>, <span class="va">fit_behpat</span>, test <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of Deviance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: chd69 ~ age_10 + chol_50 + sbp_50 + bmi_10 + smoke</span></span>
+<span><span class="co">#&gt; Model 2: chd69 ~ age_10 + chol_50 + sbp_50 + bmi_10 + smoke + behpat</span></span>
+<span><span class="co">#&gt;   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    </span></span>
+<span><span class="co">#&gt; 1      3135     1614.4                          </span></span>
+<span><span class="co">#&gt; 2      3132     1589.6  3   24.765 1.729e-05 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">formula_unadjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">analysis_df</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">fit_function</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">model_family</span> <span class="op">==</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span> <span class="kw">else</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span></span>
-<span>  <span class="va">fit_args</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">model_family</span> <span class="op">==</span> <span class="st">"gaussian"</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">analysis_df</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">analysis_df</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span><span class="va">model_family</span>, <span class="fu"><a href="https://rdrr.io/r/base/ns-internal.html">asNamespace</a></span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">fit_unadjusted</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html">tryCatch</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">fit_function</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula_unadjusted</span><span class="op">)</span>, <span class="va">fit_args</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    error <span class="op">=</span> <span class="va">identity</span></span>
-<span>  <span class="op">)</span></span>
-<span>  <span class="va">fit_adjusted</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html">tryCatch</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">fit_function</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula_adjusted</span><span class="op">)</span>, <span class="va">fit_args</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    error <span class="op">=</span> <span class="va">identity</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_unadjusted</span>, <span class="st">"error"</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model fitting did not converge for this variable set.\n"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="va">coef_unadjusted</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="va">coef_adjusted</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">coef_unadjusted</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">n_coef_display</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coef_unadjusted</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">coef_adjusted</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">n_coef_display</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">coef_adjusted</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Parameter estimation skipped: fewer than 20 complete observations.\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co">#&gt;                Estimate  Std. Error   z value     Pr(&gt;|z|)</span></span>
-<span><span class="co">#&gt; (Intercept) -4.26190862 0.335185979 -12.71506 4.877578e-37</span></span>
-<span><span class="co">#&gt; age          0.07296977 0.007068465  10.32328 5.529858e-25</span></span>
-<span><span class="co">#&gt;                Estimate  Std. Error    z value     Pr(&gt;|z|)</span></span>
-<span><span class="co">#&gt; (Intercept) -3.96465178 0.369017309 -10.743810 6.337401e-27</span></span>
-<span><span class="co">#&gt; age          0.07167528 0.007098297  10.097531 5.665028e-24</span></span>
-<span><span class="co">#&gt; behpat      -0.09448342 0.049871922  -1.894521 5.815585e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co"># Simple calibration check via grouped observed vs fitted CHD risk</span></span>
+<span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span></span>
+<span><span class="va">cut_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">pred</span>, breaks <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pred</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, include.lowest <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">ana</span><span class="op">$</span><span class="va">chd69</span>, <span class="va">cut_pred</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="va">exp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">pred</span>, <span class="va">cut_pred</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>decile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>, observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>, expected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">exp</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             decile    observed   expected</span></span>
+<span><span class="co">#&gt; 1  [0.00443,0.019] 0.006349206 0.01421274</span></span>
+<span><span class="co">#&gt; 2   (0.019,0.0273] 0.022292994 0.02312116</span></span>
+<span><span class="co">#&gt; 3  (0.0273,0.0369] 0.031847134 0.03190256</span></span>
+<span><span class="co">#&gt; 4  (0.0369,0.0466] 0.028662420 0.04159867</span></span>
+<span><span class="co">#&gt; 5  (0.0466,0.0586] 0.073248408 0.05257476</span></span>
+<span><span class="co">#&gt; 6  (0.0586,0.0724] 0.041401274 0.06516772</span></span>
+<span><span class="co">#&gt; 7  (0.0724,0.0933] 0.070063694 0.08266049</span></span>
+<span><span class="co">#&gt; 8   (0.0933,0.122] 0.152866242 0.10673528</span></span>
+<span><span class="co">#&gt; 9    (0.122,0.172] 0.156050955 0.14409293</span></span>
+<span><span class="co">#&gt; 10   (0.172,0.555] 0.232484076 0.25317505</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="step-3-model-adequacy-checks" class="level3" data-number="3.6"><h3 data-number="3.6" class="anchored" data-anchor-id="step-3-model-adequacy-checks">
-<span class="header-section-number">3.6</span> Step 3: Model adequacy checks</h3>
+</section><section id="step-4-inference" class="level3" data-number="2.7"><h3 data-number="2.7" class="anchored" data-anchor-id="step-4-inference">
+<span class="header-section-number">2.7</span> Step 4: Inference</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">model_comparison</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_unadjusted</span>, <span class="st">"error"</span><span class="op">)</span> <span class="op">||</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="va">formula_unadjusted</span>, <span class="va">formula_adjusted</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"adjusted"</span>, AIC <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>      model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"unadjusted"</span>, <span class="st">"adjusted"</span><span class="op">)</span>,</span>
-<span>      AIC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_unadjusted</span><span class="op">)</span>, <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">model_comparison</span></span>
-<span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span>, <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span>,</span>
-<span>    xlab <span class="op">=</span> <span class="st">"Fitted values"</span>,</span>
-<span>    ylab <span class="op">=</span> <span class="st">"Residuals"</span>,</span>
-<span>    main <span class="op">=</span> <span class="st">"Residuals vs fitted"</span></span>
-<span>  <span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Model adequacy checks skipped because no fitted adjusted model is available.\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/adequacy-checks-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="step-4-inference" class="level3" data-number="3.7"><h3 data-number="3.7" class="anchored" data-anchor-id="step-4-inference">
-<span class="header-section-number">3.7</span> Step 4: Inference</h3>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">inherits</a></span><span class="op">(</span><span class="va">fit_adjusted</span>, <span class="st">"error"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">coef_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_adjusted</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span></span>
-<span></span>
-<span>  <span class="va">exposure_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"^"</span>, <span class="va">exposure_var</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">)</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>  <span class="va">p_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pr(&gt;|t|)"</span>, <span class="st">"Pr(&gt;|z|)"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">exposure_rows</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">p_col</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">target_row</span> <span class="op">&lt;-</span> <span class="va">exposure_rows</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span>    <span class="va">estimate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">[</span><span class="va">target_row</span>, <span class="st">"Estimate"</span><span class="op">]</span><span class="op">)</span></span>
-<span>    <span class="va">p_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">coef_table</span><span class="op">[</span><span class="va">target_row</span>, <span class="va">p_col</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span></span>
-<span>    <span class="va">direction</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1e-10</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="st">"little"</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">estimate</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="st">"a positive"</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>      <span class="st">"a negative"</span></span>
-<span>    <span class="op">}</span></span>
-<span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Estimated exposure effect:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="fl">3</span><span class="op">)</span>,</span>
-<span>      <span class="st">"(p ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">signif</a></span><span class="op">(</span><span class="va">p_value</span>, <span class="fl">3</span><span class="op">)</span>, <span class="st">")\n"</span></span>
-<span>    <span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>      <span class="st">"This suggests"</span>, <span class="va">direction</span>, <span class="st">"association between"</span>, <span class="va">exposure_var</span>,</span>
-<span>      <span class="st">"and"</span>, <span class="va">outcome_var</span>, <span class="st">"in the adjusted model.\n"</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Inference summary unavailable for the selected exposure term.\n"</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Inference skipped because no fitted adjusted model is available.\n"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co">#&gt; Estimated exposure effect: 0.072 (p = 5.67e-24 )</span></span>
-<span><span class="co">#&gt; This suggests a positive association between age and arcus in the adjusted model.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">or</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span>,</span>
+<span>  odds_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span>,</span>
+<span>  conf_low <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<span>  conf_high <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
+<span>  p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span>, <span class="st">"Pr(&gt;|z|)"</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">inf</span></span>
+<span><span class="co">#&gt;                    term   odds_ratio     conf_low    conf_high      p_value</span></span>
+<span><span class="co">#&gt; (Intercept) (Intercept) 8.728745e-06 1.169564e-06 0.0000625015 1.556790e-30</span></span>
+<span><span class="co">#&gt; age_10           age_10 1.833750e+00 1.449665e+00 2.3202948959 4.254445e-07</span></span>
+<span><span class="co">#&gt; chol_50         chol_50 1.704097e+00 1.467336e+00 1.9798506916 2.956099e-12</span></span>
+<span><span class="co">#&gt; sbp_50           sbp_50 2.463505e+00 1.636219e+00 3.6788537152 1.262183e-05</span></span>
+<span><span class="co">#&gt; bmi_10           bmi_10 1.739414e+00 1.030643e+00 2.9206747410 3.716580e-02</span></span>
+<span><span class="co">#&gt; smoke1           smoke1 1.830672e+00 1.391118e+00 2.4200886806 1.823581e-05</span></span>
+<span><span class="co">#&gt; behpat2         behpat2 1.068257e+00 7.013746e-01 1.6738007708 7.653499e-01</span></span>
+<span><span class="co">#&gt; behpat3         behpat3 5.141593e-01 3.223790e-01 0.8357872693 6.034086e-03</span></span>
+<span><span class="co">#&gt; behpat4         behpat4 5.720710e-01 3.011949e-01 1.0602818756 8.018746e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="scientific-conclusions" class="level3" data-number="3.8"><h3 data-number="3.8" class="anchored" data-anchor-id="scientific-conclusions">
-<span class="header-section-number">3.8</span> Scientific conclusions</h3>
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">can_fit_model</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">exposure_var</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">outcome_var</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>    <span class="st">"In this dataset, the adjusted model ("</span>, <span class="va">model_family</span>,</span>
-<span>    <span class="st">") provides an estimate for the association between "</span>,</span>
-<span>    <span class="va">exposure_var</span>, <span class="st">" and "</span>, <span class="va">outcome_var</span>,</span>
-<span>    <span class="st">", accounting for "</span>, <span class="va">confounder_var</span>,</span>
-<span>    <span class="st">". Interpret these findings in the context of study design, residual confounding, and measurement limitations.</span></span>
-<span><span class="st">"</span>,</span>
-<span>    sep <span class="op">=</span> <span class="st">""</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Scientific conclusions are limited because the dataset does not contain enough complete variables for the selected workflow.</span></span>
-<span><span class="st">"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><p>In this dataset, the adjusted model (binomial) provides an estimate for the association between age and arcus, accounting for behpat. Interpret these findings in the context of study design, residual confounding, and measurement limitations.</p>
-</section></section><section id="source" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="source">
-<span class="header-section-number">4</span> Source</h2>
-<ul>
-<li>UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/wcgs.dta</li>
-<li>Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). <em>Regression Methods in Biostatistics</em> (2nd edition).</li>
-</ul>
+</section><section id="scientific-conclusions" class="level3" data-number="2.8"><h3 data-number="2.8" class="anchored" data-anchor-id="scientific-conclusions">
+<span class="header-section-number">2.8</span> Scientific conclusions</h3>
+<p>Consistent with RMB2e Chapter 5 (pp.&nbsp;171, 175–177), older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking are associated with increased CHD odds in WCGS. Behavior pattern contributes additional information about CHD risk beyond these established predictors.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
