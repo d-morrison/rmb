@@ -6,6 +6,11 @@
 #' @param x A vector to classify.
 #'
 #' @return A single logical value.
+#' @examples
+#' is_binary(c(TRUE, FALSE, TRUE))
+#' is_binary(factor(c("no", "yes", "yes")))
+#' is_binary(c(0, 1, 1, 0, NA))
+#' is_binary(c(0, 1, 2))
 #' @export
 is_binary <- function(x) {
   x <- stats::na.omit(x)
@@ -33,6 +38,11 @@ is_binary <- function(x) {
 #' @param x A vector to classify.
 #'
 #' @return A single logical value.
+#' @examples
+#' is_count(c(0, 1, 2, 5, NA))
+#' is_count(c(0, 1))
+#' is_count(c(0.5, 1.5, 2.5))
+#' is_count(c(-1, 0, 1))
 #' @export
 is_count <- function(x) {
   if (!is.numeric(x)) {

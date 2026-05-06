@@ -16,3 +16,9 @@ A single logical value.
 Returns \code{TRUE} when values are non-negative integers with more than two
 distinct observed values.
 }
+\examples{
+is_count(c(0, 1, 2, 5, NA))
+is_count(c(0, 1))
+is_count(c(0.5, 1.5, 2.5))
+is_count(c(-1, 0, 1))
+}

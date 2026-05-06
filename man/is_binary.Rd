@@ -16,3 +16,9 @@ A single logical value.
 Returns \code{TRUE} when values are compatible with a binary outcome/predictor
 (logical, 2-level factor, or numeric values coded as 0/1).
 }
+\examples{
+is_binary(c(TRUE, FALSE, TRUE))
+is_binary(factor(c("no", "yes", "yes")))
+is_binary(c(0, 1, 1, 0, NA))
+is_binary(c(0, 1, 2))
+}
