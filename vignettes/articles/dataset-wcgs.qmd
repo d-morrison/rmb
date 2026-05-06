@@ -109,8 +109,8 @@ stats::anova(fit_base, fit_behpat, test = "Chisq")
 pred <- stats::fitted(fit_behpat)
 cut_pred <- cut(pred, breaks = stats::quantile(pred, probs = seq(0, 1, by = 0.1)), include.lowest = TRUE)
 obs <- tapply(ana$chd69, cut_pred, mean)
-exp_val <- tapply(pred, cut_pred, mean)
-data.frame(decile = names(obs), observed = as.numeric(obs), expected = as.numeric(exp_val))
+expected_prob <- tapply(pred, cut_pred, mean)
+data.frame(decile = names(obs), observed = as.numeric(obs), expected = as.numeric(expected_prob))
 ```
 
 ### Inference
