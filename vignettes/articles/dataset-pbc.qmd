@@ -48,16 +48,17 @@ flowchart LR
 ```{r load-data}
 data(pbc, package = "rmb")
 dat <- pbc
+dat$status <- as.integer(unclass(dat$status))
 dim(dat)
 summary(dat[c("years", "status", "rx", "logbili", "logalbu", "logprot", "age", "edema")])
 ```
 
 ### Statistical analysis
 
-A Cox proportional hazards model is fitted with death (status == 2) as the event, using log-transformed bilirubin, albumin, and prothrombin time plus age and edema as predictors (RMB2e Ch. 6 / Dickson 1989). The proportional hazards assumption is checked with scaled Schoenfeld residuals.
+A Cox proportional hazards model is fitted with death (status == 1) as the event, using log-transformed bilirubin, albumin, and prothrombin time plus age and edema as predictors (RMB2e Ch. 6 / Dickson 1989). The proportional hazards assumption is checked with scaled Schoenfeld residuals.
 
 ```{r model-specification}
-formula_main <- survival::Surv(years, status == 2) ~ logbili + logalbu + logprot + age + edema
+formula_main <- survival::Surv(years, status == 1) ~ logbili + logalbu + logprot + age + edema
 formula_main
 ```
 
@@ -72,7 +73,7 @@ summary(dat[c("logbili", "logalbu", "logprot", "age")])
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-km_all <- survival::survfit(survival::Surv(years, status == 2) ~ 1, data = dat)
+km_all <- survival::survfit(survival::Surv(years, status == 1) ~ 1, data = dat)
 plot(km_all, lwd = 2, xlab = "Years", ylab = "Survival probability",
      main = "PBC: Overall Kaplan-Meier survival curve")
 ```
