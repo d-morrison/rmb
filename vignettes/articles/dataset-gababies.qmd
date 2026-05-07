@@ -98,11 +98,12 @@ par(mfrow = c(1, 1))
 ```{r inference}
 ci <- stats::confint(fit)
 coefs <- summary(fit)$coefficients
+ci_sub <- ci[rownames(coefs), , drop = FALSE]
 data.frame(
   term = rownames(coefs),
   estimate = coefs[, "Estimate"],
-  conf_low = ci[, 1],
-  conf_high = ci[, 2],
+  conf_low = ci_sub[, 1],
+  conf_high = ci_sub[, 2],
   p_value = coefs[, "Pr(>|t|)"]
 )
 ```

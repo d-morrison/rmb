@@ -115,7 +115,7 @@ data.frame(
 
 ## Discussion
 
-The interaction between treatment and fall risk category tests whether alendronate's fracture-prevention benefit is uniform or varies with fall risk. The likelihood-ratio test for the interaction provides evidence about effect modification on the log-odds scale, as described in RMB2e Chapter 8. If the interaction is statistically meaningful, subgroup-specific treatment recommendations may be appropriate; if not, a single pooled estimate describes the treatment effect adequately. Lower hip BMD and older age are independently predictive of fracture regardless of treatment assignment.
+The interaction between treatment and fall risk category tests whether the fracture-prevention benefit of alendronate is uniform or varies with fall risk. The likelihood-ratio test for the interaction provides evidence about effect modification on the log-odds scale, as described in RMB2e Chapter 8. If the interaction is statistically meaningful, subgroup-specific treatment recommendations may be appropriate; if not, a single pooled estimate describes the treatment effect adequately. Lower hip BMD and older age are independently predictive of fracture regardless of treatment assignment.
 
 ## Source
 

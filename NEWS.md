@@ -1,5 +1,7 @@
 # rmb (development version)
 
+- Restructured all 26 dataset vignettes as mini-journal articles with four standard sections: Introduction, Methods, Results, and Discussion. Each article includes a dataset-specific causal DAG, targeted statistical analysis, and scientific interpretation anchored to the relevant RMB2e chapter.
+- Bumped development version to `0.0.0.9015`.
 - Expanded all dataset vignettes from a single generic model to an RMB2e workflow with interleaved prose and stepwise modeling sections (research question, EDA, specification, estimation, adequacy checks, inference, conclusions), organized by dataset.
 - Added conceptual DAGs and updated tests to verify the new workflow structure across dataset vignettes.
 - Bumped development version to `0.0.0.9014`.
