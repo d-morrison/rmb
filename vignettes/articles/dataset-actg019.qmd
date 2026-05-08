@@ -132,7 +132,7 @@ swimplot::swimmer_plot(
   ggplot2::labs(
     x = "Days since randomization",
     y = "Patient",
-    title = "ACTG 019: Follow-up timeline by treatment (n = 80 sample; \u00d7 = AIDS/death)"
+    title = "ACTG 019: Follow-up timeline by treatment (n = 80 sample; X = AIDS/death)"
   )
 ```
 

@@ -111,7 +111,7 @@ dat_sum <- merge(dat_sum, first_obs, by = "id")
 dat_sum$Menopausal_timing <- factor(
   dat_sum$meno_ov_52,
   levels = c(0, 1),
-  labels = c("\u226452", ">52")
+  labels = c("<=52", ">52")
 )
 
 swimplot::swimmer_plot(
