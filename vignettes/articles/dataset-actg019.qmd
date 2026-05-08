@@ -40,11 +40,22 @@ after accounting for baseline CD4 cell count?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  RX[ZDV treatment] --> T[Time to AIDS/death]
-  CD4[Baseline CD4] --> T
-  CD4 --> RX
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  time_aids ~ rx + cd4,
+  rx ~ cd4,
+  labels = c(
+    time_aids = "Time to AIDS/death",
+    rx = "ZDV treatment",
+    cd4 = "Baseline CD4"
+  ),
+  exposure = "rx",
+  outcome = "time_aids"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "ACTG 019: Causal DAG")
 ```
 
 ## Methods

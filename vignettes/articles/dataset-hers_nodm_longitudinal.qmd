@@ -39,15 +39,25 @@ and longitudinal systolic blood pressure in postmenopausal women without diabete
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  HRT[HRT assignment] --> SBP[Systolic BP]
-  EXERCISE[Exercise] --> SBP
-  HRT --> INT[HRT × exercise]
-  EXERCISE --> INT
-  INT --> SBP
-  BMI[BMI] --> SBP
-  AGE[Age] --> SBP
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  sbp ~ hrt + exercise + int_hrt_exercise + bmi + age,
+  int_hrt_exercise ~ hrt + exercise,
+  labels = c(
+    sbp = "Systolic BP",
+    hrt = "HRT assignment",
+    exercise = "Exercise",
+    int_hrt_exercise = "HRT x exercise",
+    bmi = "BMI",
+    age = "Age"
+  ),
+  exposure = "hrt",
+  outcome = "sbp"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "HERS longitudinal: Causal DAG")
 ```
 
 ## Methods

@@ -40,13 +40,24 @@ among injection drug users?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  DEPRESS[Depression] --> LOG_SHARE[Log needle sharing]
-  HOMELESS[Homelessness] --> LOG_SHARE
-  HIV[HIV status] --> LOG_SHARE
-  POLY[Polydrug use] --> LOG_SHARE
-  INJECTFREQ[Injection frequency] --> LOG_SHARE
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  log_share ~ depress + homeless + hiv + poly + injectfreq,
+  labels = c(
+    log_share = "Log needle sharing",
+    depress = "Depression",
+    homeless = "Homelessness",
+    hiv = "HIV status",
+    poly = "Polydrug use",
+    injectfreq = "Injection frequency"
+  ),
+  exposure = "depress",
+  outcome = "log_share"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Needle sharing: Causal DAG")
 ```
 
 ## Methods

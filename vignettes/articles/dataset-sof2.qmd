@@ -39,12 +39,23 @@ and is the rate of decline modified by late menopause?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  BMDBASE[Baseline BMD] --> TBMD[Total BMD]
-  BMI --> TBMD
-  TIME[Visit/time] --> TBMD
-  MENOP[Late menopause] --> TBMD
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  tbmd ~ bmdbase + bmi + time + menop,
+  labels = c(
+    tbmd = "Total BMD",
+    bmdbase = "Baseline BMD",
+    bmi = "BMI",
+    time = "Visit/time",
+    menop = "Late menopause"
+  ),
+  exposure = "menop",
+  outcome = "tbmd"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "SOF2: Causal DAG")
 ```
 
 ## Methods

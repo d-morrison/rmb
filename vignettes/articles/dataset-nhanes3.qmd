@@ -39,12 +39,22 @@ in a nationally representative US sample?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  AGE[Age per 10yr] --> DM[Diabetes]
-  SEX[Female] --> DM
-  AA[African American] --> DM
-  MA[Mexican American] --> DM
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  dm ~ age + sex + aa + ma,
+  labels = c(
+    dm = "Diabetes",
+    age = "Age per 10yr",
+    sex = "Female",
+    aa = "African American",
+    ma = "Mexican American"
+  ),
+  outcome = "dm"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "NHANES III: Causal DAG")
 ```
 
 ## Methods

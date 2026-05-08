@@ -39,17 +39,28 @@ BMI, smoking, and behavior pattern—jointly associated with CHD incidence in WC
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  AGE[Age] --> CHD[CHD by follow-up]
-  CHOL[Cholesterol] --> CHD
-  SBP[Systolic BP] --> CHD
-  BMI[BMI] --> CHD
-  SMOKE[Smoking] --> CHD
-  BEH[Behavior pattern] --> SMOKE
-  BEH --> CHD
-  AGE --> SBP
-  AGE --> CHOL
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  chd ~ age + chol + sbp + bmi + smoke + beh,
+  smoke ~ beh,
+  sbp ~ age,
+  chol ~ age,
+  labels = c(
+    chd = "CHD by follow-up",
+    age = "Age",
+    chol = "Cholesterol",
+    sbp = "Systolic BP",
+    bmi = "BMI",
+    smoke = "Smoking",
+    beh = "Behavior pattern"
+  ),
+  exposure = "beh",
+  outcome = "chd"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "WCGS: Causal DAG")
 ```
 
 ## Methods

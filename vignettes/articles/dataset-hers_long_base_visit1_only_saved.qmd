@@ -40,13 +40,24 @@ after adjusting for exercise and BMI?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  HRT[HRT assignment] --> GLUC[Year-1 glucose]
-  BMI[BMI] --> GLUC
-  EXERCISE[Exercise ≥3x/wk] --> GLUC
-  AGE[Age] --> GLUC
-  AGE --> BMI
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  gluc ~ hrt + bmi + exercise + age,
+  bmi ~ age,
+  labels = c(
+    gluc = "Year-1 glucose",
+    hrt = "HRT assignment",
+    bmi = "BMI",
+    exercise = "Exercise >=3x/wk",
+    age = "Age"
+  ),
+  exposure = "hrt",
+  outcome = "gluc"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "HERS baseline: Causal DAG")
 ```
 
 ## Methods

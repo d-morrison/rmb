@@ -39,13 +39,24 @@ after adjustment for tobacco use and age group?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  AGE[Age group] --> CASE[Esophageal cancer]
-  TOB[Tobacco] --> CASE
-  ALC[Alcohol] --> CASE
-  AGE --> ALC
-  AGE --> TOB
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  cancer ~ age + tob + alc,
+  alc ~ age,
+  tob ~ age,
+  labels = c(
+    cancer = "Esophageal cancer",
+    age = "Age group",
+    tob = "Tobacco",
+    alc = "Alcohol"
+  ),
+  exposure = "alc",
+  outcome = "cancer"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Esoph: Causal DAG")
 ```
 
 ## Methods

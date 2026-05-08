@@ -39,11 +39,22 @@ Is current smoking associated with 20-year all-cause mortality after adjustment 
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  AGE[Age at baseline] --> SMOKE[Current smoking]
-  AGE --> DEATH[20-year mortality]
-  SMOKE --> DEATH
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  death ~ age + smoke,
+  smoke ~ age,
+  labels = c(
+    death = "20-year mortality",
+    smoke = "Current smoking",
+    age = "Age at baseline"
+  ),
+  exposure = "smoke",
+  outcome = "death"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Whickham: Causal DAG")
 ```
 
 ## Methods

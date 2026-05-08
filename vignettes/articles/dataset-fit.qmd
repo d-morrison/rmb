@@ -40,13 +40,24 @@ compared to placebo in postmenopausal women with low BMD?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  TREAT[Alendronate] --> VFX[New vertebral fx]
-  AGE --> VFX
-  FRACBASE[Prior fx] --> VFX
-  BMDBASE[Baseline BMD] --> VFX
-  BMDBASE --> TREAT
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  vfx ~ treat + age + fracbase + bmdbase,
+  treat ~ bmdbase,
+  labels = c(
+    vfx = "New vertebral fx",
+    treat = "Alendronate",
+    age = "Age",
+    fracbase = "Prior fx",
+    bmdbase = "Baseline BMD"
+  ),
+  exposure = "treat",
+  outcome = "vfx"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "FIT: Causal DAG")
 ```
 
 ## Methods

@@ -38,10 +38,21 @@ Do different pill types differ in mean fecal fat output, accounting for within-s
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  PILL[Pill type] --> FECFAT[Fecal fat g/day]
-  SUBJECT[Subject/patient] --> FECFAT
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  fecfat ~ pill + subject,
+  labels = c(
+    fecfat = "Fecal fat (g/day)",
+    pill = "Pill type",
+    subject = "Subject/patient"
+  ),
+  exposure = "pill",
+  outcome = "fecfat"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Fecal fat: Causal DAG")
 ```
 
 ## Methods

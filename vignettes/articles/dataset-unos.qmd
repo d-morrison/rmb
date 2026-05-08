@@ -40,13 +40,24 @@ compared to cadaveric transplant in pediatric kidney recipients?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  TXTYPE[Living vs cadaveric] --> MORT[Post-transplant mortality]
-  AGE --> MORT
-  AGEDON[Donor age] --> MORT
-  COLD[Cold ischemic time] --> MORT
-  REJ[Rejection 1yr] --> MORT
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  mort ~ txtype + age + agedon + cold + rej,
+  labels = c(
+    mort = "Post-transplant mortality",
+    txtype = "Living vs cadaveric",
+    age = "Age",
+    agedon = "Donor age",
+    cold = "Cold ischemic time",
+    rej = "Rejection 1yr"
+  ),
+  exposure = "txtype",
+  outcome = "mort"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "UNOS: Causal DAG")
 ```
 
 ## Methods

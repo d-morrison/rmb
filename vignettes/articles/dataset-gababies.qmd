@@ -39,12 +39,23 @@ after accounting for clustering of births within mothers?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  MOMAGE[Maternal age] --> BW[Birthweight]
-  INTERVAL[Interpregnancy interval] --> BW
-  INITWT[Initial maternal weight] --> BW
-  MOMAGE --> INTERVAL
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  bw ~ momage + interval + initwt,
+  interval ~ momage,
+  labels = c(
+    bw = "Birthweight",
+    momage = "Maternal age",
+    interval = "Interpregnancy interval",
+    initwt = "Initial maternal weight"
+  ),
+  exposure = "interval",
+  outcome = "bw"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "GABABabies: Causal DAG")
 ```
 
 ## Methods

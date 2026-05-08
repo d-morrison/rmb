@@ -40,11 +40,22 @@ after adjustment for body weight in older men?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  BMD[BMD quantile] --> SURV[Event/death]
-  WEIGHT[Body weight] --> SURV
-  WEIGHT --> BMD
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  surv ~ bmd + weight,
+  bmd ~ weight,
+  labels = c(
+    surv = "Event/death",
+    bmd = "BMD quantile",
+    weight = "Body weight"
+  ),
+  exposure = "bmd",
+  outcome = "surv"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "MrOS: Causal DAG")
 ```
 
 ## Methods

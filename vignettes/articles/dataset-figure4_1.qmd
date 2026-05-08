@@ -39,10 +39,21 @@ compared to a simple linear model?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  X[Predictor x] --> Y[Outcome y]
-  X2[x squared] --> Y
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  y ~ x + x_sq,
+  labels = c(
+    y = "Outcome y",
+    x = "Predictor x",
+    x_sq = "x squared"
+  ),
+  exposure = "x",
+  outcome = "y"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Figure 4.1: Causal DAG")
 ```
 
 ## Methods

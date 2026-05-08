@@ -38,22 +38,29 @@ and does the treatment effect of HT on year-1 LDL differ by baseline statin use?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  BMI[BMI] --> LDL[LDL cholesterol]
-  AGE[Age] --> BMI
-  AGE --> LDL
-  NW[Nonwhite ethnicity] --> BMI
-  NW --> LDL
-  SMK[Smoking] --> BMI
-  SMK --> LDL
-  DRINK[Alcohol use] --> BMI
-  DRINK --> LDL
-  HT[Randomized HT] --> LDL1[Year-1 LDL]
-  STATIN[Baseline statin use] --> LDL1
-  HT --> INT[HT × statin interaction]
-  STATIN --> INT
-  INT --> LDL1
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  ldl1 ~ ht + statin + int_ht_statin + bmi + age + nw + smk + drink,
+  int_ht_statin ~ ht + statin,
+  bmi ~ age + nw + smk + drink,
+  labels = c(
+    ldl1 = "Year-1 LDL",
+    ht = "Randomized HT",
+    statin = "Baseline statin",
+    int_ht_statin = "HT x statin",
+    bmi = "BMI",
+    age = "Age",
+    nw = "Nonwhite ethnicity",
+    smk = "Smoking",
+    drink = "Alcohol use"
+  ),
+  exposure = "ht",
+  outcome = "ldl1"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "HERS: Causal DAG")
 ```
 
 ## Methods

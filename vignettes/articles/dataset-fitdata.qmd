@@ -41,13 +41,24 @@ after adjustment for baseline BMD, age, BMI, and prior vertebral fracture?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  TX[Alendronate] --> COBMD[End BMD]
-  BLBMD[Baseline BMD] --> COBMD
-  AGE --> COBMD
-  BMI --> COBMD
-  BLVFX[Prior fx] --> COBMD
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  cobmd ~ tx + blbmd + age + bmi + blvfx,
+  labels = c(
+    cobmd = "End BMD",
+    tx = "Alendronate",
+    blbmd = "Baseline BMD",
+    age = "Age",
+    bmi = "BMI",
+    blvfx = "Prior fx"
+  ),
+  exposure = "tx",
+  outcome = "cobmd"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "FIT data: Causal DAG")
 ```
 
 ## Methods

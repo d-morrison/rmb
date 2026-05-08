@@ -39,11 +39,24 @@ but different residual diagnostic patterns?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  X[Predictor x] --> Y1[Outcome y1]
-  X --> Y2[Outcome y2]
-  X --> Y3[Outcome y3]
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  y1 ~ x,
+  y2 ~ x,
+  y3 ~ x,
+  labels = c(
+    x = "Predictor x",
+    y1 = "Outcome y1",
+    y2 = "Outcome y2",
+    y3 = "Outcome y3"
+  ),
+  exposure = "x",
+  outcome = "y1"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Figure 4.12: Causal DAG")
 ```
 
 ## Methods

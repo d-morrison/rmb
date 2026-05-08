@@ -39,14 +39,24 @@ after adjusting for gestational age and birth weight?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  GEST[Gestational age] --> PT[Phototherapy]
-  BWT[Birth weight] --> PT
-  GEST --> OT[Over transfusion threshold]
-  BWT --> OT
-  PT --> OT
-  TSB[qual_TSB] --> OT
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  ot ~ gest + bwt + pt + tsb,
+  pt ~ gest + bwt,
+  labels = c(
+    ot = "Over transfusion threshold",
+    pt = "Phototherapy",
+    gest = "Gestational age",
+    bwt = "Birth weight",
+    tsb = "Serum bilirubin"
+  ),
+  exposure = "pt",
+  outcome = "ot"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "Phototherapy: Causal DAG")
 ```
 
 ## Methods

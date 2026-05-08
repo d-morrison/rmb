@@ -40,12 +40,23 @@ after adjustment for age category and prior STI history?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  NEWPART[New partner] --> HSV2[Incident HSV-2]
-  STI[STI history] --> HSV2
-  AGE[Age category] --> HSV2
-  AGE --> NEWPART
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  hsv2 ~ newpart + sti + age,
+  newpart ~ age,
+  labels = c(
+    hsv2 = "Incident HSV-2",
+    newpart = "New partner",
+    sti = "STI history",
+    age = "Age category"
+  ),
+  exposure = "newpart",
+  outcome = "hsv2"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "MIRA: Causal DAG")
 ```
 
 ## Methods

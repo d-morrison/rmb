@@ -37,13 +37,23 @@ suggesting non-random missingness?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  BMI[BMI category] --> MISS[Missing glucose]
-  AGE[Age] --> MISS
-  SMOKE[Smoking] --> MISS
-  HTN[HTN meds] --> MISS
-  DRINK[Alcohol use] --> MISS
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  miss ~ bmi + age + smoke + htn + drink,
+  labels = c(
+    miss = "Missing glucose",
+    bmi = "BMI category",
+    age = "Age",
+    smoke = "Smoking",
+    htn = "HTN meds",
+    drink = "Alcohol use"
+  ),
+  outcome = "miss"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "HERS visit 4: Missing data DAG")
 ```
 
 ## Methods

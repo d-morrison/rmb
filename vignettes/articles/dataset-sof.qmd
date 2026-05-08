@@ -39,12 +39,23 @@ after adjustment for age and menopausal age in older women?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  BMI --> TBMD[Total BMD]
-  AGE --> TBMD
-  AGE --> BMI
-  MENOAGE[Menopausal age] --> TBMD
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  tbmd ~ bmi + age + menoage,
+  bmi ~ age,
+  labels = c(
+    tbmd = "Total BMD",
+    bmi = "BMI",
+    age = "Age",
+    menoage = "Menopausal age"
+  ),
+  exposure = "bmi",
+  outcome = "tbmd"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "SOF: Causal DAG")
 ```
 
 ## Methods

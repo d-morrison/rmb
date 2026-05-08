@@ -39,15 +39,25 @@ between women with and without high fall risk?
 
 ### Causal assumptions
 
-```{mermaid}
-flowchart LR
-  TRT[Alendronate] --> FRX[Fracture]
-  FALLRISK[Fall risk] --> FRX
-  AGE --> FRX
-  BMD[Hip BMD] --> FRX
-  TRT --> INT[TRT x fall risk]
-  FALLRISK --> INT
-  INT --> FRX
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  frx ~ trt + fallrisk + age + bmd + int_trt_fallrisk,
+  int_trt_fallrisk ~ trt + fallrisk,
+  labels = c(
+    frx = "Fracture",
+    trt = "Alendronate",
+    fallrisk = "Fall risk",
+    age = "Age",
+    bmd = "Hip BMD",
+    int_trt_fallrisk = "TRT x fall risk"
+  ),
+  exposure = "trt",
+  outcome = "frx"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "FIT GLM: Causal DAG")
 ```
 
 ## Methods
