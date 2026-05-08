@@ -42,16 +42,16 @@ after adjustment for age and menopausal age in older women?
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
-  tbmd ~ bmi + age + menoage,
+  totbmd ~ bmi + age + meno_age,
   bmi ~ age,
   labels = c(
-    tbmd = "Total BMD",
+    totbmd = "Total BMD",
     bmi = "BMI",
     age = "Age",
-    menoage = "Menopausal age"
+    meno_age = "Menopausal age"
   ),
   exposure = "bmi",
-  outcome = "tbmd"
+  outcome = "totbmd"
 )
 ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
