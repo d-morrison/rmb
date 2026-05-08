@@ -30,3 +30,32 @@ test_that("dataset index includes study design summaries and article links", {
   expect_true(all(nzchar(rmb_datasets$primary_article)))
   expect_true(all(nzchar(rmb_datasets$primary_article_url)))
 })
+
+test_that(
+  "dataset index includes corrected DOI links for cited primary articles",
+  {
+    data("rmb_datasets", package = "rmb", envir = environment())
+
+    doi_lookup <- setNames(
+      rmb_datasets$primary_article_url,
+      rmb_datasets$object
+    )
+
+    expect_identical(
+      doi_lookup[["wcgs"]],
+      "https://doi.org/10.1001/jama.1964.03070010021004"
+    )
+    expect_identical(
+      doi_lookup[["mira_hsv"]],
+      "https://doi.org/10.1136/sti.2010.047142"
+    )
+    expect_identical(
+      doi_lookup[["sof"]],
+      "https://doi.org/10.1056/NEJM199503233321202"
+    )
+    expect_identical(
+      doi_lookup[["sof2"]],
+      "https://doi.org/10.1056/NEJM199503233321202"
+    )
+  }
+)
