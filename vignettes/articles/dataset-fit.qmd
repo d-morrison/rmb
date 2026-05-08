@@ -68,7 +68,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(fit, package = "rmb")
 dat <- fit
 dim(dat)
-summary(dat[c("treat", "age", "frac_base", "bmd_base", "newvfx", "fitpy")])
+summary(haven::zap_labels(dat[c("treat", "age", "frac_base", "bmd_base", "newvfx", "fitpy")]))
 ```
 
 ### Statistical analysis

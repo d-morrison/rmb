@@ -64,7 +64,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(hers_nodm_visit4_only, package = "rmb")
 dat <- hers_nodm_visit4_only
 dim(dat)
-summary(dat[c("miss_gluc", "bmi_cat", "age", "csmker", "htnmeds", "drinkany")])
+summary(haven::zap_labels(dat[c("miss_gluc", "bmi_cat", "age", "csmker", "htnmeds", "drinkany")]))
 ```
 
 ### Statistical analysis

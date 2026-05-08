@@ -68,7 +68,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(hers_nodm_longitudinal, package = "rmb")
 dat <- hers_nodm_longitudinal
 dim(dat)
-summary(dat[c("sbp", "group", "exercise", "bmi", "age", "visit")])
+summary(haven::zap_labels(dat[c("sbp", "group", "exercise", "bmi", "age", "visit")]))
 ```
 
 ### Statistical analysis

@@ -68,7 +68,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(needle_sharing, package = "rmb")
 dat <- needle_sharing
 dim(dat)
-summary(dat[c("logshsyr", "dprsn_dx", "homeless", "hivstat", "polydrug", "sqrtnivd")])
+summary(haven::zap_labels(dat[c("logshsyr", "dprsn_dx", "homeless", "hivstat", "polydrug", "sqrtnivd")]))
 ```
 
 ### Statistical analysis

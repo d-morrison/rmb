@@ -67,7 +67,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(mira_hsv, package = "rmb")
 dat <- mira_hsv
 dim(dat)
-summary(dat[c("hsv2", "newparts", "stihx", "agecat")])
+summary(haven::zap_labels(dat[c("hsv2", "newparts", "stihx", "agecat")]))
 ```
 
 ### Statistical analysis

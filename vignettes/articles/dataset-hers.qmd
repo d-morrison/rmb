@@ -72,7 +72,7 @@ data(hers, package = "rmb")
 dat <- hers
 dim(dat)
 nd <- subset(dat, diabetes == 0)
-summary(dat[c("HT", "BMI", "LDL", "LDL1", "exercise", "glucose", "age", "nonwhite", "smoking", "drinkany", "statins")])
+summary(haven::zap_labels(dat[c("HT", "BMI", "LDL", "LDL1", "exercise", "glucose", "age", "nonwhite", "smoking", "drinkany", "statins")]))
 ```
 
 ### Statistical analysis

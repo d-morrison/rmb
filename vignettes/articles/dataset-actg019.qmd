@@ -66,7 +66,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(actg019, package = "rmb")
 dat <- actg019
 dim(dat)
-summary(dat[c("days", "cens", "rx", "cd4")])
+summary(haven::zap_labels(dat[c("days", "cens", "rx", "cd4")]))
 ```
 
 ### Statistical analysis

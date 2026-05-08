@@ -71,7 +71,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(wcgs, package = "rmb")
 dat <- wcgs
 dim(dat)
-summary(dat[c("sbp", "weight", "chd69", "age", "chol", "bmi", "smoke", "behpat")])
+summary(haven::zap_labels(dat[c("sbp", "weight", "chd69", "age", "chol", "bmi", "smoke", "behpat")]))
 ```
 
 ### Statistical analysis

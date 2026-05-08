@@ -67,7 +67,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(phototherapy, package = "rmb")
 dat <- phototherapy
 dim(dat)
-summary(dat[c("phototherapy", "over_thresh", "qual_TSB", "birth_wt", "gest_age", "male", "age_days")])
+summary(haven::zap_labels(dat[c("phototherapy", "over_thresh", "qual_TSB", "birth_wt", "gest_age", "male", "age_days")]))
 ```
 
 ### Statistical analysis
@@ -89,7 +89,7 @@ formula_main
 ```{r exploratory-summaries}
 with(dat, table(phototherapy, over_thresh))
 with(dat, prop.table(table(phototherapy, over_thresh), margin = 1))
-summary(dat[c("birth_wt", "gest_age", "qual_TSB")])
+summary(haven::zap_labels(dat[c("birth_wt", "gest_age", "qual_TSB")]))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}

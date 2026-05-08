@@ -68,7 +68,7 @@ data(pbc, package = "rmb")
 dat <- pbc
 dat$status <- as.integer(unclass(dat$status))
 dim(dat)
-summary(dat[c("years", "status", "rx", "logbili", "logalbu", "logprot", "age", "edema")])
+summary(haven::zap_labels(dat[c("years", "status", "rx", "logbili", "logalbu", "logprot", "age", "edema")]))
 ```
 
 ### Statistical analysis
@@ -90,7 +90,7 @@ formula_main
 ```{r exploratory-summaries}
 with(dat, table(status))
 with(dat, table(rx, status))
-summary(dat[c("logbili", "logalbu", "logprot", "age")])
+summary(haven::zap_labels(dat[c("logbili", "logalbu", "logprot", "age")]))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}

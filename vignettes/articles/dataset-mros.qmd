@@ -66,7 +66,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(mros, package = "rmb")
 dat <- mros
 dim(dat)
-summary(dat[c("bmd3", "months", "years", "status", "weight")])
+summary(haven::zap_labels(dat[c("bmd3", "months", "years", "status", "weight")]))
 ```
 
 ### Statistical analysis

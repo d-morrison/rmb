@@ -67,7 +67,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(esoph, package = "rmb")
 dat <- esoph
 dim(dat)
-summary(dat[c("case", "age", "agegp", "tob", "tobgp", "alc", "alcgp")])
+summary(haven::zap_labels(dat[c("case", "age", "agegp", "tob", "tobgp", "alc", "alcgp")]))
 ```
 
 ### Statistical analysis

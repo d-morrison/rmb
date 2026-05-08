@@ -60,7 +60,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(leuk, package = "rmb")
 dat <- leuk
 dim(dat)
-summary(dat[c("time", "cens", "group")])
+summary(haven::zap_labels(dat[c("time", "cens", "group")]))
 ```
 
 ### Statistical analysis

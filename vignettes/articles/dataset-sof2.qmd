@@ -66,7 +66,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(sof2, package = "rmb")
 dat <- sof2
 dim(dat)
-summary(dat[c("totbmd", "base_totbmd", "bmi", "visit_spl1", "visit_spl2", "meno_ov_52")])
+summary(haven::zap_labels(dat[c("totbmd", "base_totbmd", "bmi", "visit_spl1", "visit_spl2", "meno_ov_52")]))
 ```
 
 ### Statistical analysis

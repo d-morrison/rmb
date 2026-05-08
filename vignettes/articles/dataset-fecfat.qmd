@@ -63,7 +63,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(fecfat, package = "rmb")
 dat <- fecfat
 dim(dat)
-summary(dat[c("fecfat", "pilltype", "subject")])
+summary(haven::zap_labels(dat[c("fecfat", "pilltype", "subject")]))
 ```
 
 ### Statistical analysis

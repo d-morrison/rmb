@@ -68,7 +68,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(unos, package = "rmb")
 dat <- unos
 dim(dat)
-summary(dat[c("death", "fu", "txtype", "age", "age_don", "cold_isc", "trtrej1y")])
+summary(haven::zap_labels(dat[c("death", "fu", "txtype", "age", "age_don", "cold_isc", "trtrej1y")]))
 ```
 
 ### Statistical analysis

@@ -65,7 +65,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 data(nhanes3, package = "rmb")
 dat <- nhanes3
 dim(dat)
-summary(dat[c("diabetes", "female", "aframer", "mexamer", "age10")])
+summary(haven::zap_labels(dat[c("diabetes", "female", "aframer", "mexamer", "age10")]))
 ```
 
 ### Statistical analysis
