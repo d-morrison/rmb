@@ -20,14 +20,22 @@ This article reproduces key WCGS analyses from RMB2e Chapters 2, 3, and 5, model
 
 ## Introduction
 
-The Western Collaborative Group Study (WCGS) enrolled approximately 3,500 employed men aged 39–59 in California in 1960–1961 and followed them for roughly 8.5 years to study coronary heart disease (CHD) incidence. WCGS was among the first prospective cohort studies to establish the Type A behavior pattern as a CHD risk factor alongside classical predictors such as age, serum cholesterol, and blood pressure. These data illustrate the logistic regression framework for binary outcomes (RMB2e Chapter 5, pp. 171–177).
+The Western Collaborative Group Study (WCGS) enrolled approximately 3,500 employed men
+aged 39–59 in California in 1960–1961
+and followed them for roughly 8.5 years to study coronary heart disease (CHD) incidence.
+WCGS was among the first prospective cohort studies
+to establish the Type A behavior pattern as a CHD risk factor
+alongside classical predictors such as age, serum cholesterol, and blood pressure.
+These data illustrate the logistic regression framework for binary outcomes
+(RMB2e Chapter 5, pp. 171–177).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "wcgs"]
 ```
 
-How are established cardiovascular risk factors—age, cholesterol, systolic blood pressure, BMI, smoking, and behavior pattern—jointly associated with CHD incidence in WCGS men?
+How are established cardiovascular risk factors—age, cholesterol, systolic blood pressure,
+BMI, smoking, and behavior pattern—jointly associated with CHD incidence in WCGS men?
 
 ### Causal assumptions
 
@@ -57,7 +65,12 @@ summary(dat[c("sbp", "weight", "chd69", "age", "chol", "bmi", "smoke", "behpat")
 
 ### Statistical analysis
 
-Following RMB2e Chapter 5 (pp. 171, 175), two logistic regression models are fitted on a cleaned sample (excluding one outlier with cholesterol ≥ 645 mg/dL): a base model with five standard risk factors, and an extended model adding categorical behavior pattern to test its independent contribution via a likelihood-ratio test.
+Following RMB2e Chapter 5 (pp. 171, 175),
+two logistic regression models are fitted on a cleaned sample
+(excluding one outlier with cholesterol ≥ 645 mg/dL):
+a base model with five standard risk factors,
+and an extended model adding categorical behavior pattern
+to test its independent contribution via a likelihood-ratio test.
 
 ```{r model-specification}
 ana <- subset(dat, chol < 645)
@@ -130,7 +143,13 @@ inf
 
 ## Discussion
 
-Consistent with RMB2e Chapter 5 (pp. 171, 175–177), older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking are each associated with increased CHD odds after mutual adjustment. Behavior pattern (Type A vs B) contributes additional independent information about CHD risk, as demonstrated by the likelihood-ratio test comparing the base and extended models. The decile calibration table confirms reasonable model fit across the risk spectrum, an important diagnostic step for logistic regression (RMB2e p. 175).
+Consistent with RMB2e Chapter 5 (pp. 171, 175–177),
+older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking
+are each associated with increased CHD odds after mutual adjustment.
+Behavior pattern (Type A vs B) contributes additional independent information about CHD risk,
+as demonstrated by the likelihood-ratio test comparing the base and extended models.
+The decile calibration table confirms reasonable model fit across the risk spectrum,
+an important diagnostic step for logistic regression (RMB2e p. 175).
 
 ## Source
 

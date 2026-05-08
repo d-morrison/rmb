@@ -20,14 +20,22 @@ This article reproduces the Ille-et-Vilaine esophageal cancer case-control analy
 
 ## Introduction
 
-Esophageal squamous cell carcinoma has historically been associated with heavy alcohol and tobacco use. Tuyns and colleagues (1977) conducted an unmatched case-control study in the Ille-et-Vilaine department of France, recruiting 200 cases and 775 controls to quantify the joint effects of alcohol and tobacco consumption on cancer risk. Because both exposures correlate with age and with each other, confounding-adjusted logistic regression is essential for valid inference (RMB2e Ch. 5).
+Esophageal squamous cell carcinoma has historically been associated
+with heavy alcohol and tobacco use.
+Tuyns and colleagues (1977) conducted an unmatched case-control study
+in the Ille-et-Vilaine department of France,
+recruiting 200 cases and 775 controls
+to quantify the joint effects of alcohol and tobacco consumption on cancer risk.
+Because both exposures correlate with age and with each other,
+confounding-adjusted logistic regression is essential for valid inference (RMB2e Ch. 5).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "esoph"]
 ```
 
-Is heavy alcohol consumption associated with esophageal cancer after adjustment for tobacco use and age group?
+Is heavy alcohol consumption associated with esophageal cancer
+after adjustment for tobacco use and age group?
 
 ### Causal assumptions
 
@@ -53,7 +61,9 @@ summary(dat[c("case", "age", "agegp", "tob", "tobgp", "alc", "alcgp")])
 
 ### Statistical analysis
 
-Logistic regression models case status on grouped alcohol consumption (`alcgp`) adjusted for grouped tobacco consumption (`tobgp`) and age group (`agegp`), following the categorical-predictor approach in RMB2e Chapter 5.
+Logistic regression models case status on grouped alcohol consumption (`alcgp`)
+adjusted for grouped tobacco consumption (`tobgp`) and age group (`agegp`),
+following the categorical-predictor approach in RMB2e Chapter 5.
 
 ```{r model-specification}
 formula_main <- case ~ alcgp + tobgp + agegp
@@ -109,7 +119,15 @@ data.frame(
 
 ## Discussion
 
-Heavy alcohol consumption is strongly associated with esophageal cancer risk after adjustment for tobacco use and age, consistent with the dose-response pattern reported by Tuyns et al. (1977) and discussed in RMB2e Chapter 5. Tobacco consumption and older age are independently associated with elevated odds. The likelihood-ratio test comparing the alcohol-only model to the full model confirms that tobacco and age explain additional variation in case status beyond alcohol alone. These findings underscore the importance of mutual adjustment when exposures are correlated.
+Heavy alcohol consumption is strongly associated with esophageal cancer risk
+after adjustment for tobacco use and age,
+consistent with the dose-response pattern reported by Tuyns et al. (1977)
+and discussed in RMB2e Chapter 5.
+Tobacco consumption and older age are independently associated with elevated odds.
+The likelihood-ratio test comparing the alcohol-only model to the full model
+confirms that tobacco and age explain additional variation in case status
+beyond alcohol alone.
+These findings underscore the importance of mutual adjustment when exposures are correlated.
 
 ## Source
 

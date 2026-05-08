@@ -20,14 +20,21 @@ This article reproduces HERS analyses from RMB2e Chapters 3 and 4, examining BMI
 
 ## Introduction
 
-The Heart and Estrogen/Progestin Replacement Study (HERS) was a randomized controlled trial enrolling postmenopausal women with established coronary heart disease to evaluate whether hormone therapy (HT) reduced cardiovascular events. Beyond its primary endpoint, HERS provides rich baseline and follow-up data for studying lipid outcomes and their determinants. Elevated LDL cholesterol is a well-established modifiable risk factor for coronary disease, and understanding its predictors supports both clinical management and study planning.
+The Heart and Estrogen/Progestin Replacement Study (HERS) was a randomized controlled trial
+enrolling postmenopausal women with established coronary heart disease
+to evaluate whether hormone therapy (HT) reduced cardiovascular events.
+Beyond its primary endpoint,
+HERS provides rich baseline and follow-up data for studying lipid outcomes and their determinants.
+Elevated LDL cholesterol is a well-established modifiable risk factor for coronary disease,
+and understanding its predictors supports both clinical management and study planning.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "hers"]
 ```
 
-Is higher BMI associated with higher LDL after adjustment for demographic and lifestyle covariates, and does the treatment effect of HT on year-1 LDL differ by baseline statin use?
+Is higher BMI associated with higher LDL after adjustment for demographic and lifestyle covariates,
+and does the treatment effect of HT on year-1 LDL differ by baseline statin use?
 
 ### Causal assumptions
 
@@ -63,7 +70,11 @@ summary(dat[c("HT", "BMI", "LDL", "LDL1", "exercise", "glucose", "age", "nonwhit
 
 ### Statistical analysis
 
-Two linear models are fitted: Model A (RMB2e p. 113) regresses LDL on BMI adjusted for age, race/ethnicity, smoking, and alcohol in the non-diabetic subsample; Model B (RMB2e pp. 120–121) tests the HT × statin interaction for year-1 LDL in the full cohort.
+Two linear models are fitted:
+Model A (RMB2e p. 113) regresses LDL on BMI adjusted for age, race/ethnicity, smoking,
+and alcohol in the non-diabetic subsample;
+Model B (RMB2e pp. 120–121) tests the HT × statin interaction for year-1 LDL
+in the full cohort.
 
 ```{r model-specification}
 formula_bmi_ldl <- LDL ~ BMI + age + nonwhite + smoking + drinkany
@@ -147,7 +158,13 @@ inf_int
 
 ## Discussion
 
-Higher BMI is associated with higher LDL after adjustment for age, race/ethnicity, smoking, and alcohol (RMB2e p. 113), consistent with the known metabolic coupling between adiposity and dyslipidemia. The effect of hormone therapy on LDL differs by baseline statin use (RMB2e pp. 120–121), illustrating effect modification on the linear-model scale; among statin users the HT benefit on LDL is substantially attenuated, a finding discussed in the context of interaction interpretation in Chapter 4 (p. 126).
+Higher BMI is associated with higher LDL after adjustment for age, race/ethnicity, smoking,
+and alcohol (RMB2e p. 113),
+consistent with the known metabolic coupling between adiposity and dyslipidemia.
+The effect of hormone therapy on LDL differs by baseline statin use (RMB2e pp. 120–121),
+illustrating effect modification on the linear-model scale;
+among statin users the HT benefit on LDL is substantially attenuated,
+a finding discussed in the context of interaction interpretation in Chapter 4 (p. 126).
 
 ## Source
 

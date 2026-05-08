@@ -20,14 +20,22 @@ This article uses the `figure4_1` dataset to illustrate polynomial regression an
 
 ## Introduction
 
-Simple linear regression assumes that the outcome changes at a constant rate per unit increase in the predictor. When the true relationship is curved, fitting a linear model yields biased estimates and poor predictions. Polynomial regression addresses this by including higher-order terms (e.g., $x^2$) in the linear predictor. The `figure4_1` dataset contains only the squared predictor term `x2`, making it a compact teaching dataset for demonstrating the quadratic model form (RMB2e Ch. 4).
+Simple linear regression assumes that the outcome changes
+at a constant rate per unit increase in the predictor.
+When the true relationship is curved,
+fitting a linear model yields biased estimates and poor predictions.
+Polynomial regression addresses this by including higher-order terms (e.g., $x^2$)
+in the linear predictor.
+The `figure4_1` dataset contains only the squared predictor term `x2`,
+making it a compact teaching dataset for demonstrating the quadratic model form (RMB2e Ch. 4).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "figure4_1"]
 ```
 
-Can a polynomial regression model better fit a nonlinear data pattern compared to a simple linear model?
+Can a polynomial regression model better fit a nonlinear data pattern
+compared to a simple linear model?
 
 ### Causal assumptions
 
@@ -50,7 +58,12 @@ summary(dat)
 
 ### Statistical analysis
 
-Because the dataset contains only the squared predictor `x2` (n = 8), we reconstruct `x = sqrt(x2)` and simulate a noisy outcome to illustrate fitting both a linear and a quadratic model. A simulated outcome with a mild negative quadratic component demonstrates how polynomial regression compares to simple linear regression on residual diagnostics (RMB2e Ch. 4).
+Because the dataset contains only the squared predictor `x2` (n = 8),
+we reconstruct `x = sqrt(x2)` and simulate a noisy outcome
+to illustrate fitting both a linear and a quadratic model.
+A simulated outcome with a mild negative quadratic component
+demonstrates how polynomial regression compares to simple linear regression
+on residual diagnostics (RMB2e Ch. 4).
 
 ```{r model-specification}
 set.seed(42)
@@ -122,7 +135,14 @@ data.frame(
 
 ## Discussion
 
-Including the squared term `x2` changes the estimated slope for `x` compared to the linear-only model, illustrating how omitting a curved component can distort the linear coefficient (RMB2e Ch. 4). The residual plots for the quadratic model show less systematic pattern than those for the linear model, suggesting better fit. This toy example motivates the model-checking workflow of Chapter 4: plotting residuals against fitted values is a key diagnostic for detecting nonlinearity that a simple linear term cannot capture.
+Including the squared term `x2` changes the estimated slope for `x`
+compared to the linear-only model,
+illustrating how omitting a curved component can distort the linear coefficient (RMB2e Ch. 4).
+The residual plots for the quadratic model show less systematic pattern
+than those for the linear model, suggesting better fit.
+This toy example motivates the model-checking workflow of Chapter 4:
+plotting residuals against fitted values is a key diagnostic
+for detecting nonlinearity that a simple linear term cannot capture.
 
 ## Source
 

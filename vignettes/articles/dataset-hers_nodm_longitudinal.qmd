@@ -20,14 +20,22 @@ This article models longitudinal systolic blood pressure trajectories in HERS pa
 
 ## Introduction
 
-Hormone therapy and lifestyle behaviors such as exercise may jointly influence cardiovascular risk factors in postmenopausal women. The HERS longitudinal dataset provides repeated measurements of systolic blood pressure over multiple visits, enabling examination of within-subject trajectories and potential treatment–lifestyle interactions. RMB2e Chapter 11 uses this structure to illustrate repeated-measures regression and missing-data approaches.
+Hormone therapy and lifestyle behaviors such as exercise
+may jointly influence cardiovascular risk factors in postmenopausal women.
+The HERS longitudinal dataset provides repeated measurements of systolic blood pressure
+over multiple visits,
+enabling examination of within-subject trajectories
+and potential treatment–lifestyle interactions.
+RMB2e Chapter 11 uses this structure to illustrate repeated-measures regression
+and missing-data approaches.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "hers_nodm_longitudinal"]
 ```
 
-We ask: does regular exercise moderate the association between HRT assignment and longitudinal systolic blood pressure in postmenopausal women without diabetes?
+We ask: does regular exercise moderate the association between HRT assignment
+and longitudinal systolic blood pressure in postmenopausal women without diabetes?
 
 ### Causal assumptions
 
@@ -55,7 +63,11 @@ summary(dat[c("sbp", "group", "exercise", "bmi", "age", "visit")])
 
 ### Statistical analysis
 
-We fit a linear regression model for systolic blood pressure with an HRT-by-exercise interaction term, adjusting for BMI, age, smoking, and visit number. The model ignores within-person correlation but illustrates the interaction parameterization discussed in RMB2e Chapter 11.
+We fit a linear regression model for systolic blood pressure
+with an HRT-by-exercise interaction term,
+adjusting for BMI, age, smoking, and visit number.
+The model ignores within-person correlation
+but illustrates the interaction parameterization discussed in RMB2e Chapter 11.
 
 ```{r model-specification}
 formula_sbp <- sbp ~ group * exercise + bmi + age + csmker + visit
@@ -113,7 +125,14 @@ coef_tab
 
 ## Discussion
 
-The interaction between HRT assignment and exercise on systolic blood pressure examines whether lifestyle behaviors modify the cardiovascular effects of hormone therapy. As discussed in RMB2e Chapter 11, the longitudinal structure of HERS requires accounting for within-person correlation; the regression model presented here is an approximation useful for illustrating interaction parameterization, while a proper generalized estimating equations (GEE) or mixed-effects model would be needed for valid inference accounting for repeated measures.
+The interaction between HRT assignment and exercise on systolic blood pressure
+examines whether lifestyle behaviors modify the cardiovascular effects of hormone therapy.
+As discussed in RMB2e Chapter 11,
+the longitudinal structure of HERS requires accounting for within-person correlation;
+the regression model presented here is an approximation useful for illustrating
+interaction parameterization,
+while a proper generalized estimating equations (GEE) or mixed-effects model
+would be needed for valid inference accounting for repeated measures.
 
 ## Source
 

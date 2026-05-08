@@ -20,14 +20,22 @@ This article applies a cross-sectional linear regression to the SOF dataset to e
 
 ## Introduction
 
-The Study of Osteoporotic Fractures (SOF) enrolled over 9,000 community-dwelling women aged 65 and older at four US clinical centers beginning in 1986 (Cummings et al. 1995). Bone mineral density (BMD) declines with age after menopause; however, body mass index (BMI) is protective for BMD because adipose tissue produces estrogen and because mechanical loading from higher body weight stimulates bone formation. Disentangling the age, menopausal history, and BMI contributions to BMD requires multipredictor regression (RMB2e Ch. 7).
+The Study of Osteoporotic Fractures (SOF) enrolled over 9,000 community-dwelling women
+aged 65 and older at four US clinical centers beginning in 1986 (Cummings et al. 1995).
+Bone mineral density (BMD) declines with age after menopause;
+however, body mass index (BMI) is protective for BMD
+because adipose tissue produces estrogen
+and because mechanical loading from higher body weight stimulates bone formation.
+Disentangling the age, menopausal history, and BMI contributions to BMD
+requires multipredictor regression (RMB2e Ch. 7).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "sof"]
 ```
 
-Is higher BMI associated with greater total bone mineral density after adjustment for age and menopausal age in older women?
+Is higher BMI associated with greater total bone mineral density
+after adjustment for age and menopausal age in older women?
 
 ### Causal assumptions
 
@@ -54,7 +62,10 @@ summary(baseline_sof[c("totbmd", "bmi", "age", "meno_age")])
 
 ### Statistical analysis
 
-A linear regression model is fitted at the baseline visit (visit 2) to estimate the cross-sectional association between BMI and total BMD, adjusting for age and menopausal age. Using only baseline visits avoids correlation from repeated measurements (RMB2e Ch. 7).
+A linear regression model is fitted at the baseline visit (visit 2)
+to estimate the cross-sectional association between BMI and total BMD,
+adjusting for age and menopausal age.
+Using only baseline visits avoids correlation from repeated measurements (RMB2e Ch. 7).
 
 ```{r model-specification}
 formula_main <- totbmd ~ bmi + age + meno_age
@@ -111,7 +122,15 @@ data.frame(
 
 ## Discussion
 
-Higher BMI is positively associated with total BMD at baseline after adjustment for age and menopausal age in SOF women, consistent with the mechanical loading and estrogenic pathways described above (RMB2e Ch. 7). Age is negatively associated with BMD, reflecting postmenopausal bone loss. Menopausal age contributes independently, as women who underwent menopause later experienced fewer years of estrogen deficiency. This cross-sectional analysis uses only Visit 1 data to avoid the need for mixed-model methods introduced for the longitudinal SOF analyses elsewhere in RMB2e.
+Higher BMI is positively associated with total BMD at baseline
+after adjustment for age and menopausal age in SOF women,
+consistent with the mechanical loading and estrogenic pathways described above (RMB2e Ch. 7).
+Age is negatively associated with BMD, reflecting postmenopausal bone loss.
+Menopausal age contributes independently,
+as women who underwent menopause later experienced fewer years of estrogen deficiency.
+This cross-sectional analysis uses only Visit 1 data
+to avoid the need for mixed-model methods
+introduced for the longitudinal SOF analyses elsewhere in RMB2e.
 
 ## Source
 

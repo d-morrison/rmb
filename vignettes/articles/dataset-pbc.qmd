@@ -20,14 +20,21 @@ This article fits a Cox proportional hazards model to the primary biliary cirrho
 
 ## Introduction
 
-Primary biliary cirrhosis (PBC) is a chronic autoimmune cholestatic liver disease that, if untreated, progresses to cirrhosis and liver failure. Dickson and colleagues (1989) analyzed data from a Mayo Clinic placebo-controlled trial of D-penicillamine in 312 PBC patients, establishing serum bilirubin, albumin, and prothrombin time as the dominant predictors of survival. Log-transforming these biomarkers improves linearity of the log-hazard relationship and is standard practice in PBC prognostic modeling (RMB2e Ch. 6).
+Primary biliary cirrhosis (PBC) is a chronic autoimmune cholestatic liver disease that,
+if untreated, progresses to cirrhosis and liver failure.
+Dickson and colleagues (1989) analyzed data from a Mayo Clinic placebo-controlled trial
+of D-penicillamine in 312 PBC patients,
+establishing serum bilirubin, albumin, and prothrombin time as the dominant predictors of survival.
+Log-transforming these biomarkers improves linearity of the log-hazard relationship
+and is standard practice in PBC prognostic modeling (RMB2e Ch. 6).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "pbc"]
 ```
 
-Is higher log-bilirubin associated with shorter survival in PBC after adjustment for log-albumin, log-prothrombin time, age, and edema status?
+Is higher log-bilirubin associated with shorter survival in PBC
+after adjustment for log-albumin, log-prothrombin time, age, and edema status?
 
 ### Causal assumptions
 
@@ -55,7 +62,10 @@ summary(dat[c("years", "status", "rx", "logbili", "logalbu", "logprot", "age", "
 
 ### Statistical analysis
 
-A Cox proportional hazards model is fitted with death (status == 1) as the event, using log-transformed bilirubin, albumin, and prothrombin time plus age and edema as predictors (RMB2e Ch. 6 / Dickson 1989). The proportional hazards assumption is checked with scaled Schoenfeld residuals.
+A Cox proportional hazards model is fitted with death (status == 1) as the event,
+using log-transformed bilirubin, albumin, and prothrombin time
+plus age and edema as predictors (RMB2e Ch. 6 / Dickson 1989).
+The proportional hazards assumption is checked with scaled Schoenfeld residuals.
 
 ```{r model-specification}
 formula_main <- survival::Surv(years, status == 1) ~ logbili + logalbu + logprot + age + edema
@@ -109,7 +119,16 @@ data.frame(
 
 ## Discussion
 
-Log-bilirubin, log-albumin, log-prothrombin time, age, and edema are all strongly associated with mortality risk in PBC, confirming the Mayo Clinic prognostic model reported by Dickson et al. (1989) and discussed in RMB2e Chapter 6. Bilirubin shows the largest hazard ratio, consistent with its role as the primary index of hepatic synthetic dysfunction in cholestatic disease. The Schoenfeld residual plots should be inspected to confirm that the proportional hazards assumption is tenable for each predictor across the observation period.
+Log-bilirubin, log-albumin, log-prothrombin time, age, and edema are all strongly associated
+with mortality risk in PBC,
+confirming the Mayo Clinic prognostic model reported by Dickson et al. (1989)
+and discussed in RMB2e Chapter 6.
+Bilirubin shows the largest hazard ratio,
+consistent with its role as the primary index of hepatic synthetic dysfunction
+in cholestatic disease.
+The Schoenfeld residual plots should be inspected
+to confirm that the proportional hazards assumption is tenable
+for each predictor across the observation period.
 
 ## Source
 

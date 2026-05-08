@@ -20,14 +20,22 @@ This article examines whether maternal age and interpregnancy interval are assoc
 
 ## Introduction
 
-Birthweight is a key neonatal health indicator strongly predicted by gestational age, maternal weight, and parity-related factors. When multiple births are recorded per mother, infant outcomes within the same mother are correlated—violating the independence assumption of ordinary linear regression. The Georgia births dataset (gababies) provides a clustered sample of 1,000 birth records from mothers with multiple deliveries, enabling study of between- and within-mother predictors of birthweight (RMB2e Ch. 7).
+Birthweight is a key neonatal health indicator
+strongly predicted by gestational age, maternal weight, and parity-related factors.
+When multiple births are recorded per mother,
+infant outcomes within the same mother are correlated—
+violating the independence assumption of ordinary linear regression.
+The Georgia births dataset (gababies) provides a clustered sample of 1,000 birth records
+from mothers with multiple deliveries,
+enabling study of between- and within-mother predictors of birthweight (RMB2e Ch. 7).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "gababies"]
 ```
 
-Are maternal age and interpregnancy interval associated with infant birthweight, after accounting for clustering of births within mothers?
+Are maternal age and interpregnancy interval associated with infant birthweight,
+after accounting for clustering of births within mothers?
 
 ### Causal assumptions
 
@@ -52,7 +60,11 @@ summary(dat[c("bweight", "cinitage", "timesnc", "momage", "delwght")])
 
 ### Statistical analysis
 
-A linear regression of birthweight on centered maternal age at first birth (`cinitage`), interpregnancy interval (`timesnc`), and current maternal age is fitted, ignoring clustering for a baseline OLS estimate; the discussion notes the need for mixed-effects models to account for within-mother correlation (RMB2e Ch. 7).
+A linear regression of birthweight on centered maternal age at first birth (`cinitage`),
+interpregnancy interval (`timesnc`), and current maternal age is fitted,
+ignoring clustering for a baseline OLS estimate;
+the discussion notes the need for mixed-effects models
+to account for within-mother correlation (RMB2e Ch. 7).
 
 ```{r model-specification}
 formula_main <- bweight ~ cinitage + timesnc + momage
@@ -110,7 +122,14 @@ data.frame(
 
 ## Discussion
 
-The OLS estimates show the direction of associations between maternal characteristics and birthweight, but standard errors underestimate uncertainty because births within the same mother are correlated (RMB2e Ch. 7). Proper inference requires a mixed-effects model with a random intercept for mother, which would partition the total variance into within-mother and between-mother components. The centered age at first birth (`cinitage`) isolates the between-mother age effect, while `timesnc` captures the interpregnancy interval's influence on fetal growth.
+The OLS estimates show the direction of associations
+between maternal characteristics and birthweight,
+but standard errors underestimate uncertainty
+because births within the same mother are correlated (RMB2e Ch. 7).
+Proper inference requires a mixed-effects model with a random intercept for mother,
+which would partition the total variance into within-mother and between-mother components.
+The centered age at first birth (`cinitage`) isolates the between-mother age effect,
+while `timesnc` captures the interpregnancy interval's influence on fetal growth.
 
 ## Source
 

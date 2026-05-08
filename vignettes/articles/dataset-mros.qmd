@@ -21,14 +21,22 @@ This article fits a Cox proportional hazards model to the MrOS dataset, evaluati
 
 ## Introduction
 
-The Osteoporotic Fractures in Men (MrOS) study enrolled community-dwelling men aged 65 years and older at six US clinical sites beginning in 2000 (Orwoll et al. 2005). Low bone mineral density (BMD) is a well-established predictor of fracture and mortality risk in older men, though body weight is a strong confounder because heavier men tend to have higher BMD and independently different event rates. This survival analysis applies the Cox proportional hazards framework described in RMB2e Chapter 6.
+The Osteoporotic Fractures in Men (MrOS) study enrolled community-dwelling men
+aged 65 years and older at six US clinical sites beginning in 2000 (Orwoll et al. 2005).
+Low bone mineral density (BMD) is a well-established predictor of fracture and mortality risk
+in older men,
+though body weight is a strong confounder
+because heavier men tend to have higher BMD and independently different event rates.
+This survival analysis applies the Cox proportional hazards framework
+described in RMB2e Chapter 6.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "mros"]
 ```
 
-Are lower bone mineral density quantiles associated with higher event hazard after adjustment for body weight in older men?
+Are lower bone mineral density quantiles associated with higher event hazard
+after adjustment for body weight in older men?
 
 ### Causal assumptions
 
@@ -52,7 +60,9 @@ summary(dat[c("bmd3", "months", "years", "status", "weight")])
 
 ### Statistical analysis
 
-A Cox proportional hazards model is fitted with `bmd3` (three quantiles of BMD, coded as factor) and body weight as predictors, using follow-up time in years as the time scale (RMB2e Ch. 6 / Orwoll 2005).
+A Cox proportional hazards model is fitted
+with `bmd3` (three quantiles of BMD, coded as factor) and body weight as predictors,
+using follow-up time in years as the time scale (RMB2e Ch. 6 / Orwoll 2005).
 
 ```{r model-specification}
 formula_main <- survival::Surv(years, status) ~ factor(bmd3) + weight
@@ -113,7 +123,15 @@ data.frame(
 
 ## Discussion
 
-Men in lower BMD quantiles have higher hazard of the composite event after adjustment for body weight, consistent with the dose-response relationship between bone density and fracture/mortality risk described in RMB2e Chapter 6. Weight is also independently predictive, reflecting the complex relationship between adiposity and skeletal outcomes in older men. These findings illustrate how Cox regression can simultaneously estimate the independent contributions of an ordinal predictor (BMD quantile) and a continuous confounder (weight) to event risk.
+Men in lower BMD quantiles have higher hazard of the composite event
+after adjustment for body weight,
+consistent with the dose-response relationship between bone density
+and fracture/mortality risk described in RMB2e Chapter 6.
+Weight is also independently predictive,
+reflecting the complex relationship between adiposity and skeletal outcomes in older men.
+These findings illustrate how Cox regression can simultaneously estimate
+the independent contributions of an ordinal predictor (BMD quantile)
+and a continuous confounder (weight) to event risk.
 
 ## Source
 

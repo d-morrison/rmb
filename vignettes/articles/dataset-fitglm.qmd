@@ -20,14 +20,22 @@ This article uses the FIT GLM dataset to test whether the treatment benefit of a
 
 ## Introduction
 
-Alendronate reduces fracture risk by increasing BMD and improving bone microarchitecture; however, fracture risk is also determined by the propensity to fall, which is independent of bone strength. Women at high fall risk may experience less relative benefit from BMD-improving treatments because many of their fractures would occur even with stronger bones. Testing for a treatment-by-fall-risk interaction addresses whether the alendronate benefit is heterogeneous across fall risk categories, a key question for precision prevention (RMB2e Ch. 8 / Black 1996).
+Alendronate reduces fracture risk by increasing BMD and improving bone microarchitecture;
+however, fracture risk is also determined by the propensity to fall,
+which is independent of bone strength.
+Women at high fall risk may experience less relative benefit from BMD-improving treatments
+because many of their fractures would occur even with stronger bones.
+Testing for a treatment-by-fall-risk interaction
+addresses whether the alendronate benefit is heterogeneous across fall risk categories,
+a key question for precision prevention (RMB2e Ch. 8 / Black 1996).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "fitglm"]
 ```
 
-Does the treatment benefit of alendronate on fracture risk differ between women with and without high fall risk?
+Does the treatment benefit of alendronate on fracture risk differ
+between women with and without high fall risk?
 
 ### Causal assumptions
 
@@ -55,7 +63,10 @@ summary(dat[c("trt01", "frx", "riskcat4", "ra_age", "htotbmd")])
 
 ### Statistical analysis
 
-Logistic regression with a treatment-by-fall-risk interaction term tests whether the alendronate effect on any fracture differs by fall risk category, adjusted for age and total hip BMD (RMB2e Ch. 8). The interaction term directly encodes effect modification on the log-odds scale.
+Logistic regression with a treatment-by-fall-risk interaction term
+tests whether the alendronate effect on any fracture differs by fall risk category,
+adjusted for age and total hip BMD (RMB2e Ch. 8).
+The interaction term directly encodes effect modification on the log-odds scale.
 
 ```{r model-specification}
 formula_main <- frx ~ trt01 * riskcat4 + ra_age + htotbmd
@@ -115,7 +126,15 @@ data.frame(
 
 ## Discussion
 
-The interaction between treatment and fall risk category tests whether the fracture-prevention benefit of alendronate is uniform or varies with fall risk. The likelihood-ratio test for the interaction provides evidence about effect modification on the log-odds scale, as described in RMB2e Chapter 8. If the interaction is statistically meaningful, subgroup-specific treatment recommendations may be appropriate; if not, a single pooled estimate describes the treatment effect adequately. Lower hip BMD and older age are independently predictive of fracture regardless of treatment assignment.
+The interaction between treatment and fall risk category tests whether
+the fracture-prevention benefit of alendronate is uniform or varies with fall risk.
+The likelihood-ratio test for the interaction provides evidence about effect modification
+on the log-odds scale, as described in RMB2e Chapter 8.
+If the interaction is statistically meaningful,
+subgroup-specific treatment recommendations may be appropriate;
+if not, a single pooled estimate describes the treatment effect adequately.
+Lower hip BMD and older age are independently predictive of fracture
+regardless of treatment assignment.
 
 ## Source
 

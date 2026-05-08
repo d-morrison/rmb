@@ -21,14 +21,21 @@ This article applies survey-weighted logistic regression to NHANES III data to e
 
 ## Introduction
 
-The Third National Health and Nutrition Examination Survey (NHANES III, 1988–1994) used a complex multistage probability sample to produce nationally representative estimates of health and nutrition in the US population. Because sampling probabilities differ across demographic strata, unweighted analyses would give biased prevalence estimates and incorrect standard errors. Survey-weighted regression using sampling weights, primary sampling units (PSUs), and strata is required for valid inference from NHANES III data (RMB2e Ch. 12).
+The Third National Health and Nutrition Examination Survey (NHANES III, 1988–1994)
+used a complex multistage probability sample
+to produce nationally representative estimates of health and nutrition in the US population.
+Because sampling probabilities differ across demographic strata,
+unweighted analyses would give biased prevalence estimates and incorrect standard errors.
+Survey-weighted regression using sampling weights, primary sampling units (PSUs), and strata
+is required for valid inference from NHANES III data (RMB2e Ch. 12).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "nhanes3"]
 ```
 
-Are age, sex, and race/ethnicity associated with diabetes prevalence in a nationally representative US sample?
+Are age, sex, and race/ethnicity associated with diabetes prevalence
+in a nationally representative US sample?
 
 ### Causal assumptions
 
@@ -53,7 +60,10 @@ summary(dat[c("diabetes", "female", "aframer", "mexamer", "age10")])
 
 ### Statistical analysis
 
-A survey design object is constructed using PSUs, strata, and sampling weights, then survey-weighted logistic regression is fitted for diabetes on age (per 10 years), sex, African American ethnicity, and Mexican American ethnicity (RMB2e Ch. 12).
+A survey design object is constructed using PSUs, strata, and sampling weights,
+then survey-weighted logistic regression is fitted for diabetes
+on age (per 10 years), sex, African American ethnicity, and Mexican American ethnicity
+(RMB2e Ch. 12).
 
 ```{r model-specification}
 nhanes_design <- survey::svydesign(
@@ -116,7 +126,14 @@ data.frame(
 
 ## Discussion
 
-Older age, African American ethnicity, and Mexican American ethnicity are all associated with higher diabetes prevalence in the US population after mutual adjustment, consistent with well-documented patterns of diabetes disparities (RMB2e Ch. 12). Using survey weights is essential: the complex NHANES III sampling design over-represents certain demographic groups, and unweighted estimates would misrepresent national prevalence. This analysis illustrates the survey-weighted GLM approach that is required whenever data come from complex probability samples with unequal selection probabilities.
+Older age, African American ethnicity, and Mexican American ethnicity are all associated
+with higher diabetes prevalence in the US population after mutual adjustment,
+consistent with well-documented patterns of diabetes disparities (RMB2e Ch. 12).
+Using survey weights is essential:
+the complex NHANES III sampling design over-represents certain demographic groups,
+and unweighted estimates would misrepresent national prevalence.
+This analysis illustrates the survey-weighted GLM approach that is required
+whenever data come from complex probability samples with unequal selection probabilities.
 
 ## Source
 

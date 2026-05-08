@@ -21,7 +21,14 @@ This article reproduces the leukemia remission survival analysis from Freireich 
 
 ## Introduction
 
-Acute lymphoblastic leukemia (ALL) in adults historically carried a poor prognosis, with complete remission rates that were short-lived without maintenance therapy. Freireich and colleagues (1963) conducted a landmark randomized crossover trial comparing 6-mercaptopurine (6-MP) to placebo in patients achieving complete remission, measuring time until relapse. This small dataset (42 patients, 21 per group) is a canonical teaching example for survival analysis because it clearly illustrates the Kaplan-Meier estimator and the log-rank test (RMB2e Ch. 3).
+Acute lymphoblastic leukemia (ALL) in adults historically carried a poor prognosis,
+with complete remission rates that were short-lived without maintenance therapy.
+Freireich and colleagues (1963) conducted a landmark randomized crossover trial
+comparing 6-mercaptopurine (6-MP) to placebo in patients achieving complete remission,
+measuring time until relapse.
+This small dataset (42 patients, 21 per group) is a canonical teaching example
+for survival analysis
+because it clearly illustrates the Kaplan-Meier estimator and the log-rank test (RMB2e Ch. 3).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
@@ -50,7 +57,10 @@ summary(dat[c("time", "cens", "group")])
 
 ### Statistical analysis
 
-Kaplan-Meier curves are estimated by treatment group, and the log-rank test is used to assess the null hypothesis of equal survival functions. The 6-MP vs placebo comparison was randomized, so no covariate adjustment is needed for valid inference (RMB2e Ch. 3).
+Kaplan-Meier curves are estimated by treatment group,
+and the log-rank test is used to assess the null hypothesis of equal survival functions.
+The 6-MP vs placebo comparison was randomized,
+so no covariate adjustment is needed for valid inference (RMB2e Ch. 3).
 
 ```{r model-specification}
 surv_obj <- survival::Surv(dat$time, dat$cens)
@@ -111,7 +121,14 @@ data.frame(
 
 ## Discussion
 
-The Kaplan-Meier curves show a marked separation between the 6-MP and placebo groups throughout the follow-up period, and the log-rank test provides strong evidence against equal survival functions (RMB2e Ch. 3). Median remission duration is substantially longer in the 6-MP group, mirroring the original report by Freireich et al. (1963). This analysis serves as a foundational example of how nonparametric survival methods can compare treatment groups without distributional assumptions, motivating the Cox regression approach introduced in later chapters.
+The Kaplan-Meier curves show a marked separation between the 6-MP and placebo groups
+throughout the follow-up period,
+and the log-rank test provides strong evidence against equal survival functions (RMB2e Ch. 3).
+Median remission duration is substantially longer in the 6-MP group,
+mirroring the original report by Freireich et al. (1963).
+This analysis serves as a foundational example of how nonparametric survival methods
+can compare treatment groups without distributional assumptions,
+motivating the Cox regression approach introduced in later chapters.
 
 ## Source
 

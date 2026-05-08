@@ -20,7 +20,15 @@ This article analyzes aggregate Whickham cohort data to illustrate how age confo
 
 ## Introduction
 
-The Whickham study was a population-based prospective cohort conducted in a town in northeast England. Women aged 18–64 were interviewed in 1972–1974 and their vital status was ascertained 20 years later. The crude comparison of mortality rates between smokers and non-smokers shows the counterintuitive result that smokers appear to have lower mortality—a finding explained by the younger age distribution of smokers at baseline. Age is a strong confounder because it is associated with both smoking prevalence and 20-year mortality risk (RMB2e Ch. 3).
+The Whickham study was a population-based prospective cohort
+conducted in a town in northeast England.
+Women aged 18–64 were interviewed in 1972–1974
+and their vital status was ascertained 20 years later.
+The crude comparison of mortality rates between smokers and non-smokers
+shows the counterintuitive result that smokers appear to have lower mortality—
+a finding explained by the younger age distribution of smokers at baseline.
+Age is a strong confounder
+because it is associated with both smoking prevalence and 20-year mortality risk (RMB2e Ch. 3).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
@@ -51,7 +59,10 @@ summary(dat)
 
 ### Statistical analysis
 
-Because the dataset comprises 12 aggregate rows (age-group × smoking × vital-status counts), the analysis computes stratum-specific mortality rates and odds ratios by age group, then contrasts crude and age-adjusted estimates to illustrate Simpson's paradox as in RMB2e Chapter 3.
+Because the dataset comprises 12 aggregate rows (age-group × smoking × vital-status counts),
+the analysis computes stratum-specific mortality rates and odds ratios by age group,
+then contrasts crude and age-adjusted estimates
+to illustrate Simpson's paradox as in RMB2e Chapter 3.
 
 ```{r model-specification}
 formula_crude <- vstatus ~ smoker
@@ -133,7 +144,15 @@ data.frame(
 
 ## Discussion
 
-The crude analysis shows that smokers have lower or similar mortality to non-smokers, illustrating Simpson's paradox: smokers are younger on average at baseline, so the negative confounding from age suppresses the harmful effect of smoking. After stratification and age adjustment, the association between smoking and mortality is attenuated or reversed within age groups, consistent with the age-adjusted analysis reported in RMB2e Chapter 3. This example motivates the importance of adjusting for confounders like age before drawing causal conclusions from observational data.
+The crude analysis shows that smokers have lower or similar mortality to non-smokers,
+illustrating Simpson's paradox:
+smokers are younger on average at baseline,
+so the negative confounding from age suppresses the harmful effect of smoking.
+After stratification and age adjustment,
+the association between smoking and mortality is attenuated or reversed within age groups,
+consistent with the age-adjusted analysis reported in RMB2e Chapter 3.
+This example motivates the importance of adjusting for confounders like age
+before drawing causal conclusions from observational data.
 
 ## Source
 

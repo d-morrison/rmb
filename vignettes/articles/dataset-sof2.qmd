@@ -20,14 +20,22 @@ This article models longitudinal total BMD trajectories in the SOF cohort using 
 
 ## Introduction
 
-Total bone mineral density in older women declines after menopause, but the trajectory need not be linear across follow-up years—the rate of loss may accelerate or decelerate over time. The SOF2 dataset extends the baseline SOF data with spline basis terms (`visit_spl1`, `visit_spl2`) encoding the nonlinear shape of BMD change over visits, and includes an indicator of late menopause (after age 52) as a potential modifier of longitudinal decline (RMB2e Ch. 7). A marginal model for repeated BMD captures the average population trajectory.
+Total bone mineral density in older women declines after menopause,
+but the trajectory need not be linear across follow-up years—
+the rate of loss may accelerate or decelerate over time.
+The SOF2 dataset extends the baseline SOF data with spline basis terms
+(`visit_spl1`, `visit_spl2`) encoding the nonlinear shape of BMD change over visits,
+and includes an indicator of late menopause (after age 52)
+as a potential modifier of longitudinal decline (RMB2e Ch. 7).
+A marginal model for repeated BMD captures the average population trajectory.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "sof2"]
 ```
 
-How does total BMD change over follow-up visits, and is the rate of decline modified by late menopause?
+How does total BMD change over follow-up visits,
+and is the rate of decline modified by late menopause?
 
 ### Causal assumptions
 
@@ -52,7 +60,11 @@ summary(dat[c("totbmd", "base_totbmd", "bmi", "visit_spl1", "visit_spl2", "meno_
 
 ### Statistical analysis
 
-A marginal linear model regresses total BMD on baseline BMD, BMI, spline basis terms for visit, and late menopause indicator, estimating average BMD trajectories (RMB2e Ch. 7). Standard errors from this pooled OLS model do not account for within-subject correlation, but the model illustrates the approach before mixed-effects extensions.
+A marginal linear model regresses total BMD on baseline BMD, BMI,
+spline basis terms for visit, and late menopause indicator,
+estimating average BMD trajectories (RMB2e Ch. 7).
+Standard errors from this pooled OLS model do not account for within-subject correlation,
+but the model illustrates the approach before mixed-effects extensions.
 
 ```{r model-specification}
 formula_main <- totbmd ~ base_totbmd + bmi + visit_spl1 + visit_spl2 + meno_ov_52
@@ -111,7 +123,15 @@ data.frame(
 
 ## Discussion
 
-Baseline BMD is the strongest predictor of total BMD at each subsequent visit, reflecting the high autocorrelation of bone density over time (RMB2e Ch. 7). The spline terms for visit capture the nonlinear shape of population-average BMD change. Women with late menopause (after age 52) tend to have higher BMD throughout follow-up, consistent with a longer period of estrogen exposure before the onset of accelerated bone loss. This marginal model ignores within-subject correlation; proper inference for longitudinal outcomes requires mixed-effects or GEE approaches as developed more fully in RMB2e Chapter 7.
+Baseline BMD is the strongest predictor of total BMD at each subsequent visit,
+reflecting the high autocorrelation of bone density over time (RMB2e Ch. 7).
+The spline terms for visit capture the nonlinear shape of population-average BMD change.
+Women with late menopause (after age 52) tend to have higher BMD throughout follow-up,
+consistent with a longer period of estrogen exposure
+before the onset of accelerated bone loss.
+This marginal model ignores within-subject correlation;
+proper inference for longitudinal outcomes requires mixed-effects or GEE approaches
+as developed more fully in RMB2e Chapter 7.
 
 ## Source
 

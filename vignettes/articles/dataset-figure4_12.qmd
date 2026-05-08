@@ -20,14 +20,22 @@ This article uses the `figure4_12` dataset to illustrate how identical summary s
 
 ## Introduction
 
-The famous Anscombe quartet (1973) demonstrated that four datasets with nearly identical means, variances, correlations, and regression coefficients can exhibit fundamentally different scatter patterns—a stark lesson that numerical summaries alone are insufficient for model assessment. The `figure4_12` dataset contains three outcomes (`y1`, `y2`, `y3`) on a common predictor `x`, all yielding similar fitted coefficients but very different residual diagnostics (RMB2e Ch. 4). Examining residual plots is the only reliable way to detect misspecification that summary statistics would miss.
+The famous Anscombe quartet (1973) demonstrated that four datasets
+with nearly identical means, variances, correlations, and regression coefficients
+can exhibit fundamentally different scatter patterns—
+a stark lesson that numerical summaries alone are insufficient for model assessment.
+The `figure4_12` dataset contains three outcomes (`y1`, `y2`, `y3`) on a common predictor `x`,
+all yielding similar fitted coefficients but very different residual diagnostics (RMB2e Ch. 4).
+Examining residual plots is the only reliable way to detect misspecification
+that summary statistics would miss.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "figure4_12"]
 ```
 
-Do three outcomes sharing a common predictor yield the same regression coefficients but different residual diagnostic patterns?
+Do three outcomes sharing a common predictor yield the same regression coefficients
+but different residual diagnostic patterns?
 
 ### Causal assumptions
 
@@ -51,7 +59,10 @@ summary(dat)
 
 ### Statistical analysis
 
-Separate simple linear regressions of `y1`, `y2`, and `y3` on `x` are fitted, and their coefficients, R², and residual standard errors are compared. Residual-vs-fitted plots are then produced to reveal the different underlying data structures (RMB2e Ch. 4).
+Separate simple linear regressions of `y1`, `y2`, and `y3` on `x` are fitted,
+and their coefficients, R², and residual standard errors are compared.
+Residual-vs-fitted plots are then produced
+to reveal the different underlying data structures (RMB2e Ch. 4).
 
 ```{r model-specification}
 formula_y1 <- y1 ~ x
@@ -126,7 +137,15 @@ data.frame(
 
 ## Discussion
 
-The three outcomes yield nearly identical intercepts, slopes, R² values, and residual standard errors, yet their residual-vs-fitted plots reveal fundamentally different patterns: `y1` may show approximately random scatter (suitable for linear regression), `y2` exhibits a systematic curve (suggesting a nonlinear term is needed), and `y3` may show the influence of an outlier (RMB2e Ch. 4). This dataset reinforces the core message of RMB2e Chapter 4: residual plots are an indispensable complement to numerical summaries, and model adequacy must be verified visually before drawing scientific conclusions.
+The three outcomes yield nearly identical intercepts, slopes, R² values,
+and residual standard errors,
+yet their residual-vs-fitted plots reveal fundamentally different patterns:
+`y1` may show approximately random scatter (suitable for linear regression),
+`y2` exhibits a systematic curve (suggesting a nonlinear term is needed),
+and `y3` may show the influence of an outlier (RMB2e Ch. 4).
+This dataset reinforces the core message of RMB2e Chapter 4:
+residual plots are an indispensable complement to numerical summaries,
+and model adequacy must be verified visually before drawing scientific conclusions.
 
 ## Source
 

@@ -20,7 +20,14 @@ This article analyzes the fecal fat crossover experiment, testing whether differ
 
 ## Introduction
 
-Fecal fat excretion is a sensitive marker of intestinal fat malabsorption and has been used to evaluate the efficacy of pancreatic enzyme replacement and other GI interventions. This small crossover experiment assigned subjects to different pill formulations sequentially, measuring daily fecal fat (g/day) under each condition. The repeated-measures design means that fecal fat values from the same subject are correlated; failure to account for this within-subject variability would inflate standard errors or deflate them inappropriately (RMB2e Ch. 7).
+Fecal fat excretion is a sensitive marker of intestinal fat malabsorption
+and has been used to evaluate the efficacy of pancreatic enzyme replacement
+and other GI interventions.
+This small crossover experiment assigned subjects to different pill formulations sequentially,
+measuring daily fecal fat (g/day) under each condition.
+The repeated-measures design means that fecal fat values from the same subject are correlated;
+failure to account for this within-subject variability
+would inflate standard errors or deflate them inappropriately (RMB2e Ch. 7).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
@@ -50,7 +57,9 @@ summary(dat[c("fecfat", "pilltype", "subject")])
 
 ### Statistical analysis
 
-A linear model with `subject` included as a blocking factor is used to remove between-subject variability and isolate the pill type effect, equivalent to a one-way ANOVA within subjects (RMB2e Ch. 7).
+A linear model with `subject` included as a blocking factor is used
+to remove between-subject variability and isolate the pill type effect,
+equivalent to a one-way ANOVA within subjects (RMB2e Ch. 7).
 
 ```{r model-specification}
 dat$subject <- factor(dat$subject)
@@ -109,7 +118,13 @@ data.frame(
 
 ## Discussion
 
-After blocking on subject identity to remove between-subject variability, differences in mean fecal fat across pill types reflect the within-subject treatment effect of each formulation (RMB2e Ch. 7). This design is particularly powerful because it eliminates the dominant source of variation (subject-to-subject differences in baseline fat excretion), allowing a relatively small crossover study to detect meaningful differences. The residual plots confirm the adequacy of the linear model for inference.
+After blocking on subject identity to remove between-subject variability,
+differences in mean fecal fat across pill types reflect the within-subject treatment effect
+of each formulation (RMB2e Ch. 7).
+This design is particularly powerful because it eliminates the dominant source of variation
+(subject-to-subject differences in baseline fat excretion),
+allowing a relatively small crossover study to detect meaningful differences.
+The residual plots confirm the adequacy of the linear model for inference.
 
 ## Source
 

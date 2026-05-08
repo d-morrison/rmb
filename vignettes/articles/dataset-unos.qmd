@@ -21,14 +21,22 @@ This article fits a Cox proportional hazards model to pediatric kidney transplan
 
 ## Introduction
 
-Kidney transplantation offers superior outcomes compared to long-term dialysis for children with end-stage renal disease. Living-donor transplants are hypothesized to have better outcomes than cadaveric transplants due to shorter cold ischemic time, better HLA matching opportunities, and planned surgery timing. The UNOS (United Network for Organ Sharing) registry provides observational data on outcomes for all US transplant recipients, enabling registry-based Cox regression adjusted for recipient and donor characteristics (RMB2e Ch. 6).
+Kidney transplantation offers superior outcomes compared to long-term dialysis
+for children with end-stage renal disease.
+Living-donor transplants are hypothesized to have better outcomes than cadaveric transplants
+due to shorter cold ischemic time, better HLA matching opportunities, and planned surgery timing.
+The UNOS (United Network for Organ Sharing) registry provides observational data
+on outcomes for all US transplant recipients,
+enabling registry-based Cox regression
+adjusted for recipient and donor characteristics (RMB2e Ch. 6).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "unos"]
 ```
 
-Is living-donor transplant associated with lower post-transplant mortality compared to cadaveric transplant in pediatric kidney recipients?
+Is living-donor transplant associated with lower post-transplant mortality
+compared to cadaveric transplant in pediatric kidney recipients?
 
 ### Causal assumptions
 
@@ -54,7 +62,9 @@ summary(dat[c("death", "fu", "txtype", "age", "age_don", "cold_isc", "trtrej1y")
 
 ### Statistical analysis
 
-A Cox proportional hazards model is fitted with post-transplant death as the event, using follow-up time `fu` (years) and adjusting for transplant type, recipient age, donor age, cold ischemic time, and first-year rejection (RMB2e Ch. 6).
+A Cox proportional hazards model is fitted with post-transplant death as the event,
+using follow-up time `fu` (years) and adjusting for transplant type,
+recipient age, donor age, cold ischemic time, and first-year rejection (RMB2e Ch. 6).
 
 ```{r model-specification}
 formula_main <- survival::Surv(fu, death) ~ txtype + age + age_don + cold_isc + trtrej1y
@@ -115,7 +125,14 @@ data.frame(
 
 ## Discussion
 
-Living-donor transplantation is associated with lower post-transplant mortality compared to cadaveric transplantation after adjustment for recipient age, donor age, cold ischemic time, and first-year rejection, consistent with known biological and logistical advantages of living donation (RMB2e Ch. 6). Rejection within the first year is a strong predictor of subsequent mortality, underscoring the prognostic importance of early immune events. Cold ischemic time reflects graft quality at implantation and is an important modifiable predictor that differs between transplant types.
+Living-donor transplantation is associated with lower post-transplant mortality
+compared to cadaveric transplantation after adjustment for recipient age, donor age,
+cold ischemic time, and first-year rejection,
+consistent with known biological and logistical advantages of living donation (RMB2e Ch. 6).
+Rejection within the first year is a strong predictor of subsequent mortality,
+underscoring the prognostic importance of early immune events.
+Cold ischemic time reflects graft quality at implantation
+and is an important modifiable predictor that differs between transplant types.
 
 ## Source
 

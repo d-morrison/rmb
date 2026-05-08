@@ -20,14 +20,23 @@ This article applies linear regression on log-transformed needle-sharing frequen
 
 ## Introduction
 
-Needle sharing among injection drug users (IDUs) is a primary route of HIV and hepatitis C transmission. Mental health disorders such as depression and unstable housing (homelessness) have been proposed as structural and psychological drivers of risk behavior, including receptive syringe sharing. Log-transforming the highly right-skewed sharing count (`logshsyr`) induces approximate normality required for linear regression inference (RMB2e Ch. 8). HIV-positive status may suppress or increase sharing depending on perceived risk, while polydrug use and injection frequency reflect overall addiction severity.
+Needle sharing among injection drug users (IDUs)
+is a primary route of HIV and hepatitis C transmission.
+Mental health disorders such as depression and unstable housing (homelessness)
+have been proposed as structural and psychological drivers of risk behavior,
+including receptive syringe sharing.
+Log-transforming the highly right-skewed sharing count (`logshsyr`)
+induces approximate normality required for linear regression inference (RMB2e Ch. 8).
+HIV-positive status may suppress or increase sharing depending on perceived risk,
+while polydrug use and injection frequency reflect overall addiction severity.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "needle_sharing"]
 ```
 
-Are depression diagnosis and homelessness associated with greater needle-sharing frequency among injection drug users?
+Are depression diagnosis and homelessness associated with greater needle-sharing frequency
+among injection drug users?
 
 ### Causal assumptions
 
@@ -53,7 +62,10 @@ summary(dat[c("logshsyr", "dprsn_dx", "homeless", "hivstat", "polydrug", "sqrtni
 
 ### Statistical analysis
 
-Linear regression of log-transformed needle sharing (`logshsyr`) on depression diagnosis, homelessness, HIV status, polydrug use, and square-root injection frequency, following the transformed-outcome approach in RMB2e Chapter 8.
+Linear regression of log-transformed needle sharing (`logshsyr`)
+on depression diagnosis, homelessness, HIV status, polydrug use,
+and square-root injection frequency,
+following the transformed-outcome approach in RMB2e Chapter 8.
 
 ```{r model-specification}
 formula_main <- logshsyr ~ dprsn_dx + homeless + hivstat + polydrug + sqrtnivd
@@ -114,7 +126,16 @@ data.frame(
 
 ## Discussion
 
-Depression diagnosis and homelessness are associated with higher log needle-sharing frequency, suggesting that mental health and housing instability contribute to HIV transmission risk behaviors among IDUs, consistent with RMB2e Chapter 8. Polydrug use and injection frequency are also positively associated with sharing, reflecting addiction severity. HIV-positive status shows an association that merits careful interpretation, as seropositive individuals may perceive less marginal risk or may have different social network positions. The log transformation of the skewed outcome is critical for producing well-behaved residuals and valid inference.
+Depression diagnosis and homelessness are associated with higher log needle-sharing frequency,
+suggesting that mental health and housing instability contribute to HIV transmission risk behaviors
+among IDUs, consistent with RMB2e Chapter 8.
+Polydrug use and injection frequency are also positively associated with sharing,
+reflecting addiction severity.
+HIV-positive status shows an association that merits careful interpretation,
+as seropositive individuals may perceive less marginal risk
+or may have different social network positions.
+The log transformation of the skewed outcome is critical
+for producing well-behaved residuals and valid inference.
 
 ## Source
 

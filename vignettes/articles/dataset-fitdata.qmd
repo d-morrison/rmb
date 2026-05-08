@@ -20,14 +20,24 @@ This article uses the longitudinal FIT dataset to assess whether alendronate tre
 
 ## Introduction
 
-The Fracture Intervention Trial (FIT) collected femoral neck BMD at both baseline and end-of-study, enabling assessment of treatment-related BMD change alongside fracture endpoints. Bisphosphonates such as alendronate inhibit osteoclast-mediated bone resorption, thereby increasing BMD; however, the magnitude of BMD gain depends on baseline BMD, fracture history, and patient characteristics. Linear regression on end-of-study BMD with baseline BMD as a covariate (analysis of covariance) is the appropriate approach for estimating treatment effects on a continuous outcome in a randomized trial (RMB2e Ch. 9 / Black 1996).
+The Fracture Intervention Trial (FIT) collected femoral neck BMD
+at both baseline and end-of-study,
+enabling assessment of treatment-related BMD change alongside fracture endpoints.
+Bisphosphonates such as alendronate inhibit osteoclast-mediated bone resorption,
+thereby increasing BMD;
+however, the magnitude of BMD gain depends on baseline BMD,
+fracture history, and patient characteristics.
+Linear regression on end-of-study BMD with baseline BMD as a covariate (analysis of covariance)
+is the appropriate approach for estimating treatment effects on a continuous outcome
+in a randomized trial (RMB2e Ch. 9 / Black 1996).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "fitdata"]
 ```
 
-Is alendronate treatment associated with greater end-of-study femoral neck BMD from baseline, after adjustment for baseline BMD, age, BMI, and prior vertebral fracture?
+Is alendronate treatment associated with greater end-of-study femoral neck BMD from baseline,
+after adjustment for baseline BMD, age, BMI, and prior vertebral fracture?
 
 ### Causal assumptions
 
@@ -53,7 +63,10 @@ summary(dat[c("tx", "blbmd", "cobmd", "age", "bmi", "blvfx")])
 
 ### Statistical analysis
 
-A linear model regresses end-of-study femoral neck BMD (`cobmd`) on treatment assignment (`tx`), baseline BMD (`blbmd`), age, BMI, and prior vertebral fracture history (`blvfx`), following the analysis of covariance approach recommended in RMB2e Chapter 9.
+A linear model regresses end-of-study femoral neck BMD (`cobmd`)
+on treatment assignment (`tx`), baseline BMD (`blbmd`), age, BMI,
+and prior vertebral fracture history (`blvfx`),
+following the analysis of covariance approach recommended in RMB2e Chapter 9.
 
 ```{r model-specification}
 formula_main <- cobmd ~ tx + blbmd + age + bmi + blvfx
@@ -112,7 +125,15 @@ data.frame(
 
 ## Discussion
 
-Alendronate treatment is positively associated with end-of-study femoral neck BMD after adjustment for baseline BMD and clinical characteristics, consistent with the mechanism of bisphosphonate action and the primary findings of Black et al. (1996). Baseline BMD is the dominant predictor of end-of-study BMD, as expected from the high autocorrelation of bone density measurements. This analysis of covariance design (with baseline BMD as covariate) is the recommended approach for estimating treatment effects on a continuous outcome in a randomized trial with heterogeneous baseline values (RMB2e Ch. 9).
+Alendronate treatment is positively associated with end-of-study femoral neck BMD
+after adjustment for baseline BMD and clinical characteristics,
+consistent with the mechanism of bisphosphonate action
+and the primary findings of Black et al. (1996).
+Baseline BMD is the dominant predictor of end-of-study BMD,
+as expected from the high autocorrelation of bone density measurements.
+This analysis of covariance design (with baseline BMD as covariate)
+is the recommended approach for estimating treatment effects on a continuous outcome
+in a randomized trial with heterogeneous baseline values (RMB2e Ch. 9).
 
 ## Source
 

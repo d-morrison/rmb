@@ -20,14 +20,22 @@ This article applies a logistic regression workflow to the phototherapy dataset,
 
 ## Introduction
 
-Neonatal jaundice (hyperbilirubinemia) affects the majority of newborns and, when severe, can cause neurological injury. Phototherapy is the first-line treatment to lower total serum bilirubin (TSB), yet observational studies must adjust for gestational age and birth weight because preterm and low-birthweight infants both receive phototherapy more often and are at higher risk of complications. These data were assembled for confounding-adjusted phototherapy analyses described in RMB2e Chapter 9.
+Neonatal jaundice (hyperbilirubinemia) affects the majority of newborns and,
+when severe, can cause neurological injury.
+Phototherapy is the first-line treatment to lower total serum bilirubin (TSB),
+yet observational studies must adjust for gestational age and birth weight
+because preterm and low-birthweight infants both receive phototherapy more often
+and are at higher risk of complications.
+These data were assembled for confounding-adjusted phototherapy analyses
+described in RMB2e Chapter 9.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "phototherapy"]
 ```
 
-Is phototherapy use associated with a reduced rate of exceeding the transfusion threshold after adjusting for gestational age and birth weight?
+Is phototherapy use associated with a reduced rate of exceeding the transfusion threshold
+after adjusting for gestational age and birth weight?
 
 ### Causal assumptions
 
@@ -54,7 +62,10 @@ summary(dat[c("phototherapy", "over_thresh", "qual_TSB", "birth_wt", "gest_age",
 
 ### Statistical analysis
 
-Logistic regression is used to model the binary outcome `over_thresh` (TSB exceeding the transfusion threshold), with phototherapy as the primary predictor and gestational age and birth weight as confounders (RMB2e Ch. 9).
+Logistic regression is used to model the binary outcome `over_thresh`
+(TSB exceeding the transfusion threshold),
+with phototherapy as the primary predictor
+and gestational age and birth weight as confounders (RMB2e Ch. 9).
 
 ```{r model-specification}
 formula_main <- over_thresh ~ phototherapy + birth_wt + gest_age
@@ -112,7 +123,14 @@ data.frame(
 
 ## Discussion
 
-After adjustment for gestational age and birth weight, the estimated association between phototherapy use and exceeding the transfusion threshold reflects the confounding-adjusted treatment effect described in RMB2e Chapter 9. Because gestational age and birth weight are both strong predictors of the outcome and strongly related to phototherapy receipt, unadjusted comparisons would be severely confounded. The logistic model framework here illustrates the core confounding-adjustment strategy recommended throughout RMB2e.
+After adjustment for gestational age and birth weight,
+the estimated association between phototherapy use and exceeding the transfusion threshold
+reflects the confounding-adjusted treatment effect described in RMB2e Chapter 9.
+Because gestational age and birth weight are both strong predictors of the outcome
+and strongly related to phototherapy receipt,
+unadjusted comparisons would be severely confounded.
+The logistic model framework here illustrates the core confounding-adjustment strategy
+recommended throughout RMB2e.
 
 ## Source
 

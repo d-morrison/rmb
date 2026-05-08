@@ -21,14 +21,22 @@ This article reproduces the ACTG 019 survival analysis workflow used in RMB2e Ch
 
 ## Introduction
 
-The AIDS Clinical Trials Group protocol 019 was a placebo-controlled randomized trial of zidovudine (ZDV) in HIV-positive adults with CD4 counts between 200 and 500 cells/mm³, conducted in the late 1980s. It was among the first trials to demonstrate a survival benefit for antiretroviral therapy in this CD4 stratum. Baseline CD4 count is a strong predictor of disease progression and is included as a covariate to increase precision, even though randomization removes confounding by design (RMB2e p. 268).
+The AIDS Clinical Trials Group protocol 019 was a placebo-controlled randomized trial
+of zidovudine (ZDV) in HIV-positive adults with CD4 counts between 200 and 500 cells/mm³,
+conducted in the late 1980s.
+It was among the first trials to demonstrate a survival benefit for antiretroviral therapy
+in this CD4 stratum.
+Baseline CD4 count is a strong predictor of disease progression
+and is included as a covariate to increase precision,
+even though randomization removes confounding by design (RMB2e p. 268).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "actg019"]
 ```
 
-Can zidovudine treatment reduce the hazard of AIDS or death after accounting for baseline CD4 cell count?
+Can zidovudine treatment reduce the hazard of AIDS or death
+after accounting for baseline CD4 cell count?
 
 ### Causal assumptions
 
@@ -52,7 +60,9 @@ summary(dat[c("days", "cens", "rx", "cd4")])
 
 ### Statistical analysis
 
-A Cox proportional hazards model with Breslow tie-handling is used, regressing the survival outcome on treatment assignment and baseline CD4 count (RMB2e p. 267). The proportional hazards assumption is checked with scaled Schoenfeld residuals.
+A Cox proportional hazards model with Breslow tie-handling is used,
+regressing the survival outcome on treatment assignment and baseline CD4 count (RMB2e p. 267).
+The proportional hazards assumption is checked with scaled Schoenfeld residuals.
 
 ```{r model-specification}
 cox_formula <- survival::Surv(days, cens) ~ rx + cd4
@@ -121,7 +131,13 @@ out
 
 ## Discussion
 
-ZDV assignment is associated with a lower hazard of AIDS or death, consistent with the trial's primary findings as discussed in RMB2e Chapter 6 (pp. 224, 267). Higher baseline CD4 count is protective, reflecting the well-known relationship between immune status and disease progression. The proportional hazards assumption diagnostics (Schoenfeld residuals) should be inspected to confirm that hazard ratios are constant over follow-up time, a key requirement for valid Cox model interpretation (RMB2e p. 267).
+ZDV assignment is associated with a lower hazard of AIDS or death,
+consistent with the trial's primary findings as discussed in RMB2e Chapter 6 (pp. 224, 267).
+Higher baseline CD4 count is protective,
+reflecting the well-known relationship between immune status and disease progression.
+The proportional hazards assumption diagnostics (Schoenfeld residuals) should be inspected
+to confirm that hazard ratios are constant over follow-up time,
+a key requirement for valid Cox model interpretation (RMB2e p. 267).
 
 ## Source
 

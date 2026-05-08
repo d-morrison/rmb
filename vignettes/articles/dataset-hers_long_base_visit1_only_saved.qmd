@@ -20,14 +20,23 @@ This article analyzes glucose levels at Year-1 follow-up in HERS participants, e
 
 ## Introduction
 
-The Heart and Estrogen/Progestin Replacement Study (HERS) enrolled postmenopausal women with established coronary heart disease and randomized them to hormone therapy (HRT) or placebo. Beyond its primary cardiovascular endpoints, HERS collected repeated metabolic measurements including fasting glucose, enabling analysis of longitudinal glycemic trajectories. Missing data patterns in metabolic outcomes are a key methodological concern in longitudinal studies (RMB2e Chapter 11).
+The Heart and Estrogen/Progestin Replacement Study (HERS) enrolled postmenopausal women
+with established coronary heart disease and randomized them to hormone therapy (HRT) or placebo.
+Beyond its primary cardiovascular endpoints,
+HERS collected repeated metabolic measurements including fasting glucose,
+enabling analysis of longitudinal glycemic trajectories.
+Missing data patterns in metabolic outcomes are a key methodological concern
+in longitudinal studies (RMB2e Chapter 11).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "hers_long_base_visit1_only_saved"]
 ```
 
-This dataset contains baseline and Visit 1 data from the HERS longitudinal structure. We ask: among women without diabetes at baseline, is HRT assignment associated with Year-1 fasting glucose after adjusting for exercise and BMI?
+This dataset contains baseline and Visit 1 data from the HERS longitudinal structure.
+We ask: among women without diabetes at baseline,
+is HRT assignment associated with Year-1 fasting glucose
+after adjusting for exercise and BMI?
 
 ### Causal assumptions
 
@@ -55,7 +64,10 @@ summary(ana[c("glucose", "group", "bmi", "exer3", "age")])
 
 ### Statistical analysis
 
-We fit a linear regression model for Year-1 fasting glucose with HRT assignment (`group`) as the primary predictor, adjusting for BMI, exercise frequency, age, and smoking status among women attending Visit 1 without diabetes.
+We fit a linear regression model for Year-1 fasting glucose
+with HRT assignment (`group`) as the primary predictor,
+adjusting for BMI, exercise frequency, age, and smoking status
+among women attending Visit 1 without diabetes.
 
 ```{r model-specification}
 formula_gluc <- glucose ~ group + bmi + exer3 + age + csmker
@@ -112,7 +124,14 @@ coef_tab
 
 ## Discussion
 
-In this HERS baseline/Visit-1 longitudinal analysis, HRT assignment does not appear to substantially change fasting glucose in women without diabetes after adjustment for BMI, exercise, and age. The analysis illustrates the longitudinal data structure used in RMB2e Chapter 11 for missing-data examples, where patterns of missingness in glucose are related to baseline characteristics. Regular exercise is associated with lower glucose levels, consistent with its known metabolic effects.
+In this HERS baseline/Visit-1 longitudinal analysis,
+HRT assignment does not appear to substantially change fasting glucose
+in women without diabetes after adjustment for BMI, exercise, and age.
+The analysis illustrates the longitudinal data structure used in RMB2e Chapter 11
+for missing-data examples,
+where patterns of missingness in glucose are related to baseline characteristics.
+Regular exercise is associated with lower glucose levels,
+consistent with its known metabolic effects.
 
 ## Source
 

@@ -20,14 +20,23 @@ This article fits a logistic regression model to the Fracture Intervention Trial
 
 ## Introduction
 
-Postmenopausal osteoporosis is characterized by rapid bone loss driven by estrogen deficiency, leading to increased fracture risk. The Fracture Intervention Trial (FIT) was a large randomized placebo-controlled trial of the bisphosphonate alendronate in postmenopausal women with low femoral neck BMD (Black et al. 1996). New vertebral fractures were identified from serial lateral spine radiographs and serve as the primary binary outcome in this analysis. A history of prior vertebral fracture and low baseline BMD are strong confounders and are included as adjusters (RMB2e Ch. 6).
+Postmenopausal osteoporosis is characterized by rapid bone loss driven by estrogen deficiency,
+leading to increased fracture risk.
+The Fracture Intervention Trial (FIT) was a large randomized placebo-controlled trial
+of the bisphosphonate alendronate in postmenopausal women
+with low femoral neck BMD (Black et al. 1996).
+New vertebral fractures were identified from serial lateral spine radiographs
+and serve as the primary binary outcome in this analysis.
+A history of prior vertebral fracture and low baseline BMD are strong confounders
+and are included as adjusters (RMB2e Ch. 6).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "fit"]
 ```
 
-Does alendronate treatment reduce the incidence of new vertebral fractures compared to placebo in postmenopausal women with low BMD?
+Does alendronate treatment reduce the incidence of new vertebral fractures
+compared to placebo in postmenopausal women with low BMD?
 
 ### Causal assumptions
 
@@ -53,7 +62,9 @@ summary(dat[c("treat", "age", "frac_base", "bmd_base", "newvfx", "fitpy")])
 
 ### Statistical analysis
 
-Logistic regression models the probability of new vertebral fracture on treatment assignment, baseline fracture history, baseline femoral neck BMD, and age (RMB2e Ch. 6 / Black 1996).
+Logistic regression models the probability of new vertebral fracture
+on treatment assignment, baseline fracture history, baseline femoral neck BMD, and age
+(RMB2e Ch. 6 / Black 1996).
 
 ```{r model-specification}
 formula_main <- newvfx ~ treat + age + frac_base + bmd_base
@@ -110,7 +121,13 @@ data.frame(
 
 ## Discussion
 
-Alendronate treatment is associated with substantially reduced odds of new vertebral fracture compared to placebo after adjustment for baseline fracture history, BMD, and age, replicating the main finding of Black et al. (1996) and discussed in RMB2e Chapter 6. Prior vertebral fracture and lower baseline BMD are both strong independent predictors of incident fracture, confirming their roles as established risk factors. These results illustrate how logistic regression can estimate treatment effects adjusted for important prognostic baseline characteristics in a randomized trial.
+Alendronate treatment is associated with substantially reduced odds of new vertebral fracture
+compared to placebo after adjustment for baseline fracture history, BMD, and age,
+replicating the main finding of Black et al. (1996) and discussed in RMB2e Chapter 6.
+Prior vertebral fracture and lower baseline BMD are both strong independent predictors
+of incident fracture, confirming their roles as established risk factors.
+These results illustrate how logistic regression can estimate treatment effects
+adjusted for important prognostic baseline characteristics in a randomized trial.
 
 ## Source
 

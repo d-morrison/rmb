@@ -20,14 +20,23 @@ This article applies logistic regression to the MIRA HSV-2 dataset, assessing wh
 
 ## Introduction
 
-Herpes simplex virus type 2 (HSV-2) is the leading cause of genital ulcer disease worldwide and an important HIV cofactor. The MIRA trial evaluated diaphragm-based HIV prevention in sub-Saharan Africa; a secondary analysis by de Bruyn et al. (2011) examined predictors of incident HSV-2 among participants. Acquiring a new sexual partner substantially increases exposure risk, but age and prior STI history confound this relationship because older women and those with STI history are more likely to have established partners and different HSV-2 susceptibility (RMB2e Ch. 5).
+Herpes simplex virus type 2 (HSV-2) is the leading cause of genital ulcer disease worldwide
+and an important HIV cofactor.
+The MIRA trial evaluated diaphragm-based HIV prevention in sub-Saharan Africa;
+a secondary analysis by de Bruyn et al. (2011)
+examined predictors of incident HSV-2 among participants.
+Acquiring a new sexual partner substantially increases exposure risk,
+but age and prior STI history confound this relationship
+because older women and those with STI history are more likely to have established partners
+and different HSV-2 susceptibility (RMB2e Ch. 5).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "mira_hsv"]
 ```
 
-Is having a new sexual partner associated with incident HSV-2 infection after adjustment for age category and prior STI history?
+Is having a new sexual partner associated with incident HSV-2 infection
+after adjustment for age category and prior STI history?
 
 ### Causal assumptions
 
@@ -52,7 +61,9 @@ summary(dat[c("hsv2", "newparts", "stihx", "agecat")])
 
 ### Statistical analysis
 
-Logistic regression models incident HSV-2 as a function of new partner status, prior STI history, and age category, following the categorical-predictor approach in RMB2e Chapter 5.
+Logistic regression models incident HSV-2 as a function of new partner status,
+prior STI history, and age category,
+following the categorical-predictor approach in RMB2e Chapter 5.
 
 ```{r model-specification}
 formula_main <- hsv2 ~ newparts + stihx + agecat
@@ -110,7 +121,15 @@ data.frame(
 
 ## Discussion
 
-New partner acquisition is associated with increased odds of incident HSV-2 after adjustment for age and STI history, consistent with the transmission dynamics of a sexually transmitted pathogen and the findings of de Bruyn et al. (2011). Prior STI history is a marker of sexual network exposure and susceptibility, while age reflects accumulated exposure and possible partial immunity. This analysis illustrates how logistic regression for binary outcomes adjusts for multiple categorical confounders simultaneously, a core application in RMB2e Chapter 5.
+New partner acquisition is associated with increased odds of incident HSV-2
+after adjustment for age and STI history,
+consistent with the transmission dynamics of a sexually transmitted pathogen
+and the findings of de Bruyn et al. (2011).
+Prior STI history is a marker of sexual network exposure and susceptibility,
+while age reflects accumulated exposure and possible partial immunity.
+This analysis illustrates how logistic regression for binary outcomes
+adjusts for multiple categorical confounders simultaneously,
+a core application in RMB2e Chapter 5.
 
 ## Source
 

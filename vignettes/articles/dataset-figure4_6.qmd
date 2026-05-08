@@ -20,14 +20,21 @@ This article uses the `figure4_6` dataset to illustrate residual and influence d
 
 ## Introduction
 
-Residual diagnostics are an essential part of the five-step RMB regression workflow: after fitting a model, examining residuals against fitted values, normal quantile plots, and Cook's distance identifies violations of linearity, homoscedasticity, and normality that can invalidate inference. The `figure4_6` dataset provides 100 observations of a single predictor `x` that serves as the basis for a pedagogical illustration of these diagnostic tools (RMB2e Ch. 4).
+Residual diagnostics are an essential part of the five-step RMB regression workflow:
+after fitting a model,
+examining residuals against fitted values, normal quantile plots, and Cook's distance
+identifies violations of linearity, homoscedasticity, and normality
+that can invalidate inference.
+The `figure4_6` dataset provides 100 observations of a single predictor `x`
+that serves as the basis for a pedagogical illustration of these diagnostic tools (RMB2e Ch. 4).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "figure4_6"]
 ```
 
-Do the standard regression diagnostic plots reveal any violations of linear model assumptions for data simulated from a linear relationship with normally distributed errors?
+Do the standard regression diagnostic plots reveal any violations of linear model assumptions
+for data simulated from a linear relationship with normally distributed errors?
 
 ### Causal assumptions
 
@@ -49,7 +56,10 @@ summary(dat)
 
 ### Statistical analysis
 
-A simple linear regression of a simulated outcome `y` (constructed from `x` with normally distributed errors) is fitted, and the full suite of diagnostic plots from RMB2e Chapter 4 is produced: residuals vs fitted, normal Q-Q, scale-location, and Cook's distance (RMB2e Ch. 4).
+A simple linear regression of a simulated outcome `y`
+(constructed from `x` with normally distributed errors) is fitted,
+and the full suite of diagnostic plots from RMB2e Chapter 4 is produced:
+residuals vs fitted, normal Q-Q, scale-location, and Cook's distance (RMB2e Ch. 4).
 
 ```{r model-specification}
 set.seed(42)
@@ -108,7 +118,16 @@ data.frame(
 
 ## Discussion
 
-When data truly follow a linear model with homoscedastic normal errors, the four standard diagnostic plots should show: no pattern in residuals vs fitted, points falling close to the diagonal in the Q-Q plot, roughly constant spread in the scale-location plot, and no observations with large Cook's distances (RMB2e Ch. 4). This simulated dataset with correct model specification provides a baseline reference for what "good" diagnostics look like, against which practitioners can compare plots from real datasets where assumptions may be violated.
+When data truly follow a linear model with homoscedastic normal errors,
+the four standard diagnostic plots should show:
+no pattern in residuals vs fitted,
+points falling close to the diagonal in the Q-Q plot,
+roughly constant spread in the scale-location plot,
+and no observations with large Cook's distances (RMB2e Ch. 4).
+This simulated dataset with correct model specification
+provides a baseline reference for what "good" diagnostics look like,
+against which practitioners can compare plots from real datasets
+where assumptions may be violated.
 
 ## Source
 

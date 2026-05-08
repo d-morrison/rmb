@@ -20,14 +20,20 @@ This article examines missing glucose data patterns at Visit 4 in HERS participa
 
 ## Introduction
 
-Missing data are a pervasive challenge in longitudinal clinical studies. In HERS, fasting glucose was measured repeatedly but subject to informative missingness—women who missed visits or had missing glucose values may differ systematically from completers. RMB2e Chapter 11 uses this dataset to illustrate missing-at-random (MAR) and missing-not-at-random (MNAR) mechanisms.
+Missing data are a pervasive challenge in longitudinal clinical studies.
+In HERS, fasting glucose was measured repeatedly but subject to informative missingness—
+women who missed visits or had missing glucose values may differ systematically from completers.
+RMB2e Chapter 11 uses this dataset to illustrate
+missing-at-random (MAR) and missing-not-at-random (MNAR) mechanisms.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "hers_nodm_visit4_only"]
 ```
 
-We ask: among HERS participants without diabetes at Visit 4, is missingness of fasting glucose associated with BMI category and other baseline characteristics, suggesting non-random missingness?
+We ask: among HERS participants without diabetes at Visit 4,
+is missingness of fasting glucose associated with BMI category and other baseline characteristics,
+suggesting non-random missingness?
 
 ### Causal assumptions
 
@@ -53,7 +59,8 @@ summary(dat[c("miss_gluc", "bmi_cat", "age", "csmker", "htnmeds", "drinkany")])
 
 ### Statistical analysis
 
-We fit logistic regression to predict glucose missingness (`miss_gluc`) from BMI category, age, smoking status, hypertension medication use, and alcohol consumption.
+We fit logistic regression to predict glucose missingness (`miss_gluc`)
+from BMI category, age, smoking status, hypertension medication use, and alcohol consumption.
 
 ```{r model-specification}
 formula_miss <- miss_gluc ~ bmi_cat + age + csmker + drinkany + htnmeds
@@ -113,7 +120,12 @@ inf
 
 ## Discussion
 
-Missingness of fasting glucose at Visit 4 is associated with BMI category and other participant characteristics, indicating that the missing data mechanism is not completely at random (MCAR). This pattern motivates the multiple imputation approach demonstrated in RMB2e Chapter 11, where MAR-based imputation accounts for the observed predictors of missingness to produce valid inference about the glucose outcome.
+Missingness of fasting glucose at Visit 4 is associated with BMI category
+and other participant characteristics,
+indicating that the missing data mechanism is not completely at random (MCAR).
+This pattern motivates the multiple imputation approach demonstrated in RMB2e Chapter 11,
+where MAR-based imputation accounts for the observed predictors of missingness
+to produce valid inference about the glucose outcome.
 
 ## Source
 
