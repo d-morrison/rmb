@@ -196,6 +196,7 @@ The study enrolled over 9,000 women aged 65 and older. Bone mineral density decl
 ```
 
 Guidelines:
+
 - Break after complete sentences (at periods).
 - Break after long phrases or clauses (at commas or conjunctions).
 - Aim for lines under 80 characters.

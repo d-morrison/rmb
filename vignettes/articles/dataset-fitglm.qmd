@@ -149,5 +149,5 @@ regardless of treatment assignment.
 ## Source
 
 - Black DM et al. (1996). Randomised trial of effect of alendronate on risk of fracture in women with existing vertebral fractures. *Lancet*, 348(9041), 1535–1541.
-- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fitglm.dta
+- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/FITglm.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

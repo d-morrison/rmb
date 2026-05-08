@@ -64,7 +64,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 
 ```{r load-data}
 data(sof, package = "rmb")
-dat <- sof
+dat <- haven::zap_labels(sof)
 dim(dat)
 baseline_sof <- subset(dat, visit == 2)
 dim(baseline_sof)
@@ -139,7 +139,8 @@ consistent with the mechanical loading and estrogenic pathways described above (
 Age is negatively associated with BMD, reflecting postmenopausal bone loss.
 Menopausal age contributes independently,
 as women who underwent menopause later experienced fewer years of estrogen deficiency.
-This cross-sectional analysis uses only Visit 1 data
+This cross-sectional analysis uses only Visit 2 data
+(the earliest available visit in the SOF dataset)
 to avoid the need for mixed-model methods
 introduced for the longitudinal SOF analyses elsewhere in RMB2e.
 

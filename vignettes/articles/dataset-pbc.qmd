@@ -41,17 +41,16 @@ after adjustment for log-albumin, log-prothrombin time, age, and edema status?
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
-  surv ~ bili + albu + prot + age + edema + rx,
+  surv ~ bili + albu + prot + age + edema,
   labels = c(
     surv = "Survival",
     bili = "Log bilirubin",
     albu = "Log albumin",
     prot = "Prothrombin time",
     age = "Age",
-    edema = "Edema",
-    rx = "Treatment"
+    edema = "Edema"
   ),
-  exposure = "rx",
+  exposure = "bili",
   outcome = "surv"
 )
 ggdag::ggdag(dag, use_labels = "label", text = FALSE) +

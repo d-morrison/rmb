@@ -69,7 +69,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 
 ```{r load-data}
 data(hers, package = "rmb")
-dat <- hers
+dat <- haven::zap_labels(hers)
 dim(dat)
 nd <- subset(dat, diabetes == 0)
 summary(haven::zap_labels(dat[c("HT", "BMI", "LDL", "LDL1", "exercise", "glucose", "age", "nonwhite", "smoking", "drinkany", "statins")]))

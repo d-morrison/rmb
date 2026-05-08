@@ -66,7 +66,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 
 ```{r load-data}
 data(hers_long_base_visit1_only_saved, package = "rmb")
-dat <- hers_long_base_visit1_only_saved
+dat <- haven::zap_labels(hers_long_base_visit1_only_saved)
 dim(dat)
 ana <- subset(dat, nvisit == 1 & diabetes == 0)
 dim(ana)

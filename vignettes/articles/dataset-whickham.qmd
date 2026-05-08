@@ -63,7 +63,7 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
 
 ```{r load-data}
 data(whickham, package = "rmb")
-dat <- whickham
+dat <- haven::zap_labels(whickham)
 dim(dat)
 summary(dat)
 ```
