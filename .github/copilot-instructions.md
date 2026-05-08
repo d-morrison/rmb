@@ -170,14 +170,88 @@ altdoc::preview_docs()    # Launch preview server
 
 ## Code Style
 
-- Follow the [tidyverse style guide](https://style.tidyverse.org)
-- Use roxygen2 for documentation
-- Include tests for all exported functions
-- Update NEWS.md for user-facing changes
-  - Use the `(#issue_number)` notation to link to issues (e.g., `(#123)`)
-  - Use the `(#PR_number)` notation to link to pull requests
-  - Use `@username` to credit **external** contributors only (not internal team members)
-  - See [R Packages - NEWS.md](https://r-pkgs.org/other-markdown.html#sec-news) for details
+Follow the [UCD-SERG Lab Manual Coding Style](https://ucd-serg.github.io/lab-manual/coding-style.html)
+and the [tidyverse style guide](https://style.tidyverse.org).
+Key conventions are summarised below.
+
+### Semantic Line Breaks in Plain Text
+
+Add a newline at the end of every phrase or logical unit of text
+in plain-text source files
+(`.qmd` prose, R comments, roxygen2 documentation strings).
+A phrase is typically a complete thought, clause, or sentence.
+
+**Correct (prose in .qmd):**
+
+```
+The study enrolled over 9,000 women aged 65 and older.
+Bone mineral density declines after menopause;
+however, body mass index is protective.
+```
+
+**Incorrect:**
+
+```
+The study enrolled over 9,000 women aged 65 and older. Bone mineral density declines after menopause; however, body mass index is protective.
+```
+
+Guidelines:
+- Break after complete sentences (at periods).
+- Break after long phrases or clauses (at commas or conjunctions).
+- Aim for lines under 80 characters.
+- Do not break in the middle of inline code, links, or formatting.
+
+See the lab manual section on [semantic line breaks](https://ucd-serg.github.io/lab-manual/coding-style.html#sec-semantic-line-breaks)
+and the [sembr.org](https://sembr.org/) reference.
+
+### Blank Lines Before Lists
+
+Always include a blank line before starting a bullet list or numbered list
+in markdown/Quarto documents.
+
+### Pipes and Naming
+
+- Use native pipe `|>` (not `%>%`); available in R >= 4.1.0.
+- Use `snake_case` for functions and variables; acronyms may be uppercase
+  (e.g., `prep_IDs_data`).
+- Use descriptive, verbose names
+  (e.g., `vaccination_coverage_2017_18` not `vaxcov_1718`).
+- Prefer nouns for objects, verbs for functions.
+
+### Writing Code in Quarto Documents
+
+- Use backticks for inline code (e.g., `` `dplyr::mutate()` ``).
+- Reference packages with backtick/brace notation and a hyperlink
+  (e.g., `` [`{dplyr}`](https://dplyr.tidyverse.org/) ``).
+- Do **not** use raw HTML (`<a href="...">`); use Quarto/markdown links.
+
+### Messaging in Package Code
+
+Use [`{cli}`](https://cli.r-lib.org/) for all user-facing messages:
+- `cli::cli_inform()` instead of `message()`
+- `cli::cli_warn()` instead of `warning()`
+- `cli::cli_abort()` instead of `stop()`
+
+### Package Code Practices
+
+- No `library()` calls in package code; use `::` notation.
+- Always use explicit `return()` statements in functions.
+- Use tidyverse replacements:
+  `tibble::tibble()` instead of `data.frame()`,
+  `readr::read_csv()` instead of `read.csv()`, etc.
+
+### Documentation
+
+- Use roxygen2 for all exported functions
+  (`@title`, `@description`, `@param`, `@returns`, `@examples`).
+- Include tests for all exported functions.
+- Update NEWS.md for user-facing changes.
+  - Use the `(#issue_number)` notation to link to issues (e.g., `(#123)`).
+  - Use the `(#PR_number)` notation to link to pull requests.
+  - Use `@username` to credit **external** contributors only
+    (not internal team members).
+  - See [R Packages - NEWS.md](https://r-pkgs.org/other-markdown.html#sec-news)
+    for details.
 
 ## Version Management
 
@@ -196,42 +270,13 @@ altdoc::preview_docs()    # Launch preview server
 - **Development version** (0.0.0.X): Development work, not released
 
 See [R Packages - Version numbers](https://r-pkgs.org/lifecycle.html#sec-lifecycle-version-number) for details.
-### Using Pipes to Emphasize Primary Inputs
-
-Use pipes (`|>` or `%>%`) to emphasize the primary input and make sequences of actions more readable:
-
-- **Use pipes for sequences**: When applying multiple transformations to a single primary object (typically a data frame), use pipes to show the flow of data through the transformations
-- **Emphasize the main subject**: Pipes keep the focus on the primary input by placing it at the start of the pipeline
-- **Avoid for multiple objects**: Don't use pipes when multiple unrelated objects are involved; use direct function calls or intermediate variables instead
-- **Formatting**: 
-  - Add a space before the pipe operator
-  - Place each step on a new line for multi-step pipelines
-  - Indent continuation lines for clarity
-
-**Example:**
-
-```r
-# Good: Pipe emphasizes the primary input (iris) and the sequence of transformations
-iris |>
-  summarize(across(where(is.numeric), mean), .by = Species) |>
-  pivot_longer(!Species, names_to = "measure", values_to = "value") |>
-  arrange(value)
-
-# Less clear: Nested functions obscure the flow
-arrange(
-  pivot_longer(
-    summarize(iris, across(where(is.numeric), mean), .by = Species),
-    !Species, names_to = "measure", values_to = "value"
-  ),
-  value
-)
-```
-
-For more details, see the [tidyverse style guide on pipes](https://style.tidyverse.org/pipes.html).
 
 ## UCD-SERG Lab Manual
 
-Follow the guidance provided in the [UCD-SERG Lab Manual](https://ucd-serg.github.io/lab-manual/). The corresponding source files are available at [github.com/UCD-SERG/lab-manual](https://github.com/UCD-SERG/lab-manual) if easier to read.
+Follow the guidance provided in the [UCD-SERG Lab Manual](https://ucd-serg.github.io/lab-manual/).
+The corresponding source files are available at
+[github.com/UCD-SERG/lab-manual](https://github.com/UCD-SERG/lab-manual)
+if easier to read.
 
 ## Communication and Documentation
 
