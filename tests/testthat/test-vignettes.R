@@ -50,7 +50,7 @@ test_that("dataset vignettes follow journal article structure", {
     all(grepl("## Discussion", vignette_text, fixed = TRUE))
   )
   expect_true(
-    all(grepl("\\{mermaid\\}", vignette_text))
+    all(grepl("dagify", vignette_text, fixed = TRUE))
   )
 })
 

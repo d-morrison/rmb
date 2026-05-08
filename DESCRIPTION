@@ -1,6 +1,6 @@
 Package: rmb
 Title: Datasets for Regression Methods in Biostatistics
-Version: 0.0.0.9016
+Version: 0.0.0.9017
 Authors@R: c(
     person("Ezra", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
   )
@@ -20,6 +20,7 @@ Imports:
     stats
 Suggests: 
     altdoc,
+    ggdag,
     ggplot2,
     haven,
     knitr,
