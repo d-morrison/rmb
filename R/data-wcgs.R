@@ -3,7 +3,7 @@
 #' Dataset used in Chapter 2 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Prospective epidemiologic cohort of middle-aged men studying Type A behavior and CHD risk.
-#' Primary article: [Rosenman and colleagues (1964), *JAMA*](https://doi.org/10.1001/jama.1964.03060280029006).
+#' Primary article: [Rosenman and colleagues (1964), *JAMA*](https://doi.org/10.1001/jama.1964.03070010021004).
 #'
 #' @format A data frame with 3154 rows and 22 variables:
 #' \describe{
