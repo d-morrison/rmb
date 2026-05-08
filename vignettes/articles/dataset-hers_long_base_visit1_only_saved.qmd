@@ -49,7 +49,7 @@ dag <- ggdag::dagify(
     gluc = "Year-1 glucose",
     hrt = "HRT assignment",
     bmi = "BMI",
-    exercise = "Exercise >=3x/wk",
+    exercise = "Exercise \u22653x/wk",
     age = "Age"
   ),
   exposure = "hrt",
