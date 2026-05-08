@@ -918,28 +918,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 2763   37</span></span>
 <span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">diabetes</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HT"</span>, <span class="st">"BMI"</span>, <span class="st">"LDL"</span>, <span class="st">"LDL1"</span>, <span class="st">"exercise"</span>, <span class="st">"glucose"</span>, <span class="st">"age"</span>, <span class="st">"nonwhite"</span>, <span class="st">"smoking"</span>, <span class="st">"drinkany"</span>, <span class="st">"statins"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">nd</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HT"</span>, <span class="st">"BMI"</span>, <span class="st">"LDL"</span>, <span class="st">"LDL1"</span>, <span class="st">"exercise"</span>, <span class="st">"glucose"</span>, <span class="st">"age"</span>, <span class="st">"nonwhite"</span>, <span class="st">"smoking"</span>, <span class="st">"drinkany"</span>, <span class="st">"statins"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        HT              BMI             LDL             LDL1      </span></span>
-<span><span class="co">#&gt;  Min.   :0.0000   Min.   :15.21   Min.   : 36.8   Min.   :-20.0  </span></span>
-<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:24.64   1st Qu.:119.6   1st Qu.:106.6  </span></span>
-<span><span class="co">#&gt;  Median :0.0000   Median :27.75   Median :141.0   Median :128.8  </span></span>
-<span><span class="co">#&gt;  Mean   :0.4995   Mean   :28.58   Mean   :145.0   Mean   :132.4  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:31.73   3rd Qu.:166.0   3rd Qu.:154.1  </span></span>
-<span><span class="co">#&gt;  Max.   :1.0000   Max.   :54.13   Max.   :393.4   Max.   :450.2  </span></span>
-<span><span class="co">#&gt;                   NAs    :5       NAs    :11      NAs    :155    </span></span>
-<span><span class="co">#&gt;     exercise         glucose           age           nonwhite     </span></span>
-<span><span class="co">#&gt;  Min.   :0.0000   Min.   : 29.0   Min.   :44.00   Min.   :0.0000  </span></span>
-<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.: 91.0   1st Qu.:62.00   1st Qu.:0.0000  </span></span>
-<span><span class="co">#&gt;  Median :0.0000   Median : 99.0   Median :67.00   Median :0.0000  </span></span>
-<span><span class="co">#&gt;  Mean   :0.3865   Mean   :112.2   Mean   :66.65   Mean   :0.1129  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:114.0   3rd Qu.:72.00   3rd Qu.:0.0000  </span></span>
-<span><span class="co">#&gt;  Max.   :1.0000   Max.   :298.0   Max.   :79.00   Max.   :1.0000  </span></span>
-<span><span class="co">#&gt;                                                                   </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000   Min.   :15.21   Min.   : 36.8   Min.   : 36.8  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:24.20   1st Qu.:120.6   1st Qu.:107.6  </span></span>
+<span><span class="co">#&gt;  Median :0.0000   Median :26.89   Median :141.4   Median :129.6  </span></span>
+<span><span class="co">#&gt;  Mean   :0.4926   Mean   :27.67   Mean   :145.6   Mean   :133.2  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:30.27   3rd Qu.:166.0   3rd Qu.:154.2  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000   Max.   :54.13   Max.   :351.2   Max.   :340.0  </span></span>
+<span><span class="co">#&gt;                   NAs    :2       NAs    :7       NAs    :100    </span></span>
+<span><span class="co">#&gt;     exercise         glucose            age           nonwhite      </span></span>
+<span><span class="co">#&gt;  Min.   :0.0000   Min.   : 47.00   Min.   :44.00   Min.   :0.00000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.: 90.00   1st Qu.:62.00   1st Qu.:0.00000  </span></span>
+<span><span class="co">#&gt;  Median :0.0000   Median : 96.00   Median :67.00   Median :0.00000  </span></span>
+<span><span class="co">#&gt;  Mean   :0.4139   Mean   : 96.66   Mean   :66.89   Mean   :0.08661  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:1.0000   3rd Qu.:102.00   3rd Qu.:72.00   3rd Qu.:0.00000  </span></span>
+<span><span class="co">#&gt;  Max.   :1.0000   Max.   :125.00   Max.   :79.00   Max.   :1.00000  </span></span>
+<span><span class="co">#&gt;                                                                     </span></span>
 <span><span class="co">#&gt;     smoking          drinkany         statins      </span></span>
 <span><span class="co">#&gt;  Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  </span></span>
 <span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  </span></span>
 <span><span class="co">#&gt;  Median :0.0000   Median :0.0000   Median :0.0000  </span></span>
-<span><span class="co">#&gt;  Mean   :0.1303   Mean   :0.3915   Mean   :0.3634  </span></span>
+<span><span class="co">#&gt;  Mean   :0.1471   Mean   :0.4409   Mean   :0.3711  </span></span>
 <span><span class="co">#&gt;  3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:1.0000  </span></span>
 <span><span class="co">#&gt;  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  </span></span>
 <span><span class="co">#&gt;                   NAs    :2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
