@@ -1,5 +1,7 @@
 # rmb (development version)
 
+- Corrected invalid DOI links in dataset metadata and dataset documentation for WCGS, MIRA, and SOF/SOF2.
+- Bumped development version to `0.0.0.9015`.
 - Expanded all dataset vignettes from a single generic model to an RMB2e workflow with interleaved prose and stepwise modeling sections (research question, EDA, specification, estimation, adequacy checks, inference, conclusions), organized by dataset.
 - Added conceptual DAGs and updated tests to verify the new workflow structure across dataset vignettes.
 - Bumped development version to `0.0.0.9014`.

@@ -3,7 +3,7 @@
 #' Dataset used in Chapter 7 of *Regression Methods in Biostatistics*
 #' (2nd edition), as distributed on the UCSF companion website.
 #' Study design: Prospective cohort from the Study of Osteoporotic Fractures in older women.
-#' Primary article: [Cummings and colleagues (1995), *American Journal of Medicine*](https://doi.org/10.1016/S0002-9343(99)80096-9).
+#' Primary article: [Cummings and colleagues (1995), *New England Journal of Medicine*](https://doi.org/10.1056/NEJM199503233321202).
 #'
 #' @format A data frame with 42950 rows and 12 variables:
 #' \describe{
