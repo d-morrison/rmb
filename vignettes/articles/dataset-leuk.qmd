@@ -91,6 +91,39 @@ plot(
 legend("topright", legend = c("Placebo", "6-MP"), col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
 ```
 
+All 42 participants can be shown in a swimmer plot,
+displaying each individual's time in remission
+with relapses marked by an ×.
+
+```{r swimplot, fig.height=7, fig.width=6}
+dat_swim <- as.data.frame(dat)
+dat_swim$id <- seq_len(nrow(dat_swim))
+dat_swim$time <- as.numeric(dat_swim$time)
+dat_swim$group_int <- as.integer(unclass(dat_swim$group))
+dat_swim$Treatment <- factor(
+  dat_swim$group_int,
+  levels = c(1, 2),
+  labels = c("6-MP", "Placebo")
+)
+dat_relapse <- dat_swim[dat_swim$cens == 1, ]
+
+swimplot::swimmer_plot(
+  df = dat_swim, id = "id", end = "time",
+  name_fill = "Treatment", increasing = FALSE,
+  col = "black", alpha = 0.85, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_relapse, id = "id", time = "time",
+    shape = 4, size = 3, col = "black"
+  ) +
+  ggplot2::scale_fill_manual(values = c("#d95f02", "#1b9e77")) +
+  ggplot2::labs(
+    x = "Weeks in remission",
+    y = "Patient",
+    title = "Leukemia: Duration of remission by treatment (× = relapse)"
+  )
+```
+
 ### Model estimates
 
 ```{r parameter-estimation}

@@ -91,6 +91,52 @@ barplot(t(hsv_rates),
         legend.text = c("No new partner", "New partner"))
 ```
 
+The swimmer plot shows follow-up timelines for a stratified random sample
+of 60 participants (20 per age group),
+with red dots indicating months of HSV-2 diagnosis.
+
+```{r swimplot, fig.height=8, fig.width=7}
+set.seed(42)
+dat_full <- as.data.frame(dat)
+first_visit <- dat_full[!duplicated(dat_full$id), c("id", "agecat")]
+ids_sub <- unlist(
+  tapply(
+    first_visit$id, first_visit$agecat,
+    function(x) sample(x, min(20L, length(x)))
+  )
+)
+dat_sub <- dat_full[dat_full$id %in% ids_sub, ]
+
+# Summarize to one row per subject (end = last observed month)
+dat_ends <- aggregate(mos ~ id, data = dat_sub, FUN = max)
+names(dat_ends)[2] <- "end"
+dat_sum <- merge(dat_ends, first_visit, by = "id")
+dat_sum$Age_group <- factor(
+  dat_sum$agecat,
+  levels = c(1, 2, 3),
+  labels = c("18-24", "25-29", "30+")
+)
+dat_events <- dat_sub[dat_sub$hsv2 == 1, ]
+
+swimplot::swimmer_plot(
+  df = dat_sum, id = "id", end = "end",
+  name_fill = "Age_group", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_events, id = "id", time = "mos",
+    shape = 21, size = 3, col = "darkred", fill = "red"
+  ) +
+  ggplot2::scale_fill_manual(
+    values = c("#1b9e77", "#d95f02", "#7570b3")
+  ) +
+  ggplot2::labs(
+    x = "Months of follow-up",
+    y = "Participant",
+    title = "MIRA: Follow-up by age group (n = 60 sample); red = HSV-2 diagnosis"
+  )
+```
+
 ### Model estimates
 
 ```{r parameter-estimation}

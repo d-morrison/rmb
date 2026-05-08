@@ -85,6 +85,47 @@ boxplot(fecfat ~ pilltype, data = dat,
         main = "Fecal fat by pill type")
 ```
 
+The swimmer plot below shows the treatment sequence for each of the 6 subjects,
+with colored symbols indicating which pill type was assigned
+in each of the four periods.
+
+```{r swimplot, fig.height=4, fig.width=6}
+dat_swim <- as.data.frame(dat)
+dat_swim$pilltype_int <- as.integer(unclass(dat_swim$pilltype))
+dat_swim$Pill_type <- factor(
+  dat_swim$pilltype_int,
+  levels = 1:4,
+  labels = c("None", "Tablet", "Capsule", "Coated")
+)
+dat_swim$subject_int <- as.integer(dat_swim$subject)
+dat_swim$period <- as.integer(
+  ave(seq_len(nrow(dat_swim)), dat_swim$subject_int, FUN = seq_along)
+)
+
+# One row per subject for the background bar
+dat_sum <- data.frame(
+  subject_int = sort(unique(dat_swim$subject_int)),
+  end = 4.5
+)
+
+swimplot::swimmer_plot(
+  df = dat_sum, id = "subject_int", end = "end",
+  increasing = FALSE, col = "grey50", alpha = 0.2, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_swim, id = "subject_int", time = "period",
+    name_col = "Pill_type", name_shape = "Pill_type", size = 4
+  ) +
+  ggplot2::scale_colour_manual(
+    values = c("#888888", "#1b9e77", "#d95f02", "#7570b3")
+  ) +
+  ggplot2::labs(
+    x = "Treatment period",
+    y = "Subject",
+    title = "Fecal fat crossover: Treatment sequence by subject"
+  )
+```
+
 ### Model estimates
 
 ```{r parameter-estimation}

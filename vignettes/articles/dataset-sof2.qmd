@@ -90,6 +90,47 @@ plot(as.integer(names(visit_means)), visit_means,
      main = "SOF2: Mean total BMD by visit")
 ```
 
+The swimmer plot below shows visit attendance for a random sample of 50 participants,
+colored by whether menopause occurred after age 52,
+with a dot at each observed visit.
+
+```{r swimplot, fig.height=8, fig.width=6}
+set.seed(42)
+dat_full <- as.data.frame(dat)
+ids_sub <- sample(unique(dat_full$id), 50)
+dat_sub <- dat_full[dat_full$id %in% ids_sub, ]
+
+dat_ends <- aggregate(visit ~ id, data = dat_sub, FUN = max)
+names(dat_ends)[2] <- "last_visit"
+dat_starts <- aggregate(visit ~ id, data = dat_sub, FUN = min)
+names(dat_starts)[2] <- "first_visit"
+dat_sum <- merge(dat_ends, dat_starts, by = "id")
+
+first_obs <- dat_full[!duplicated(dat_full$id), c("id", "meno_ov_52")]
+dat_sum <- merge(dat_sum, first_obs, by = "id")
+dat_sum$Menopausal_timing <- factor(
+  dat_sum$meno_ov_52,
+  levels = c(0, 1),
+  labels = c("\u226452", ">52")
+)
+
+swimplot::swimmer_plot(
+  df = dat_sum, id = "id", end = "last_visit", start = "first_visit",
+  name_fill = "Menopausal_timing", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_sub, id = "id", time = "visit",
+    shape = 21, size = 2, col = "black", fill = "white"
+  ) +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    x = "SOF visit number",
+    y = "Participant",
+    title = "SOF2: Observed visits by menopausal timing (n = 50 sample)"
+  )
+```
+
 ### Model estimates
 
 ```{r parameter-estimation}

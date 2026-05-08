@@ -99,6 +99,43 @@ plot(
 legend("bottomleft", legend = levels(factor(dat$rx)), col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
 ```
 
+The swimmer plot below shows individual follow-up times
+for a random sample of 80 participants (40 per arm),
+with × marks indicating AIDS/death events.
+
+```{r swimplot, fig.height=10, fig.width=7}
+set.seed(42)
+dat_swim <- as.data.frame(dat)
+dat_swim$days <- as.numeric(dat_swim$days)
+dat_swim$rx_int <- as.integer(unclass(dat_swim$rx))
+dat_swim$cens_int <- as.integer(unclass(dat_swim$cens))
+ids_0 <- sample(dat_swim$id[dat_swim$rx_int == 0], 40)
+ids_1 <- sample(dat_swim$id[dat_swim$rx_int == 1], 40)
+dat_sub <- dat_swim[dat_swim$id %in% c(ids_0, ids_1), ]
+dat_sub$Treatment <- factor(
+  dat_sub$rx_int,
+  levels = c(0, 1),
+  labels = c("Placebo", "ZDV")
+)
+dat_events <- dat_sub[dat_sub$cens_int == 1, ]
+
+swimplot::swimmer_plot(
+  df = dat_sub, id = "id", end = "days",
+  name_fill = "Treatment", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_events, id = "id", time = "days",
+    shape = 4, size = 2, col = "black"
+  ) +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    x = "Days since randomization",
+    y = "Patient",
+    title = "ACTG 019: Follow-up timeline by treatment (n = 80 sample; \u00d7 = AIDS/death)"
+  )
+```
+
 ### Model estimates
 
 ```{r parameter-estimation}

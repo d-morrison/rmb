@@ -93,6 +93,48 @@ boxplot(sbp ~ interaction(group, exercise), data = dat,
         las = 2)
 ```
 
+The swimmer plot shows visit attendance for a stratified random sample
+of 60 participants (30 per treatment arm),
+with a dot at each completed visit.
+
+```{r swimplot, fig.height=8, fig.width=6}
+set.seed(42)
+dat_full <- as.data.frame(dat)
+first_obs <- dat_full[!duplicated(dat_full$pptid), c("pptid", "group")]
+ids_0 <- sample(first_obs$pptid[first_obs$group == 0], 30)
+ids_1 <- sample(first_obs$pptid[first_obs$group == 1], 30)
+dat_sub <- dat_full[dat_full$pptid %in% c(ids_0, ids_1), ]
+
+dat_ends <- aggregate(visit ~ pptid, data = dat_sub, FUN = max)
+names(dat_ends)[2] <- "last_visit"
+dat_sum <- merge(
+  dat_ends,
+  first_obs[first_obs$pptid %in% c(ids_0, ids_1), ],
+  by = "pptid"
+)
+dat_sum$Treatment <- factor(
+  dat_sum$group,
+  levels = c(0, 1),
+  labels = c("Placebo", "HRT")
+)
+
+swimplot::swimmer_plot(
+  df = dat_sum, id = "pptid", end = "last_visit",
+  name_fill = "Treatment", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_sub, id = "pptid", time = "visit",
+    shape = 21, size = 2, col = "black", fill = "white"
+  ) +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    x = "HERS visit number",
+    y = "Participant",
+    title = "HERS: Observed visits by treatment group (n = 60 sample)"
+  )
+```
+
 ### Model estimates
 
 ```{r parameter-estimation}
