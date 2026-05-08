@@ -47,14 +47,14 @@ flowchart LR
 data(sof, package = "rmb")
 dat <- sof
 dim(dat)
-baseline_sof <- subset(dat, visit == 1)
+baseline_sof <- subset(dat, visit == 2)
 dim(baseline_sof)
 summary(baseline_sof[c("totbmd", "bmi", "age", "meno_age")])
 ```
 
 ### Statistical analysis
 
-A linear regression model is fitted at the baseline visit (visit 1) to estimate the cross-sectional association between BMI and total BMD, adjusting for age and menopausal age. Using only baseline visits avoids correlation from repeated measurements (RMB2e Ch. 7).
+A linear regression model is fitted at the baseline visit (visit 2) to estimate the cross-sectional association between BMI and total BMD, adjusting for age and menopausal age. Using only baseline visits avoids correlation from repeated measurements (RMB2e Ch. 7).
 
 ```{r model-specification}
 formula_main <- totbmd ~ bmi + age + meno_age
