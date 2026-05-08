@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -879,28 +878,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Is phototherapy use associated with a reduced rate of exceeding the transfusion threshold after adjusting for gestational age and birth weight?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  GEST[Gestational age] --&gt; PT[Phototherapy]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  BWT[Birth weight] --&gt; PT</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  GEST --&gt; OT[Over transfusion threshold]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  BWT --&gt; OT</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  PT --&gt; OT</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  TSB[qual_TSB] --&gt; OT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">ot</span> <span class="op">~</span> <span class="va">gest</span> <span class="op">+</span> <span class="va">bwt</span> <span class="op">+</span> <span class="va">pt</span> <span class="op">+</span> <span class="va">tsb</span>,</span>
+<span>  <span class="va">pt</span> <span class="op">~</span> <span class="va">gest</span> <span class="op">+</span> <span class="va">bwt</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    ot <span class="op">=</span> <span class="st">"Over transfusion threshold"</span>,</span>
+<span>    pt <span class="op">=</span> <span class="st">"Phototherapy"</span>,</span>
+<span>    gest <span class="op">=</span> <span class="st">"Gestational age"</span>,</span>
+<span>    bwt <span class="op">=</span> <span class="st">"Birth weight"</span>,</span>
+<span>    tsb <span class="op">=</span> <span class="st">"Serum bilirubin"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"pt"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"ot"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Phototherapy: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  GEST[Gestational age] --&gt; PT[Phototherapy]
-  BWT[Birth weight] --&gt; PT
-  GEST --&gt; OT[Over transfusion threshold]
-  BWT --&gt; OT
-  PT --&gt; OT
-  TSB[qual_TSB] --&gt; OT
-</pre>
-</div>
-<p></p>
+<figure class="figure"><p><img src="dataset-phototherapy_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -913,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">phototherapy</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 20731    11</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"phototherapy"</span>, <span class="st">"over_thresh"</span>, <span class="st">"qual_TSB"</span>, <span class="st">"birth_wt"</span>, <span class="st">"gest_age"</span>, <span class="st">"male"</span>, <span class="st">"age_days"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"phototherapy"</span>, <span class="st">"over_thresh"</span>, <span class="st">"qual_TSB"</span>, <span class="st">"birth_wt"</span>, <span class="st">"gest_age"</span>, <span class="st">"male"</span>, <span class="st">"age_days"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   phototherapy     over_thresh          qual_TSB        birth_wt    </span></span>
 <span><span class="co">#&gt;  Min.   :0.0000   Min.   :0.000000   Min.   :1.000   Min.   :2.000  </span></span>
 <span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:0.000000   1st Qu.:1.000   1st Qu.:2.900  </span></span>
@@ -954,7 +953,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; phototherapy           0           1</span></span>
 <span><span class="co">#&gt;            0 0.993001796 0.006998204</span></span>
 <span><span class="co">#&gt;            1 0.996727749 0.003272251</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"birth_wt"</span>, <span class="st">"gest_age"</span>, <span class="st">"qual_TSB"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"birth_wt"</span>, <span class="st">"gest_age"</span>, <span class="st">"qual_TSB"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     birth_wt        gest_age        qual_TSB    </span></span>
 <span><span class="co">#&gt;  Min.   :2.000   Min.   :35.00   Min.   :1.000  </span></span>
 <span><span class="co">#&gt;  1st Qu.:2.900   1st Qu.:37.00   1st Qu.:1.000  </span></span>

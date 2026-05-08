@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -879,34 +878,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>How are established cardiovascular risk factors—age, cholesterol, systolic blood pressure, BMI, smoking, and behavior pattern—jointly associated with CHD incidence in WCGS men?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  AGE[Age] --&gt; CHD[CHD by follow-up]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  CHOL[Cholesterol] --&gt; CHD</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  SBP[Systolic BP] --&gt; CHD</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  BMI[BMI] --&gt; CHD</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  SMOKE[Smoking] --&gt; CHD</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  BEH[Behavior pattern] --&gt; SMOKE</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  BEH --&gt; CHD</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; SBP</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; CHOL</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">chd</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">chol</span> <span class="op">+</span> <span class="va">sbp</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">smoke</span> <span class="op">+</span> <span class="va">beh</span>,</span>
+<span>  <span class="va">smoke</span> <span class="op">~</span> <span class="va">beh</span>,</span>
+<span>  <span class="va">sbp</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<span>  <span class="va">chol</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    chd <span class="op">=</span> <span class="st">"CHD by follow-up"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    chol <span class="op">=</span> <span class="st">"Cholesterol"</span>,</span>
+<span>    sbp <span class="op">=</span> <span class="st">"Systolic BP"</span>,</span>
+<span>    bmi <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    smoke <span class="op">=</span> <span class="st">"Smoking"</span>,</span>
+<span>    beh <span class="op">=</span> <span class="st">"Behavior pattern"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"beh"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"chd"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"WCGS: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  AGE[Age] --&gt; CHD[CHD by follow-up]
-  CHOL[Cholesterol] --&gt; CHD
-  SBP[Systolic BP] --&gt; CHD
-  BMI[BMI] --&gt; CHD
-  SMOKE[Smoking] --&gt; CHD
-  BEH[Behavior pattern] --&gt; SMOKE
-  BEH --&gt; CHD
-  AGE --&gt; SBP
-  AGE --&gt; CHOL
-</pre>
-</div>
-<p></p>
+<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -916,7 +913,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.1</span> Study sample</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">wcgs</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">wcgs</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">wcgs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3154   22</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sbp"</span>, <span class="st">"weight"</span>, <span class="st">"chd69"</span>, <span class="st">"age"</span>, <span class="st">"chol"</span>, <span class="st">"bmi"</span>, <span class="st">"smoke"</span>, <span class="st">"behpat"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>

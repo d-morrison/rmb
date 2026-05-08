@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -879,24 +878,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Is higher BMI associated with greater total bone mineral density after adjustment for age and menopausal age in older women?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  BMI --&gt; TBMD[Total BMD]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; TBMD</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; BMI</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  MENOAGE[Menopausal age] --&gt; TBMD</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">tbmd</span> <span class="op">~</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">menoage</span>,</span>
+<span>  <span class="va">bmi</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    tbmd <span class="op">=</span> <span class="st">"Total BMD"</span>,</span>
+<span>    bmi <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    menoage <span class="op">=</span> <span class="st">"Menopausal age"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"bmi"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"tbmd"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"SOF: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  BMI --&gt; TBMD[Total BMD]
-  AGE --&gt; TBMD
-  AGE --&gt; BMI
-  MENOAGE[Menopausal age] --&gt; TBMD
-</pre>
-</div>
-<p></p>
+<figure class="figure"><p><img src="dataset-sof_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -906,7 +908,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.1</span> Study sample</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">sof</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">sof</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">sof</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 42950    12</span></span>
 <span><span class="va">baseline_sof</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">visit</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -1032,7 +1034,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="discussion" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="discussion">
 <span class="header-section-number">4</span> Discussion</h2>
-<p>Higher BMI is positively associated with total BMD at baseline after adjustment for age and menopausal age in SOF women, consistent with the mechanical loading and estrogenic pathways described above (RMB2e Ch. 7). Age is negatively associated with BMD, reflecting postmenopausal bone loss. Menopausal age contributes independently, as women who underwent menopause later experienced fewer years of estrogen deficiency. This cross-sectional analysis uses only Visit 1 data to avoid the need for mixed-model methods introduced for the longitudinal SOF analyses elsewhere in RMB2e.</p>
+<p>Higher BMI is positively associated with total BMD at baseline after adjustment for age and menopausal age in SOF women, consistent with the mechanical loading and estrogenic pathways described above (RMB2e Ch. 7). Age is negatively associated with BMD, reflecting postmenopausal bone loss. Menopausal age contributes independently, as women who underwent menopause later experienced fewer years of estrogen deficiency. This cross-sectional analysis uses only Visit 2 data (the earliest available visit in the SOF dataset) to avoid the need for mixed-model methods introduced for the longitudinal SOF analyses elsewhere in RMB2e.</p>
 </section><section id="source" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="source">
 <span class="header-section-number">5</span> Source</h2>
 <ul>

@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -879,44 +878,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Is higher BMI associated with higher LDL after adjustment for demographic and lifestyle covariates, and does the treatment effect of HT on year-1 LDL differ by baseline statin use?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  BMI[BMI] --&gt; LDL[LDL cholesterol]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  AGE[Age] --&gt; BMI</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; LDL</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  NW[Nonwhite ethnicity] --&gt; BMI</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  NW --&gt; LDL</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  SMK[Smoking] --&gt; BMI</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  SMK --&gt; LDL</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  DRINK[Alcohol use] --&gt; BMI</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  DRINK --&gt; LDL</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  HT[Randomized HT] --&gt; LDL1[Year-1 LDL]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  STATIN[Baseline statin use] --&gt; LDL1</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  HT --&gt; INT[HT × statin interaction]</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  STATIN --&gt; INT</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  INT --&gt; LDL1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">ldl1</span> <span class="op">~</span> <span class="va">ht</span> <span class="op">+</span> <span class="va">statin</span> <span class="op">+</span> <span class="va">int_ht_statin</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">nw</span> <span class="op">+</span> <span class="va">smk</span> <span class="op">+</span> <span class="va">drink</span>,</span>
+<span>  <span class="va">int_ht_statin</span> <span class="op">~</span> <span class="va">ht</span> <span class="op">+</span> <span class="va">statin</span>,</span>
+<span>  <span class="va">bmi</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">nw</span> <span class="op">+</span> <span class="va">smk</span> <span class="op">+</span> <span class="va">drink</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    ldl1 <span class="op">=</span> <span class="st">"Year-1 LDL"</span>,</span>
+<span>    ht <span class="op">=</span> <span class="st">"Randomized HT"</span>,</span>
+<span>    statin <span class="op">=</span> <span class="st">"Baseline statin"</span>,</span>
+<span>    int_ht_statin <span class="op">=</span> <span class="st">"HT x statin"</span>,</span>
+<span>    bmi <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    nw <span class="op">=</span> <span class="st">"Nonwhite ethnicity"</span>,</span>
+<span>    smk <span class="op">=</span> <span class="st">"Smoking"</span>,</span>
+<span>    drink <span class="op">=</span> <span class="st">"Alcohol use"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"ht"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"ldl1"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"HERS: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  BMI[BMI] --&gt; LDL[LDL cholesterol]
-  AGE[Age] --&gt; BMI
-  AGE --&gt; LDL
-  NW[Nonwhite ethnicity] --&gt; BMI
-  NW --&gt; LDL
-  SMK[Smoking] --&gt; BMI
-  SMK --&gt; LDL
-  DRINK[Alcohol use] --&gt; BMI
-  DRINK --&gt; LDL
-  HT[Randomized HT] --&gt; LDL1[Year-1 LDL]
-  STATIN[Baseline statin use] --&gt; LDL1
-  HT --&gt; INT[HT × statin interaction]
-  STATIN --&gt; INT
-  INT --&gt; LDL1
-</pre>
-</div>
-<p></p>
+<figure class="figure"><p><img src="dataset-hers_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -926,11 +914,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.1</span> Study sample</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">hers</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">hers</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">hers</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 2763   37</span></span>
 <span><span class="va">nd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">diabetes</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HT"</span>, <span class="st">"BMI"</span>, <span class="st">"LDL"</span>, <span class="st">"LDL1"</span>, <span class="st">"exercise"</span>, <span class="st">"glucose"</span>, <span class="st">"age"</span>, <span class="st">"nonwhite"</span>, <span class="st">"smoking"</span>, <span class="st">"drinkany"</span>, <span class="st">"statins"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"HT"</span>, <span class="st">"BMI"</span>, <span class="st">"LDL"</span>, <span class="st">"LDL1"</span>, <span class="st">"exercise"</span>, <span class="st">"glucose"</span>, <span class="st">"age"</span>, <span class="st">"nonwhite"</span>, <span class="st">"smoking"</span>, <span class="st">"drinkany"</span>, <span class="st">"statins"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        HT              BMI             LDL             LDL1      </span></span>
 <span><span class="co">#&gt;  Min.   :0.0000   Min.   :15.21   Min.   : 36.8   Min.   :-20.0  </span></span>
 <span><span class="co">#&gt;  1st Qu.:0.0000   1st Qu.:24.64   1st Qu.:119.6   1st Qu.:106.6  </span></span>

@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -879,22 +878,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Is current smoking associated with 20-year all-cause mortality after adjustment for age at baseline?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  AGE[Age at baseline] --&gt; SMOKE[Current smoking]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; DEATH[20-year mortality]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  SMOKE --&gt; DEATH</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">death</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">smoke</span>,</span>
+<span>  <span class="va">smoke</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    death <span class="op">=</span> <span class="st">"20-year mortality"</span>,</span>
+<span>    smoke <span class="op">=</span> <span class="st">"Current smoking"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"Age at baseline"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"smoke"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"death"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Whickham: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  AGE[Age at baseline] --&gt; SMOKE[Current smoking]
-  AGE --&gt; DEATH[20-year mortality]
-  SMOKE --&gt; DEATH
-</pre>
-</div>
-<p></p>
+<figure class="figure"><p><img src="dataset-whickham_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -904,7 +907,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">2.1</span> Study sample</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">whickham</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">whickham</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">whickham</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 12  4</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
@@ -937,19 +940,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3.1</span> Descriptive statistics</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span></span>
-<span><span class="co">#&gt;    vstatus smoker agegrp  nn</span></span>
-<span><span class="co">#&gt; 1        1      1      1  19</span></span>
-<span><span class="co">#&gt; 2        0      1      1 269</span></span>
-<span><span class="co">#&gt; 3        1      0      1  13</span></span>
-<span><span class="co">#&gt; 4        0      0      1 327</span></span>
-<span><span class="co">#&gt; 5        1      1      2  78</span></span>
-<span><span class="co">#&gt; 6        0      1      2 167</span></span>
-<span><span class="co">#&gt; 7        1      0      2  52</span></span>
-<span><span class="co">#&gt; 8        0      0      2 147</span></span>
-<span><span class="co">#&gt; 9        1      1      3  42</span></span>
-<span><span class="co">#&gt; 10       0      1      3   7</span></span>
-<span><span class="co">#&gt; 11       1      0      3 165</span></span>
-<span><span class="co">#&gt; 12       0      0      3  28</span></span>
+<span><span class="co">#&gt; # A tibble: 12 × 4</span></span>
+<span><span class="co">#&gt;    vstatus smoker agegrp    nn</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;  1       1      1      1    19</span></span>
+<span><span class="co">#&gt;  2       0      1      1   269</span></span>
+<span><span class="co">#&gt;  3       1      0      1    13</span></span>
+<span><span class="co">#&gt;  4       0      0      1   327</span></span>
+<span><span class="co">#&gt;  5       1      1      2    78</span></span>
+<span><span class="co">#&gt;  6       0      1      2   167</span></span>
+<span><span class="co">#&gt;  7       1      0      2    52</span></span>
+<span><span class="co">#&gt;  8       0      0      2   147</span></span>
+<span><span class="co">#&gt;  9       1      1      3    42</span></span>
+<span><span class="co">#&gt; 10       0      1      3     7</span></span>
+<span><span class="co">#&gt; 11       1      0      3   165</span></span>
+<span><span class="co">#&gt; 12       0      0      3    28</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">nn</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">agegrp</span>, <span class="va">smoker</span><span class="op">)</span>, <span class="va">sum</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     0   1</span></span>
 <span><span class="co">#&gt; 1 340 288</span></span>
