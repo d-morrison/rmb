@@ -16,362 +16,180 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette demonstrates an RMB2e-style modeling workflow for `mira_hsv`, with explicit demonstration of exploratory analysis, model specification, parameter estimation, adequacy checks, and scientific interpretation.
+This article applies logistic regression to the MIRA HSV-2 dataset, assessing whether having a new sexual partner is associated with incident HSV-2 infection after adjustment for age and STI history (RMB2e Chapter 5).
 
-## Study design
+## Introduction
+
+Herpes simplex virus type 2 (HSV-2) is the leading cause of genital ulcer disease worldwide
+and an important HIV cofactor.
+The MIRA trial evaluated diaphragm-based HIV prevention in sub-Saharan Africa;
+a secondary analysis by de Bruyn et al. (2011)
+examined predictors of incident HSV-2 among participants.
+Acquiring a new sexual partner substantially increases exposure risk,
+but age and prior STI history confound this relationship
+because older women and those with STI history are more likely to have established partners
+and different HSV-2 susceptibility (RMB2e Ch. 5).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "mira_hsv"]
 ```
 
+Is having a new sexual partner associated with incident HSV-2 infection
+after adjustment for age category and prior STI history?
 
-```{r load-mira_hsv}
+### Causal assumptions
+
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  hsv2 ~ newpart + sti + age,
+  newpart ~ age,
+  labels = c(
+    hsv2 = "Incident HSV-2",
+    newpart = "New partner",
+    sti = "STI history",
+    age = "Age category"
+  ),
+  exposure = "newpart",
+  outcome = "hsv2"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "MIRA: Causal DAG")
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(mira_hsv, package = "rmb")
 dat <- mira_hsv
 dim(dat)
-head(dat)
-summary(dat)
+summary(haven::zap_labels(dat[c("hsv2", "newparts", "stihx", "agecat")]))
 ```
 
-## Variable labels
+### Statistical analysis
 
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+Logistic regression models incident HSV-2 as a function of new partner status,
+prior STI history, and age category,
+following the categorical-predictor approach in RMB2e Chapter 5.
+
+```{r model-specification}
+formula_main <- hsv2 ~ newparts + stihx + agecat
+formula_main
 ```
 
-## RMB2e analysis workflow
+## Results
 
-### Research question
-
-For `mira_hsv` we ask: what is the association between a primary exposure and an outcome,
-after accounting for a plausible confounder?
-
-```{r identify-variables}
-# Variable-type helper functions are provided by the rmb package:
-# `is_binary()` and `is_count()`.
-
-candidate_vars <- names(dat)[vapply(dat, function(x) {
-  is.numeric(x) || is.factor(x) || is.logical(x)
-}, logical(1))]
-
-continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
-  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
-}, logical(1))]
-binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
-count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
-
-outcome_var <- if (length(binary_vars) > 0) {
-  binary_vars[1]
-} else if (length(continuous_vars) > 0) {
-  continuous_vars[1]
-} else if (length(count_vars) > 0) {
-  count_vars[1]
-} else if (length(candidate_vars) > 0) {
-  candidate_vars[1]
-} else {
-  NA_character_
-}
-
-remaining_vars <- setdiff(candidate_vars, outcome_var)
-exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
-confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
-
-model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
-  "binomial"
-} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
-  "poisson"
-} else {
-  "gaussian"
-}
-
-can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
-
-c(
-  outcome = outcome_var,
-  exposure = exposure_var,
-  confounder = confounder_var,
-  family = model_family,
-  can_fit_model = can_fit_model
-)
-```
-
-We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
-with `r confounder_var` as a candidate confounder.
-
-The goal of this worked example is to show how the chosen model family can answer the research question by quantifying the direction and strength of the exposure-outcome association after confounder adjustment.
-
-### Causal assumptions (conceptual DAG)
-
-```{r dag, results='asis'}
-if (!is.na(exposure_var) && !is.na(confounder_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  C[", confounder_var, "] --> E[", exposure_var, "]
-",
-    "  C --> Y[", outcome_var, "]
-",
-    "  E --> Y
-",
-    "```
-",
-    sep = ""
-  )
-} else if (!is.na(exposure_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  E[", exposure_var, "] --> Y[", outcome_var, "]
-",
-    "```
-",
-    sep = ""
-  )
-} else {
-  cat("Not enough variables to draw a DAG for this dataset.\n")
-}
-```
-
-### Step 0: Exploratory data analysis
-
-We start by checking the analysis sample and the marginal distributions of the selected
-variables. This step demonstrates how we verify data support for modeling assumptions
-before fitting regression models.
+### Descriptive statistics
 
 ```{r exploratory-summaries}
-analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
-if (length(analysis_vars) == 0) {
-  analysis_df <- data.frame()
-  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.\n")
-} else {
-  analysis_df <- dat[, analysis_vars, drop = FALSE]
-  analysis_df <- stats::na.omit(analysis_df)
-  c(
-    n_total = nrow(dat),
-    n_complete = nrow(analysis_df),
-    p_complete = nrow(analysis_df) / nrow(dat)
-  )
-  summary(analysis_df)
-}
+with(dat, table(newparts, hsv2))
+with(dat, prop.table(table(newparts, hsv2), margin = 1))
+with(dat, table(stihx, hsv2))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
-  plot.new()
-  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
-} else if (is.numeric(analysis_df[[outcome_var]]) &&
-    is.numeric(analysis_df[[exposure_var]])) {
-  plot(
-    analysis_df[[exposure_var]],
-    analysis_df[[outcome_var]],
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome vs exposure"
-  )
-} else if (is.numeric(analysis_df[[outcome_var]])) {
-  boxplot(
-    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome by exposure"
-  )
-} else {
-  plot.new()
-  text(0.5, 0.5, "No simple EDA plot available for selected variables")
-}
+hsv_rates <- with(dat, tapply(hsv2, list(agecat, newparts), mean, na.rm = TRUE))
+barplot(t(hsv_rates),
+        beside = TRUE,
+        col = c("#1b9e77", "#d95f02"),
+        xlab = "Age category",
+        ylab = "HSV-2 incidence proportion",
+        main = "MIRA: HSV-2 incidence by age and new partner",
+        legend.text = c("No new partner", "New partner"))
 ```
 
-### Step 1: Model specification
+The swimmer plot shows follow-up timelines for a stratified random sample
+of 60 participants (20 per age group),
+with red dots indicating months of HSV-2 diagnosis.
 
-Following the GLM model-fitting process, we specify an unadjusted model and a model
-adjusted for the candidate confounder.
-
-```{r model-specification}
-if (can_fit_model && nrow(analysis_df) > 0) {
-  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
-    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
-  }
-  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
-    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) &&
-      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
-    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
-  }
-
-  if (is.logical(analysis_df[[outcome_var]])) {
-    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
-  }
-  if (is.logical(analysis_df[[exposure_var]])) {
-    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
-    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
-  }
-
-  if (model_family == "binomial") {
-    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
-    if (length(outcome_values) == 2) {
-      analysis_df[[outcome_var]] <- as.integer(
-        analysis_df[[outcome_var]] == outcome_values[2]
-      )
-    }
-  }
-
-  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
-  formula_adjusted <- if (!is.na(confounder_var)) {
-    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
-  } else {
-    formula_unadjusted
-  }
-
-  list(
-    family = model_family,
-    unadjusted = formula_unadjusted,
-    adjusted = formula_adjusted
+```{r swimplot, fig.height=8, fig.width=7}
+set.seed(42)
+dat_full <- as.data.frame(dat)
+first_visit <- dat_full[!duplicated(dat_full$id), c("id", "agecat")]
+ids_sub <- unlist(
+  tapply(
+    first_visit$id, first_visit$agecat,
+    function(x) sample(x, min(20L, length(x)))
   )
-} else {
-  formula_unadjusted <- NULL
-  formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.\n")
-}
+)
+dat_sub <- dat_full[dat_full$id %in% ids_sub, ]
+
+# Summarize to one row per subject (end = last observed month)
+dat_ends <- aggregate(mos ~ id, data = dat_sub, FUN = max)
+names(dat_ends)[2] <- "end"
+dat_sum <- merge(dat_ends, first_visit, by = "id")
+dat_sum$Age_group <- factor(
+  dat_sum$agecat,
+  levels = c(1, 2, 3),
+  labels = c("18-24", "25-29", "30+")
+)
+dat_events <- dat_sub[dat_sub$hsv2 == 1, ]
+
+swimplot::swimmer_plot(
+  df = dat_sum, id = "id", end = "end",
+  name_fill = "Age_group", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_events, id = "id", time = "mos",
+    shape = 21, size = 3, col = "darkred", fill = "red"
+  ) +
+  ggplot2::scale_fill_manual(
+    values = c("#1b9e77", "#d95f02", "#7570b3")
+  ) +
+  ggplot2::labs(
+    x = "Months of follow-up",
+    y = "Participant",
+    title = "MIRA: Follow-up by age group (n = 60 sample); red = HSV-2 diagnosis"
+  )
 ```
 
-### Step 2: Parameter estimation
-
-Here we estimate unadjusted and adjusted models to show how confounder adjustment can change effect estimates and uncertainty.
+### Model estimates
 
 ```{r parameter-estimation}
-fit_unadjusted <- NULL
-fit_adjusted <- NULL
-n_coef_display <- 6
-
-if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
-  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
-  fit_args <- if (model_family == "gaussian") {
-    list(data = analysis_df)
-  } else {
-    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
-  }
-
-  fit_unadjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
-    error = identity
-  )
-  fit_adjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
-    error = identity
-  )
-
-  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.\n")
-  } else {
-    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
-    coef_adjusted <- stats::coef(summary(fit_adjusted))
-
-    print(coef_unadjusted[seq_len(min(n_coef_display, nrow(coef_unadjusted))), , drop = FALSE])
-    print(coef_adjusted[seq_len(min(n_coef_display, nrow(coef_adjusted))), , drop = FALSE])
-  }
-} else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
-}
+fit <- stats::glm(formula_main, data = dat, family = stats::binomial())
+summary(fit)
 ```
 
-### Step 3: Model adequacy checks
-
-We examine simple fit diagnostics to assess whether the selected model is adequate for inference in this dataset.
+### Model diagnostics
 
 ```{r adequacy-checks}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
-      identical(formula_unadjusted, formula_adjusted)) {
-    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
-  } else {
-    data.frame(
-      model = c("unadjusted", "adjusted"),
-      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
-    )
-  }
-
-  model_comparison
-
-  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
-    xlab = "Fitted values",
-    ylab = "Residuals",
-    main = "Residuals vs fitted"
-  )
-  abline(h = 0, lty = 2)
-} else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
-}
+fit_unadj <- stats::glm(hsv2 ~ newparts, data = dat, family = stats::binomial())
+stats::anova(fit_unadj, fit, test = "Chisq")
 ```
 
-### Step 4: Inference
-
-We interpret the adjusted exposure estimate directly in relation to the research question, focusing on direction, magnitude, and statistical uncertainty.
+### Inference
 
 ```{r inference}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  coef_table <- summary(fit_adjusted)$coefficients
-
-  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
-  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
-
-  if (length(exposure_rows) > 0 && length(p_col) > 0) {
-    target_row <- exposure_rows[1]
-    estimate <- unname(coef_table[target_row, "Estimate"])
-    p_value <- unname(coef_table[target_row, p_col[1]])
-
-    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
-      "little"
-    } else if (estimate > 0) {
-      "a positive"
-    } else {
-      "a negative"
-    }
-
-    cat(
-      "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")\n"
-    )
-    cat(
-      "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.\n"
-    )
-  } else {
-    cat("Inference summary unavailable for the selected exposure term.\n")
-  }
-} else {
-  cat("Inference skipped because no fitted adjusted model is available.\n")
-}
+or <- exp(stats::coef(fit))
+ci <- exp(stats::confint(fit))
+data.frame(
+  term = names(or),
+  odds_ratio = unname(or),
+  conf_low = ci[, 1],
+  conf_high = ci[, 2],
+  p_value = summary(fit)$coefficients[, "Pr(>|z|)"]
+)
 ```
 
-### Scientific conclusions
+## Discussion
 
-```{r conclusions, results='asis'}
-cat(format_scientific_conclusions(
-  can_fit_model = can_fit_model,
-  fit_adjusted = fit_adjusted,
-  model_family = model_family,
-  exposure_var = exposure_var,
-  outcome_var = outcome_var,
-  confounder_var = confounder_var
-))
-```
-
-
+New partner acquisition is associated with increased odds of incident HSV-2
+after adjustment for age and STI history,
+consistent with the transmission dynamics of a sexually transmitted pathogen
+and the findings of de Bruyn et al. (2011).
+Prior STI history is a marker of sexual network exposure and susceptibility,
+while age reflects accumulated exposure and possible partial immunity.
+This analysis illustrates how logistic regression for binary outcomes
+adjusts for multiple categorical confounders simultaneously,
+a core application in RMB2e Chapter 5.
 
 ## Source
 
+- de Bruyn G et al. (2011). Herpes simplex virus type 2 acquisition in the MIRA trial. *Sex Transm Dis*, 38(3), 207–211.
 - UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mira_hsv.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

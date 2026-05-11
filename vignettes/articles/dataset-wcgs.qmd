@@ -16,67 +16,72 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This article reproduces key WCGS analyses from RMB2e Chapters 2, 3, and 5.
+This article reproduces key WCGS analyses from RMB2e Chapters 2, 3, and 5, modelling coronary heart disease risk from standard cardiovascular risk factors.
 
-## Study design
+## Introduction
+
+The Western Collaborative Group Study (WCGS) enrolled approximately 3,500 employed men
+aged 39–59 in California in 1960–1961
+and followed them for roughly 8.5 years to study coronary heart disease (CHD) incidence.
+WCGS was among the first prospective cohort studies
+to establish the Type A behavior pattern as a CHD risk factor
+alongside classical predictors such as age, serum cholesterol, and blood pressure.
+These data illustrate the logistic regression framework for binary outcomes
+(RMB2e Chapter 5, pp. 171–177).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "wcgs"]
 ```
 
-```{r load-wcgs}
+How are established cardiovascular risk factors—age, cholesterol, systolic blood pressure,
+BMI, smoking, and behavior pattern—jointly associated with CHD incidence in WCGS men?
+
+### Causal assumptions
+
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  chd ~ age + chol + sbp + bmi + smoke + beh,
+  smoke ~ beh,
+  sbp ~ age,
+  chol ~ age,
+  labels = c(
+    chd = "CHD by follow-up",
+    age = "Age",
+    chol = "Cholesterol",
+    sbp = "Systolic BP",
+    bmi = "BMI",
+    smoke = "Smoking",
+    beh = "Behavior pattern"
+  ),
+  exposure = "beh",
+  outcome = "chd"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "WCGS: Causal DAG")
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(wcgs, package = "rmb")
-dat <- wcgs
+dat <- haven::zap_labels(wcgs)
 dim(dat)
 summary(dat[c("sbp", "weight", "chd69", "age", "chol", "bmi", "smoke", "behpat")])
 ```
 
-## RMB2e analysis workflow
+### Statistical analysis
 
-### Research question
-
-How are established risk factors (age, cholesterol, systolic blood pressure, BMI, smoking, and behavior pattern) associated with CHD risk in WCGS?
-
-RMB2e references: SBP distribution and two-variable EDA (pp. 30–32, 39, 41), CHD table summaries (pp. 64, 69), logistic CHD modeling with risk factors and behavior pattern (pp. 171, 175–177).
-
-### Causal assumptions (conceptual DAG)
-
-```{mermaid}
-flowchart LR
-  AGE[Age] --> CHD[CHD by follow-up]
-  CHOL[Cholesterol] --> CHD
-  SBP[Systolic BP] --> CHD
-  BMI[BMI] --> CHD
-  SMOKE[Smoking] --> CHD
-  BEH[Behavior pattern] --> SMOKE
-  BEH --> CHD
-  AGE --> SBP
-  AGE --> CHOL
-```
-
-### Step 0: Exploratory data analysis
-
-RMB2e emphasizes one- and two-variable summaries before modeling (pp. 30–41).
-
-```{r exploratory-summaries}
-summary(dat$sbp)
-summary(dat$weight)
-with(dat, cor(sbp, weight, use = "complete.obs"))
-with(dat, table(behpat, useNA = "ifany"))
-with(dat, prop.table(table(chd69)))
-```
-
-```{r exploratory-plots, fig.height=4, fig.width=6}
-hist(dat$sbp, breaks = 15, col = "grey85", border = "white", main = "WCGS systolic blood pressure", xlab = "SBP")
-plot(dat$weight, dat$sbp, pch = 16, cex = 0.5, col = rgb(0, 0, 0, 0.2),
-     xlab = "Weight", ylab = "SBP", main = "SBP vs weight")
-lines(stats::lowess(dat$weight, dat$sbp, f = 0.25), col = "#d95f02", lwd = 2)
-```
-
-### Step 1: Model specification
-
-Following RMB2e Chapter 5, we fit logistic regression for CHD with transformed continuous predictors and categorical behavior pattern (pp. 171, 175).
+Following RMB2e Chapter 5 (pp. 171, 175),
+two logistic regression models are fitted on a cleaned sample
+(excluding one outlier with cholesterol ≥ 645 mg/dL):
+a base model with five standard risk factors,
+and an extended model adding categorical behavior pattern
+to test its independent contribution via a likelihood-ratio test.
 
 ```{r model-specification}
 ana <- subset(dat, chol < 645)
@@ -93,7 +98,24 @@ formula_behpat <- update(formula_base, . ~ . + behpat)
 list(base = formula_base, with_behpat = formula_behpat)
 ```
 
-### Step 2: Parameter estimation
+## Results
+
+### Descriptive statistics
+
+```{r exploratory-summaries}
+summary(dat$sbp)
+summary(dat$weight)
+with(dat, cor(sbp, weight, use = "complete.obs"))
+with(dat, table(behpat, useNA = "ifany"))
+with(dat, prop.table(table(chd69)))
+```
+
+```{r exploratory-plot, fig.height=4, fig.width=6}
+hist(dat$sbp, breaks = 15, col = "grey85", border = "white",
+     main = "WCGS systolic blood pressure", xlab = "SBP (mmHg)")
+```
+
+### Model estimates
 
 ```{r parameter-estimation}
 fit_base <- stats::glm(formula_base, data = ana, family = stats::binomial())
@@ -103,21 +125,19 @@ summary(fit_base)
 summary(fit_behpat)
 ```
 
-### Step 3: Model adequacy checks
+### Model diagnostics
 
 ```{r adequacy-checks}
-# Nested-model comparison for contribution of behavior pattern (RMB2e pp. 175-177)
 stats::anova(fit_base, fit_behpat, test = "Chisq")
 
-# Simple calibration check via grouped observed vs fitted CHD risk
 pred <- stats::fitted(fit_behpat)
 cut_pred <- cut(pred, breaks = stats::quantile(pred, probs = seq(0, 1, by = 0.1)), include.lowest = TRUE)
 obs <- tapply(ana$chd69, cut_pred, mean)
-exp <- tapply(pred, cut_pred, mean)
-data.frame(decile = names(obs), observed = as.numeric(obs), expected = as.numeric(exp))
+expected_prob <- tapply(pred, cut_pred, mean)
+data.frame(decile = names(obs), observed = as.numeric(obs), expected = as.numeric(expected_prob))
 ```
 
-### Step 4: Inference
+### Inference
 
 ```{r inference}
 or <- exp(stats::coef(fit_behpat))
@@ -132,6 +152,17 @@ inf <- data.frame(
 inf
 ```
 
-### Scientific conclusions
+## Discussion
 
-Consistent with RMB2e Chapter 5 (pp. 171, 175–177), older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking are associated with increased CHD odds in WCGS. Behavior pattern contributes additional information about CHD risk beyond these established predictors.
+Consistent with RMB2e Chapter 5 (pp. 171, 175–177),
+older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking
+are each associated with increased CHD odds after mutual adjustment.
+Behavior pattern (Type A vs B) contributes additional independent information about CHD risk,
+as demonstrated by the likelihood-ratio test comparing the base and extended models.
+The decile calibration table confirms reasonable model fit across the risk spectrum,
+an important diagnostic step for logistic regression (RMB2e p. 175).
+
+## Source
+
+- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/wcgs.dta
+- Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

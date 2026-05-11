@@ -1,5 +1,10 @@
 # rmb (development version)
 
+- Replaced all 26 `{mermaid}` causal DAGs in dataset vignettes with R-rendered [`{ggdag}`](https://r-causal.github.io/ggdag/) plots for consistent, reproducible visualization. Added `ggdag` to `DESCRIPTION Suggests`.
+- Bumped development version to `0.0.0.9017`.
+- Added swimmer plots to all longitudinal dataset vignettes (`dataset-leuk.qmd`, `dataset-actg019.qmd`, `dataset-mira_hsv.qmd`, `dataset-sof2.qmd`, `dataset-hers_nodm_longitudinal.qmd`, `dataset-fecfat.qmd`) using the [`{swimplot}`](https://github.com/biostatsPMH/swimplot) package. Large cohorts are subsetted for legibility.
+- Bumped development version to `0.0.0.9016`.
+- Restructured all 26 dataset vignettes as mini-journal articles with four standard sections: Introduction, Methods, Results, and Discussion. Each article includes a dataset-specific causal DAG, targeted statistical analysis, and scientific interpretation anchored to the relevant RMB2e chapter.
 - Corrected invalid DOI links in dataset metadata and dataset documentation for WCGS, MIRA, and SOF/SOF2.
 - Bumped development version to `0.0.0.9015`.
 - Expanded all dataset vignettes from a single generic model to an RMB2e workflow with interleaved prose and stepwise modeling sections (research question, EDA, specification, estimation, adequacy checks, inference, conclusions), organized by dataset.

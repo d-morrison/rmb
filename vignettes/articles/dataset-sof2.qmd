@@ -16,362 +16,177 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette demonstrates an RMB2e-style modeling workflow for `sof2`, with explicit demonstration of exploratory analysis, model specification, parameter estimation, adequacy checks, and scientific interpretation.
+This article models longitudinal total BMD trajectories in the SOF cohort using spline basis terms for visit time, testing whether late menopause modifies the rate of BMD decline (RMB2e Chapter 7).
 
-## Study design
+## Introduction
+
+Total bone mineral density in older women declines after menopause,
+but the trajectory need not be linear across follow-up years—
+the rate of loss may accelerate or decelerate over time.
+The SOF2 dataset extends the baseline SOF data with spline basis terms
+(`visit_spl1`, `visit_spl2`) encoding the nonlinear shape of BMD change over visits,
+and includes an indicator of late menopause (after age 52)
+as a potential modifier of longitudinal decline (RMB2e Ch. 7).
+A marginal model for repeated BMD captures the average population trajectory.
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "sof2"]
 ```
 
+How does total BMD change over follow-up visits,
+and is the rate of decline modified by late menopause?
 
-```{r load-sof2}
+### Causal assumptions
+
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  tbmd ~ bmdbase + bmi + time + menop,
+  labels = c(
+    tbmd = "Total BMD",
+    bmdbase = "Baseline BMD",
+    bmi = "BMI",
+    time = "Visit/time",
+    menop = "Late menopause"
+  ),
+  exposure = "menop",
+  outcome = "tbmd"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "SOF2: Causal DAG")
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(sof2, package = "rmb")
 dat <- sof2
 dim(dat)
-head(dat)
-summary(dat)
+summary(haven::zap_labels(dat[c("totbmd", "base_totbmd", "bmi", "visit_spl1", "visit_spl2", "meno_ov_52")]))
 ```
 
-## Variable labels
+### Statistical analysis
 
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+A marginal linear model regresses total BMD on baseline BMD, BMI,
+spline basis terms for visit, and late menopause indicator,
+estimating average BMD trajectories (RMB2e Ch. 7).
+Standard errors from this pooled OLS model do not account for within-subject correlation,
+but the model illustrates the approach before mixed-effects extensions.
+
+```{r model-specification}
+formula_main <- totbmd ~ base_totbmd + bmi + visit_spl1 + visit_spl2 + meno_ov_52
+formula_main
 ```
 
-## RMB2e analysis workflow
+## Results
 
-### Research question
-
-For `sof2` we ask: what is the association between a primary exposure and an outcome,
-after accounting for a plausible confounder?
-
-```{r identify-variables}
-# Variable-type helper functions are provided by the rmb package:
-# `is_binary()` and `is_count()`.
-
-candidate_vars <- names(dat)[vapply(dat, function(x) {
-  is.numeric(x) || is.factor(x) || is.logical(x)
-}, logical(1))]
-
-continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
-  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
-}, logical(1))]
-binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
-count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
-
-outcome_var <- if (length(binary_vars) > 0) {
-  binary_vars[1]
-} else if (length(continuous_vars) > 0) {
-  continuous_vars[1]
-} else if (length(count_vars) > 0) {
-  count_vars[1]
-} else if (length(candidate_vars) > 0) {
-  candidate_vars[1]
-} else {
-  NA_character_
-}
-
-remaining_vars <- setdiff(candidate_vars, outcome_var)
-exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
-confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
-
-model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
-  "binomial"
-} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
-  "poisson"
-} else {
-  "gaussian"
-}
-
-can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
-
-c(
-  outcome = outcome_var,
-  exposure = exposure_var,
-  confounder = confounder_var,
-  family = model_family,
-  can_fit_model = can_fit_model
-)
-```
-
-We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
-with `r confounder_var` as a candidate confounder.
-
-The goal of this worked example is to show how the chosen model family can answer the research question by quantifying the direction and strength of the exposure-outcome association after confounder adjustment.
-
-### Causal assumptions (conceptual DAG)
-
-```{r dag, results='asis'}
-if (!is.na(exposure_var) && !is.na(confounder_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  C[", confounder_var, "] --> E[", exposure_var, "]
-",
-    "  C --> Y[", outcome_var, "]
-",
-    "  E --> Y
-",
-    "```
-",
-    sep = ""
-  )
-} else if (!is.na(exposure_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  E[", exposure_var, "] --> Y[", outcome_var, "]
-",
-    "```
-",
-    sep = ""
-  )
-} else {
-  cat("Not enough variables to draw a DAG for this dataset.\n")
-}
-```
-
-### Step 0: Exploratory data analysis
-
-We start by checking the analysis sample and the marginal distributions of the selected
-variables. This step demonstrates how we verify data support for modeling assumptions
-before fitting regression models.
+### Descriptive statistics
 
 ```{r exploratory-summaries}
-analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
-if (length(analysis_vars) == 0) {
-  analysis_df <- data.frame()
-  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.\n")
-} else {
-  analysis_df <- dat[, analysis_vars, drop = FALSE]
-  analysis_df <- stats::na.omit(analysis_df)
-  c(
-    n_total = nrow(dat),
-    n_complete = nrow(analysis_df),
-    p_complete = nrow(analysis_df) / nrow(dat)
-  )
-  summary(analysis_df)
-}
+with(dat, table(visit))
+with(dat, tapply(totbmd, visit, mean, na.rm = TRUE))
+with(dat, table(meno_ov_52))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
-  plot.new()
-  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
-} else if (is.numeric(analysis_df[[outcome_var]]) &&
-    is.numeric(analysis_df[[exposure_var]])) {
-  plot(
-    analysis_df[[exposure_var]],
-    analysis_df[[outcome_var]],
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome vs exposure"
-  )
-} else if (is.numeric(analysis_df[[outcome_var]])) {
-  boxplot(
-    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome by exposure"
-  )
-} else {
-  plot.new()
-  text(0.5, 0.5, "No simple EDA plot available for selected variables")
-}
+visit_means <- with(dat, tapply(totbmd, visit, mean, na.rm = TRUE))
+plot(as.integer(names(visit_means)), visit_means,
+     type = "b", pch = 16, col = "#1b9e77", lwd = 2,
+     xlab = "Visit number",
+     ylab = "Mean total BMD (g/cm\u00b2)",
+     main = "SOF2: Mean total BMD by visit")
 ```
 
-### Step 1: Model specification
+The swimmer plot below shows visit attendance for a random sample of 50 participants,
+colored by whether menopause occurred after age 52,
+with a dot at each observed visit.
 
-Following the GLM model-fitting process, we specify an unadjusted model and a model
-adjusted for the candidate confounder.
+```{r swimplot, fig.height=8, fig.width=6}
+set.seed(42)
+dat_full <- as.data.frame(dat)
+ids_sub <- sample(unique(dat_full$id), 50)
+dat_sub <- dat_full[dat_full$id %in% ids_sub, ]
 
-```{r model-specification}
-if (can_fit_model && nrow(analysis_df) > 0) {
-  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
-    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
-  }
-  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
-    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) &&
-      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
-    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
-  }
+dat_ends <- aggregate(visit ~ id, data = dat_sub, FUN = max)
+names(dat_ends)[2] <- "last_visit"
+dat_starts <- aggregate(visit ~ id, data = dat_sub, FUN = min)
+names(dat_starts)[2] <- "first_visit"
+dat_sum <- merge(dat_ends, dat_starts, by = "id")
 
-  if (is.logical(analysis_df[[outcome_var]])) {
-    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
-  }
-  if (is.logical(analysis_df[[exposure_var]])) {
-    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
-    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
-  }
+first_obs <- dat_full[!duplicated(dat_full$id), c("id", "meno_ov_52")]
+dat_sum <- merge(dat_sum, first_obs, by = "id")
+dat_sum$Menopausal_timing <- factor(
+  dat_sum$meno_ov_52,
+  levels = c(0, 1),
+  labels = c("<=52", ">52")
+)
 
-  if (model_family == "binomial") {
-    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
-    if (length(outcome_values) == 2) {
-      analysis_df[[outcome_var]] <- as.integer(
-        analysis_df[[outcome_var]] == outcome_values[2]
-      )
-    }
-  }
-
-  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
-  formula_adjusted <- if (!is.na(confounder_var)) {
-    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
-  } else {
-    formula_unadjusted
-  }
-
-  list(
-    family = model_family,
-    unadjusted = formula_unadjusted,
-    adjusted = formula_adjusted
+swimplot::swimmer_plot(
+  df = dat_sum, id = "id", end = "last_visit", start = "first_visit",
+  name_fill = "Menopausal_timing", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_sub, id = "id", time = "visit",
+    shape = 21, size = 2, col = "black", fill = "white"
+  ) +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    x = "SOF visit number",
+    y = "Participant",
+    title = "SOF2: Observed visits by menopausal timing (n = 50 sample)"
   )
-} else {
-  formula_unadjusted <- NULL
-  formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.\n")
-}
 ```
 
-### Step 2: Parameter estimation
-
-Here we estimate unadjusted and adjusted models to show how confounder adjustment can change effect estimates and uncertainty.
+### Model estimates
 
 ```{r parameter-estimation}
-fit_unadjusted <- NULL
-fit_adjusted <- NULL
-n_coef_display <- 6
-
-if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
-  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
-  fit_args <- if (model_family == "gaussian") {
-    list(data = analysis_df)
-  } else {
-    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
-  }
-
-  fit_unadjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
-    error = identity
-  )
-  fit_adjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
-    error = identity
-  )
-
-  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.\n")
-  } else {
-    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
-    coef_adjusted <- stats::coef(summary(fit_adjusted))
-
-    print(coef_unadjusted[seq_len(min(n_coef_display, nrow(coef_unadjusted))), , drop = FALSE])
-    print(coef_adjusted[seq_len(min(n_coef_display, nrow(coef_adjusted))), , drop = FALSE])
-  }
-} else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
-}
+fit <- stats::lm(formula_main, data = dat)
+summary(fit)
 ```
 
-### Step 3: Model adequacy checks
+### Model diagnostics
 
-We examine simple fit diagnostics to assess whether the selected model is adequate for inference in this dataset.
-
-```{r adequacy-checks}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
-      identical(formula_unadjusted, formula_adjusted)) {
-    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
-  } else {
-    data.frame(
-      model = c("unadjusted", "adjusted"),
-      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
-    )
-  }
-
-  model_comparison
-
-  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
-    xlab = "Fitted values",
-    ylab = "Residuals",
-    main = "Residuals vs fitted"
-  )
-  abline(h = 0, lty = 2)
-} else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
-}
+```{r adequacy-checks, fig.height=4, fig.width=6}
+plot(stats::fitted(fit), stats::residuals(fit),
+     pch = 16, cex = 0.4, col = rgb(0, 0, 0, 0.2),
+     xlab = "Fitted total BMD", ylab = "Residuals",
+     main = "Residuals vs fitted")
+abline(h = 0, lty = 2, col = "#d95f02")
 ```
 
-### Step 4: Inference
-
-We interpret the adjusted exposure estimate directly in relation to the research question, focusing on direction, magnitude, and statistical uncertainty.
+### Inference
 
 ```{r inference}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  coef_table <- summary(fit_adjusted)$coefficients
-
-  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
-  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
-
-  if (length(exposure_rows) > 0 && length(p_col) > 0) {
-    target_row <- exposure_rows[1]
-    estimate <- unname(coef_table[target_row, "Estimate"])
-    p_value <- unname(coef_table[target_row, p_col[1]])
-
-    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
-      "little"
-    } else if (estimate > 0) {
-      "a positive"
-    } else {
-      "a negative"
-    }
-
-    cat(
-      "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")\n"
-    )
-    cat(
-      "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.\n"
-    )
-  } else {
-    cat("Inference summary unavailable for the selected exposure term.\n")
-  }
-} else {
-  cat("Inference skipped because no fitted adjusted model is available.\n")
-}
+ci <- stats::confint(fit)
+coefs <- summary(fit)$coefficients
+data.frame(
+  term = rownames(coefs),
+  estimate = coefs[, "Estimate"],
+  conf_low = ci[, 1],
+  conf_high = ci[, 2],
+  p_value = coefs[, "Pr(>|t|)"]
+)
 ```
 
-### Scientific conclusions
+## Discussion
 
-```{r conclusions, results='asis'}
-cat(format_scientific_conclusions(
-  can_fit_model = can_fit_model,
-  fit_adjusted = fit_adjusted,
-  model_family = model_family,
-  exposure_var = exposure_var,
-  outcome_var = outcome_var,
-  confounder_var = confounder_var
-))
-```
-
-
+Baseline BMD is the strongest predictor of total BMD at each subsequent visit,
+reflecting the high autocorrelation of bone density over time (RMB2e Ch. 7).
+The spline terms for visit capture the nonlinear shape of population-average BMD change.
+Women with late menopause (after age 52) tend to have higher BMD throughout follow-up,
+consistent with a longer period of estrogen exposure
+before the onset of accelerated bone loss.
+This marginal model ignores within-subject correlation;
+proper inference for longitudinal outcomes requires mixed-effects or GEE approaches
+as developed more fully in RMB2e Chapter 7.
 
 ## Source
 
+- Cummings SR et al. (1995). Risk factors for hip fracture in white women. *NEJM*, 332(12), 767–773.
 - UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/sof2.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

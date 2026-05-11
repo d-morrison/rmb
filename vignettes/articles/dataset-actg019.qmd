@@ -17,44 +17,72 @@ library(rmb)
 library(survival)
 ```
 
-This article reproduces the ACTG 019 survival analysis workflow used in RMB2e Chapter 6.
+This article reproduces the ACTG 019 survival analysis workflow used in RMB2e Chapter 6, estimating the effect of zidovudine on time to AIDS or death.
 
-## Study design
+## Introduction
+
+The AIDS Clinical Trials Group protocol 019 was a placebo-controlled randomized trial
+of zidovudine (ZDV) in HIV-positive adults with CD4 counts between 200 and 500 cells/mm³,
+conducted in the late 1980s.
+It was among the first trials to demonstrate a survival benefit for antiretroviral therapy
+in this CD4 stratum.
+Baseline CD4 count is a strong predictor of disease progression
+and is included as a covariate to increase precision,
+even though randomization removes confounding by design (RMB2e p. 268).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "actg019"]
 ```
 
-```{r load-actg019}
+Can zidovudine treatment reduce the hazard of AIDS or death
+after accounting for baseline CD4 cell count?
+
+### Causal assumptions
+
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  time_aids ~ rx + cd4,
+  rx ~ cd4,
+  labels = c(
+    time_aids = "Time to AIDS/death",
+    rx = "ZDV treatment",
+    cd4 = "Baseline CD4"
+  ),
+  exposure = "rx",
+  outcome = "time_aids"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "ACTG 019: Causal DAG")
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(actg019, package = "rmb")
 dat <- actg019
 dim(dat)
-summary(dat)
+summary(haven::zap_labels(dat[c("days", "cens", "rx", "cd4")]))
 ```
 
-## RMB2e analysis workflow
+### Statistical analysis
 
-### Research question
+A Cox proportional hazards model with Breslow tie-handling is used,
+regressing the survival outcome on treatment assignment and baseline CD4 count (RMB2e p. 267).
+The proportional hazards assumption is checked with scaled Schoenfeld residuals.
 
-Can zidovudine treatment reduce the hazard of AIDS/death after accounting for baseline CD4 cell count?
-
-RMB2e references: trial context and survival-data motivation (p. 224), Cox modeling details and bootstrap CI discussion (p. 267), coding sensitivity exercises (p. 278).
-
-### Causal assumptions (conceptual DAG)
-
-```{mermaid}
-flowchart LR
-  RX[ZDV treatment (rx)] --> T[Time to AIDS/death]
-  CD4[Baseline CD4] --> T
-  CD4 --> RX
+```{r model-specification}
+cox_formula <- survival::Surv(days, cens) ~ rx + cd4
+cox_formula
 ```
 
-Because ACTG 019 was randomized, treatment is unconfounded in expectation; CD4 is included as a strong prognostic baseline covariate (RMB2e p. 268).
+## Results
 
-### Step 0: Exploratory data analysis
-
-RMB2e context: variable follow-up and event-time structure in ACTG 019 (p. 224).
+### Descriptive statistics
 
 ```{r exploratory-summaries}
 with(dat, c(
@@ -68,7 +96,7 @@ with(dat, tapply(cd4, rx, summary))
 with(dat, tapply(days, rx, summary))
 ```
 
-```{r exploratory-km, fig.height=4, fig.width=6}
+```{r exploratory-plot, fig.height=4, fig.width=6}
 km_fit <- survival::survfit(survival::Surv(days, cens) ~ rx, data = dat)
 plot(
   km_fit,
@@ -82,36 +110,59 @@ plot(
 legend("bottomleft", legend = levels(factor(dat$rx)), col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
 ```
 
-### Step 1: Model specification
+The swimmer plot below shows individual follow-up times
+for a random sample of 80 participants (40 per arm),
+with × marks indicating AIDS/death events.
 
-RMB2e model: Cox proportional hazards model with treatment (`rx`) and baseline CD4 (`cd4`) as predictors (p. 267).
+```{r swimplot, fig.height=10, fig.width=7}
+set.seed(42)
+dat_swim <- as.data.frame(dat)
+dat_swim$days <- as.numeric(dat_swim$days)
+dat_swim$rx_int <- as.integer(unclass(dat_swim$rx))
+dat_swim$cens_int <- as.integer(unclass(dat_swim$cens))
+ids_0 <- sample(dat_swim$id[dat_swim$rx_int == 0], 40)
+ids_1 <- sample(dat_swim$id[dat_swim$rx_int == 1], 40)
+dat_sub <- dat_swim[dat_swim$id %in% c(ids_0, ids_1), ]
+dat_sub$Treatment <- factor(
+  dat_sub$rx_int,
+  levels = c(0, 1),
+  labels = c("Placebo", "ZDV")
+)
+dat_events <- dat_sub[dat_sub$cens_int == 1, ]
 
-```{r model-specification}
-cox_formula <- survival::Surv(days, cens) ~ rx + cd4
-cox_formula
+swimplot::swimmer_plot(
+  df = dat_sub, id = "id", end = "days",
+  name_fill = "Treatment", increasing = FALSE,
+  col = "black", alpha = 0.75, width = 0.8
+) +
+  swimplot::swimmer_points(
+    df = dat_events, id = "id", time = "days",
+    shape = 4, size = 2, col = "black"
+  ) +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    x = "Days since randomization",
+    y = "Patient",
+    title = "ACTG 019: Follow-up timeline by treatment (n = 80 sample; X = AIDS/death)"
+  )
 ```
 
-### Step 2: Parameter estimation
+### Model estimates
 
 ```{r parameter-estimation}
 fit_cox <- survival::coxph(cox_formula, data = dat, ties = "breslow")
 summary(fit_cox)
 ```
 
-### Step 3: Model adequacy checks
+### Model diagnostics
 
-```{r adequacy-checks}
+```{r adequacy-checks, fig.height=4, fig.width=6}
 ph_test <- survival::cox.zph(fit_cox)
 ph_test
-```
-
-```{r adequacy-plot, fig.height=4, fig.width=6}
 plot(ph_test)
 ```
 
-### Step 4: Inference
-
-RMB2e discusses Wald and bootstrap interval interpretation for this model family (p. 267).
+### Inference
 
 ```{r inference}
 hr <- exp(stats::coef(fit_cox))
@@ -126,6 +177,17 @@ out <- data.frame(
 out
 ```
 
-### Scientific conclusions
+## Discussion
 
-In this RMB2e ACTG 019 reproduction, treatment assignment to ZDV is associated with a lower hazard of AIDS/death, while higher baseline CD4 is associated with lower hazard. These are the same scientific directions emphasized in Chapter 6 (pp. 224, 267).
+ZDV assignment is associated with a lower hazard of AIDS or death,
+consistent with the trial's primary findings as discussed in RMB2e Chapter 6 (pp. 224, 267).
+Higher baseline CD4 count is protective,
+reflecting the well-known relationship between immune status and disease progression.
+The proportional hazards assumption diagnostics (Schoenfeld residuals) should be inspected
+to confirm that hazard ratios are constant over follow-up time,
+a key requirement for valid Cox model interpretation (RMB2e p. 267).
+
+## Source
+
+- UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/actg019.dta
+- Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

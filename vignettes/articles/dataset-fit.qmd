@@ -16,362 +16,132 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(rmb)
 ```
 
-This vignette demonstrates an RMB2e-style modeling workflow for `fit`, with explicit demonstration of exploratory analysis, model specification, parameter estimation, adequacy checks, and scientific interpretation.
+This article fits a logistic regression model to the Fracture Intervention Trial (FIT) dataset, evaluating whether alendronate reduces new vertebral fracture incidence in postmenopausal women (RMB2e Chapter 6).
 
-## Study design
+## Introduction
+
+Postmenopausal osteoporosis is characterized by rapid bone loss driven by estrogen deficiency,
+leading to increased fracture risk.
+The Fracture Intervention Trial (FIT) was a large randomized placebo-controlled trial
+of the bisphosphonate alendronate in postmenopausal women
+with low femoral neck BMD (Black et al. 1996).
+New vertebral fractures were identified from serial lateral spine radiographs
+and serve as the primary binary outcome in this analysis.
+A history of prior vertebral fracture and low baseline BMD are strong confounders
+and are included as adjusters (RMB2e Ch. 6).
 
 ```{r study-design}
 data(rmb_datasets, package = "rmb")
 rmb_datasets$study_design[rmb_datasets$object == "fit"]
 ```
 
+Does alendronate treatment reduce the incidence of new vertebral fractures
+compared to placebo in postmenopausal women with low BMD?
 
-```{r load-fit}
+### Causal assumptions
+
+```{r dag, fig.height=4, fig.width=6}
+set.seed(42)
+dag <- ggdag::dagify(
+  vfx ~ treat + age + fracbase + bmdbase,
+  treat ~ bmdbase,
+  labels = c(
+    vfx = "New vertebral fx",
+    treat = "Alendronate",
+    age = "Age",
+    fracbase = "Prior fx",
+    bmdbase = "Baseline BMD"
+  ),
+  exposure = "treat",
+  outcome = "vfx"
+)
+ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
+  ggdag::theme_dag_blank() +
+  ggplot2::labs(title = "FIT: Causal DAG")
+```
+
+## Methods
+
+### Study sample
+
+```{r load-data}
 data(fit, package = "rmb")
 dat <- fit
 dim(dat)
-head(dat)
-summary(dat)
+summary(haven::zap_labels(dat[c("treat", "age", "frac_base", "bmd_base", "newvfx", "fitpy")]))
 ```
 
-## Variable labels
+### Statistical analysis
 
-```{r labels}
-var_labels <- vapply(dat, function(x) {
-  lbl <- attr(x, "label")
-  if (is.null(lbl) || length(lbl) == 0 || all(lbl == "")) NA_character_ else paste(as.character(lbl), collapse = "; ")
-}, character(1))
-stats::setNames(var_labels, names(dat))
+Logistic regression models the probability of new vertebral fracture
+on treatment assignment, baseline fracture history, baseline femoral neck BMD, and age
+(RMB2e Ch. 6 / Black 1996).
+
+```{r model-specification}
+formula_main <- newvfx ~ treat + age + frac_base + bmd_base
+formula_main
 ```
 
-## RMB2e analysis workflow
+## Results
 
-### Research question
-
-For `fit` we ask: what is the association between a primary exposure and an outcome,
-after accounting for a plausible confounder?
-
-```{r identify-variables}
-# Variable-type helper functions are provided by the rmb package:
-# `is_binary()` and `is_count()`.
-
-candidate_vars <- names(dat)[vapply(dat, function(x) {
-  is.numeric(x) || is.factor(x) || is.logical(x)
-}, logical(1))]
-
-continuous_vars <- candidate_vars[vapply(dat[candidate_vars], function(x) {
-  is.numeric(x) && length(unique(stats::na.omit(x))) > 10
-}, logical(1))]
-binary_vars <- candidate_vars[vapply(dat[candidate_vars], is_binary, logical(1))]
-count_vars <- candidate_vars[vapply(dat[candidate_vars], is_count, logical(1))]
-
-outcome_var <- if (length(binary_vars) > 0) {
-  binary_vars[1]
-} else if (length(continuous_vars) > 0) {
-  continuous_vars[1]
-} else if (length(count_vars) > 0) {
-  count_vars[1]
-} else if (length(candidate_vars) > 0) {
-  candidate_vars[1]
-} else {
-  NA_character_
-}
-
-remaining_vars <- setdiff(candidate_vars, outcome_var)
-exposure_var <- if (length(remaining_vars) > 0) remaining_vars[1] else NA_character_
-confounder_var <- if (length(remaining_vars) > 1) remaining_vars[2] else NA_character_
-
-model_family <- if (!is.na(outcome_var) && outcome_var %in% binary_vars) {
-  "binomial"
-} else if (!is.na(outcome_var) && outcome_var %in% count_vars) {
-  "poisson"
-} else {
-  "gaussian"
-}
-
-can_fit_model <- !is.na(outcome_var) && !is.na(exposure_var)
-
-c(
-  outcome = outcome_var,
-  exposure = exposure_var,
-  confounder = confounder_var,
-  family = model_family,
-  can_fit_model = can_fit_model
-)
-```
-
-We use `r outcome_var` as the outcome and `r exposure_var` as the primary exposure,
-with `r confounder_var` as a candidate confounder.
-
-The goal of this worked example is to show how the chosen model family can answer the research question by quantifying the direction and strength of the exposure-outcome association after confounder adjustment.
-
-### Causal assumptions (conceptual DAG)
-
-```{r dag, results='asis'}
-if (!is.na(exposure_var) && !is.na(confounder_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  C[", confounder_var, "] --> E[", exposure_var, "]
-",
-    "  C --> Y[", outcome_var, "]
-",
-    "  E --> Y
-",
-    "```
-",
-    sep = ""
-  )
-} else if (!is.na(exposure_var)) {
-  cat(
-    "```{mermaid}
-",
-    "flowchart LR
-",
-    "  E[", exposure_var, "] --> Y[", outcome_var, "]
-",
-    "```
-",
-    sep = ""
-  )
-} else {
-  cat("Not enough variables to draw a DAG for this dataset.\n")
-}
-```
-
-### Step 0: Exploratory data analysis
-
-We start by checking the analysis sample and the marginal distributions of the selected
-variables. This step demonstrates how we verify data support for modeling assumptions
-before fitting regression models.
+### Descriptive statistics
 
 ```{r exploratory-summaries}
-analysis_vars <- unique(stats::na.omit(c(outcome_var, exposure_var, confounder_var)))
-if (length(analysis_vars) == 0) {
-  analysis_df <- data.frame()
-  c(n_total = nrow(dat), n_complete = 0, p_complete = 0)
-  cat("No numeric, logical, or factor variables available for analysis.\n")
-} else {
-  analysis_df <- dat[, analysis_vars, drop = FALSE]
-  analysis_df <- stats::na.omit(analysis_df)
-  c(
-    n_total = nrow(dat),
-    n_complete = nrow(analysis_df),
-    p_complete = nrow(analysis_df) / nrow(dat)
-  )
-  summary(analysis_df)
-}
+with(dat, table(treat, newvfx))
+with(dat, prop.table(table(treat, newvfx), margin = 1))
+with(dat, tapply(bmd_base, treat, summary))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-if (nrow(analysis_df) == 0 || is.na(exposure_var) || is.na(outcome_var)) {
-  plot.new()
-  text(0.5, 0.5, "No EDA plot: insufficient variables or complete cases")
-} else if (is.numeric(analysis_df[[outcome_var]]) &&
-    is.numeric(analysis_df[[exposure_var]])) {
-  plot(
-    analysis_df[[exposure_var]],
-    analysis_df[[outcome_var]],
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome vs exposure"
-  )
-} else if (is.numeric(analysis_df[[outcome_var]])) {
-  boxplot(
-    analysis_df[[outcome_var]] ~ as.factor(analysis_df[[exposure_var]]),
-    xlab = exposure_var,
-    ylab = outcome_var,
-    main = "Outcome by exposure"
-  )
-} else {
-  plot.new()
-  text(0.5, 0.5, "No simple EDA plot available for selected variables")
-}
+barplot(
+  with(dat, prop.table(table(treat, newvfx), margin = 1))[, "1"],
+  names.arg = c("Placebo", "Alendronate"),
+  col = c("#1b9e77", "#d95f02"),
+  ylab = "Proportion with new vertebral fx",
+  main = "FIT: Crude vertebral fracture rate by treatment"
+)
 ```
 
-### Step 1: Model specification
-
-Following the GLM model-fitting process, we specify an unadjusted model and a model
-adjusted for the candidate confounder.
-
-```{r model-specification}
-if (can_fit_model && nrow(analysis_df) > 0) {
-  if (inherits(analysis_df[[outcome_var]], "haven_labelled")) {
-    analysis_df[[outcome_var]] <- as.numeric(analysis_df[[outcome_var]])
-  }
-  if (inherits(analysis_df[[exposure_var]], "haven_labelled")) {
-    analysis_df[[exposure_var]] <- as.numeric(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) &&
-      inherits(analysis_df[[confounder_var]], "haven_labelled")) {
-    analysis_df[[confounder_var]] <- as.numeric(analysis_df[[confounder_var]])
-  }
-
-  if (is.logical(analysis_df[[outcome_var]])) {
-    analysis_df[[outcome_var]] <- as.integer(analysis_df[[outcome_var]])
-  }
-  if (is.logical(analysis_df[[exposure_var]])) {
-    analysis_df[[exposure_var]] <- as.integer(analysis_df[[exposure_var]])
-  }
-  if (!is.na(confounder_var) && is.logical(analysis_df[[confounder_var]])) {
-    analysis_df[[confounder_var]] <- as.integer(analysis_df[[confounder_var]])
-  }
-
-  if (model_family == "binomial") {
-    outcome_values <- sort(unique(stats::na.omit(analysis_df[[outcome_var]])))
-    if (length(outcome_values) == 2) {
-      analysis_df[[outcome_var]] <- as.integer(
-        analysis_df[[outcome_var]] == outcome_values[2]
-      )
-    }
-  }
-
-  formula_unadjusted <- stats::as.formula(paste(outcome_var, "~", exposure_var))
-  formula_adjusted <- if (!is.na(confounder_var)) {
-    stats::as.formula(paste(outcome_var, "~", exposure_var, "+", confounder_var))
-  } else {
-    formula_unadjusted
-  }
-
-  list(
-    family = model_family,
-    unadjusted = formula_unadjusted,
-    adjusted = formula_adjusted
-  )
-} else {
-  formula_unadjusted <- NULL
-  formula_adjusted <- NULL
-  cat("Model specification skipped: insufficient variables or complete cases.\n")
-}
-```
-
-### Step 2: Parameter estimation
-
-Here we estimate unadjusted and adjusted models to show how confounder adjustment can change effect estimates and uncertainty.
+### Model estimates
 
 ```{r parameter-estimation}
-fit_unadjusted <- NULL
-fit_adjusted <- NULL
-n_coef_display <- 6
-
-if (!is.null(formula_unadjusted) && nrow(analysis_df) >= 20) {
-  fit_function <- if (model_family == "gaussian") stats::lm else stats::glm
-  fit_args <- if (model_family == "gaussian") {
-    list(data = analysis_df)
-  } else {
-    list(data = analysis_df, family = get(model_family, asNamespace("stats"))())
-  }
-
-  fit_unadjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_unadjusted), fit_args)),
-    error = identity
-  )
-  fit_adjusted <- tryCatch(
-    do.call(fit_function, c(list(formula = formula_adjusted), fit_args)),
-    error = identity
-  )
-
-  if (inherits(fit_unadjusted, "error") || inherits(fit_adjusted, "error")) {
-    cat("Model fitting did not converge for this variable set.\n")
-  } else {
-    coef_unadjusted <- stats::coef(summary(fit_unadjusted))
-    coef_adjusted <- stats::coef(summary(fit_adjusted))
-
-    print(coef_unadjusted[seq_len(min(n_coef_display, nrow(coef_unadjusted))), , drop = FALSE])
-    print(coef_adjusted[seq_len(min(n_coef_display, nrow(coef_adjusted))), , drop = FALSE])
-  }
-} else {
-  cat("Parameter estimation skipped: fewer than 20 complete observations.\n")
-}
+fit_model <- stats::glm(formula_main, data = dat, family = stats::binomial())
+summary(fit_model)
 ```
 
-### Step 3: Model adequacy checks
-
-We examine simple fit diagnostics to assess whether the selected model is adequate for inference in this dataset.
+### Model diagnostics
 
 ```{r adequacy-checks}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  model_comparison <- if (is.null(fit_unadjusted) || inherits(fit_unadjusted, "error") ||
-      identical(formula_unadjusted, formula_adjusted)) {
-    data.frame(model = "adjusted", AIC = stats::AIC(fit_adjusted))
-  } else {
-    data.frame(
-      model = c("unadjusted", "adjusted"),
-      AIC = c(stats::AIC(fit_unadjusted), stats::AIC(fit_adjusted))
-    )
-  }
-
-  model_comparison
-
-  plot(stats::fitted(fit_adjusted), stats::residuals(fit_adjusted),
-    xlab = "Fitted values",
-    ylab = "Residuals",
-    main = "Residuals vs fitted"
-  )
-  abline(h = 0, lty = 2)
-} else {
-  cat("Model adequacy checks skipped because no fitted adjusted model is available.\n")
-}
+fit_unadj <- stats::glm(newvfx ~ treat, data = dat, family = stats::binomial())
+stats::anova(fit_unadj, fit_model, test = "Chisq")
 ```
 
-### Step 4: Inference
-
-We interpret the adjusted exposure estimate directly in relation to the research question, focusing on direction, magnitude, and statistical uncertainty.
+### Inference
 
 ```{r inference}
-if (!is.null(fit_adjusted) && !inherits(fit_adjusted, "error")) {
-  coef_table <- summary(fit_adjusted)$coefficients
-
-  exposure_rows <- grep(paste0("^", exposure_var), rownames(coef_table), value = TRUE)
-  p_col <- intersect(c("Pr(>|t|)", "Pr(>|z|)"), colnames(coef_table))
-
-  if (length(exposure_rows) > 0 && length(p_col) > 0) {
-    target_row <- exposure_rows[1]
-    estimate <- unname(coef_table[target_row, "Estimate"])
-    p_value <- unname(coef_table[target_row, p_col[1]])
-
-    direction <- if (is.na(estimate) || abs(estimate) < 1e-10) {
-      "little"
-    } else if (estimate > 0) {
-      "a positive"
-    } else {
-      "a negative"
-    }
-
-    cat(
-      "Estimated exposure effect:", round(estimate, 3),
-      "(p =", signif(p_value, 3), ")\n"
-    )
-    cat(
-      "This suggests", direction, "association between", exposure_var,
-      "and", outcome_var, "in the adjusted model.\n"
-    )
-  } else {
-    cat("Inference summary unavailable for the selected exposure term.\n")
-  }
-} else {
-  cat("Inference skipped because no fitted adjusted model is available.\n")
-}
+or <- exp(stats::coef(fit_model))
+ci <- exp(stats::confint(fit_model))
+data.frame(
+  term = names(or),
+  odds_ratio = unname(or),
+  conf_low = ci[, 1],
+  conf_high = ci[, 2],
+  p_value = summary(fit_model)$coefficients[, "Pr(>|z|)"]
+)
 ```
 
-### Scientific conclusions
+## Discussion
 
-```{r conclusions, results='asis'}
-cat(format_scientific_conclusions(
-  can_fit_model = can_fit_model,
-  fit_adjusted = fit_adjusted,
-  model_family = model_family,
-  exposure_var = exposure_var,
-  outcome_var = outcome_var,
-  confounder_var = confounder_var
-))
-```
-
-
+Alendronate treatment is associated with substantially reduced odds of new vertebral fracture
+compared to placebo after adjustment for baseline fracture history, BMD, and age,
+replicating the main finding of Black et al. (1996) and discussed in RMB2e Chapter 6.
+Prior vertebral fracture and lower baseline BMD are both strong independent predictors
+of incident fracture, confirming their roles as established risk factors.
+These results illustrate how logistic regression can estimate treatment effects
+adjusted for important prognostic baseline characteristics in a randomized trial.
 
 ## Source
 
+- Black DM et al. (1996). Randomised trial of effect of alendronate on risk of fracture in women with existing vertebral fractures. *Lancet*, 348(9041), 1535–1541.
 - UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/fit.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).

@@ -34,39 +34,23 @@ get_dataset_vignette_text <- function() {
   }, character(1))
 }
 
-test_that("dataset vignettes include RMB2e workflow sections", {
+test_that("dataset vignettes follow journal article structure", {
   vignette_text <- get_dataset_vignette_text()
 
   expect_true(
-    all(grepl("## RMB2e analysis workflow", vignette_text, fixed = TRUE))
+    all(grepl("## Introduction", vignette_text, fixed = TRUE))
   )
   expect_true(
-    all(grepl("### Research question", vignette_text, fixed = TRUE))
+    all(grepl("## Methods", vignette_text, fixed = TRUE))
   )
   expect_true(
-    all(grepl(
-      "### Step 0: Exploratory data analysis",
-      vignette_text,
-      fixed = TRUE
-    ))
+    all(grepl("## Results", vignette_text, fixed = TRUE))
   )
   expect_true(
-    all(grepl("### Step 1: Model specification", vignette_text, fixed = TRUE))
+    all(grepl("## Discussion", vignette_text, fixed = TRUE))
   )
   expect_true(
-    all(grepl("### Step 2: Parameter estimation", vignette_text, fixed = TRUE))
-  )
-  expect_true(
-    all(grepl("### Step 3: Model adequacy checks", vignette_text, fixed = TRUE))
-  )
-  expect_true(
-    all(grepl("### Step 4: Inference", vignette_text, fixed = TRUE))
-  )
-  expect_true(
-    all(grepl("### Scientific conclusions", vignette_text, fixed = TRUE))
-  )
-  expect_true(
-    all(grepl("\\{mermaid\\}", vignette_text))
+    all(grepl("dagify", vignette_text, fixed = TRUE))
   )
 })
 
