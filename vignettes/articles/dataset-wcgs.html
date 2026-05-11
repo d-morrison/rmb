@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -837,37 +836,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#study-design" id="toc-study-design" class="nav-link active" data-scroll-target="#study-design"><span class="header-section-number">1</span> Study design</a></li>
-  <li>
-<a href="#rmb2e-analysis-workflow" id="toc-rmb2e-analysis-workflow" class="nav-link" data-scroll-target="#rmb2e-analysis-workflow"><span class="header-section-number">2</span> RMB2e analysis workflow</a>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
   <ul class="collapse">
-<li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">2.1</span> Research question</a></li>
-  <li><a href="#causal-assumptions-conceptual-dag" id="toc-causal-assumptions-conceptual-dag" class="nav-link" data-scroll-target="#causal-assumptions-conceptual-dag"><span class="header-section-number">2.2</span> Causal assumptions (conceptual DAG)</a></li>
-  <li><a href="#step-0-exploratory-data-analysis" id="toc-step-0-exploratory-data-analysis" class="nav-link" data-scroll-target="#step-0-exploratory-data-analysis"><span class="header-section-number">2.3</span> Step 0: Exploratory data analysis</a></li>
-  <li><a href="#step-1-model-specification" id="toc-step-1-model-specification" class="nav-link" data-scroll-target="#step-1-model-specification"><span class="header-section-number">2.4</span> Step 1: Model specification</a></li>
-  <li><a href="#step-2-parameter-estimation" id="toc-step-2-parameter-estimation" class="nav-link" data-scroll-target="#step-2-parameter-estimation"><span class="header-section-number">2.5</span> Step 2: Parameter estimation</a></li>
-  <li><a href="#step-3-model-adequacy-checks" id="toc-step-3-model-adequacy-checks" class="nav-link" data-scroll-target="#step-3-model-adequacy-checks"><span class="header-section-number">2.6</span> Step 3: Model adequacy checks</a></li>
-  <li><a href="#step-4-inference" id="toc-step-4-inference" class="nav-link" data-scroll-target="#step-4-inference"><span class="header-section-number">2.7</span> Step 4: Inference</a></li>
-  <li><a href="#scientific-conclusions" id="toc-scientific-conclusions" class="nav-link" data-scroll-target="#scientific-conclusions"><span class="header-section-number">2.8</span> Scientific conclusions</a></li>
+<li><a href="#causal-assumptions" id="toc-causal-assumptions" class="nav-link" data-scroll-target="#causal-assumptions"><span class="header-section-number">1.1</span> Causal assumptions</a></li>
   </ul>
 </li>
+  <li>
+<a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2</span> Methods</a>
+  <ul class="collapse">
+<li><a href="#study-sample" id="toc-study-sample" class="nav-link" data-scroll-target="#study-sample"><span class="header-section-number">2.1</span> Study sample</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis"><span class="header-section-number">2.2</span> Statistical analysis</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">3</span> Results</a>
+  <ul class="collapse">
+<li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive statistics</a></li>
+  <li><a href="#model-estimates" id="toc-model-estimates" class="nav-link" data-scroll-target="#model-estimates"><span class="header-section-number">3.2</span> Model estimates</a></li>
+  <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics"><span class="header-section-number">3.3</span> Model diagnostics</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference"><span class="header-section-number">3.4</span> Inference</a></li>
+  </ul>
+</li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">4</span> Discussion</a></li>
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">5</span> Source</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/articles/dataset-wcgs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/articles/dataset-wcgs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-actg019.html">Articles</a></li><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-wcgs.html">WCGS data</a></li></ol></nav><h1 class="title display-7">WCGS data</h1></header><header id="title-block-header">
 
-</header><p>This article reproduces key WCGS analyses from RMB2e Chapters 2, 3, and 5.</p>
-<section id="study-design" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="study-design">
-<span class="header-section-number">1</span> Study design</h2>
+</header><p>This article reproduces key WCGS analyses from RMB2e Chapters 2, 3, and 5, modelling coronary heart disease risk from standard cardiovascular risk factors.</p>
+<section id="introduction" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="introduction">
+<span class="header-section-number">1</span> Introduction</h2>
+<p>The Western Collaborative Group Study (WCGS) enrolled approximately 3,500 employed men aged 39–59 in California in 1960–1961 and followed them for roughly 8.5 years to study coronary heart disease (CHD) incidence. WCGS was among the first prospective cohort studies to establish the Type A behavior pattern as a CHD risk factor alongside classical predictors such as age, serum cholesterol, and blood pressure. These data illustrate the logistic regression framework for binary outcomes (RMB2e Chapter 5, pp.&nbsp;171–177).</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmb_datasets</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
 <span><span class="va">rmb_datasets</span><span class="op">$</span><span class="va">study_design</span><span class="op">[</span><span class="va">rmb_datasets</span><span class="op">$</span><span class="va">object</span> <span class="op">==</span> <span class="st">"wcgs"</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Prospective epidemiologic cohort of middle-aged men studying Type A behavior and CHD risk."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<p>How are established cardiovascular risk factors—age, cholesterol, systolic blood pressure, BMI, smoking, and behavior pattern—jointly associated with CHD incidence in WCGS men?</p>
+<section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
+<span class="header-section-number">1.1</span> Causal assumptions</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">wcgs</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">wcgs</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">chd</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">chol</span> <span class="op">+</span> <span class="va">sbp</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">smoke</span> <span class="op">+</span> <span class="va">beh</span>,</span>
+<span>  <span class="va">smoke</span> <span class="op">~</span> <span class="va">beh</span>,</span>
+<span>  <span class="va">sbp</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<span>  <span class="va">chol</span> <span class="op">~</span> <span class="va">age</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    chd <span class="op">=</span> <span class="st">"CHD by follow-up"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"Age"</span>,</span>
+<span>    chol <span class="op">=</span> <span class="st">"Cholesterol"</span>,</span>
+<span>    sbp <span class="op">=</span> <span class="st">"Systolic BP"</span>,</span>
+<span>    bmi <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    smoke <span class="op">=</span> <span class="st">"Smoking"</span>,</span>
+<span>    beh <span class="op">=</span> <span class="st">"Behavior pattern"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"beh"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"chd"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"WCGS: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="methods" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="methods">
+<span class="header-section-number">2</span> Methods</h2>
+<section id="study-sample" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="study-sample">
+<span class="header-section-number">2.1</span> Study sample</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">wcgs</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">wcgs</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 3154   22</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sbp"</span>, <span class="st">"weight"</span>, <span class="st">"chd69"</span>, <span class="st">"age"</span>, <span class="st">"chol"</span>, <span class="st">"bmi"</span>, <span class="st">"smoke"</span>, <span class="st">"behpat"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
@@ -889,90 +935,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;  NAs    :12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="rmb2e-analysis-workflow" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="rmb2e-analysis-workflow">
-<span class="header-section-number">2</span> RMB2e analysis workflow</h2>
-<section id="research-question" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">2.1</span> Research question</h3>
-<p>How are established risk factors (age, cholesterol, systolic blood pressure, BMI, smoking, and behavior pattern) associated with CHD risk in WCGS?</p>
-<p>RMB2e references: SBP distribution and two-variable EDA (pp.&nbsp;30–32, 39, 41), CHD table summaries (pp.&nbsp;64, 69), logistic CHD modeling with risk factors and behavior pattern (pp.&nbsp;171, 175–177).</p>
-</section><section id="causal-assumptions-conceptual-dag" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="causal-assumptions-conceptual-dag">
-<span class="header-section-number">2.2</span> Causal assumptions (conceptual DAG)</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  AGE[Age] --&gt; CHD[CHD by follow-up]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  CHOL[Cholesterol] --&gt; CHD</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  SBP[Systolic BP] --&gt; CHD</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  BMI[BMI] --&gt; CHD</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  SMOKE[Smoking] --&gt; CHD</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  BEH[Behavior pattern] --&gt; SMOKE</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  BEH --&gt; CHD</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; SBP</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  AGE --&gt; CHOL</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  AGE[Age] --&gt; CHD[CHD by follow-up]
-  CHOL[Cholesterol] --&gt; CHD
-  SBP[Systolic BP] --&gt; CHD
-  BMI[BMI] --&gt; CHD
-  SMOKE[Smoking] --&gt; CHD
-  BEH[Behavior pattern] --&gt; SMOKE
-  BEH --&gt; CHD
-  AGE --&gt; SBP
-  AGE --&gt; CHOL
-</pre>
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</section><section id="step-0-exploratory-data-analysis" class="level3" data-number="2.3"><h3 data-number="2.3" class="anchored" data-anchor-id="step-0-exploratory-data-analysis">
-<span class="header-section-number">2.3</span> Step 0: Exploratory data analysis</h3>
-<p>RMB2e emphasizes one- and two-variable summaries before modeling (pp.&nbsp;30–41).</p>
+</section><section id="statistical-analysis" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="statistical-analysis">
+<span class="header-section-number">2.2</span> Statistical analysis</h3>
+<p>Following RMB2e Chapter 5 (pp.&nbsp;171, 175), two logistic regression models are fitted on a cleaned sample (excluding one outlier with cholesterol ≥ 645 mg/dL): a base model with five standard risk factors, and an extended model adding categorical behavior pattern to test its independent contribution via a likelihood-ratio test.</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sbp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">#&gt;    98.0   120.0   126.0   128.6   136.0   230.0</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">#&gt;      78     155     170     170     182     320</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">sbp</span>, <span class="va">weight</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.2532496</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">behpat</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; behpat</span></span>
-<span><span class="co">#&gt;    1    2    3    4 </span></span>
-<span><span class="co">#&gt;  264 1325 1216  349</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">chd69</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; chd69</span></span>
-<span><span class="co">#&gt;          0          1 </span></span>
-<span><span class="co">#&gt; 0.91851617 0.08148383</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, breaks <span class="op">=</span> <span class="fl">15</span>, col <span class="op">=</span> <span class="st">"grey85"</span>, border <span class="op">=</span> <span class="st">"white"</span>, main <span class="op">=</span> <span class="st">"WCGS systolic blood pressure"</span>, xlab <span class="op">=</span> <span class="st">"SBP"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/exploratory-plots-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span>, <span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, pch <span class="op">=</span> <span class="fl">16</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.2</span><span class="op">)</span>,</span>
-<span>     xlab <span class="op">=</span> <span class="st">"Weight"</span>, ylab <span class="op">=</span> <span class="st">"SBP"</span>, main <span class="op">=</span> <span class="st">"SBP vs weight"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lowess.html">lowess</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span>, <span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, f <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"#d95f02"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/exploratory-plots-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="step-1-model-specification" class="level3" data-number="2.4"><h3 data-number="2.4" class="anchored" data-anchor-id="step-1-model-specification">
-<span class="header-section-number">2.4</span> Step 1: Model specification</h3>
-<p>Following RMB2e Chapter 5, we fit logistic regression for CHD with transformed continuous predictors and categorical behavior pattern (pp.&nbsp;171, 175).</p>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">chol</span> <span class="op">&lt;</span> <span class="fl">645</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">chol</span> <span class="op">&lt;</span> <span class="fl">645</span><span class="op">)</span></span>
 <span><span class="va">ana</span><span class="op">$</span><span class="va">age_10</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">age</span> <span class="op">/</span> <span class="fl">10</span></span>
 <span><span class="va">ana</span><span class="op">$</span><span class="va">chol_50</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">chol</span> <span class="op">/</span> <span class="fl">50</span></span>
 <span><span class="va">ana</span><span class="op">$</span><span class="va">sbp_50</span> <span class="op">&lt;-</span> <span class="va">ana</span><span class="op">$</span><span class="va">sbp</span> <span class="op">/</span> <span class="fl">50</span></span>
@@ -991,10 +958,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; chd69 ~ age_10 + chol_50 + sbp_50 + bmi_10 + smoke + behpat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="step-2-parameter-estimation" class="level3" data-number="2.5"><h3 data-number="2.5" class="anchored" data-anchor-id="step-2-parameter-estimation">
-<span class="header-section-number">2.5</span> Step 2: Parameter estimation</h3>
+</section></section><section id="results" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="results">
+<span class="header-section-number">3</span> Results</h2>
+<section id="descriptive-statistics" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="descriptive-statistics">
+<span class="header-section-number">3.1</span> Descriptive statistics</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_base</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">formula_base</span>, data <span class="op">=</span> <span class="va">ana</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sbp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt;    98.0   120.0   126.0   128.6   136.0   230.0</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt;      78     155     170     170     182     320</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">sbp</span>, <span class="va">weight</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.2532496</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">behpat</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; behpat</span></span>
+<span><span class="co">#&gt;    1    2    3    4 </span></span>
+<span><span class="co">#&gt;  264 1325 1216  349</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">chd69</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; chd69</span></span>
+<span><span class="co">#&gt;          0          1 </span></span>
+<span><span class="co">#&gt; 0.91851617 0.08148383</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">sbp</span>, breaks <span class="op">=</span> <span class="fl">15</span>, col <span class="op">=</span> <span class="st">"grey85"</span>, border <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"WCGS systolic blood pressure"</span>, xlab <span class="op">=</span> <span class="st">"SBP (mmHg)"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-wcgs_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="model-estimates" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="model-estimates">
+<span class="header-section-number">3.2</span> Model estimates</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_base</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">formula_base</span>, data <span class="op">=</span> <span class="va">ana</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">fit_behpat</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">formula_behpat</span>, data <span class="op">=</span> <span class="va">ana</span>, family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_base</span><span class="op">)</span></span>
@@ -1050,11 +1050,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; Number of Fisher Scoring iterations: 6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="step-3-model-adequacy-checks" class="level3" data-number="2.6"><h3 data-number="2.6" class="anchored" data-anchor-id="step-3-model-adequacy-checks">
-<span class="header-section-number">2.6</span> Step 3: Model adequacy checks</h3>
+</section><section id="model-diagnostics" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="model-diagnostics">
+<span class="header-section-number">3.3</span> Model diagnostics</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Nested-model comparison for contribution of behavior pattern (RMB2e pp. 175-177)</span></span>
-<span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit_base</span>, <span class="va">fit_behpat</span>, test <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit_base</span>, <span class="va">fit_behpat</span>, test <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Analysis of Deviance Table</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model 1: chd69 ~ age_10 + chol_50 + sbp_50 + bmi_10 + smoke</span></span>
@@ -1065,12 +1064,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span></span>
-<span><span class="co"># Simple calibration check via grouped observed vs fitted CHD risk</span></span>
 <span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span></span>
 <span><span class="va">cut_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">pred</span>, breaks <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">pred</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, include.lowest <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">ana</span><span class="op">$</span><span class="va">chd69</span>, <span class="va">cut_pred</span>, <span class="va">mean</span><span class="op">)</span></span>
-<span><span class="va">exp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">pred</span>, <span class="va">cut_pred</span>, <span class="va">mean</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>decile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>, observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>, expected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">exp</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">expected_prob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">pred</span>, <span class="va">cut_pred</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>decile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>, observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">obs</span><span class="op">)</span>, expected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">expected_prob</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             decile    observed   expected</span></span>
 <span><span class="co">#&gt; 1  [0.00443,0.019] 0.006349206 0.01421274</span></span>
 <span><span class="co">#&gt; 2   (0.019,0.0273] 0.022292994 0.02312116</span></span>
@@ -1084,10 +1082,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; 10   (0.172,0.555] 0.232484076 0.25317505</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="step-4-inference" class="level3" data-number="2.7"><h3 data-number="2.7" class="anchored" data-anchor-id="step-4-inference">
-<span class="header-section-number">2.7</span> Step 4: Inference</h3>
+</section><section id="inference" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="inference">
+<span class="header-section-number">3.4</span> Inference</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">or</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">or</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit_behpat</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">or</span><span class="op">)</span>,</span>
@@ -1109,12 +1107,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; behpat4         behpat4 5.720710e-01 3.011949e-01 1.0602818756 8.018746e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="scientific-conclusions" class="level3" data-number="2.8"><h3 data-number="2.8" class="anchored" data-anchor-id="scientific-conclusions">
-<span class="header-section-number">2.8</span> Scientific conclusions</h3>
-<p>Consistent with RMB2e Chapter 5 (pp.&nbsp;171, 175–177), older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking are associated with increased CHD odds in WCGS. Behavior pattern contributes additional information about CHD risk beyond these established predictors.</p>
+</section></section><section id="discussion" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="discussion">
+<span class="header-section-number">4</span> Discussion</h2>
+<p>Consistent with RMB2e Chapter 5 (pp.&nbsp;171, 175–177), older age, higher cholesterol, higher systolic blood pressure, higher BMI, and smoking are each associated with increased CHD odds after mutual adjustment. Behavior pattern (Type A vs B) contributes additional independent information about CHD risk, as demonstrated by the likelihood-ratio test comparing the base and extended models. The decile calibration table confirms reasonable model fit across the risk spectrum, an important diagnostic step for logistic regression (RMB2e p.&nbsp;175).</p>
+</section><section id="source" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="source">
+<span class="header-section-number">5</span> Source</h2>
+<ul>
+<li>UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/wcgs.dta</li>
+<li>Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). <em>Regression Methods in Biostatistics</em> (2nd edition).</li>
+</ul>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {

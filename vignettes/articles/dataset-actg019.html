@@ -103,8 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
@@ -837,89 +836,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#study-design" id="toc-study-design" class="nav-link active" data-scroll-target="#study-design"><span class="header-section-number">1</span> Study design</a></li>
-  <li>
-<a href="#rmb2e-analysis-workflow" id="toc-rmb2e-analysis-workflow" class="nav-link" data-scroll-target="#rmb2e-analysis-workflow"><span class="header-section-number">2</span> RMB2e analysis workflow</a>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
   <ul class="collapse">
-<li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">2.1</span> Research question</a></li>
-  <li><a href="#causal-assumptions-conceptual-dag" id="toc-causal-assumptions-conceptual-dag" class="nav-link" data-scroll-target="#causal-assumptions-conceptual-dag"><span class="header-section-number">2.2</span> Causal assumptions (conceptual DAG)</a></li>
-  <li><a href="#step-0-exploratory-data-analysis" id="toc-step-0-exploratory-data-analysis" class="nav-link" data-scroll-target="#step-0-exploratory-data-analysis"><span class="header-section-number">2.3</span> Step 0: Exploratory data analysis</a></li>
-  <li><a href="#step-1-model-specification" id="toc-step-1-model-specification" class="nav-link" data-scroll-target="#step-1-model-specification"><span class="header-section-number">2.4</span> Step 1: Model specification</a></li>
-  <li><a href="#step-2-parameter-estimation" id="toc-step-2-parameter-estimation" class="nav-link" data-scroll-target="#step-2-parameter-estimation"><span class="header-section-number">2.5</span> Step 2: Parameter estimation</a></li>
-  <li><a href="#step-3-model-adequacy-checks" id="toc-step-3-model-adequacy-checks" class="nav-link" data-scroll-target="#step-3-model-adequacy-checks"><span class="header-section-number">2.6</span> Step 3: Model adequacy checks</a></li>
-  <li><a href="#step-4-inference" id="toc-step-4-inference" class="nav-link" data-scroll-target="#step-4-inference"><span class="header-section-number">2.7</span> Step 4: Inference</a></li>
-  <li><a href="#scientific-conclusions" id="toc-scientific-conclusions" class="nav-link" data-scroll-target="#scientific-conclusions"><span class="header-section-number">2.8</span> Scientific conclusions</a></li>
+<li><a href="#causal-assumptions" id="toc-causal-assumptions" class="nav-link" data-scroll-target="#causal-assumptions"><span class="header-section-number">1.1</span> Causal assumptions</a></li>
   </ul>
 </li>
+  <li>
+<a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2</span> Methods</a>
+  <ul class="collapse">
+<li><a href="#study-sample" id="toc-study-sample" class="nav-link" data-scroll-target="#study-sample"><span class="header-section-number">2.1</span> Study sample</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis"><span class="header-section-number">2.2</span> Statistical analysis</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">3</span> Results</a>
+  <ul class="collapse">
+<li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive statistics</a></li>
+  <li><a href="#model-estimates" id="toc-model-estimates" class="nav-link" data-scroll-target="#model-estimates"><span class="header-section-number">3.2</span> Model estimates</a></li>
+  <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics"><span class="header-section-number">3.3</span> Model diagnostics</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference"><span class="header-section-number">3.4</span> Inference</a></li>
+  </ul>
+</li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">4</span> Discussion</a></li>
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">5</span> Source</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/articles/dataset-actg019.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/articles/dataset-actg019.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-actg019.html">Articles</a></li><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-actg019.html">ACTG 019 data</a></li></ol></nav><h1 class="title display-7">ACTG 019 data</h1></header><header id="title-block-header">
 
-</header><p>This article reproduces the ACTG 019 survival analysis workflow used in RMB2e Chapter 6.</p>
-<section id="study-design" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="study-design">
-<span class="header-section-number">1</span> Study design</h2>
+</header><p>This article reproduces the ACTG 019 survival analysis workflow used in RMB2e Chapter 6, estimating the effect of zidovudine on time to AIDS or death.</p>
+<section id="introduction" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="introduction">
+<span class="header-section-number">1</span> Introduction</h2>
+<p>The AIDS Clinical Trials Group protocol 019 was a placebo-controlled randomized trial of zidovudine (ZDV) in HIV-positive adults with CD4 counts between 200 and 500 cells/mm³, conducted in the late 1980s. It was among the first trials to demonstrate a survival benefit for antiretroviral therapy in this CD4 stratum. Baseline CD4 count is a strong predictor of disease progression and is included as a covariate to increase precision, even though randomization removes confounding by design (RMB2e p.&nbsp;268).</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmb_datasets</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
 <span><span class="va">rmb_datasets</span><span class="op">$</span><span class="va">study_design</span><span class="op">[</span><span class="va">rmb_datasets</span><span class="op">$</span><span class="va">object</span> <span class="op">==</span> <span class="st">"actg019"</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Randomized double-blind placebo-controlled trial of zidovudine in HIV infection."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<p>Can zidovudine treatment reduce the hazard of AIDS or death after accounting for baseline CD4 cell count?</p>
+<section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
+<span class="header-section-number">1.1</span> Causal assumptions</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">actg019</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">time_aids</span> <span class="op">~</span> <span class="va">rx</span> <span class="op">+</span> <span class="va">cd4</span>,</span>
+<span>  <span class="va">rx</span> <span class="op">~</span> <span class="va">cd4</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    time_aids <span class="op">=</span> <span class="st">"Time to AIDS/death"</span>,</span>
+<span>    rx <span class="op">=</span> <span class="st">"ZDV treatment"</span>,</span>
+<span>    cd4 <span class="op">=</span> <span class="st">"Baseline CD4"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"rx"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"time_aids"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"ACTG 019: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="methods" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="methods">
+<span class="header-section-number">2</span> Methods</h2>
+<section id="study-sample" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="study-sample">
+<span class="header-section-number">2.1</span> Study sample</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">actg019</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">actg019</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 880   5</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        id              days            cens              rx        </span></span>
-<span><span class="co">#&gt;  Min.   :   1.0   Min.   :  1.0   Min.   :0.0000   Min.   :0.0000  </span></span>
-<span><span class="co">#&gt;  1st Qu.: 325.8   1st Qu.:234.8   1st Qu.:0.0000   1st Qu.:0.0000  </span></span>
-<span><span class="co">#&gt;  Median : 649.0   Median :373.0   Median :0.0000   Median :1.0000  </span></span>
-<span><span class="co">#&gt;  Mean   : 653.3   Mean   :403.3   Mean   :0.0625   Mean   :0.5136  </span></span>
-<span><span class="co">#&gt;  3rd Qu.: 972.2   3rd Qu.:573.0   3rd Qu.:0.0000   3rd Qu.:1.0000  </span></span>
-<span><span class="co">#&gt;  Max.   :1333.0   Max.   :746.0   Max.   :1.0000   Max.   :1.0000  </span></span>
-<span><span class="co">#&gt;       cd4       </span></span>
-<span><span class="co">#&gt;  Min.   : 30.0  </span></span>
-<span><span class="co">#&gt;  1st Qu.:251.0  </span></span>
-<span><span class="co">#&gt;  Median :343.5  </span></span>
-<span><span class="co">#&gt;  Mean   :332.2  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:420.0  </span></span>
-<span><span class="co">#&gt;  Max.   :704.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"days"</span>, <span class="st">"cens"</span>, <span class="st">"rx"</span>, <span class="st">"cd4"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       days            cens              rx              cd4       </span></span>
+<span><span class="co">#&gt;  Min.   :  1.0   Min.   :0.0000   Min.   :0.0000   Min.   : 30.0  </span></span>
+<span><span class="co">#&gt;  1st Qu.:234.8   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:251.0  </span></span>
+<span><span class="co">#&gt;  Median :373.0   Median :0.0000   Median :1.0000   Median :343.5  </span></span>
+<span><span class="co">#&gt;  Mean   :403.3   Mean   :0.0625   Mean   :0.5136   Mean   :332.2  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:573.0   3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:420.0  </span></span>
+<span><span class="co">#&gt;  Max.   :746.0   Max.   :1.0000   Max.   :1.0000   Max.   :704.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="rmb2e-analysis-workflow" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="rmb2e-analysis-workflow">
-<span class="header-section-number">2</span> RMB2e analysis workflow</h2>
-<section id="research-question" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="research-question">
-<span class="header-section-number">2.1</span> Research question</h3>
-<p>Can zidovudine treatment reduce the hazard of AIDS/death after accounting for baseline CD4 cell count?</p>
-<p>RMB2e references: trial context and survival-data motivation (p.&nbsp;224), Cox modeling details and bootstrap CI discussion (p.&nbsp;267), coding sensitivity exercises (p.&nbsp;278).</p>
-</section><section id="causal-assumptions-conceptual-dag" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="causal-assumptions-conceptual-dag">
-<span class="header-section-number">2.2</span> Causal assumptions (conceptual DAG)</h3>
-<div class="cell" data-layout-align="default">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  RX[ZDV treatment (rx)] --&gt; T[Time to AIDS/death]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  CD4[Baseline CD4] --&gt; T</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  CD4 --&gt; RX</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
-<div>
-<p></p><figure class="figure"></figure><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  RX[ZDV treatment (rx)] --&gt; T[Time to AIDS/death]
-  CD4[Baseline CD4] --&gt; T
-  CD4 --&gt; RX
-</pre>
-</div>
-<p></p>
-</div>
-</div>
-</div>
-<p>Because ACTG 019 was randomized, treatment is unconfounded in expectation; CD4 is included as a strong prognostic baseline covariate (RMB2e p.&nbsp;268).</p>
-</section><section id="step-0-exploratory-data-analysis" class="level3" data-number="2.3"><h3 data-number="2.3" class="anchored" data-anchor-id="step-0-exploratory-data-analysis">
-<span class="header-section-number">2.3</span> Step 0: Exploratory data analysis</h3>
-<p>RMB2e context: variable follow-up and event-time structure in ACTG 019 (p.&nbsp;224).</p>
+</section><section id="statistical-analysis" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="statistical-analysis">
+<span class="header-section-number">2.2</span> Statistical analysis</h3>
+<p>A Cox proportional hazards model with Breslow tie-handling is used, regressing the survival outcome on treatment assignment and baseline CD4 count (RMB2e p.&nbsp;267). The proportional hazards assumption is checked with scaled Schoenfeld residuals.</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cox_formula</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">days</span>, <span class="va">cens</span><span class="op">)</span> <span class="op">~</span> <span class="va">rx</span> <span class="op">+</span> <span class="va">cd4</span></span>
+<span><span class="va">cox_formula</span></span>
+<span><span class="co">#&gt; survival::Surv(days, cens) ~ rx + cd4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section></section><section id="results" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="results">
+<span class="header-section-number">3</span> Results</h2>
+<section id="descriptive-statistics" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="descriptive-statistics">
+<span class="header-section-number">3.1</span> Descriptive statistics</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">days</span><span class="op">)</span>,</span>
 <span>  n_events <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">cens</span> <span class="op">==</span> <span class="fl">1</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  event_rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cens</span> <span class="op">==</span> <span class="fl">1</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
@@ -949,7 +964,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">km_fit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">days</span>, <span class="va">cens</span><span class="op">)</span> <span class="op">~</span> <span class="va">rx</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">km_fit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">days</span>, <span class="va">cens</span><span class="op">)</span> <span class="op">~</span> <span class="va">rx</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
 <span>  <span class="va">km_fit</span>,</span>
 <span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span>,</span>
@@ -962,24 +977,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">rx</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="dataset-actg019_files/figure-html/exploratory-km-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="step-1-model-specification" class="level3" data-number="2.4"><h3 data-number="2.4" class="anchored" data-anchor-id="step-1-model-specification">
-<span class="header-section-number">2.4</span> Step 1: Model specification</h3>
-<p>RMB2e model: Cox proportional hazards model with treatment (<code>rx</code>) and baseline CD4 (<code>cd4</code>) as predictors (p.&nbsp;267).</p>
+<p>The swimmer plot below shows individual follow-up times for a random sample of 80 participants (40 per arm), with × marks indicating AIDS/death events.</p>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cox_formula</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">days</span>, <span class="va">cens</span><span class="op">)</span> <span class="op">~</span> <span class="va">rx</span> <span class="op">+</span> <span class="va">cd4</span></span>
-<span><span class="va">cox_formula</span></span>
-<span><span class="co">#&gt; survival::Surv(days, cens) ~ rx + cd4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dat_swim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">dat_swim</span><span class="op">$</span><span class="va">days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">days</span><span class="op">)</span></span>
+<span><span class="va">dat_swim</span><span class="op">$</span><span class="va">rx_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">rx</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat_swim</span><span class="op">$</span><span class="va">cens_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">cens</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ids_0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">rx_int</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span>, <span class="fl">40</span><span class="op">)</span></span>
+<span><span class="va">ids_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">rx_int</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span>, <span class="fl">40</span><span class="op">)</span></span>
+<span><span class="va">dat_sub</span> <span class="op">&lt;-</span> <span class="va">dat_swim</span><span class="op">[</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ids_0</span>, <span class="va">ids_1</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="va">dat_sub</span><span class="op">$</span><span class="va">Treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span></span>
+<span>  <span class="va">dat_sub</span><span class="op">$</span><span class="va">rx_int</span>,</span>
+<span>  levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Placebo"</span>, <span class="st">"ZDV"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">dat_events</span> <span class="op">&lt;-</span> <span class="va">dat_sub</span><span class="op">[</span><span class="va">dat_sub</span><span class="op">$</span><span class="va">cens_int</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="fu">swimplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/swimplot/man/swimmer_plot.html">swimmer_plot</a></span><span class="op">(</span></span>
+<span>  df <span class="op">=</span> <span class="va">dat_sub</span>, id <span class="op">=</span> <span class="st">"id"</span>, end <span class="op">=</span> <span class="st">"days"</span>,</span>
+<span>  name_fill <span class="op">=</span> <span class="st">"Treatment"</span>, increasing <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.75</span>, width <span class="op">=</span> <span class="fl">0.8</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">swimplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/swimplot/man/swimmer_points.html">swimmer_points</a></span><span class="op">(</span></span>
+<span>    df <span class="op">=</span> <span class="va">dat_events</span>, id <span class="op">=</span> <span class="st">"id"</span>, time <span class="op">=</span> <span class="st">"days"</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"black"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Days since randomization"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Patient"</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"ACTG 019: Follow-up timeline by treatment (n = 80 sample; X = AIDS/death)"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/swimplot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-</section><section id="step-2-parameter-estimation" class="level3" data-number="2.5"><h3 data-number="2.5" class="anchored" data-anchor-id="step-2-parameter-estimation">
-<span class="header-section-number">2.5</span> Step 2: Parameter estimation</h3>
+</div>
+</div>
+</section><section id="model-estimates" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="model-estimates">
+<span class="header-section-number">3.2</span> Model estimates</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_cox</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span><span class="va">cox_formula</span>, data <span class="op">=</span> <span class="va">dat</span>, ties <span class="op">=</span> <span class="st">"breslow"</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_cox</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/coxph.html">coxph</a></span><span class="op">(</span><span class="va">cox_formula</span>, data <span class="op">=</span> <span class="va">dat</span>, ties <span class="op">=</span> <span class="st">"breslow"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Call:</span></span>
 <span><span class="co">#&gt; survival::coxph(formula = cox_formula, data = dat, ties = "breslow")</span></span>
@@ -1002,35 +1047,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; Score (logrank) test = 35.4  on 2 df,   p=2e-08</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="step-3-model-adequacy-checks" class="level3" data-number="2.6"><h3 data-number="2.6" class="anchored" data-anchor-id="step-3-model-adequacy-checks">
-<span class="header-section-number">2.6</span> Step 3: Model adequacy checks</h3>
+</section><section id="model-diagnostics" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="model-diagnostics">
+<span class="header-section-number">3.3</span> Model diagnostics</h3>
 <div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ph_test</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/cox.zph.html">cox.zph</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ph_test</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/cox.zph.html">cox.zph</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span></span>
 <span><span class="va">ph_test</span></span>
 <span><span class="co">#&gt;        chisq df     p</span></span>
 <span><span class="co">#&gt; rx      4.87  1 0.027</span></span>
 <span><span class="co">#&gt; cd4     1.03  1 0.311</span></span>
-<span><span class="co">#&gt; GLOBAL  6.15  2 0.046</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ph_test</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; GLOBAL  6.15  2 0.046</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ph_test</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="dataset-actg019_files/figure-html/adequacy-plot-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/adequacy-checks-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="dataset-actg019_files/figure-html/adequacy-plot-2.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="dataset-actg019_files/figure-html/adequacy-checks-2.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="step-4-inference" class="level3" data-number="2.7"><h3 data-number="2.7" class="anchored" data-anchor-id="step-4-inference">
-<span class="header-section-number">2.7</span> Step 4: Inference</h3>
-<p>RMB2e discusses Wald and bootstrap interval interpretation for this model family (p.&nbsp;267).</p>
+</section><section id="inference" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="inference">
+<span class="header-section-number">3.4</span> Inference</h3>
 <div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span><span class="op">)</span></span>
@@ -1047,12 +1088,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; cd4  cd4    0.9934464 0.9910395 0.9958591 1.079987e-07</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section><section id="scientific-conclusions" class="level3" data-number="2.8"><h3 data-number="2.8" class="anchored" data-anchor-id="scientific-conclusions">
-<span class="header-section-number">2.8</span> Scientific conclusions</h3>
-<p>In this RMB2e ACTG 019 reproduction, treatment assignment to ZDV is associated with a lower hazard of AIDS/death, while higher baseline CD4 is associated with lower hazard. These are the same scientific directions emphasized in Chapter 6 (pp.&nbsp;224, 267).</p>
+</section></section><section id="discussion" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="discussion">
+<span class="header-section-number">4</span> Discussion</h2>
+<p>ZDV assignment is associated with a lower hazard of AIDS or death, consistent with the trial’s primary findings as discussed in RMB2e Chapter 6 (pp.&nbsp;224, 267). Higher baseline CD4 count is protective, reflecting the well-known relationship between immune status and disease progression. The proportional hazards assumption diagnostics (Schoenfeld residuals) should be inspected to confirm that hazard ratios are constant over follow-up time, a key requirement for valid Cox model interpretation (RMB2e p.&nbsp;267).</p>
+</section><section id="source" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="source">
+<span class="header-section-number">5</span> Source</h2>
+<ul>
+<li>UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/actg019.dta</li>
+<li>Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). <em>Regression Methods in Biostatistics</em> (2nd edition).</li>
+</ul>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
