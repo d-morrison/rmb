@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Table 11.8 HERS data – rmb</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-dbf22739c68fc316d727e9fdf85a1c89.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-656316d6d04240f7b7e07197a8824120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">rmb</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link active" href="../../man/rmb-package.html" aria-current="page"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-articles" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Articles</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-articles">
+<li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-actg019.html">
+ <span class="dropdown-text">ACTG 019 data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-esoph.html">
+ <span class="dropdown-text">Esoph data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-fecfat.html">
+ <span class="dropdown-text">Fecfat data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-figure4_1.html">
+ <span class="dropdown-text">Figure 4.1 data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-figure4_12.html">
+ <span class="dropdown-text">Figure 4.12 data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-figure4_6.html">
+ <span class="dropdown-text">Figure 4.6 data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-fit.html">
+ <span class="dropdown-text">Fit data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-fitdata.html">
+ <span class="dropdown-text">Fitdata data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-fitglm.html">
+ <span class="dropdown-text">Fitglm data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-gababies.html">
+ <span class="dropdown-text">Gababies data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-hers.html">
+ <span class="dropdown-text">HERS data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-hers_long_base_visit1_only_saved.html">
+ <span class="dropdown-text">HERS long base visit1 only saved data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-hers_nodm_longitudinal.html">
+ <span class="dropdown-text">HERS no DM longitudinal data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-hers_nodm_visit4_only.html">
+ <span class="dropdown-text">HERS no DM visit 4 only data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-leuk.html">
+ <span class="dropdown-text">Leuk data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-mira_hsv.html">
+ <span class="dropdown-text">Mira HSV data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-mros.html">
+ <span class="dropdown-text">MrOS data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-needle_sharing.html">
+ <span class="dropdown-text">Needle sharing data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-nhanes3.html">
+ <span class="dropdown-text">NHANES III data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-pbc.html">
+ <span class="dropdown-text">PBC data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-phototherapy.html">
+ <span class="dropdown-text">Phototherapy data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-sof.html">
+ <span class="dropdown-text">SOF data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-sof2.html">
+ <span class="dropdown-text">SOF2 data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-unos.html">
+ <span class="dropdown-text">UNOS data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-wcgs.html">
+ <span class="dropdown-text">WCGS data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../vignettes/articles/dataset-whickham.html">
+ <span class="dropdown-text">Whickham data</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/d-morrison/rmb"> <i class="bi bi-github" role="img" aria-label="rmb GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-actg019.html">Articles</a></li><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-hers_nodm_longitudinal.html">Table 11.8 HERS data</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Articles</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-actg019.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ACTG 019 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-esoph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ille-et-Vilaine study data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-fecfat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fecal fat data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-figure4_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figure 4.1 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-figure4_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figure 4.12 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-figure4_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figure 4.6 data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FIT data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-fitdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FIT BMD data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-fitglm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fracture risk data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-gababies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Georgia birthweight data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-hers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HERS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-hers_long_base_visit1_only_saved.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table 11.3 HERS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-hers_nodm_longitudinal.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Table 11.8 HERS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-hers_nodm_visit4_only.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table 11.1/11.2 HERS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-leuk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Leukemia data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-mira_hsv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MIRA data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-mros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MrOS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-needle_sharing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Needle sharing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-nhanes3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NHANES data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-pbc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PBC data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-phototherapy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phototherapy data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-sof.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SOF data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-sof2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SOF BMD data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-unos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">UNOS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-wcgs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WCGS data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../vignettes/articles/dataset-whickham.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Whickham data</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/actg019.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">actg019</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/esoph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">esoph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/example_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">example_function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/fecfat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fecfat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/figure4_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">figure4_1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/figure4_12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">figure4_12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/figure4_6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">figure4_6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/fitdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fitdata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/fitglm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fitglm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/format_scientific_conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">format_scientific_conclusions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/gababies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">gababies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/hers_long_base_visit1_only_saved.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">hers_long_base_visit1_only_saved</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/hers_nodm_longitudinal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">hers_nodm_longitudinal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/hers_nodm_visit4_only.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">hers_nodm_visit4_only</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/hers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">hers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/is_binary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">is_binary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/is_count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">is_count</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/leuk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">leuk</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/mira_hsv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mira_hsv</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/mros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mros</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/needle_sharing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">needle_sharing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/nhanes3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">nhanes3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/pbc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pbc</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/phototherapy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">phototherapy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/rmb_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">rmb_datasets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/rmb-package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">rmb-package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/sof.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">sof</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/sof2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">sof2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/unos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">unos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/wcgs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">wcgs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../man/whickham.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">whickham</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../NEWS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">News</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../LICENSE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../CODE_OF_CONDUCT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code of conduct</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../CONTRIBUTING.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contributing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../CITATION.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Citation</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+<li><a href="#causal-assumptions" id="toc-causal-assumptions" class="nav-link" data-scroll-target="#causal-assumptions"><span class="header-section-number">1.1</span> Causal assumptions</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2</span> Methods</a>
+  <ul class="collapse">
+<li><a href="#study-sample" id="toc-study-sample" class="nav-link" data-scroll-target="#study-sample"><span class="header-section-number">2.1</span> Study sample</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis"><span class="header-section-number">2.2</span> Statistical analysis</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">3</span> Results</a>
+  <ul class="collapse">
+<li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive statistics</a></li>
+  <li><a href="#model-estimates" id="toc-model-estimates" class="nav-link" data-scroll-target="#model-estimates"><span class="header-section-number">3.2</span> Model estimates</a></li>
+  <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics"><span class="header-section-number">3.3</span> Model diagnostics</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference"><span class="header-section-number">3.4</span> Inference</a></li>
+  </ul>
+</li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">4</span> Discussion</a></li>
+  <li><a href="#source" id="toc-source" class="nav-link" data-scroll-target="#source"><span class="header-section-number">5</span> Source</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/articles/dataset-hers_nodm_longitudinal.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/articles/dataset-hers_nodm_longitudinal.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-actg019.html">Articles</a></li><li class="breadcrumb-item"><a href="../../vignettes/articles/dataset-hers_nodm_longitudinal.html">Table 11.8 HERS data</a></li></ol></nav><h1 class="title display-7">Table 11.8 HERS data</h1></header><header id="title-block-header">
+
+</header><p>This article models longitudinal systolic blood pressure trajectories in HERS participants without diabetes, examining whether HRT assignment and exercise interact to affect blood pressure over follow-up visits (RMB2e Chapter 11).</p>
+<section id="introduction" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="introduction">
+<span class="header-section-number">1</span> Introduction</h2>
+<p>Hormone therapy and lifestyle behaviors such as exercise may jointly influence cardiovascular risk factors in postmenopausal women. The HERS longitudinal dataset provides repeated measurements of systolic blood pressure over multiple visits, enabling examination of within-subject trajectories and potential treatment–lifestyle interactions. RMB2e Chapter 11 uses this structure to illustrate repeated-measures regression and missing-data approaches.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">rmb_datasets</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
+<span><span class="va">rmb_datasets</span><span class="op">$</span><span class="va">study_design</span><span class="op">[</span><span class="va">rmb_datasets</span><span class="op">$</span><span class="va">object</span> <span class="op">==</span> <span class="st">"hers_nodm_longitudinal"</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] "Longitudinal repeated-measures HERS subset restricted to participants without diabetes."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We ask: does regular exercise moderate the association between HRT assignment and longitudinal systolic blood pressure in postmenopausal women without diabetes?</p>
+<section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
+<span class="header-section-number">1.1</span> Causal assumptions</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
+<span>  <span class="va">sbp</span> <span class="op">~</span> <span class="va">hrt</span> <span class="op">+</span> <span class="va">exercise</span> <span class="op">+</span> <span class="va">int_hrt_exercise</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">age</span>,</span>
+<span>  <span class="va">int_hrt_exercise</span> <span class="op">~</span> <span class="va">hrt</span> <span class="op">+</span> <span class="va">exercise</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    sbp <span class="op">=</span> <span class="st">"Systolic BP"</span>,</span>
+<span>    hrt <span class="op">=</span> <span class="st">"HRT assignment"</span>,</span>
+<span>    exercise <span class="op">=</span> <span class="st">"Exercise"</span>,</span>
+<span>    int_hrt_exercise <span class="op">=</span> <span class="st">"HRT x exercise"</span>,</span>
+<span>    bmi <span class="op">=</span> <span class="st">"BMI"</span>,</span>
+<span>    age <span class="op">=</span> <span class="st">"Age"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  exposure <span class="op">=</span> <span class="st">"hrt"</span>,</span>
+<span>  outcome <span class="op">=</span> <span class="st">"sbp"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"HERS longitudinal: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-hers_nodm_longitudinal_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="methods" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="methods">
+<span class="header-section-number">2</span> Methods</h2>
+<section id="study-sample" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="study-sample">
+<span class="header-section-number">2.1</span> Study sample</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">hers_nodm_longitudinal</span>, package <span class="op">=</span> <span class="st">"rmb"</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">hers_nodm_longitudinal</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 9217   15</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/zap_labels.html">zap_labels</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sbp"</span>, <span class="st">"group"</span>, <span class="st">"exercise"</span>, <span class="st">"bmi"</span>, <span class="st">"age"</span>, <span class="st">"visit"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       sbp            group           exercise           bmi       </span></span>
+<span><span class="co">#&gt;  Min.   : 81.0   Min.   :0.0000   Min.   :0.0000   Min.   :14.73  </span></span>
+<span><span class="co">#&gt;  1st Qu.:121.0   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:24.08  </span></span>
+<span><span class="co">#&gt;  Median :132.0   Median :0.0000   Median :0.0000   Median :26.96  </span></span>
+<span><span class="co">#&gt;  Mean   :134.2   Mean   :0.4917   Mean   :0.3716   Mean   :27.69  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:146.0   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:30.43  </span></span>
+<span><span class="co">#&gt;  Max.   :228.0   Max.   :1.0000   Max.   :1.0000   Max.   :57.56  </span></span>
+<span><span class="co">#&gt;                                   NAs    :79       NAs    :45     </span></span>
+<span><span class="co">#&gt;       age            visit      </span></span>
+<span><span class="co">#&gt;  Min.   :44.00   Min.   :0.000  </span></span>
+<span><span class="co">#&gt;  1st Qu.:62.00   1st Qu.:1.000  </span></span>
+<span><span class="co">#&gt;  Median :67.00   Median :2.000  </span></span>
+<span><span class="co">#&gt;  Mean   :66.68   Mean   :1.925  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:72.00   3rd Qu.:3.000  </span></span>
+<span><span class="co">#&gt;  Max.   :79.00   Max.   :5.000  </span></span>
+<span><span class="co">#&gt; </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="statistical-analysis" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="statistical-analysis">
+<span class="header-section-number">2.2</span> Statistical analysis</h3>
+<p>We fit a linear regression model for systolic blood pressure with an HRT-by-exercise interaction term, adjusting for BMI, age, smoking, and visit number. The model ignores within-person correlation but illustrates the interaction parameterization discussed in RMB2e Chapter 11.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">formula_sbp</span> <span class="op">&lt;-</span> <span class="va">sbp</span> <span class="op">~</span> <span class="va">group</span> <span class="op">*</span> <span class="va">exercise</span> <span class="op">+</span> <span class="va">bmi</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">csmker</span> <span class="op">+</span> <span class="va">visit</span></span>
+<span><span class="va">formula_sbp</span></span>
+<span><span class="co">#&gt; sbp ~ group * exercise + bmi + age + csmker + visit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section></section><section id="results" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="results">
+<span class="header-section-number">3</span> Results</h2>
+<section id="descriptive-statistics" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="descriptive-statistics">
+<span class="header-section-number">3.1</span> Descriptive statistics</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">sbp</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">exercise</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          0        1</span></span>
+<span><span class="co">#&gt; 0 134.1211 132.3984</span></span>
+<span><span class="co">#&gt; 1 135.9786 132.9911</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">sbp</span>, <span class="va">visit</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        0        1        2        3        4        5 </span></span>
+<span><span class="co">#&gt; 133.3824 133.7149 134.0210 135.1334 135.0190 133.8897</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">sbp</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html">interaction</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">exercise</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dat</span>,</span>
+<span>        names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pbo/No ex"</span>, <span class="st">"HRT/No ex"</span>, <span class="st">"Pbo/Ex"</span>, <span class="st">"HRT/Ex"</span><span class="op">)</span>,</span>
+<span>        xlab <span class="op">=</span> <span class="st">"Treatment × Exercise"</span>,</span>
+<span>        ylab <span class="op">=</span> <span class="st">"Systolic BP (mmHg)"</span>,</span>
+<span>        main <span class="op">=</span> <span class="st">"HERS: SBP by HRT and exercise"</span>,</span>
+<span>        col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grey85"</span>, <span class="st">"#d95f02"</span>, <span class="st">"grey60"</span>, <span class="st">"#e6ab02"</span><span class="op">)</span>,</span>
+<span>        las <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-hers_nodm_longitudinal_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The swimmer plot shows visit attendance for a stratified random sample of 60 participants (30 per treatment arm), with a dot at each completed visit.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">dat_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">first_obs</span> <span class="op">&lt;-</span> <span class="va">dat_full</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">dat_full</span><span class="op">$</span><span class="va">pptid</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pptid"</span>, <span class="st">"group"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">ids_0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">first_obs</span><span class="op">$</span><span class="va">pptid</span><span class="op">[</span><span class="va">first_obs</span><span class="op">$</span><span class="va">group</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span>, <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="va">ids_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">first_obs</span><span class="op">$</span><span class="va">pptid</span><span class="op">[</span><span class="va">first_obs</span><span class="op">$</span><span class="va">group</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span>, <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="va">dat_sub</span> <span class="op">&lt;-</span> <span class="va">dat_full</span><span class="op">[</span><span class="va">dat_full</span><span class="op">$</span><span class="va">pptid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ids_0</span>, <span class="va">ids_1</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="va">dat_ends</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">visit</span> <span class="op">~</span> <span class="va">pptid</span>, data <span class="op">=</span> <span class="va">dat_sub</span>, FUN <span class="op">=</span> <span class="va">max</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat_ends</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"last_visit"</span></span>
+<span><span class="va">dat_sum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span></span>
+<span>  <span class="va">dat_ends</span>,</span>
+<span>  <span class="va">first_obs</span><span class="op">[</span><span class="va">first_obs</span><span class="op">$</span><span class="va">pptid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ids_0</span>, <span class="va">ids_1</span><span class="op">)</span>, <span class="op">]</span>,</span>
+<span>  by <span class="op">=</span> <span class="st">"pptid"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">dat_sum</span><span class="op">$</span><span class="va">Treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span></span>
+<span>  <span class="va">dat_sum</span><span class="op">$</span><span class="va">group</span>,</span>
+<span>  levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Placebo"</span>, <span class="st">"HRT"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">swimplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/swimplot/man/swimmer_plot.html">swimmer_plot</a></span><span class="op">(</span></span>
+<span>  df <span class="op">=</span> <span class="va">dat_sum</span>, id <span class="op">=</span> <span class="st">"pptid"</span>, end <span class="op">=</span> <span class="st">"last_visit"</span>,</span>
+<span>  name_fill <span class="op">=</span> <span class="st">"Treatment"</span>, increasing <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.75</span>, width <span class="op">=</span> <span class="fl">0.8</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">swimplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/swimplot/man/swimmer_points.html">swimmer_points</a></span><span class="op">(</span></span>
+<span>    df <span class="op">=</span> <span class="va">dat_sub</span>, id <span class="op">=</span> <span class="st">"pptid"</span>, time <span class="op">=</span> <span class="st">"visit"</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"HERS visit number"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Participant"</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"HERS: Observed visits by treatment group (n = 60 sample)"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-hers_nodm_longitudinal_files/figure-html/swimplot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="model-estimates" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="model-estimates">
+<span class="header-section-number">3.2</span> Model estimates</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_sbp</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">formula_sbp</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_sbp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; stats::lm(formula = formula_sbp, data = dat)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">#&gt; -53.712 -13.021  -1.456  11.161  91.647 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;                Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)    90.45811    2.56495  35.267  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; group           2.17496    0.48933   4.445 8.90e-06 ***</span></span>
+<span><span class="co">#&gt; exercise       -1.13786    0.56817  -2.003 0.045243 *  </span></span>
+<span><span class="co">#&gt; bmi             0.26378    0.03840   6.869 6.89e-12 ***</span></span>
+<span><span class="co">#&gt; age             0.52541    0.03035  17.313  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; csmker          0.96775    0.56667   1.708 0.087713 .  </span></span>
+<span><span class="co">#&gt; visit           0.45587    0.13311   3.425 0.000618 ***</span></span>
+<span><span class="co">#&gt; group:exercise -1.60051    0.80192  -1.996 0.045981 *  </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 18.47 on 9083 degrees of freedom</span></span>
+<span><span class="co">#&gt;   (126 observations deleted due to missingness)</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.04008,    Adjusted R-squared:  0.03934 </span></span>
+<span><span class="co">#&gt; F-statistic: 54.18 on 7 and 9083 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="model-diagnostics" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="model-diagnostics">
+<span class="header-section-number">3.3</span> Model diagnostics</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit_sbp</span>, which <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit_sbp</span>, which <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="dataset-hers_nodm_longitudinal_files/figure-html/adequacy-checks-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section><section id="inference" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="inference">
+<span class="header-section-number">3.4</span> Inference</h3>
+<div class="cell">
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit_sbp</span><span class="op">)</span></span>
+<span><span class="va">coef_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_sbp</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  estimate <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_sbp</span><span class="op">)</span>,</span>
+<span>  conf_low <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<span>  conf_high <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
+<span>  p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_sbp</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span>, <span class="st">"Pr(&gt;|t|)"</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">coef_tab</span></span>
+<span><span class="co">#&gt;                          term   estimate   conf_low   conf_high       p_value</span></span>
+<span><span class="co">#&gt; (Intercept)       (Intercept) 90.4581066 85.4302297 95.48598350 1.828260e-255</span></span>
+<span><span class="co">#&gt; group                   group  2.1749590  1.2157550  3.13416313  8.904358e-06</span></span>
+<span><span class="co">#&gt; exercise             exercise -1.1378570 -2.2516014 -0.02411253  4.524303e-02</span></span>
+<span><span class="co">#&gt; bmi                       bmi  0.2637767  0.1885017  0.33905175  6.891714e-12</span></span>
+<span><span class="co">#&gt; age                       age  0.5254143  0.4659260  0.58490251  4.276484e-66</span></span>
+<span><span class="co">#&gt; csmker                 csmker  0.9677497 -0.1430581  2.07855756  8.771269e-02</span></span>
+<span><span class="co">#&gt; visit                   visit  0.4558707  0.1949420  0.71679940  6.181419e-04</span></span>
+<span><span class="co">#&gt; group:exercise group:exercise -1.6005099 -3.1724596 -0.02856013  4.598118e-02</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section></section><section id="discussion" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="discussion">
+<span class="header-section-number">4</span> Discussion</h2>
+<p>The interaction between HRT assignment and exercise on systolic blood pressure examines whether lifestyle behaviors modify the cardiovascular effects of hormone therapy. As discussed in RMB2e Chapter 11, the longitudinal structure of HERS requires accounting for within-person correlation; the regression model presented here is an approximation useful for illustrating interaction parameterization, while a proper generalized estimating equations (GEE) or mixed-effects model would be needed for valid inference accounting for repeated measures.</p>
+</section><section id="source" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="source">
+<span class="header-section-number">5</span> Source</h2>
+<ul>
+<li><a href="https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/hers_nodm_longitudinal.dta">UCSF companion data</a></li>
+<li>Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). <em>Regression Methods in Biostatistics</em> (2nd edition).</li>
+</ul>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/d-morrison/rmb/edit/main/vignettes/articles/dataset-hers_nodm_longitudinal.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/d-morrison/rmb/blob/main/vignettes/articles/dataset-hers_nodm_longitudinal.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/d-morrison/rmb/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
