@@ -96,16 +96,18 @@ dead <- subset(mort_by_age, vstatus == 1)
 total <- aggregate(nn ~ agegrp + smoker, data = dat, sum)
 merged <- merge(dead, total, by = c("agegrp", "smoker"), suffixes = c("_dead", "_total"))
 merged$mort_rate <- merged$nn_dead / merged$nn_total
+merged$smoker_label <- factor(merged$smoker, levels = c(0, 1), labels = c("Non-smoker", "Smoker"))
 
-barplot(
-  tapply(merged$mort_rate, list(merged$agegrp, merged$smoker), mean),
-  beside = TRUE,
-  col = c("#1b9e77", "#d95f02"),
-  legend.text = c("Non-smoker", "Smoker"),
-  xlab = "Age group",
-  ylab = "20-year mortality rate",
-  main = "Mortality rate by age group and smoking status"
-)
+ggplot2::ggplot(merged, ggplot2::aes(x = agegrp, y = mort_rate, fill = smoker_label)) +
+  ggplot2::geom_col(position = "dodge") +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    title = "Mortality rate by age group and smoking status",
+    x = "Age group",
+    y = "20-year mortality rate",
+    fill = NULL
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

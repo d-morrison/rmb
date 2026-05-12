@@ -94,11 +94,20 @@ with(dat, table(meno_ov_52))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 visit_means <- with(dat, tapply(totbmd, visit, mean, na.rm = TRUE))
-plot(as.integer(names(visit_means)), visit_means,
-     type = "b", pch = 16, col = "#1b9e77", lwd = 2,
-     xlab = "Visit number",
-     ylab = "Mean total BMD (g/cm\u00b2)",
-     main = "SOF2: Mean total BMD by visit")
+visit_df <- data.frame(
+  visit = as.integer(names(visit_means)),
+  mean_bmd = as.numeric(visit_means)
+)
+
+ggplot2::ggplot(visit_df, ggplot2::aes(x = visit, y = mean_bmd)) +
+  ggplot2::geom_line(color = "#1b9e77", linewidth = 1) +
+  ggplot2::geom_point(color = "#1b9e77", size = 3) +
+  ggplot2::labs(
+    title = "SOF2: Mean total BMD by visit",
+    x = "Visit number",
+    y = "Mean total BMD (g/cm²)"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 The swimmer plot below shows visit attendance for a random sample of 50 participants,
@@ -152,11 +161,20 @@ summary(fit)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-plot(stats::fitted(fit), stats::residuals(fit),
-     pch = 16, cex = 0.4, col = rgb(0, 0, 0, 0.2),
-     xlab = "Fitted total BMD", ylab = "Residuals",
-     main = "Residuals vs fitted")
-abline(h = 0, lty = 2, col = "#d95f02")
+fit_data <- data.frame(
+  fitted = stats::fitted(fit),
+  residuals = stats::residuals(fit)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point(alpha = 0.2, size = 0.8) +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "#d95f02") +
+  ggplot2::labs(
+    title = "Residuals vs fitted",
+    x = "Fitted total BMD",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

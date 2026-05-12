@@ -89,11 +89,19 @@ with(dat, table(bmi_cat, miss_gluc))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 miss_by_bmi <- with(dat, tapply(miss_gluc, bmi_cat, mean, na.rm = TRUE))
-barplot(miss_by_bmi,
-        xlab = "BMI category (quintile)",
-        ylab = "Proportion with missing glucose",
-        main = "HERS Visit 4: Glucose missingness by BMI quintile",
-        col = "grey70")
+miss_df <- data.frame(
+  bmi_cat = names(miss_by_bmi),
+  prop_missing = as.numeric(miss_by_bmi)
+)
+
+ggplot2::ggplot(miss_df, ggplot2::aes(x = bmi_cat, y = prop_missing)) +
+  ggplot2::geom_col(fill = "grey70") +
+  ggplot2::labs(
+    title = "HERS Visit 4: Glucose missingness by BMI quintile",
+    x = "BMI category (quintile)",
+    y = "Proportion with missing glucose"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

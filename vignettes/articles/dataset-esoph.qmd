@@ -93,11 +93,19 @@ with(dat, table(tobgp, case))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 alc_rates <- with(dat, tapply(case, alcgp, mean))
-barplot(alc_rates,
-        col = "#d95f02",
-        xlab = "Alcohol group (gm/day)",
-        ylab = "Proportion cases",
-        main = "Crude case rate by alcohol consumption group")
+alc_df <- data.frame(
+  alcgp = names(alc_rates),
+  rate = as.numeric(alc_rates)
+)
+
+ggplot2::ggplot(alc_df, ggplot2::aes(x = alcgp, y = rate)) +
+  ggplot2::geom_col(fill = "#d95f02") +
+  ggplot2::labs(
+    title = "Crude case rate by alcohol consumption group",
+    x = "Alcohol group (gm/day)",
+    y = "Proportion cases"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

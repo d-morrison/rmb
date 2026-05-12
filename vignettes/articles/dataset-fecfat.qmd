@@ -89,11 +89,14 @@ with(dat, tapply(fecfat, subject, mean))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-boxplot(fecfat ~ pilltype, data = dat,
-        col = "#d95f02",
-        xlab = "Pill type",
-        ylab = "Fecal fat (g/day)",
-        main = "Fecal fat by pill type")
+ggplot2::ggplot(dat, ggplot2::aes(x = pilltype, y = fecfat)) +
+  ggplot2::geom_boxplot(fill = "#d95f02") +
+  ggplot2::labs(
+    title = "Fecal fat by pill type",
+    x = "Pill type",
+    y = "Fecal fat (g/day)"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 The swimmer plot below shows the treatment sequence for each of the 6 subjects,
@@ -147,10 +150,32 @@ summary(fit)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit, which = 1)
-plot(fit, which = 2)
-par(mfrow = c(1, 1))
+fit_data <- data.frame(
+  fitted = stats::fitted(fit),
+  residuals = stats::residuals(fit),
+  std_residuals = stats::rstandard(fit)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Residuals vs Fitted",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
+  ggplot2::stat_qq() +
+  ggplot2::stat_qq_line(color = "red") +
+  ggplot2::labs(
+    title = "Normal Q-Q",
+    x = "Theoretical Quantiles",
+    y = "Standardized residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

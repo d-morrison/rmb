@@ -98,16 +98,25 @@ with(dat, tapply(days, rx, summary))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 km_fit <- survival::survfit(survival::Surv(days, cens) ~ rx, data = dat)
-plot(
-  km_fit,
-  col = c("#1b9e77", "#d95f02"),
-  lwd = 2,
-  xlab = "Days since randomization",
-  ylab = "AIDS/death-free survival",
-  mark.time = TRUE,
-  main = "ACTG 019 Kaplan-Meier curves by treatment"
+
+km_df <- data.frame(
+  time = km_fit$time,
+  surv = km_fit$surv,
+  strata = rep(names(km_fit$strata), km_fit$strata)
 )
-legend("bottomleft", legend = levels(factor(dat$rx)), col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
+km_df$rx <- sub("rx=", "", km_df$strata)
+
+ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv, color = rx)) +
+  ggplot2::geom_step(linewidth = 1) +
+  ggplot2::scale_color_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    title = "ACTG 019 Kaplan-Meier curves by treatment",
+    x = "Days since randomization",
+    y = "AIDS/death-free survival",
+    color = "Treatment"
+  ) +
+  ggplot2::ylim(0, 1) +
+  ggplot2::theme_minimal()
 ```
 
 The swimmer plot below shows individual follow-up times
@@ -159,7 +168,27 @@ summary(fit_cox)
 ```{r adequacy-checks, fig.height=4, fig.width=6}
 ph_test <- survival::cox.zph(fit_cox)
 ph_test
-plot(ph_test)
+
+if (length(ph_test$time) > 0) {
+  n_vars <- ncol(ph_test$y)
+  ph_data <- data.frame(
+    time = rep(ph_test$time, n_vars),
+    beta = as.vector(ph_test$y),
+    variable = rep(colnames(ph_test$y), each = length(ph_test$time))
+  )
+
+  ggplot2::ggplot(ph_data, ggplot2::aes(x = time, y = beta)) +
+    ggplot2::geom_point(size = 0.5) +
+    ggplot2::geom_smooth(se = TRUE) +
+    ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+    ggplot2::facet_wrap(~variable, scales = "free_y") +
+    ggplot2::labs(
+      title = "Schoenfeld Residuals",
+      x = "Time",
+      y = "Beta(t)"
+    ) +
+    ggplot2::theme_minimal()
+}
 ```
 
 ### Inference

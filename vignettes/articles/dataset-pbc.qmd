@@ -94,8 +94,24 @@ summary(haven::zap_labels(dat[c("logbili", "logalbu", "logprot", "age")]))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 km_all <- survival::survfit(survival::Surv(years, status == 1) ~ 1, data = dat)
-plot(km_all, lwd = 2, xlab = "Years", ylab = "Survival probability",
-     main = "PBC: Overall Kaplan-Meier survival curve")
+
+km_df <- data.frame(
+  time = km_all$time,
+  surv = km_all$surv,
+  lower = km_all$lower,
+  upper = km_all$upper
+)
+
+ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv)) +
+  ggplot2::geom_step(linewidth = 1) +
+  ggplot2::geom_ribbon(ggplot2::aes(ymin = lower, ymax = upper), alpha = 0.2) +
+  ggplot2::labs(
+    title = "PBC: Overall Kaplan-Meier survival curve",
+    x = "Years",
+    y = "Survival probability"
+  ) +
+  ggplot2::ylim(0, 1) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates
@@ -110,7 +126,22 @@ summary(fit)
 ```{r adequacy-checks, fig.height=4, fig.width=6}
 ph_test <- survival::cox.zph(fit)
 ph_test
-plot(ph_test[1])
+
+ph_df <- data.frame(
+  time = ph_test$time,
+  beta = ph_test$y[, 1]
+)
+
+ggplot2::ggplot(ph_df, ggplot2::aes(x = time, y = beta)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(se = TRUE) +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::labs(
+    title = "Schoenfeld Residuals for Log-bilirubin",
+    x = "Time",
+    y = "Beta(t) for Log-bilirubin"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

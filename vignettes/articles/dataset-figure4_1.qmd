@@ -99,11 +99,15 @@ with(demo_df, cor(y, x2))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-plot(demo_df$x, demo_df$y,
-     pch = 16, cex = 1.2, col = "#1b9e77",
-     xlab = "x (sqrt of x2)",
-     ylab = "y (simulated outcome)",
-     main = "Figure 4.1: Illustrative polynomial regression data")
+ggplot2::ggplot(demo_df, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_point(color = "#1b9e77", size = 3) +
+  ggplot2::labs(
+    title = "Figure 4.1: Illustrative polynomial regression data",
+    x = "x (sqrt of x2)",
+    y = "y (simulated outcome)"
+  ) +
+  ggplot2::theme_minimal()
+
 x_seq <- seq(min(demo_df$x), max(demo_df$x), length.out = 100)
 ```
 
@@ -120,10 +124,38 @@ summary(fit_quad)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit_lin, which = 1, main = "Linear model residuals")
-plot(fit_quad, which = 1, main = "Quadratic model residuals")
-par(mfrow = c(1, 1))
+fit_data_lin <- data.frame(
+  fitted = stats::fitted(fit_lin),
+  residuals = stats::residuals(fit_lin),
+  model = "Linear"
+)
+fit_data_quad <- data.frame(
+  fitted = stats::fitted(fit_quad),
+  residuals = stats::residuals(fit_quad),
+  model = "Quadratic"
+)
+
+ggplot2::ggplot(fit_data_lin, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Linear model residuals",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data_quad, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Quadratic model residuals",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

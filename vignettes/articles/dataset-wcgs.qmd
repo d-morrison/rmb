@@ -111,8 +111,14 @@ with(dat, prop.table(table(chd69)))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-hist(dat$sbp, breaks = 15, col = "grey85", border = "white",
-     main = "WCGS systolic blood pressure", xlab = "SBP (mmHg)")
+ggplot2::ggplot(dat, ggplot2::aes(x = sbp)) +
+  ggplot2::geom_histogram(bins = 15, fill = "grey85", color = "white") +
+  ggplot2::labs(
+    title = "WCGS systolic blood pressure",
+    x = "SBP (mmHg)",
+    y = "Frequency"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

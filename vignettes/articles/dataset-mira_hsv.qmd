@@ -93,13 +93,22 @@ with(dat, table(stihx, hsv2))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 hsv_rates <- with(dat, tapply(hsv2, list(agecat, newparts), mean, na.rm = TRUE))
-barplot(t(hsv_rates),
-        beside = TRUE,
-        col = c("#1b9e77", "#d95f02"),
-        xlab = "Age category",
-        ylab = "HSV-2 incidence proportion",
-        main = "MIRA: HSV-2 incidence by age and new partner",
-        legend.text = c("No new partner", "New partner"))
+hsv_df <- as.data.frame(as.table(hsv_rates))
+names(hsv_df) <- c("agecat", "newparts", "rate")
+
+ggplot2::ggplot(hsv_df, ggplot2::aes(x = agecat, y = rate, fill = newparts)) +
+  ggplot2::geom_col(position = "dodge") +
+  ggplot2::scale_fill_manual(
+    values = c("#1b9e77", "#d95f02"),
+    labels = c("No new partner", "New partner")
+  ) +
+  ggplot2::labs(
+    title = "MIRA: HSV-2 incidence by age and new partner",
+    x = "Age category",
+    y = "HSV-2 incidence proportion",
+    fill = NULL
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 The swimmer plot shows follow-up timelines for a stratified random sample
