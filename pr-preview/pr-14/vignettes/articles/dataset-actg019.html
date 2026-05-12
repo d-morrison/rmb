@@ -878,7 +878,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Can zidovudine treatment reduce the hazard of AIDS or death after accounting for baseline CD4 cell count?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">time_aids</span> <span class="op">~</span> <span class="va">rx</span> <span class="op">+</span> <span class="va">cd4</span>,</span>
@@ -894,12 +893,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"ACTG 019: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
+</details><div id="fig-actg019-dag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-actg019-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Directed acyclic graph for the ACTG 019 treatment-outcome structure.
+</figcaption><div aria-describedby="fig-actg019-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="dataset-actg019_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
+</div>
+</div>
+</figure>
 </div>
 </section></section><section id="methods" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="methods">
 <span class="header-section-number">2</span> Methods</h2>
@@ -963,7 +970,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;     1.0   224.0   338.0   382.7   560.0   743.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">rx_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">rx</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Placebo"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">km_fit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">days</span>, <span class="va">cens</span><span class="op">)</span> <span class="op">~</span> <span class="va">rx_plot</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span></span>
@@ -979,15 +985,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  conf.int <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  censor <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
+</details><div id="fig-actg019-km" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-actg019-km-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Kaplan-Meier survival curves by randomized treatment arm.
+</figcaption><div aria-describedby="fig-actg019-km-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="dataset-actg019_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
+</figure>
+</div>
 <p>The swimmer plot below shows individual follow-up times for a random sample of 80 participants (40 per arm), with × marks indicating AIDS/death events.</p>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span><span class="va">dat_swim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="va">dat_swim</span><span class="op">$</span><span class="va">days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dat_swim</span><span class="op">$</span><span class="va">days</span><span class="op">)</span></span>
@@ -1018,12 +1031,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    y <span class="op">=</span> <span class="st">"Patient"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"ACTG 019: Follow-up timeline by treatment (n = 80 sample; X = AIDS/death)"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
+</details><div id="fig-actg019-swimmer" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-actg019-swimmer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Swimmer plot of follow-up time with event markers in a balanced sample.
+</figcaption><div aria-describedby="fig-actg019-swimmer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="dataset-actg019_files/figure-html/swimplot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+</div>
+</div>
+</figure>
 </div>
 </section><section id="model-estimates" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="model-estimates">
 <span class="header-section-number">3.2</span> Model estimates</h3>
@@ -1053,7 +1074,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="model-diagnostics" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="model-diagnostics">
 <span class="header-section-number">3.3</span> Model diagnostics</h3>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ph_test</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/cox.zph.html">cox.zph</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span></span>
 <span><span class="va">ph_test</span></span>
 <span><span class="co">#&gt;        chisq df     p</span></span>
@@ -1081,16 +1101,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
+</details><div id="fig-actg019-ph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-actg019-ph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Scaled Schoenfeld residual diagnostics for proportional hazards assumptions.
+</figcaption><div aria-describedby="fig-actg019-ph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="dataset-actg019_files/figure-html/adequacy-checks-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
+</figure>
+</div>
 </section><section id="inference" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="inference">
 <span class="header-section-number">3.4</span> Inference</h3>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
@@ -1100,11 +1127,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  conf_high <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
 <span>  p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_cox</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span>, <span class="st">"Pr(&gt;|z|)"</span><span class="op">]</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">out</span></span>
-<span><span class="co">#&gt;     term hazard_ratio  conf_low conf_high      p_value</span></span>
-<span><span class="co">#&gt; rx    rx    0.4560671 0.2567927 0.8099809 7.381988e-03</span></span>
-<span><span class="co">#&gt; cd4  cd4    0.9934464 0.9910395 0.9958591 1.079987e-07</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">out</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div id="tbl-actg019-inference" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-actg019-inference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Cox model hazard-ratio estimates with 95% confidence intervals and p-values.
+</figcaption><div aria-describedby="tbl-actg019-inference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">hazard_ratio</th>
+<th style="text-align: right;">conf_low</th>
+<th style="text-align: right;">conf_high</th>
+<th style="text-align: right;">p_value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">rx</td>
+<td style="text-align: left;">rx</td>
+<td style="text-align: right;">0.456</td>
+<td style="text-align: right;">0.257</td>
+<td style="text-align: right;">0.810</td>
+<td style="text-align: right;">0.007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd4</td>
+<td style="text-align: left;">cd4</td>
+<td style="text-align: right;">0.993</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
 </div>
 </section></section><section id="discussion" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="discussion">
 <span class="header-section-number">4</span> Discussion</h2>
