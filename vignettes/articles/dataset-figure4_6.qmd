@@ -109,8 +109,8 @@ summary(fit)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=7, fig.width=8}
-library(ggfortify)
-ggplot2::autoplot(
+ggfortify_autoplot_lm <- getFromNamespace("autoplot.lm", "ggfortify")
+ggfortify_autoplot_lm(
   fit,
   which = 1:4,
   ncol = 2
