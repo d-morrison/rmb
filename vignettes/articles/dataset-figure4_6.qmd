@@ -124,7 +124,7 @@ ggplot2::autoplot(
 ) +
   ggplot2::theme_minimal()
 ```
-Standard 2×2 linear-model diagnostic panel from `autoplot.lm`.
+Standard 2x2 linear-model diagnostic panel from `autoplot.lm`.
 :::
 
 ### Inference
