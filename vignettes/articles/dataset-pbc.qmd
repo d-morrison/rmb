@@ -38,6 +38,7 @@ after adjustment for log-albumin, log-prothrombin time, age, and edema status?
 
 ### Causal assumptions
 
+:::{#fig-pbc-dag}
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
@@ -57,6 +58,8 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
   ggplot2::labs(title = "PBC: Causal DAG")
 ```
+Directed acyclic graph for predictors of PBC survival risk.
+:::
 
 ## Methods
 
@@ -92,6 +95,7 @@ with(dat, table(rx, status))
 summary(haven::zap_labels(dat[c("logbili", "logalbu", "logprot", "age")]))
 ```
 
+:::{#fig-pbc-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 km_all <- survival::survfit(survival::Surv(years, status == 1) ~ 1, data = dat)
 
@@ -106,6 +110,8 @@ survminer::ggsurvplot(
   censor = TRUE
 )
 ```
+Overall Kaplan-Meier survival curve for the PBC study cohort.
+:::
 
 ### Model estimates
 
@@ -116,6 +122,7 @@ summary(fit)
 
 ### Model diagnostics
 
+:::{#fig-pbc-ph}
 ```{r adequacy-checks, fig.height=4, fig.width=6}
 ph_test <- survival::cox.zph(fit)
 ph_test
@@ -136,20 +143,25 @@ ggplot2::ggplot(ph_df, ggplot2::aes(x = time, y = beta)) +
   ) +
   ggplot2::theme_minimal()
 ```
+Scaled Schoenfeld residual plot for the log-bilirubin covariate effect.
+:::
 
 ### Inference
 
+:::{#tbl-pbc-inference}
 ```{r inference}
 hr <- exp(stats::coef(fit))
 ci <- exp(stats::confint(fit))
-data.frame(
+knitr::kable(data.frame(
   term = names(hr),
   hazard_ratio = unname(hr),
   conf_low = ci[, 1],
   conf_high = ci[, 2],
   p_value = summary(fit)$coefficients[, "Pr(>|z|)"]
-)
+), digits = 3)
 ```
+Cox model hazard-ratio estimates with confidence intervals for PBC.
+:::
 
 ## Discussion
 

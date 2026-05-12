@@ -40,6 +40,7 @@ compared to cadaveric transplant in pediatric kidney recipients?
 
 ### Causal assumptions
 
+:::{#fig-unos-dag}
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
@@ -59,6 +60,8 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
   ggplot2::labs(title = "UNOS: Causal DAG")
 ```
+Directed acyclic graph for donor type and pediatric transplant mortality.
+:::
 
 ## Methods
 
@@ -92,6 +95,7 @@ with(dat, prop.table(table(txtype, death), margin = 1))
 with(dat, tapply(fu, txtype, summary))
 ```
 
+:::{#fig-unos-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 dat$txtype_plot <- factor(dat$txtype, labels = c("Cadaveric", "Living donor"))
 km_fit <- survival::survfit(survival::Surv(fu, death) ~ txtype_plot, data = dat)
@@ -109,6 +113,8 @@ survminer::ggsurvplot(
   censor = TRUE
 )
 ```
+Kaplan-Meier survival curves by donor type in pediatric recipients.
+:::
 
 ### Model estimates
 
@@ -126,17 +132,20 @@ ph_test
 
 ### Inference
 
+:::{#tbl-unos-inference}
 ```{r inference}
 hr <- exp(stats::coef(fit))
 ci <- exp(stats::confint(fit))
-data.frame(
+knitr::kable(data.frame(
   term = names(hr),
   hazard_ratio = unname(hr),
   conf_low = ci[, 1],
   conf_high = ci[, 2],
   p_value = summary(fit)$coefficients[, "Pr(>|z|)"]
-)
+), digits = 3)
 ```
+Cox model hazard-ratio estimates for donor type and adjusted covariates.
+:::
 
 ## Discussion
 
