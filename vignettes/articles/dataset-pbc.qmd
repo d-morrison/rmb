@@ -127,21 +127,11 @@ summary(fit)
 ph_test <- survival::cox.zph(fit)
 ph_test
 
-ph_df <- data.frame(
-  time = ph_test$time,
-  beta = ph_test$y[, 1]
+survminer::ggcoxzph(
+  ph_test,
+  var = "logbili",
+  ggtheme = ggplot2::theme_minimal()
 )
-
-ggplot2::ggplot(ph_df, ggplot2::aes(x = time, y = beta)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_smooth(se = TRUE) +
-  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  ggplot2::labs(
-    title = "Schoenfeld Residuals for Log-bilirubin",
-    x = "Time",
-    y = "Beta(t) for Log-bilirubin"
-  ) +
-  ggplot2::theme_minimal()
 ```
 Scaled Schoenfeld residual plot for the log-bilirubin covariate effect.
 :::

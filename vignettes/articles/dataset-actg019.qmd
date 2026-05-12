@@ -174,26 +174,10 @@ summary(fit_cox)
 ph_test <- survival::cox.zph(fit_cox)
 ph_test
 
-if (length(ph_test$time) > 0) {
-  n_vars <- ncol(ph_test$y)
-  ph_data <- data.frame(
-    time = rep(ph_test$time, n_vars),
-    beta = as.vector(ph_test$y),
-    variable = rep(colnames(ph_test$y), each = length(ph_test$time))
-  )
-
-  ggplot2::ggplot(ph_data, ggplot2::aes(x = time, y = beta)) +
-    ggplot2::geom_point(size = 0.5) +
-    ggplot2::geom_smooth(se = TRUE) +
-    ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-    ggplot2::facet_wrap(~variable, scales = "free_y") +
-    ggplot2::labs(
-      title = "Schoenfeld Residuals",
-      x = "Time",
-      y = "Beta(t)"
-    ) +
-    ggplot2::theme_minimal()
-}
+survminer::ggcoxzph(
+  ph_test,
+  ggtheme = ggplot2::theme_minimal()
+)
 ```
 Scaled Schoenfeld residual diagnostics for proportional hazards assumptions.
 :::

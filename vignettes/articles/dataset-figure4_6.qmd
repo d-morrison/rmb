@@ -116,7 +116,9 @@ summary(fit)
 
 :::{#fig-figure4-6-diagnostics}
 ```{r adequacy-checks, fig.height=7, fig.width=8}
-loadNamespace("ggfortify")
+if (!requireNamespace("ggfortify", quietly = TRUE)) {
+  stop("Package 'ggfortify' is required for model diagnostic autoplots.")
+}
 ggplot2::autoplot(
   fit,
   which = 1:4,
