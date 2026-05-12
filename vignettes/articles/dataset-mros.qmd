@@ -91,30 +91,24 @@ with(dat, tapply(weight, bmd3, mean))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-km_fit <- survival::survfit(survival::Surv(years, status) ~ bmd3, data = dat)
-
-km_df <- data.frame(
-  time = km_fit$time,
-  surv = km_fit$surv,
-  strata = rep(names(km_fit$strata), km_fit$strata)
+dat$bmd3_plot <- factor(
+  dat$bmd3,
+  labels = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)")
 )
-km_df$bmd3 <- sub("bmd3=", "", km_df$strata)
+km_fit <- survival::survfit(survival::Surv(years, status) ~ bmd3_plot, data = dat)
 
-ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv, color = bmd3)) +
-  ggplot2::geom_step(linewidth = 1) +
-  ggplot2::scale_color_manual(
-    values = c("#1b9e77", "#d95f02", "#7570b3"),
-    labels = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)")
-  ) +
-  ggplot2::labs(
-    title = "MrOS: Survival by BMD quantile",
-    x = "Years",
-    y = "Event-free survival",
-    color = NULL
-  ) +
-  ggplot2::ylim(0, 1) +
-  ggplot2::theme_minimal() +
-  ggplot2::theme(legend.position = c(0.8, 0.8))
+survminer::ggsurvplot(
+  km_fit,
+  data = dat,
+  title = "MrOS: Survival by BMD quantile",
+  xlab = "Years",
+  ylab = "Event-free survival",
+  legend.title = NULL,
+  ggtheme = ggplot2::theme_minimal(),
+  palette = c("#1b9e77", "#d95f02", "#7570b3"),
+  conf.int = FALSE,
+  censor = TRUE
+)
 ```
 
 ### Model estimates
@@ -162,4 +156,3 @@ and a continuous confounder (weight) to event risk.
 - Orwoll E et al. (2005). Design and baseline characteristics of the osteoporotic fractures in men (MrOS) study. *J Bone Miner Res*, 20(4), 678-687.
 - UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mros.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).
-

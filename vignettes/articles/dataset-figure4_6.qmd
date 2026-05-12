@@ -108,51 +108,14 @@ summary(fit)
 
 ### Model diagnostics
 
-```{r adequacy-checks, fig.height=6, fig.width=6}
-fit_data <- data.frame(
-  fitted = stats::fitted(fit),
-  residuals = stats::residuals(fit),
-  std_residuals = stats::rstandard(fit),
-  sqrt_std_residuals = sqrt(abs(stats::rstandard(fit))),
-  cooks_d = stats::cooks.distance(fit)
-)
-
-# Residuals vs Fitted
-p1 <- ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  ggplot2::geom_smooth(se = FALSE, color = "blue") +
-  ggplot2::labs(title = "Residuals vs Fitted", x = "Fitted values", y = "Residuals") +
+```{r adequacy-checks, fig.height=7, fig.width=8}
+library(ggfortify)
+ggplot2::autoplot(
+  fit,
+  which = 1:4,
+  ncol = 2
+) +
   ggplot2::theme_minimal()
-
-# Normal Q-Q
-p2 <- ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
-  ggplot2::stat_qq() +
-  ggplot2::stat_qq_line(color = "red") +
-  ggplot2::labs(title = "Normal Q-Q", x = "Theoretical Quantiles", y = "Standardized residuals") +
-  ggplot2::theme_minimal()
-
-# Scale-Location
-p3 <- ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = sqrt_std_residuals)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_smooth(se = FALSE, color = "red") +
-  ggplot2::labs(title = "Scale-Location", x = "Fitted values", y = expression(sqrt("|Standardized residuals|"))) +
-  ggplot2::theme_minimal()
-
-# Residuals vs Leverage
-fit_data$leverage <- stats::hatvalues(fit)
-p4 <- ggplot2::ggplot(fit_data, ggplot2::aes(x = leverage, y = std_residuals)) +
-  ggplot2::geom_point(ggplot2::aes(size = cooks_d), alpha = 0.5) +
-  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  ggplot2::geom_smooth(se = FALSE, color = "blue") +
-  ggplot2::labs(title = "Residuals vs Leverage", x = "Leverage", y = "Standardized residuals") +
-  ggplot2::theme_minimal() +
-  ggplot2::theme(legend.position = "none")
-
-print(p1)
-print(p2)
-print(p3)
-print(p4)
 ```
 
 ### Inference

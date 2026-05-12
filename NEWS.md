@@ -1,5 +1,10 @@
 # rmb (development version)
 
+- Replaced hand-built Kaplan-Meier and linear-model diagnostic plots
+  with package helpers (`survminer::ggsurvplot()` and
+  `ggfortify::autoplot()`) where available, while retaining consistent
+  `ggplot2` styling across dataset vignettes.
+- Bumped development version to `0.0.0.9018`.
 - Replaced all 26 `{mermaid}` causal DAGs in dataset vignettes with R-rendered [`{ggdag}`](https://r-causal.github.io/ggdag/) plots for consistent, reproducible visualization. Added `ggdag` to `DESCRIPTION Suggests`.
 - Bumped development version to `0.0.0.9017`.
 - Added swimmer plots to all longitudinal dataset vignettes (`dataset-leuk.qmd`, `dataset-actg019.qmd`, `dataset-mira_hsv.qmd`, `dataset-sof2.qmd`, `dataset-hers_nodm_longitudinal.qmd`, `dataset-fecfat.qmd`) using the [`{swimplot}`](https://github.com/biostatsPMH/swimplot) package. Large cohorts are subsetted for legibility.

@@ -95,23 +95,16 @@ summary(haven::zap_labels(dat[c("logbili", "logalbu", "logprot", "age")]))
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 km_all <- survival::survfit(survival::Surv(years, status == 1) ~ 1, data = dat)
 
-km_df <- data.frame(
-  time = km_all$time,
-  surv = km_all$surv,
-  lower = km_all$lower,
-  upper = km_all$upper
+survminer::ggsurvplot(
+  km_all,
+  data = dat,
+  title = "PBC: Overall Kaplan-Meier survival curve",
+  xlab = "Years",
+  ylab = "Survival probability",
+  ggtheme = ggplot2::theme_minimal(),
+  conf.int = TRUE,
+  censor = TRUE
 )
-
-ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv)) +
-  ggplot2::geom_step(linewidth = 1) +
-  ggplot2::geom_ribbon(ggplot2::aes(ymin = lower, ymax = upper), alpha = 0.2) +
-  ggplot2::labs(
-    title = "PBC: Overall Kaplan-Meier survival curve",
-    x = "Years",
-    y = "Survival probability"
-  ) +
-  ggplot2::ylim(0, 1) +
-  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

@@ -97,26 +97,21 @@ with(dat, tapply(days, rx, summary))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-km_fit <- survival::survfit(survival::Surv(days, cens) ~ rx, data = dat)
+dat$rx_plot <- factor(dat$rx, labels = c("Placebo", "Treatment"))
+km_fit <- survival::survfit(survival::Surv(days, cens) ~ rx_plot, data = dat)
 
-km_df <- data.frame(
-  time = km_fit$time,
-  surv = km_fit$surv,
-  strata = rep(names(km_fit$strata), km_fit$strata)
+survminer::ggsurvplot(
+  km_fit,
+  data = dat,
+  title = "ACTG 019 Kaplan-Meier curves by treatment",
+  xlab = "Days since randomization",
+  ylab = "AIDS/death-free survival",
+  legend.title = "Treatment",
+  ggtheme = ggplot2::theme_minimal(),
+  palette = c("#1b9e77", "#d95f02"),
+  conf.int = FALSE,
+  censor = TRUE
 )
-km_df$rx <- sub("rx=", "", km_df$strata)
-
-ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv, color = rx)) +
-  ggplot2::geom_step(linewidth = 1) +
-  ggplot2::scale_color_manual(values = c("#1b9e77", "#d95f02")) +
-  ggplot2::labs(
-    title = "ACTG 019 Kaplan-Meier curves by treatment",
-    x = "Days since randomization",
-    y = "AIDS/death-free survival",
-    color = "Treatment"
-  ) +
-  ggplot2::ylim(0, 1) +
-  ggplot2::theme_minimal()
 ```
 
 The swimmer plot below shows individual follow-up times

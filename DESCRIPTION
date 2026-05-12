@@ -1,6 +1,6 @@
 Package: rmb
 Title: Datasets for Regression Methods in Biostatistics
-Version: 0.0.0.9017
+Version: 0.0.0.9018
 Authors@R: c(
     person("Ezra", "Morrison", , "demorrison@ucdavis.edu", role = c("aut", "cre"))
   )
@@ -33,7 +33,9 @@ Suggests:
     quarto,
     bslib,
     badger,
-    survival
+    survival,
+    ggfortify,
+    survminer
 Config/testthat/edition: 3
 VignetteBuilder: knitr, quarto
 Config/Needs/website: quarto
