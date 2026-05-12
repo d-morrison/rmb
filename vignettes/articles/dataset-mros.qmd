@@ -92,16 +92,29 @@ with(dat, tapply(weight, bmd3, mean))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 km_fit <- survival::survfit(survival::Surv(years, status) ~ bmd3, data = dat)
-plot(
-  km_fit,
-  col = c("#1b9e77", "#d95f02", "#7570b3"),
-  lwd = 2,
-  xlab = "Years",
-  ylab = "Event-free survival",
-  main = "MrOS: Survival by BMD quantile"
+
+km_df <- data.frame(
+  time = km_fit$time,
+  surv = km_fit$surv,
+  strata = rep(names(km_fit$strata), km_fit$strata)
 )
-legend("topright", legend = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)"),
-       col = c("#1b9e77", "#d95f02", "#7570b3"), lwd = 2, bty = "n")
+km_df$bmd3 <- sub("bmd3=", "", km_df$strata)
+
+ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv, color = bmd3)) +
+  ggplot2::geom_step(linewidth = 1) +
+  ggplot2::scale_color_manual(
+    values = c("#1b9e77", "#d95f02", "#7570b3"),
+    labels = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)")
+  ) +
+  ggplot2::labs(
+    title = "MrOS: Survival by BMD quantile",
+    x = "Years",
+    y = "Event-free survival",
+    color = NULL
+  ) +
+  ggplot2::ylim(0, 1) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = c(0.8, 0.8))
 ```
 
 ### Model estimates

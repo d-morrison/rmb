@@ -94,16 +94,29 @@ with(dat, tapply(fu, txtype, summary))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 km_fit <- survival::survfit(survival::Surv(fu, death) ~ txtype, data = dat)
-plot(
-  km_fit,
-  col = c("#1b9e77", "#d95f02"),
-  lwd = 2,
-  xlab = "Years post-transplant",
-  ylab = "Survival probability",
-  main = "UNOS: Post-transplant survival by donor type"
+
+km_df <- data.frame(
+  time = km_fit$time,
+  surv = km_fit$surv,
+  strata = rep(names(km_fit$strata), km_fit$strata)
 )
-legend("topright", legend = c("Cadaveric", "Living donor"),
-       col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
+km_df$txtype <- sub("txtype=", "", km_df$strata)
+
+ggplot2::ggplot(km_df, ggplot2::aes(x = time, y = surv, color = txtype)) +
+  ggplot2::geom_step(linewidth = 1) +
+  ggplot2::scale_color_manual(
+    values = c("#1b9e77", "#d95f02"),
+    labels = c("Cadaveric", "Living donor")
+  ) +
+  ggplot2::labs(
+    title = "UNOS: Post-transplant survival by donor type",
+    x = "Years post-transplant",
+    y = "Survival probability",
+    color = NULL
+  ) +
+  ggplot2::ylim(0, 1) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = c(0.8, 0.8))
 ```
 
 ### Model estimates
