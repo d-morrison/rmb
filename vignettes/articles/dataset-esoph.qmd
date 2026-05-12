@@ -97,6 +97,7 @@ alc_df <- data.frame(
   alcgp = names(alc_rates),
   rate = as.numeric(alc_rates)
 )
+alc_df$alcgp <- factor(alc_df$alcgp, levels = names(alc_rates))
 
 ggplot2::ggplot(alc_df, ggplot2::aes(x = alcgp, y = rate)) +
   ggplot2::geom_col(fill = "#d95f02") +

@@ -98,6 +98,7 @@ fx_df <- data.frame(
   treat = c("Placebo", "Alendronate"),
   proportion = as.numeric(fx_prop)
 )
+fx_df$treat <- factor(fx_df$treat, levels = c("Placebo", "Alendronate"))
 
 ggplot2::ggplot(fx_df, ggplot2::aes(x = treat, y = proportion, fill = treat)) +
   ggplot2::geom_col() +
