@@ -93,13 +93,23 @@ with(dat, tapply(bmd_base, treat, summary))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-barplot(
-  with(dat, prop.table(table(treat, newvfx), margin = 1))[, "1"],
-  names.arg = c("Placebo", "Alendronate"),
-  col = c("#1b9e77", "#d95f02"),
-  ylab = "Proportion with new vertebral fx",
-  main = "FIT: Crude vertebral fracture rate by treatment"
+fx_prop <- with(dat, prop.table(table(treat, newvfx), margin = 1))[, "1"]
+fx_df <- data.frame(
+  treat = c("Placebo", "Alendronate"),
+  proportion = as.numeric(fx_prop)
 )
+fx_df$treat <- factor(fx_df$treat, levels = c("Placebo", "Alendronate"))
+
+ggplot2::ggplot(fx_df, ggplot2::aes(x = treat, y = proportion, fill = treat)) +
+  ggplot2::geom_col() +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    title = "FIT: Crude vertebral fracture rate by treatment",
+    x = NULL,
+    y = "Proportion with new vertebral fx"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = "none")
 ```
 
 ### Model estimates

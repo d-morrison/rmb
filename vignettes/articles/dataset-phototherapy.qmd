@@ -93,10 +93,22 @@ summary(haven::zap_labels(dat[c("birth_wt", "gest_age", "qual_TSB")]))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-boxplot(gest_age ~ phototherapy, data = dat,
-        xlab = "Phototherapy", ylab = "Gestational age (weeks)",
-        main = "Gestational age by phototherapy group",
-        col = c("#1b9e77", "#d95f02"))
+dat$phototherapy_plot <- factor(
+  dat$phototherapy,
+  levels = c(0, 1),
+  labels = c("No", "Yes")
+)
+
+ggplot2::ggplot(dat, ggplot2::aes(x = phototherapy_plot, y = gest_age, fill = phototherapy_plot)) +
+  ggplot2::geom_boxplot() +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    title = "Gestational age by phototherapy group",
+    x = "Phototherapy",
+    y = "Gestational age (weeks)"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = "none")
 ```
 
 ### Model estimates

@@ -98,11 +98,18 @@ with(dat, c(
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-boxplot(logshsyr ~ dprsn_dx, data = dat,
-        names = c("No depression", "Depression"),
-        ylab = "Log needle sharing",
-        main = "Log needle sharing by depression diagnosis",
-        col = c("#1b9e77", "#d95f02"))
+dat$dprsn_label <- factor(dat$dprsn_dx, levels = c(0, 1), labels = c("No depression", "Depression"))
+
+ggplot2::ggplot(dat, ggplot2::aes(x = dprsn_label, y = logshsyr, fill = dprsn_label)) +
+  ggplot2::geom_boxplot() +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    title = "Log needle sharing by depression diagnosis",
+    x = NULL,
+    y = "Log needle sharing"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = "none")
 ```
 
 ### Model estimates
@@ -115,10 +122,33 @@ summary(fit)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit, which = 1)
-plot(fit, which = 2)
-par(mfrow = c(1, 1))
+#| layout-ncol: 2
+fit_data <- data.frame(
+  fitted = stats::fitted(fit),
+  residuals = stats::residuals(fit),
+  std_residuals = stats::rstandard(fit)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Residuals vs Fitted",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
+  ggplot2::stat_qq() +
+  ggplot2::stat_qq_line(color = "red") +
+  ggplot2::labs(
+    title = "Normal Q-Q",
+    x = "Theoretical Quantiles",
+    y = "Standardized residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

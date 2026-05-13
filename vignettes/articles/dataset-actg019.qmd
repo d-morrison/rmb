@@ -40,6 +40,7 @@ after accounting for baseline CD4 cell count?
 
 ### Causal assumptions
 
+:::{#fig-actg019-dag}
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
@@ -57,6 +58,8 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
   ggplot2::labs(title = "ACTG 019: Causal DAG")
 ```
+Directed acyclic graph for the ACTG 019 treatment-outcome structure.
+:::
 
 ## Methods
 
@@ -96,24 +99,32 @@ with(dat, tapply(cd4, rx, summary))
 with(dat, tapply(days, rx, summary))
 ```
 
+:::{#fig-actg019-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-km_fit <- survival::survfit(survival::Surv(days, cens) ~ rx, data = dat)
-plot(
+dat$rx_plot <- factor(dat$rx, levels = c(0, 1), labels = c("Placebo", "ZDV"))
+km_fit <- survival::survfit(survival::Surv(days, cens) ~ rx_plot, data = dat)
+
+survminer::ggsurvplot(
   km_fit,
-  col = c("#1b9e77", "#d95f02"),
-  lwd = 2,
+  data = dat,
+  title = "ACTG 019 Kaplan-Meier curves by treatment",
   xlab = "Days since randomization",
   ylab = "AIDS/death-free survival",
-  mark.time = TRUE,
-  main = "ACTG 019 Kaplan-Meier curves by treatment"
+  legend.title = "Treatment",
+  ggtheme = ggplot2::theme_minimal(),
+  palette = c("#1b9e77", "#d95f02"),
+  conf.int = FALSE,
+  censor = TRUE
 )
-legend("bottomleft", legend = levels(factor(dat$rx)), col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
 ```
+Kaplan-Meier survival curves by randomized treatment arm.
+:::
 
 The swimmer plot below shows individual follow-up times
 for a random sample of 80 participants (40 per arm),
 with × marks indicating AIDS/death events.
 
+:::{#fig-actg019-swimmer}
 ```{r swimplot, fig.height=10, fig.width=7}
 set.seed(42)
 dat_swim <- as.data.frame(dat)
@@ -146,6 +157,8 @@ swimplot::swimmer_plot(
     title = "ACTG 019: Follow-up timeline by treatment (n = 80 sample; X = AIDS/death)"
   )
 ```
+Swimmer plot of follow-up time with event markers in a balanced sample.
+:::
 
 ### Model estimates
 
@@ -156,26 +169,35 @@ summary(fit_cox)
 
 ### Model diagnostics
 
+:::{#fig-actg019-ph}
 ```{r adequacy-checks, fig.height=4, fig.width=6}
 ph_test <- survival::cox.zph(fit_cox)
 ph_test
-plot(ph_test)
+
+survminer::ggcoxzph(
+  ph_test,
+  ggtheme = ggplot2::theme_minimal()
+)
 ```
+Scaled Schoenfeld residual diagnostics for proportional hazards assumptions.
+:::
 
 ### Inference
 
+:::{#tbl-actg019-inference}
 ```{r inference}
 hr <- exp(stats::coef(fit_cox))
 ci <- exp(stats::confint(fit_cox))
-out <- data.frame(
+knitr::kable(data.frame(
   term = names(hr),
   hazard_ratio = unname(hr),
   conf_low = ci[, 1],
   conf_high = ci[, 2],
   p_value = summary(fit_cox)$coefficients[, "Pr(>|z|)"]
-)
-out
+), digits = 3)
 ```
+Cox model hazard-ratio estimates with 95% confidence intervals and p-values.
+:::
 
 ## Discussion
 

@@ -94,13 +94,25 @@ with(dat, tapply(sbp, visit, mean, na.rm = TRUE))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-boxplot(sbp ~ interaction(group, exercise), data = dat,
-        names = c("Pbo/No ex", "HRT/No ex", "Pbo/Ex", "HRT/Ex"),
-        xlab = "Treatment × Exercise",
-        ylab = "Systolic BP (mmHg)",
-        main = "HERS: SBP by HRT and exercise",
-        col = c("grey85", "#d95f02", "grey60", "#e6ab02"),
-        las = 2)
+dat$group_exercise <- interaction(dat$group, dat$exercise)
+dat$group_exercise_label <- factor(
+  dat$group_exercise,
+  labels = c("Pbo/No ex", "HRT/No ex", "Pbo/Ex", "HRT/Ex")
+)
+
+ggplot2::ggplot(dat, ggplot2::aes(x = group_exercise_label, y = sbp, fill = group_exercise_label)) +
+  ggplot2::geom_boxplot() +
+  ggplot2::scale_fill_manual(values = c("grey85", "#d95f02", "grey60", "#e6ab02")) +
+  ggplot2::labs(
+    title = "HERS: SBP by HRT and exercise",
+    x = "Treatment × Exercise",
+    y = "Systolic BP (mmHg)"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    legend.position = "none",
+    axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)
+  )
 ```
 
 The swimmer plot shows visit attendance for a stratified random sample
@@ -155,10 +167,33 @@ summary(fit_sbp)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit_sbp, which = 1)
-plot(fit_sbp, which = 2)
-par(mfrow = c(1, 1))
+#| layout-ncol: 2
+fit_data <- data.frame(
+  fitted = stats::fitted(fit_sbp),
+  residuals = stats::residuals(fit_sbp),
+  std_residuals = stats::rstandard(fit_sbp)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point(alpha = 0.25, size = 0.5) +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Residuals vs Fitted",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
+  ggplot2::stat_qq() +
+  ggplot2::stat_qq_line(color = "red") +
+  ggplot2::labs(
+    title = "Normal Q-Q",
+    x = "Theoretical Quantiles",
+    y = "Standardized residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

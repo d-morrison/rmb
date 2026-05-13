@@ -107,11 +107,15 @@ with(nd, cor(BMI, LDL, use = "complete.obs"))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-plot(nd$BMI, nd$LDL,
-     pch = 16, cex = 0.5, col = rgb(0, 0, 0, 0.2),
-     xlab = expression("BMI (kg/m"^2*")"), ylab = "LDL (mg/dL)",
-     main = "HERS: LDL vs BMI (women without diabetes)")
-abline(stats::lm(LDL ~ BMI, data = nd), col = "#d95f02", lwd = 2)
+ggplot2::ggplot(nd, ggplot2::aes(x = BMI, y = LDL)) +
+  ggplot2::geom_point(alpha = 0.2, size = 1) +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, color = "#d95f02", linewidth = 1) +
+  ggplot2::labs(
+    title = "HERS: LDL vs BMI (women without diabetes)",
+    x = expression("BMI (kg/m"^2*")"),
+    y = "LDL (mg/dL)"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates
@@ -127,10 +131,33 @@ summary(fit_ht_statin)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit_bmi_ldl, which = 1)
-plot(fit_bmi_ldl, which = 2)
-par(mfrow = c(1, 1))
+#| layout-ncol: 2
+fit_data <- data.frame(
+  fitted = stats::fitted(fit_bmi_ldl),
+  residuals = stats::residuals(fit_bmi_ldl),
+  std_residuals = stats::rstandard(fit_bmi_ldl)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Residuals vs Fitted",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
+  ggplot2::stat_qq() +
+  ggplot2::stat_qq_line(color = "red") +
+  ggplot2::labs(
+    title = "Normal Q-Q",
+    x = "Theoretical Quantiles",
+    y = "Standardized residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ```{r adequacy-checks-interaction}

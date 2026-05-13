@@ -99,11 +99,16 @@ survey::svyby(~diabetes, ~mexamer, nhanes_design, survey::svymean)
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 dm_by_age <- survey::svyby(~diabetes, ~age10, nhanes_design, survey::svymean)
-plot(dm_by_age$age10, dm_by_age$diabetes,
-     type = "b", pch = 16, col = "#1b9e77", lwd = 2,
-     xlab = "Age group (per 10yr)",
-     ylab = "Weighted diabetes prevalence",
-     main = "NHANES III: Diabetes prevalence by age (survey-weighted)")
+
+ggplot2::ggplot(dm_by_age, ggplot2::aes(x = age10, y = diabetes)) +
+  ggplot2::geom_line(color = "#1b9e77", linewidth = 1) +
+  ggplot2::geom_point(color = "#1b9e77", size = 3) +
+  ggplot2::labs(
+    title = "NHANES III: Diabetes prevalence by age (survey-weighted)",
+    x = "Age group (per 10yr)",
+    y = "Weighted diabetes prevalence"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

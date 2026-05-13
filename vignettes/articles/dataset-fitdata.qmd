@@ -95,13 +95,19 @@ with(dat, cor(cbind(cobmd, blbmd, age, bmi), use = "complete.obs"))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-plot(dat$blbmd, dat$cobmd,
-     pch = 16, cex = 0.4, col = ifelse(dat$tx == 1, "#d95f02", "#1b9e77"),
-     xlab = "Baseline femoral neck BMD (g/cm\u00b2)",
-     ylab = "End-of-study femoral neck BMD (g/cm\u00b2)",
-     main = "FIT: End BMD vs baseline BMD by treatment")
-legend("topleft", legend = c("Placebo", "Alendronate"),
-       col = c("#1b9e77", "#d95f02"), pch = 16, bty = "n")
+dat$tx_label <- factor(dat$tx, levels = c(0, 1), labels = c("Placebo", "Alendronate"))
+
+ggplot2::ggplot(dat, ggplot2::aes(x = blbmd, y = cobmd, color = tx_label)) +
+  ggplot2::geom_point(alpha = 0.6, size = 0.8) +
+  ggplot2::scale_color_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::labs(
+    title = "FIT: End BMD vs baseline BMD by treatment",
+    x = "Baseline femoral neck BMD (g/cm²)",
+    y = "End-of-study femoral neck BMD (g/cm²)",
+    color = NULL
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = c(0.15, 0.9))
 ```
 
 ### Model estimates
@@ -114,10 +120,33 @@ summary(fit_model)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit_model, which = 1)
-plot(fit_model, which = 2)
-par(mfrow = c(1, 1))
+#| layout-ncol: 2
+fit_data <- data.frame(
+  fitted = stats::fitted(fit_model),
+  residuals = stats::residuals(fit_model),
+  std_residuals = stats::rstandard(fit_model)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point(alpha = 0.25, size = 0.5) +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Residuals vs Fitted",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
+  ggplot2::stat_qq() +
+  ggplot2::stat_qq_line(color = "red") +
+  ggplot2::labs(
+    title = "Normal Q-Q",
+    x = "Theoretical Quantiles",
+    y = "Standardized residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

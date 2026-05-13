@@ -38,6 +38,7 @@ for data simulated from a linear relationship with normally distributed errors?
 
 ### Causal assumptions
 
+:::{#fig-figure4-6-dag}
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
@@ -50,6 +51,8 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
   ggplot2::labs(title = "Figure 4.6: Causal DAG")
 ```
+Directed acyclic graph for the simulated linear-regression example.
+:::
 
 ## Methods
 
@@ -87,13 +90,20 @@ summary(demo_df)
 with(demo_df, cor(x, y))
 ```
 
+:::{#fig-figure4-6-scatter}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-plot(demo_df$x, demo_df$y,
-     pch = 16, cex = 0.6, col = rgb(0, 0, 0, 0.4),
-     xlab = "x", ylab = "y (simulated)",
-     main = "Figure 4.6: Simulated data for diagnostic illustration")
-abline(stats::lm(y ~ x, data = demo_df), col = "#d95f02", lwd = 2)
+ggplot2::ggplot(demo_df, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_point(alpha = 0.4, size = 1.2) +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, color = "#d95f02", linewidth = 1) +
+  ggplot2::labs(
+    title = "Figure 4.6: Simulated data for diagnostic illustration",
+    x = "x",
+    y = "y (simulated)"
+  ) +
+  ggplot2::theme_minimal()
 ```
+Scatterplot with fitted linear trend for the simulated outcome data.
+:::
 
 ### Model estimates
 
@@ -104,25 +114,37 @@ summary(fit)
 
 ### Model diagnostics
 
-```{r adequacy-checks, fig.height=6, fig.width=6}
-par(mfrow = c(2, 2))
-plot(fit)
-par(mfrow = c(1, 1))
+:::{#fig-figure4-6-diagnostics}
+```{r adequacy-checks, fig.height=7, fig.width=8}
+if (!requireNamespace("ggfortify", quietly = TRUE)) {
+  stop("Package 'ggfortify' is required for model diagnostic autoplots.")
+}
+ggplot2::autoplot(
+  fit,
+  which = 1:4,
+  ncol = 2
+) +
+  ggplot2::theme_minimal()
 ```
+Standard 2x2 linear-model diagnostic panel from `autoplot.lm`.
+:::
 
 ### Inference
 
+:::{#tbl-figure4-6-inference}
 ```{r inference}
 ci <- stats::confint(fit)
 coefs <- summary(fit)$coefficients
-data.frame(
+knitr::kable(data.frame(
   term = rownames(coefs),
   estimate = coefs[, "Estimate"],
   conf_low = ci[, 1],
   conf_high = ci[, 2],
   p_value = coefs[, "Pr(>|t|)"]
-)
+), digits = 3)
 ```
+Estimated regression coefficients with 95% confidence intervals and p-values.
+:::
 
 ## Discussion
 

@@ -96,13 +96,22 @@ with(dat, tapply(htotbmd, riskcat4, mean, na.rm = TRUE))
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 frac_rates <- with(dat, tapply(frx, list(riskcat4, trt01), mean, na.rm = TRUE))
-barplot(t(frac_rates),
-        beside = TRUE,
-        col = c("#1b9e77", "#d95f02"),
-        xlab = "Fall risk category",
-        ylab = "Fracture proportion",
-        main = "FIT: Fracture rate by fall risk and treatment",
-        legend.text = c("Placebo", "Alendronate"))
+frac_df <- as.data.frame(as.table(frac_rates))
+names(frac_df) <- c("riskcat4", "trt01", "rate")
+
+ggplot2::ggplot(frac_df, ggplot2::aes(x = riskcat4, y = rate, fill = trt01)) +
+  ggplot2::geom_col(position = "dodge") +
+  ggplot2::scale_fill_manual(
+    values = c("#1b9e77", "#d95f02"),
+    labels = c("Placebo", "Alendronate")
+  ) +
+  ggplot2::labs(
+    title = "FIT: Fracture rate by fall risk and treatment",
+    x = "Fall risk category",
+    y = "Fracture proportion",
+    fill = NULL
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Model estimates

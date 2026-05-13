@@ -39,6 +39,7 @@ Does 6-MP treatment prolong leukemia remission compared to placebo?
 
 ### Causal assumptions
 
+:::{#fig-leuk-dag}
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
@@ -51,6 +52,8 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
   ggplot2::labs(title = "Leukemia: Causal DAG")
 ```
+Directed acyclic graph for the leukemia remission treatment comparison.
+:::
 
 ## Methods
 
@@ -85,24 +88,38 @@ with(dat, tapply(time, group, summary))
 with(dat, tapply(cens, group, mean))
 ```
 
+:::{#fig-leuk-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-km_fit <- survival::survfit(survival::Surv(time, cens) ~ group, data = dat)
-plot(
+treatment_group_labels <- c(`1` = "6-MP", `2` = "Placebo")
+treatment_palette <- c("6-MP" = "#1b9e77", "Placebo" = "#d95f02")
+dat$group_plot <- factor(
+  dat$group,
+  levels = c(1, 2),
+  labels = treatment_group_labels
+)
+km_fit <- survival::survfit(survival::Surv(time, cens) ~ group_plot, data = dat)
+
+survminer::ggsurvplot(
   km_fit,
-  col = c("#1b9e77", "#d95f02"),
-  lwd = 2,
+  data = dat,
+  title = "Leukemia: Kaplan-Meier curves by treatment group",
   xlab = "Weeks in remission",
   ylab = "Remission-free probability",
-  mark.time = TRUE,
-  main = "Leukemia: Kaplan-Meier curves by treatment group"
+  legend.title = NULL,
+  ggtheme = ggplot2::theme_minimal(),
+  palette = unname(treatment_palette),
+  conf.int = FALSE,
+  censor = TRUE
 )
-legend("topright", legend = c("Placebo", "6-MP"), col = c("#1b9e77", "#d95f02"), lwd = 2, bty = "n")
 ```
+Kaplan-Meier remission curves comparing 6-MP and placebo groups.
+:::
 
 All 42 participants can be shown in a swimmer plot,
 displaying each individual's time in remission
 with relapses marked by an ×.
 
+:::{#fig-leuk-swimmer}
 ```{r swimplot, fig.height=7, fig.width=6}
 dat_swim <- as.data.frame(dat)
 dat_swim$id <- seq_len(nrow(dat_swim))
@@ -111,7 +128,7 @@ dat_swim$group_int <- as.integer(unclass(dat_swim$group))
 dat_swim$Treatment <- factor(
   dat_swim$group_int,
   levels = c(1, 2),
-  labels = c("6-MP", "Placebo")
+  labels = treatment_group_labels
 )
 dat_relapse <- dat_swim[dat_swim$cens == 1, ]
 
@@ -124,13 +141,15 @@ swimplot::swimmer_plot(
     df = dat_relapse, id = "id", time = "time",
     shape = 4, size = 3, col = "black"
   ) +
-  ggplot2::scale_fill_manual(values = c("#d95f02", "#1b9e77")) +
+  ggplot2::scale_fill_manual(values = treatment_palette) +
   ggplot2::labs(
     x = "Weeks in remission",
     y = "Patient",
     title = "Leukemia: Duration of remission by treatment (× = relapse)"
   )
 ```
+Swimmer plot of remission duration with relapse markers for all patients.
+:::
 
 ### Model estimates
 
@@ -148,17 +167,20 @@ logrank_test
 
 ### Inference
 
+:::{#tbl-leuk-logrank}
 ```{r inference}
 chi2 <- logrank_test$chisq
 df <- length(logrank_test$n) - 1
 p_val <- 1 - stats::pchisq(chi2, df = df)
-data.frame(
+knitr::kable(data.frame(
   test = "log-rank",
   chi_squared = round(chi2, 3),
   df = df,
   p_value = signif(p_val, 3)
-)
+), digits = 3)
 ```
+Log-rank test results comparing remission curves across treatment groups.
+:::
 
 ## Discussion
 

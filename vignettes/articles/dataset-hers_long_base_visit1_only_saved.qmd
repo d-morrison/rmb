@@ -95,12 +95,18 @@ with(ana, tapply(glucose, exer3, mean, na.rm = TRUE))
 ```
 
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-boxplot(glucose ~ group, data = ana,
-        names = c("Placebo", "HRT"),
-        xlab = "Treatment assignment",
-        ylab = "Year-1 fasting glucose (mg/dL)",
-        main = "HERS: Year-1 glucose by HRT assignment",
-        col = c("grey85", "#d95f02"))
+ana$group_label <- factor(ana$group, levels = c(0, 1), labels = c("Placebo", "HRT"))
+
+ggplot2::ggplot(ana, ggplot2::aes(x = group_label, y = glucose, fill = group_label)) +
+  ggplot2::geom_boxplot() +
+  ggplot2::scale_fill_manual(values = c("grey85", "#d95f02")) +
+  ggplot2::labs(
+    title = "HERS: Year-1 glucose by HRT assignment",
+    x = "Treatment assignment",
+    y = "Year-1 fasting glucose (mg/dL)"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(legend.position = "none")
 ```
 
 ### Model estimates
@@ -113,10 +119,33 @@ summary(fit_gluc)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
-par(mfrow = c(1, 2))
-plot(fit_gluc, which = 1)
-plot(fit_gluc, which = 2)
-par(mfrow = c(1, 1))
+#| layout-ncol: 2
+fit_data <- data.frame(
+  fitted = stats::fitted(fit_gluc),
+  residuals = stats::residuals(fit_gluc),
+  std_residuals = stats::rstandard(fit_gluc)
+)
+
+ggplot2::ggplot(fit_data, ggplot2::aes(x = fitted, y = residuals)) +
+  ggplot2::geom_point(alpha = 0.25, size = 0.5) +
+  ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  ggplot2::geom_smooth(se = FALSE, color = "blue") +
+  ggplot2::labs(
+    title = "Residuals vs Fitted",
+    x = "Fitted values",
+    y = "Residuals"
+  ) +
+  ggplot2::theme_minimal()
+
+ggplot2::ggplot(fit_data, ggplot2::aes(sample = std_residuals)) +
+  ggplot2::stat_qq() +
+  ggplot2::stat_qq_line(color = "red") +
+  ggplot2::labs(
+    title = "Normal Q-Q",
+    x = "Theoretical Quantiles",
+    y = "Standardized residuals"
+  ) +
+  ggplot2::theme_minimal()
 ```
 
 ### Inference

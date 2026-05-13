@@ -40,6 +40,7 @@ after adjustment for body weight in older men?
 
 ### Causal assumptions
 
+:::{#fig-mros-dag}
 ```{r dag, fig.height=4, fig.width=6}
 set.seed(42)
 dag <- ggdag::dagify(
@@ -57,6 +58,8 @@ ggdag::ggdag(dag, use_labels = "label", text = FALSE) +
   ggdag::theme_dag_blank() +
   ggplot2::labs(title = "MrOS: Causal DAG")
 ```
+Directed acyclic graph for BMD, weight, and event risk in MrOS.
+:::
 
 ## Methods
 
@@ -90,19 +93,29 @@ with(dat, tapply(years, bmd3, summary))
 with(dat, tapply(weight, bmd3, mean))
 ```
 
+:::{#fig-mros-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-km_fit <- survival::survfit(survival::Surv(years, status) ~ bmd3, data = dat)
-plot(
+dat$bmd3_plot <- factor(
+  dat$bmd3,
+  labels = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)")
+)
+km_fit <- survival::survfit(survival::Surv(years, status) ~ bmd3_plot, data = dat)
+
+survminer::ggsurvplot(
   km_fit,
-  col = c("#1b9e77", "#d95f02", "#7570b3"),
-  lwd = 2,
+  data = dat,
+  title = "MrOS: Survival by BMD quantile",
   xlab = "Years",
   ylab = "Event-free survival",
-  main = "MrOS: Survival by BMD quantile"
+  legend.title = NULL,
+  ggtheme = ggplot2::theme_minimal(),
+  palette = c("#1b9e77", "#d95f02", "#7570b3"),
+  conf.int = FALSE,
+  censor = TRUE
 )
-legend("topright", legend = c("BMD Q1 (low)", "BMD Q2", "BMD Q3 (high)"),
-       col = c("#1b9e77", "#d95f02", "#7570b3"), lwd = 2, bty = "n")
 ```
+Kaplan-Meier event-free survival curves by baseline BMD quantile.
+:::
 
 ### Model estimates
 
@@ -120,17 +133,20 @@ ph_test
 
 ### Inference
 
+:::{#tbl-mros-inference}
 ```{r inference}
 hr <- exp(stats::coef(fit))
 ci <- exp(stats::confint(fit))
-data.frame(
+knitr::kable(data.frame(
   term = names(hr),
   hazard_ratio = unname(hr),
   conf_low = ci[, 1],
   conf_high = ci[, 2],
   p_value = summary(fit)$coefficients[, "Pr(>|z|)"]
-)
+), digits = 3)
 ```
+Cox model hazard-ratio estimates for BMD quantiles and body weight.
+:::
 
 ## Discussion
 
@@ -149,4 +165,3 @@ and a continuous confounder (weight) to event risk.
 - Orwoll E et al. (2005). Design and baseline characteristics of the osteoporotic fractures in men (MrOS) study. *J Bone Miner Res*, 20(4), 678-687.
 - UCSF Regression Methods companion data: https://regression.ucsf.edu/sites/g/files/tkssra16191/files/wysiwyg/home/data/mros.dta
 - Book: Vittinghoff E, Glidden DV, Shiboski SC, McCulloch CE (2012). *Regression Methods in Biostatistics* (2nd edition).
-
