@@ -98,7 +98,7 @@ with(dat, tapply(fu, txtype, summary))
 :::{#fig-unos-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
 dat$txtype_plot <- factor(
-  as.integer(dat$txtype),
+  dat$txtype,
   levels = c(0, 1),
   labels = c("Cadaveric", "Living donor")
 )

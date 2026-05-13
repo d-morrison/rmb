@@ -90,11 +90,11 @@ with(dat, tapply(cens, group, mean))
 
 :::{#fig-leuk-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-group_labels <- c(`1` = "6-MP", `2` = "Placebo")
+treatment_labels <- c(`1` = "6-MP", `2` = "Placebo")
 dat$group_plot <- factor(
-  as.integer(dat$group),
+  dat$group,
   levels = c(1, 2),
-  labels = group_labels
+  labels = treatment_labels
 )
 km_fit <- survival::survfit(survival::Surv(time, cens) ~ group_plot, data = dat)
 
@@ -127,7 +127,7 @@ dat_swim$group_int <- as.integer(unclass(dat_swim$group))
 dat_swim$Treatment <- factor(
   dat_swim$group_int,
   levels = c(1, 2),
-  labels = group_labels
+  labels = treatment_labels
 )
 dat_relapse <- dat_swim[dat_swim$cens == 1, ]
 
