@@ -878,7 +878,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Is living-donor transplant associated with lower post-transplant mortality compared to cadaveric transplant in pediatric kidney recipients?</p>
 <section id="causal-assumptions" class="level3" data-number="1.1"><h3 data-number="1.1" class="anchored" data-anchor-id="causal-assumptions">
 <span class="header-section-number">1.1</span> Causal assumptions</h3>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span><span class="va">dag</span> <span class="op">&lt;-</span> <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/dagify.html">dagify</a></span><span class="op">(</span></span>
 <span>  <span class="va">mort</span> <span class="op">~</span> <span class="va">txtype</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">agedon</span> <span class="op">+</span> <span class="va">cold</span> <span class="op">+</span> <span class="va">rej</span>,</span>
@@ -896,12 +895,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/ggdag.html">ggdag</a></span><span class="op">(</span><span class="va">dag</span>, use_labels <span class="op">=</span> <span class="st">"label"</span>, text <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggdag</span><span class="fu">::</span><span class="fu"><a href="https://r-causal.github.io/ggdag/reference/theme_dag_blank.html">theme_dag_blank</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"UNOS: Causal DAG"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
+</details><div id="fig-unos-dag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-unos-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Directed acyclic graph for donor type and pediatric transplant mortality.
+</figcaption><div aria-describedby="fig-unos-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="dataset-unos_files/figure-html/dag-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
+</div>
+</div>
+</figure>
 </div>
 </section></section><section id="methods" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="methods">
 <span class="header-section-number">2</span> Methods</h2>
@@ -966,24 +973,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt;   0.000   1.077   3.033   3.741   5.644  12.532</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div class="cell">
-<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">km_fit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">fu</span>, <span class="va">death</span><span class="op">)</span> <span class="op">~</span> <span class="va">txtype</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span></span>
+<details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">txtype_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span></span>
+<span>  <span class="va">dat</span><span class="op">$</span><span class="va">txtype</span>,</span>
+<span>  levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cadaveric"</span>, <span class="st">"Living donor"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">km_fit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/survfit.html">survfit</a></span><span class="op">(</span><span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">fu</span>, <span class="va">death</span><span class="op">)</span> <span class="op">~</span> <span class="va">txtype_plot</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">survminer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survminer/man/ggsurvplot.html">ggsurvplot</a></span><span class="op">(</span></span>
 <span>  <span class="va">km_fit</span>,</span>
-<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span>,</span>
-<span>  lwd <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">dat</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"UNOS: Post-transplant survival by donor type"</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Years post-transplant"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Survival probability"</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">"UNOS: Post-transplant survival by donor type"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cadaveric"</span>, <span class="st">"Living donor"</span><span class="op">)</span>,</span>
-<span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output-display">
+<span>  legend.title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#1b9e77"</span>, <span class="st">"#d95f02"</span><span class="op">)</span>,</span>
+<span>  conf.int <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  censor <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div id="fig-unos-km" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-unos-km-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Kaplan-Meier survival curves by donor type in pediatric recipients.
+</figcaption><div aria-describedby="fig-unos-km-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="dataset-unos_files/figure-html/exploratory-plot-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
+</div>
+</div>
+</figure>
 </div>
 </section><section id="model-estimates" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="model-estimates">
 <span class="header-section-number">3.2</span> Model estimates</h3>
@@ -1036,24 +1058,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="inference" class="level3" data-number="3.4"><h3 data-number="3.4" class="anchored" data-anchor-id="inference">
 <span class="header-section-number">3.4</span> Inference</h3>
-<div class="cell">
 <details open="" class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  term <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">hr</span><span class="op">)</span>,</span>
 <span>  hazard_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">hr</span><span class="op">)</span>,</span>
 <span>  conf_low <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
 <span>  conf_high <span class="op">=</span> <span class="va">ci</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
 <span>  p_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span>, <span class="st">"Pr(&gt;|z|)"</span><span class="op">]</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt;                term hazard_ratio  conf_low conf_high      p_value</span></span>
-<span><span class="co">#&gt; txtype       txtype    1.5337537 1.0906675 2.1568448 1.393592e-02</span></span>
-<span><span class="co">#&gt; age             age    0.9760731 0.9569026 0.9956277 1.671419e-02</span></span>
-<span><span class="co">#&gt; age_don     age_don    0.9956065 0.9874646 1.0038155 2.932657e-01</span></span>
-<span><span class="co">#&gt; cold_isc   cold_isc    1.0015265 0.9886752 1.0145448 8.169410e-01</span></span>
-<span><span class="co">#&gt; trtrej1yN trtrej1yN    0.2489560 0.1904810 0.3253819 2.448273e-24</span></span>
-<span><span class="co">#&gt; trtrej1yY trtrej1yY    0.3288175 0.2549386 0.4241058 1.067830e-17</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div id="tbl-unos-inference" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unos-inference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Cox model hazard-ratio estimates for donor type and adjusted covariates.
+</figcaption><div aria-describedby="tbl-unos-inference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">hazard_ratio</th>
+<th style="text-align: right;">conf_low</th>
+<th style="text-align: right;">conf_high</th>
+<th style="text-align: right;">p_value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">txtype</td>
+<td style="text-align: left;">txtype</td>
+<td style="text-align: right;">1.534</td>
+<td style="text-align: right;">1.091</td>
+<td style="text-align: right;">2.157</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">age</td>
+<td style="text-align: right;">0.976</td>
+<td style="text-align: right;">0.957</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age_don</td>
+<td style="text-align: left;">age_don</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.987</td>
+<td style="text-align: right;">1.004</td>
+<td style="text-align: right;">0.293</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cold_isc</td>
+<td style="text-align: left;">cold_isc</td>
+<td style="text-align: right;">1.002</td>
+<td style="text-align: right;">0.989</td>
+<td style="text-align: right;">1.015</td>
+<td style="text-align: right;">0.817</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">trtrej1yN</td>
+<td style="text-align: left;">trtrej1yN</td>
+<td style="text-align: right;">0.249</td>
+<td style="text-align: right;">0.190</td>
+<td style="text-align: right;">0.325</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">trtrej1yY</td>
+<td style="text-align: left;">trtrej1yY</td>
+<td style="text-align: right;">0.329</td>
+<td style="text-align: right;">0.255</td>
+<td style="text-align: right;">0.424</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
 </div>
 </section></section><section id="discussion" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="discussion">
 <span class="header-section-number">4</span> Discussion</h2>
