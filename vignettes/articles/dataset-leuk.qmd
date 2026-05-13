@@ -90,7 +90,12 @@ with(dat, tapply(cens, group, mean))
 
 :::{#fig-leuk-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-dat$group_plot <- factor(dat$group, levels = c(1, 2), labels = c("6-MP", "Placebo"))
+group_labels <- c(`1` = "6-MP", `2` = "Placebo")
+dat$group_plot <- factor(
+  as.integer(dat$group),
+  levels = c(1, 2),
+  labels = group_labels
+)
 km_fit <- survival::survfit(survival::Surv(time, cens) ~ group_plot, data = dat)
 
 survminer::ggsurvplot(
@@ -122,7 +127,7 @@ dat_swim$group_int <- as.integer(unclass(dat_swim$group))
 dat_swim$Treatment <- factor(
   dat_swim$group_int,
   levels = c(1, 2),
-  labels = c("6-MP", "Placebo")
+  labels = group_labels
 )
 dat_relapse <- dat_swim[dat_swim$cens == 1, ]
 
@@ -135,7 +140,7 @@ swimplot::swimmer_plot(
     df = dat_relapse, id = "id", time = "time",
     shape = 4, size = 3, col = "black"
   ) +
-  ggplot2::scale_fill_manual(values = c("#d95f02", "#1b9e77")) +
+  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
   ggplot2::labs(
     x = "Weeks in remission",
     y = "Patient",

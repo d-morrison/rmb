@@ -97,7 +97,11 @@ with(dat, tapply(fu, txtype, summary))
 
 :::{#fig-unos-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-dat$txtype_plot <- factor(dat$txtype, labels = c("Cadaveric", "Living donor"))
+dat$txtype_plot <- factor(
+  as.integer(dat$txtype),
+  levels = c(0, 1),
+  labels = c("Cadaveric", "Living donor")
+)
 km_fit <- survival::survfit(survival::Surv(fu, death) ~ txtype_plot, data = dat)
 
 survminer::ggsurvplot(
