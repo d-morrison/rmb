@@ -131,6 +131,7 @@ summary(fit_ht_statin)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
+#| layout-ncol: 2
 fit_data <- data.frame(
   fitted = stats::fitted(fit_bmi_ldl),
   residuals = stats::residuals(fit_bmi_ldl),

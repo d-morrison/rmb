@@ -122,6 +122,7 @@ summary(fit)
 ### Model diagnostics
 
 ```{r adequacy-checks, fig.height=4, fig.width=6}
+#| layout-ncol: 2
 fit_data <- data.frame(
   fitted = stats::fitted(fit),
   residuals = stats::residuals(fit),

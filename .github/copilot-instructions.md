@@ -225,6 +225,9 @@ in markdown/Quarto documents.
 - Reference packages with backtick/brace notation and a hyperlink
   (e.g., `` [`{dplyr}`](https://dplyr.tidyverse.org/) ``).
 - Do **not** use raw HTML (`<a href="...">`); use Quarto/markdown links.
+- For multi-plot diagnostics in `.qmd` files, use Quarto subplots
+  (for example, `#| layout-ncol: 2`)
+  to keep paired diagnostics in a compact single panel.
 
 ### Messaging in Package Code
 
