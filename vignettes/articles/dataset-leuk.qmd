@@ -90,11 +90,12 @@ with(dat, tapply(cens, group, mean))
 
 :::{#fig-leuk-km}
 ```{r exploratory-plot, fig.height=4, fig.width=6}
-treatment_labels <- c(`1` = "6-MP", `2` = "Placebo")
+treatment_group_labels <- c(`1` = "6-MP", `2` = "Placebo")
+treatment_palette <- c("6-MP" = "#1b9e77", "Placebo" = "#d95f02")
 dat$group_plot <- factor(
   dat$group,
   levels = c(1, 2),
-  labels = treatment_labels
+  labels = treatment_group_labels
 )
 km_fit <- survival::survfit(survival::Surv(time, cens) ~ group_plot, data = dat)
 
@@ -106,7 +107,7 @@ survminer::ggsurvplot(
   ylab = "Remission-free probability",
   legend.title = NULL,
   ggtheme = ggplot2::theme_minimal(),
-  palette = c("#1b9e77", "#d95f02"),
+  palette = unname(treatment_palette),
   conf.int = FALSE,
   censor = TRUE
 )
@@ -127,7 +128,7 @@ dat_swim$group_int <- as.integer(unclass(dat_swim$group))
 dat_swim$Treatment <- factor(
   dat_swim$group_int,
   levels = c(1, 2),
-  labels = treatment_labels
+  labels = treatment_group_labels
 )
 dat_relapse <- dat_swim[dat_swim$cens == 1, ]
 
@@ -140,7 +141,7 @@ swimplot::swimmer_plot(
     df = dat_relapse, id = "id", time = "time",
     shape = 4, size = 3, col = "black"
   ) +
-  ggplot2::scale_fill_manual(values = c("#1b9e77", "#d95f02")) +
+  ggplot2::scale_fill_manual(values = treatment_palette) +
   ggplot2::labs(
     x = "Weeks in remission",
     y = "Patient",
