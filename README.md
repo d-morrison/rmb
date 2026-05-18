@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/d-morrison/rmb/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/rmb/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/d-morrison/rmb/branch/main/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/rmb)
@@ -21,11 +21,23 @@ MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.
 
 <!-- badges: end -->
 
-The goal of `{rmb}` is to …
+`{rmb}` provides the 26 datasets from the companion website for
+[*Regression Methods in Biostatistics* (2nd
+edition)](https://www.routledge.com/Regression-Methods-in-Biostatistics-Linear-Logistic-Survival-and-Repeated-Measures-Models/Vittinghoff-Glidden-Shiboski-McCulloch/p/book/9781466504401)
+by Vittinghoff, Glidden, Shiboski, and McCulloch, along with full
+variable labels, documentation, and example analyses organized as
+mini-journal articles.
 
 ## Installation
 
-You can install the development version of `{rmb}` from
+You can install the released version of `{rmb}` from
+[CRAN](https://cran.r-project.org/) with:
+
+``` r
+install.packages("rmb")
+```
+
+Or install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -35,12 +47,22 @@ pak::pak("d-morrison/rmb")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
-suppressPackageStartupMessages(library(rmb))
-## basic example code
+library(rmb)
+head(hers[, c("HT", "age", "BMI", "glucose")])
+#>    HT age      BMI glucose
+#> 1   0  75 27.99908     105
+#> 2   1  73 23.35420      90
+#> 3   1  67 27.26531      96
+#> 4   0  67 25.07876      87
+#> 5   0  68 31.34082     124
+#> 6   0  66 27.66804      76
 ```
+
+## Datasets
+
+See `rmb_datasets` for the full index of available datasets, including
+titles and chapter references.
 
 ## Development
 
@@ -51,26 +73,13 @@ This package uses [altdoc](https://altdoc.etiennebacher.com/) with
 and preview the documentation locally:
 
 ``` r
-# Load the package
 pkgload::load_all()
-
-# Render the documentation
 altdoc::render_docs()
-
-# Preview the site
 altdoc::preview_docs()
 ```
 
 The documentation is automatically built and deployed to GitHub Pages
 via GitHub Actions when changes are pushed to the main branch.
-
-## Other R Package Template Options
-
-If you’re looking for alternative R package templates, you may also want
-to consider:
-
-- [r.pkg.template](https://github.com/insightsengineering/r.pkg.template/) -
-  A comprehensive R package template from Insights Engineering
 
 ## Code of Conduct
 
