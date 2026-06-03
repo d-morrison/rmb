@@ -7,8 +7,11 @@
 #' study is not documented in the textbook or the companion materials, so no
 #' primary article or study design is cited here. One possible (though
 #' unconfirmed) source is Tsui et al. (2009),
-#' \doi{10.1016/j.drugalcdep.2009.05.022} — a study of injection drug users in
-#' San Francisco co-authored by RMB author E. Vittinghoff.
+#' \doi{10.1016/j.drugalcdep.2009.05.022} -- a study of injection drug users in
+#' San Francisco co-authored by RMB author E. Vittinghoff. The match is
+#' uncertain because this dataset lacks an HCV variable (Tsui et al. studied
+#' HCV seroconversion) and its mean participant age (~40) is older than that
+#' paper's young-IDU cohort.
 #'
 #' @format A data frame with 128 rows and 17 variables:
 #' \describe{
