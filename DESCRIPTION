@@ -18,26 +18,23 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     stats
-Suggests: 
-    altdoc,
-    ggdag,
-    ggplot2,
-    haven,
+Suggests:
+    badger,
     knitr,
     rmarkdown,
     spelling,
-    survey,
-    swimplot,
-    testthat (>= 3.0.0),
-    withr,
-    quarto,
-    bslib,
-    badger,
-    survival,
-    ggfortify,
-    survminer
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
-VignetteBuilder: knitr, quarto
-Config/Needs/website: quarto
+Config/Needs/website:
+    altdoc,
+    bslib,
+    ggdag,
+    ggfortify,
+    ggplot2,
+    haven,
+    quarto,
+    survey,
+    survival,
+    survminer
 LazyData: true
 Config/roxygen2/version: 8.0.0
