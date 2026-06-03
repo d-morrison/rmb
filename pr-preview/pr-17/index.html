@@ -906,42 +906,161 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="datasets" class="level2">
 <h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
-<pre><code>#&gt;                              object                       title chapter
-#&gt; 1                              wcgs                   WCGS data       2
-#&gt; 2                              hers                   HERS data       3
-#&gt; 3                          whickham               Whickham data       3
-#&gt; 4                              leuk               Leukemia data       3
-#&gt; 5                         figure4_1             Figure 4.1 data       4
-#&gt; 6                         figure4_6             Figure 4.6 data       4
-#&gt; 7                        figure4_12            Figure 4.12 data       4
-#&gt; 8                             esoph Ille-et-Villaine study data       5
-#&gt; 9                          mira_hsv                   MIRA data       5
-#&gt; 10                             unos                   UNOS data       6
-#&gt; 11                              pbc                    PBC data       6
-#&gt; 12                              fit                    FIT data       6
-#&gt; 13                          actg019               ACTG 019 data       6
-#&gt; 14                             mros                   MrOS data       6
-#&gt; 15                           fecfat              Fecal fat data       7
-#&gt; 16                              sof                    SOF data       7
-#&gt; 17                         gababies    Georgia birthweight data       7
-#&gt; 18                             sof2                SOF BMD data       7
-#&gt; 19                   needle_sharing         Needle sharing data       8
-#&gt; 20                           fitglm          Fracture risk data       8
-#&gt; 21                     phototherapy           Phototherapy data       9
-#&gt; 22                          fitdata                FIT BMD data       9
-#&gt; 23            hers_nodm_visit4_only   Table 11.1/11.2 HERS data      11
-#&gt; 24 hers_long_base_visit1_only_saved        Table 11.3 HERS data      11
-#&gt; 25           hers_nodm_longitudinal        Table 11.8 HERS data      11
-#&gt; 26                          nhanes3                 NHANES data      12</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 40%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">object</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: right;">chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">wcgs</td>
+<td style="text-align: left;">WCGS data</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hers</td>
+<td style="text-align: left;">HERS data</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">whickham</td>
+<td style="text-align: left;">Whickham data</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">leuk</td>
+<td style="text-align: left;">Leukemia data</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">figure4_1</td>
+<td style="text-align: left;">Figure 4.1 data</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">figure4_6</td>
+<td style="text-align: left;">Figure 4.6 data</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">figure4_12</td>
+<td style="text-align: left;">Figure 4.12 data</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">esoph</td>
+<td style="text-align: left;">Ille-et-Villaine study data</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mira_hsv</td>
+<td style="text-align: left;">MIRA data</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">unos</td>
+<td style="text-align: left;">UNOS data</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pbc</td>
+<td style="text-align: left;">PBC data</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fit</td>
+<td style="text-align: left;">FIT data</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">actg019</td>
+<td style="text-align: left;">ACTG 019 data</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mros</td>
+<td style="text-align: left;">MrOS data</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fecfat</td>
+<td style="text-align: left;">Fecal fat data</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sof</td>
+<td style="text-align: left;">SOF data</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gababies</td>
+<td style="text-align: left;">Georgia birthweight data</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sof2</td>
+<td style="text-align: left;">SOF BMD data</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">needle_sharing</td>
+<td style="text-align: left;">Needle sharing data</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fitglm</td>
+<td style="text-align: left;">Fracture risk data</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">phototherapy</td>
+<td style="text-align: left;">Phototherapy data</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fitdata</td>
+<td style="text-align: left;">FIT BMD data</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hers_nodm_visit4_only</td>
+<td style="text-align: left;">Table 11.1/11.2 HERS data</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hers_long_base_visit1_only_saved</td>
+<td style="text-align: left;">Table 11.3 HERS data</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hers_nodm_longitudinal</td>
+<td style="text-align: left;">Table 11.8 HERS data</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nhanes3</td>
+<td style="text-align: left;">NHANES data</td>
+<td style="text-align: right;">12</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="development" class="level2">
 <h2 class="anchored" data-anchor-id="development">Development</h2>
 <section id="building-the-documentation-site" class="level3">
 <h3 class="anchored" data-anchor-id="building-the-documentation-site">Building the Documentation Site</h3>
 <p>This package uses <a href="https://altdoc.etiennebacher.com/">altdoc</a> with <a href="https://quarto.org/">Quarto</a> to build its documentation site. To build and preview the documentation locally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pkgload<span class="sc">::</span><span class="fu">load_all</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>altdoc<span class="sc">::</span><span class="fu">render_docs</span>()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>altdoc<span class="sc">::</span><span class="fu">preview_docs</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgload<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>altdoc<span class="sc">::</span><span class="fu">render_docs</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>altdoc<span class="sc">::</span><span class="fu">preview_docs</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The documentation is automatically built and deployed to GitHub Pages via GitHub Actions when changes are pushed to the main branch.</p>
 </section>
 </section>
