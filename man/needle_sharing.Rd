@@ -33,9 +33,11 @@ A data frame with 128 rows and 17 variables:
 needle_sharing
 }
 \description{
-Dataset used in Chapter 8 of \emph{Regression Methods in Biostatistics}
-(2nd edition), as distributed on the UCSF companion website.
-Study design: Longitudinal panel study of injection drug users measuring repeated needle-sharing behavior.
-Primary article: \href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{RMB2e risky-drug-use example dataset}.
+The risky-drug-use (needle-sharing) example dataset from Chapter 8 of
+\emph{Regression Methods in Biostatistics} (2nd edition), distributed on the
+\href{https://regression.ucsf.edu/second-edition/data-examples-and-problems}{UCSF companion website}.
+As distributed, the data are one row per participant (n = 128); the original
+study is not documented in the textbook or the companion materials, so no
+primary article or study design is cited here.
 }
 \keyword{datasets}
