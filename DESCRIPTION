@@ -27,7 +27,6 @@ Suggests:
     rmarkdown,
     spelling,
     survey,
-    swimplot,
     testthat (>= 3.0.0),
     withr,
     quarto,
@@ -37,7 +36,6 @@ Suggests:
     ggfortify,
     survminer
 Config/testthat/edition: 3
-VignetteBuilder: knitr, quarto
 Config/Needs/website: quarto
 LazyData: true
 Config/roxygen2/version: 8.0.0

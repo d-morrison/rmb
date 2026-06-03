@@ -37,8 +37,8 @@ You can install the released version of `{rmb}` from
 install.packages("rmb")
 ```
 
-Or install the development version from
-[GitHub](https://github.com/) with:
+Or install the development version from [GitHub](https://github.com/)
+with:
 
 ``` r
 # install.packages("pak")
@@ -49,20 +49,52 @@ pak::pak("d-morrison/rmb")
 
 ``` r
 library(rmb)
+#> 
+#> Attaching package: 'rmb'
+#> The following object is masked from 'package:datasets':
+#> 
+#>     esoph
 head(hers[, c("HT", "age", "BMI", "glucose")])
-#>    HT age      BMI glucose
-#> 1   0  75 27.99908     105
-#> 2   1  73 23.35420      90
-#> 3   1  67 27.26531      96
-#> 4   0  67 25.07876      87
-#> 5   0  68 31.34082     124
-#> 6   0  66 27.66804      76
+#> # A tibble: 6 × 4
+#>           HT   age   BMI glucose
+#>   <hvn_lbll> <dbl> <dbl>   <dbl>
+#> 1          0    70  23.7      84
+#> 2          0    62  28.6     111
+#> 3          1    69  42.5     114
+#> 4          0    64  24.4      94
+#> 5          0    65  21.9     101
+#> 6          1    68  29.0     116
 ```
 
 ## Datasets
 
-See `rmb_datasets` for the full index of available datasets, including
-titles and chapter references.
+    #>                              object                       title chapter
+    #> 1                              wcgs                   WCGS data       2
+    #> 2                              hers                   HERS data       3
+    #> 3                          whickham               Whickham data       3
+    #> 4                              leuk               Leukemia data       3
+    #> 5                         figure4_1             Figure 4.1 data       4
+    #> 6                         figure4_6             Figure 4.6 data       4
+    #> 7                        figure4_12            Figure 4.12 data       4
+    #> 8                             esoph Ille-et-Villaine study data       5
+    #> 9                          mira_hsv                   MIRA data       5
+    #> 10                             unos                   UNOS data       6
+    #> 11                              pbc                    PBC data       6
+    #> 12                              fit                    FIT data       6
+    #> 13                          actg019               ACTG 019 data       6
+    #> 14                             mros                   MrOS data       6
+    #> 15                           fecfat              Fecal fat data       7
+    #> 16                              sof                    SOF data       7
+    #> 17                         gababies    Georgia birthweight data       7
+    #> 18                             sof2                SOF BMD data       7
+    #> 19                   needle_sharing         Needle sharing data       8
+    #> 20                           fitglm          Fracture risk data       8
+    #> 21                     phototherapy           Phototherapy data       9
+    #> 22                          fitdata                FIT BMD data       9
+    #> 23            hers_nodm_visit4_only   Table 11.1/11.2 HERS data      11
+    #> 24 hers_long_base_visit1_only_saved        Table 11.3 HERS data      11
+    #> 25           hers_nodm_longitudinal        Table 11.8 HERS data      11
+    #> 26                          nhanes3                 NHANES data      12
 
 ## Development
 

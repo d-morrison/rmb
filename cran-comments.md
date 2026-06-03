@@ -1,8 +1,11 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+TBD -- fill in after running `devtools::check()`, `devtools::check_win_devel()`,
+and `rhub::check_for_cran()` (see the pre-submission checklist below).
 
 ## Test environments
+
+(Planned; update with actual results before submitting.)
 
 - Local: macOS, R 4.4.x
 - GitHub Actions: ubuntu-latest (R release, R devel, R oldrel-1)
@@ -19,9 +22,9 @@ This is the first CRAN submission; there are no downstream dependencies.
 - [ ] Run `devtools::check_win_devel()` and review results
 - [ ] Run `rhub::check_for_cran()` on multiple platforms
 - [ ] Verify all `Suggests:` packages are available on CRAN:
-  - NOTE: `swimplot` is currently installed from GitHub
-    (`biostatsPMH/swimplot`). Confirm it is on CRAN before submitting,
-    or remove it from `Suggests` (it is only used in excluded articles).
+  - `swimplot` (GitHub-only, `biostatsPMH/swimplot`) has been removed from
+    `Suggests`; it is only used in `vignettes/articles/`, which is excluded
+    from the tarball via `.Rbuildignore`.
 - [ ] Run `spelling::spell_check_package()` — no unrecognised words
 - [ ] Run `urlchecker::url_check()` — all URLs resolve
 - [ ] Review `NEWS.md` for completeness
