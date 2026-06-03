@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/d-morrison/rmb/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/d-morrison/rmb/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/d-morrison/rmb/branch/main/graph/badge.svg)](https://app.codecov.io/gh/d-morrison/rmb)
@@ -21,12 +21,24 @@ MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.
 
 <!-- badges: end -->
 
-The goal of `{rmb}` is to …
+`{rmb}` provides the 26 datasets from the companion website for
+[*Regression Methods in Biostatistics* (2nd
+edition)](https://www.routledge.com/Regression-Methods-in-Biostatistics-Linear-Logistic-Survival-and-Repeated-Measures-Models/Vittinghoff-Glidden-Shiboski-McCulloch/p/book/9781466504401)
+by Vittinghoff, Glidden, Shiboski, and McCulloch, along with full
+variable labels, documentation, and example analyses organized as
+mini-journal articles.
 
 ## Installation
 
-You can install the development version of `{rmb}` from
-[GitHub](https://github.com/) with:
+You can install the released version of `{rmb}` from
+[CRAN](https://cran.r-project.org/) with:
+
+``` r
+install.packages("rmb")
+```
+
+Or install the development version from [GitHub](https://github.com/)
+with:
 
 ``` r
 # install.packages("pak")
@@ -35,12 +47,55 @@ pak::pak("d-morrison/rmb")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
-suppressPackageStartupMessages(library(rmb))
-## basic example code
+library(rmb)
+#> 
+#> Attaching package: 'rmb'
+#> The following object is masked from 'package:datasets':
+#> 
+#>     esoph
+head(hers[, c("HT", "age", "BMI", "glucose")])
+#> # A tibble: 6 × 4
+#>           HT   age   BMI glucose
+#>   <hvn_lbll> <dbl> <dbl>   <dbl>
+#> 1          0    70  23.7      84
+#> 2          0    62  28.6     111
+#> 3          1    69  42.5     114
+#> 4          0    64  24.4      94
+#> 5          0    65  21.9     101
+#> 6          1    68  29.0     116
 ```
+
+## Datasets
+
+| object                           | title                       | chapter |
+|:---------------------------------|:----------------------------|--------:|
+| wcgs                             | WCGS data                   |       2 |
+| hers                             | HERS data                   |       3 |
+| whickham                         | Whickham data               |       3 |
+| leuk                             | Leukemia data               |       3 |
+| figure4_1                        | Figure 4.1 data             |       4 |
+| figure4_6                        | Figure 4.6 data             |       4 |
+| figure4_12                       | Figure 4.12 data            |       4 |
+| esoph                            | Ille-et-Villaine study data |       5 |
+| mira_hsv                         | MIRA data                   |       5 |
+| unos                             | UNOS data                   |       6 |
+| pbc                              | PBC data                    |       6 |
+| fit                              | FIT data                    |       6 |
+| actg019                          | ACTG 019 data               |       6 |
+| mros                             | MrOS data                   |       6 |
+| fecfat                           | Fecal fat data              |       7 |
+| sof                              | SOF data                    |       7 |
+| gababies                         | Georgia birthweight data    |       7 |
+| sof2                             | SOF BMD data                |       7 |
+| needle_sharing                   | Needle sharing data         |       8 |
+| fitglm                           | Fracture risk data          |       8 |
+| phototherapy                     | Phototherapy data           |       9 |
+| fitdata                          | FIT BMD data                |       9 |
+| hers_nodm_visit4_only            | Table 11.1/11.2 HERS data   |      11 |
+| hers_long_base_visit1_only_saved | Table 11.3 HERS data        |      11 |
+| hers_nodm_longitudinal           | Table 11.8 HERS data        |      11 |
+| nhanes3                          | NHANES data                 |      12 |
 
 ## Development
 
@@ -51,26 +106,13 @@ This package uses [altdoc](https://altdoc.etiennebacher.com/) with
 and preview the documentation locally:
 
 ``` r
-# Load the package
 pkgload::load_all()
-
-# Render the documentation
 altdoc::render_docs()
-
-# Preview the site
 altdoc::preview_docs()
 ```
 
 The documentation is automatically built and deployed to GitHub Pages
 via GitHub Actions when changes are pushed to the main branch.
-
-## Other R Package Template Options
-
-If you’re looking for alternative R package templates, you may also want
-to consider:
-
-- [r.pkg.template](https://github.com/insightsengineering/r.pkg.template/) -
-  A comprehensive R package template from Insights Engineering
 
 ## Code of Conduct
 
