@@ -64,7 +64,7 @@ head(hers[, c("HT", "age", "BMI", "glucose")])
 ## Datasets
 
 ```{r datasets, echo = FALSE}
-rmb_datasets[, c("object", "title", "chapter")]
+knitr::kable(rmb_datasets[, c("object", "title", "chapter")])
 ```
 
 ## Development

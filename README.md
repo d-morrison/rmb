@@ -68,33 +68,34 @@ head(hers[, c("HT", "age", "BMI", "glucose")])
 
 ## Datasets
 
-    #>                              object                       title chapter
-    #> 1                              wcgs                   WCGS data       2
-    #> 2                              hers                   HERS data       3
-    #> 3                          whickham               Whickham data       3
-    #> 4                              leuk               Leukemia data       3
-    #> 5                         figure4_1             Figure 4.1 data       4
-    #> 6                         figure4_6             Figure 4.6 data       4
-    #> 7                        figure4_12            Figure 4.12 data       4
-    #> 8                             esoph Ille-et-Villaine study data       5
-    #> 9                          mira_hsv                   MIRA data       5
-    #> 10                             unos                   UNOS data       6
-    #> 11                              pbc                    PBC data       6
-    #> 12                              fit                    FIT data       6
-    #> 13                          actg019               ACTG 019 data       6
-    #> 14                             mros                   MrOS data       6
-    #> 15                           fecfat              Fecal fat data       7
-    #> 16                              sof                    SOF data       7
-    #> 17                         gababies    Georgia birthweight data       7
-    #> 18                             sof2                SOF BMD data       7
-    #> 19                   needle_sharing         Needle sharing data       8
-    #> 20                           fitglm          Fracture risk data       8
-    #> 21                     phototherapy           Phototherapy data       9
-    #> 22                          fitdata                FIT BMD data       9
-    #> 23            hers_nodm_visit4_only   Table 11.1/11.2 HERS data      11
-    #> 24 hers_long_base_visit1_only_saved        Table 11.3 HERS data      11
-    #> 25           hers_nodm_longitudinal        Table 11.8 HERS data      11
-    #> 26                          nhanes3                 NHANES data      12
+| object                           | title                       | chapter |
+|:---------------------------------|:----------------------------|--------:|
+| wcgs                             | WCGS data                   |       2 |
+| hers                             | HERS data                   |       3 |
+| whickham                         | Whickham data               |       3 |
+| leuk                             | Leukemia data               |       3 |
+| figure4_1                        | Figure 4.1 data             |       4 |
+| figure4_6                        | Figure 4.6 data             |       4 |
+| figure4_12                       | Figure 4.12 data            |       4 |
+| esoph                            | Ille-et-Villaine study data |       5 |
+| mira_hsv                         | MIRA data                   |       5 |
+| unos                             | UNOS data                   |       6 |
+| pbc                              | PBC data                    |       6 |
+| fit                              | FIT data                    |       6 |
+| actg019                          | ACTG 019 data               |       6 |
+| mros                             | MrOS data                   |       6 |
+| fecfat                           | Fecal fat data              |       7 |
+| sof                              | SOF data                    |       7 |
+| gababies                         | Georgia birthweight data    |       7 |
+| sof2                             | SOF BMD data                |       7 |
+| needle_sharing                   | Needle sharing data         |       8 |
+| fitglm                           | Fracture risk data          |       8 |
+| phototherapy                     | Phototherapy data           |       9 |
+| fitdata                          | FIT BMD data                |       9 |
+| hers_nodm_visit4_only            | Table 11.1/11.2 HERS data   |      11 |
+| hers_long_base_visit1_only_saved | Table 11.3 HERS data        |      11 |
+| hers_nodm_longitudinal           | Table 11.8 HERS data        |      11 |
+| nhanes3                          | NHANES data                 |      12 |
 
 ## Development
 
