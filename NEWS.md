@@ -1,5 +1,13 @@
 # rmb (development version)
 
+- Corrected `needle_sharing` dataset metadata in `data-raw/process_data.R`:
+  The `study_design` field incorrectly described the dataset as a
+  "Longitudinal panel study"; the Stata label "Age at 1st interview"
+  indicates the distributed data are a cross-sectional baseline extract.
+  The `primary_article` and `primary_article_url` fields are updated to
+  reflect that the original study is undocumented in the textbook or
+  companion materials.
+- Bumped development version to `0.0.0.9019`.
 - Replaced hand-built Kaplan-Meier and linear-model diagnostic plots
   with package helpers (`survminer::ggsurvplot()` and
   `ggplot2::autoplot()`, with `{ggfortify}` supplying the S3 method)

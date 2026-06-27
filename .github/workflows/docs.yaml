@@ -73,7 +73,7 @@ jobs:
             website
           extra-packages: |
             d-morrison/altdoc@recursive-qmd-search
-            quarto-dev/quarto
+            any::quarto
             any::sessioninfo
             local::.
 
@@ -170,4 +170,3 @@ jobs:
                 :---:
                 Preview removed because the pull request was closed.
                 ${{ steps.preview-step.outputs.action-start-time }}
-
