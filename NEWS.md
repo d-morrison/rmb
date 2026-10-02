@@ -1,6 +1,9 @@
 # rmb (development version)
 
-* Added `AGENTS.md` and `.claude/settings.json` so AI coding agents load the shared lab rules from [`Morrison-Lab/ai-config`](https://github.com/Morrison-Lab/ai-config); both are excluded from the package build.
+* Added `AGENTS.md` and `.claude/settings.json`
+  so AI coding agents load the shared lab rules from
+  [`Morrison-Lab/ai-config`](https://github.com/Morrison-Lab/ai-config);
+  both are excluded from the package build.
 
 - Replaced hand-built Kaplan-Meier and linear-model diagnostic plots
   with package helpers (`survminer::ggsurvplot()` and
